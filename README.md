@@ -13,13 +13,13 @@ If you have questions about any M2X specific terms, please consult the M2X gloss
 
 ##Installation
 
-Copy the content from the `lib` folder on your project. 
+Copy the content from the `lib` folder to your project. 
 
 Note: The `lib` folder contains the AFNetworking library to make the HTTP requests.
 
 ## Requirements and Dependencies
 
-The M2X iOS Client was developed in iOS SDK 7.0.
+The M2X iOS Client was developed in **iOS SDK 7.0**.
 
 The client has the following library dependency:
 
@@ -27,7 +27,7 @@ The client has the following library dependency:
 
 ## Architecture
 
-Currently, the client supports API v1 and all M2X API documents can be found at [M2X API Documentation](https://m2x.att.com/developer/documentation/overview).
+Currently, the client supports M2X API v1. All M2X API specifications can be found at [M2X API Documentation](https://m2x.att.com/developer/documentation/overview).
 
 ### M2X Class
 
@@ -54,8 +54,8 @@ The method `-iSO8601ToDate:` parse from a ISO8601 Date `NSString` to `NSDate`:
 
 ### FeedClient Class
 
-The FeedClient class provides the interface to make all the Feeds request on the api.
-If the call requires parameters, it have to be encapsulated in a `NSDictionary` following the respective estructure from the [Feed API Documentation](https://m2x.att.com/developer/documentation/feed).
+The FeedClient class provides the interface to make all the Feeds request on the API.
+If the call requires parameters, it must be encapsulated in a `NSDictionary` following the respective estructure from the [Feed API Documentation](https://m2x.att.com/developer/documentation/feed).
 
 As well as the parameters, the response returns in a `NSDictionary` object. 
 
@@ -150,4 +150,4 @@ NSDictionary *newValue = @{ @"values": @[
 
 ## License
 
-iOS M2X API Client is available under the MIT license. See the LICENSE file for more info.
+The iOS M2X API Client is available under the MIT license. See the LICENSE file for more info.
