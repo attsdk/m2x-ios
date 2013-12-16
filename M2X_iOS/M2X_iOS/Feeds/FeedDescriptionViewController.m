@@ -21,9 +21,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
-    if(!_feedName)
-        _feedName = @"feed";
     
     _streamList = [NSMutableArray array];
     
@@ -134,12 +131,11 @@
     
     UITableViewCell *stream_tableViewSelected = sender;
     
-    NSIndexPath *valueIndex = [_tableViewStreams indexPathForCell:stream_tableViewSelected];
-    
-    NSDictionary *streamDict = [_streamList objectAtIndex:[valueIndex row]];
-    
     if ([[segue identifier] isEqualToString:@"toStreamValuesSegue"])
     {
+        NSIndexPath *valueIndex = [_tableViewStreams indexPathForCell:stream_tableViewSelected];
+        
+        NSDictionary *streamDict = [_streamList objectAtIndex:[valueIndex row]];
         
         StreamValuesViewController *streamValuesVC = segue.destinationViewController;
         

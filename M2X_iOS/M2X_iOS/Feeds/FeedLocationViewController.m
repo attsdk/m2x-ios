@@ -133,6 +133,7 @@
 
 -(void)resignAllFirstResponder{
     //hide keyboard
+    
     [_tfElevation resignFirstResponder];
     [_tfLatitude resignFirstResponder];
     [_tfLongitude resignFirstResponder];

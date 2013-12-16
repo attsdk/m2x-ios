@@ -95,10 +95,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    if(self.tableView.indexPathForSelectedRow.section!=0){
-        [self performSegueWithIdentifier:@"EditTimePeriod" sender:[tableView cellForRowAtIndexPath:indexPath]];
-    }
-    
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     return;

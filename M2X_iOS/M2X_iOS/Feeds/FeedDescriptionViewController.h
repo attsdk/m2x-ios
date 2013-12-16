@@ -11,6 +11,5 @@
 @property (nonatomic, retain) NSMutableArray *streamList;
 @property (nonatomic, strong) FeedsClient *feedClient;
 @property (nonatomic, strong) NSString *feed_id;
-@property (nonatomic, strong) NSString *feedName;
 
 @end
