@@ -1,12 +1,6 @@
-//
-//  BatchDetailsViewController.m
-//  M2X_iOS
-//
-//  Created by Fernando Javier González on 12/16/13.
-//  Copyright (c) 2013 AT&T. All rights reserved.
-//
 
 #import "BatchDetailsViewController.h"
+#import "AddDataSourceViewController.h"
 
 @interface BatchDetailsViewController ()
 
@@ -25,11 +19,16 @@
 
 - (void)viewDidLoad
 {
+    
     [super viewDidLoad];
 	
     _dataSources = [NSMutableArray array];
     
     _tableViewDataSources.dataSource = self;
+    
+}
+
+- (void)viewDidAppear:(BOOL)animated{
     
     [self getBatchDescription];
     
@@ -52,12 +51,9 @@
         [self didGetBatchDescription:object];
         
     } failure:^(NSError *error, NSDictionary *message) {
-        NSLog(@"%@",message);
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
-                                                        message:[NSString stringWithFormat:@"%@", message]
-                                                       delegate:nil cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        [alert show];
+        
+        [self showError:error WithMessage:message];
+        
     }];
     
 }
@@ -84,12 +80,9 @@
         [self didGetDataSourcesForBatch:object];
         
     } failure:^(NSError *error, NSDictionary *message) {
-        NSLog(@"%@",message);
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
-                                                        message:[NSString stringWithFormat:@"%@", message]
-                                                       delegate:nil cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        [alert show];
+
+        [self showError:error WithMessage:message];
+        
     }];
     
 }
@@ -108,7 +101,29 @@
     
 }
 
-#pragma mark - Avoid Automatic Adjust
+#pragma mark - segue
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    
+    AddDataSourceViewController *addDataSourceVC = segue.destinationViewController;
+    
+    addDataSourceVC.batch_id = _batch_id;
+    
+    addDataSourceVC.dataSourceClient = _dataSourceClient;
+    
+}
+
+#pragma mark - helper
+
+-(void)showError:(NSError*)error WithMessage:(NSDictionary*)message{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                    message:[NSString stringWithFormat:@"%@", message]
+                                                   delegate:nil cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];
+}
+
 
 -(BOOL)automaticallyAdjustsScrollViewInsets{
     return NO;

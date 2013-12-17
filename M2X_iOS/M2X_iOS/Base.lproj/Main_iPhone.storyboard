@@ -214,7 +214,6 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="addDataSource:" destination="RDY-UL-7v3" eventType="touchUpInside" id="AmC-LS-v0d"/>
                                     <segue destination="hHg-az-VaT" kind="push" id="2Sw-lZ-FXT"/>
                                 </connections>
                             </button>
@@ -263,6 +262,9 @@
                                 <state key="normal" title="Add">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="addDataSourceBtnPushed:" destination="hHg-az-VaT" eventType="touchUpInside" id="WZD-DM-u3c"/>
+                                </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="hk8-NF-n7M">
                                 <rect key="frame" x="20" y="147" width="280" height="49"/>
@@ -276,7 +278,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Add Data Source Serial" id="YNf-Qf-1FI"/>
                     <connections>
-                        <outlet property="lblSerial" destination="38o-GB-G6V" id="A71-A9-g7d"/>
+                        <outlet property="tfSerial" destination="38o-GB-G6V" id="huO-NE-kMq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PdM-sF-3z1" userLabel="First Responder" sceneMemberID="firstResponder"/>
