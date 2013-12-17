@@ -83,7 +83,14 @@
     NSDictionary *feedData = [_data objectAtIndex:indexPath.row];
     
     [[cell textLabel] setText:[feedData valueForKey:@"name"]];
-    [[cell detailTextLabel] setText:[feedData valueForKey:@"description"]];
+    
+    NSString *description = [feedData valueForKey:@"description"];
+
+    //check the value in not null
+    if([description isEqual:[NSNull null]])
+        [[cell detailTextLabel] setText:@""];
+    else
+        [[cell detailTextLabel] setText:description];
     
     return cell;
 }
