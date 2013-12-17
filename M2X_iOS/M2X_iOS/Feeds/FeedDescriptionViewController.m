@@ -52,12 +52,9 @@
         [self didGetFeedDescription:object];
         
     } failure:^(NSError *error, NSDictionary *message) {
-        NSLog(@"%@",message);
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
-                                                        message:[NSString stringWithFormat:@"%@", message]
-                                                       delegate:nil cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        [alert show];
+        
+        [self showError:error WithMessage:message];
+        
     }];
     
 }
@@ -158,8 +155,16 @@
         
     }
     
-    
-    
+}
+
+#pragma mark - helper
+
+-(void)showError:(NSError*)error WithMessage:(NSDictionary*)message{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                    message:[NSString stringWithFormat:@"%@", message]
+                                                   delegate:nil cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];
 }
 
 

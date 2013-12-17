@@ -45,14 +45,13 @@
 - (void)getFeedLocations{
     
     [_feedClient readDataLocationInFeed:_feed_id success:^(id object) {
+        
         [self didGetFeedLocation:object];
+        
     } failure:^(NSError *error, NSDictionary *message) {
-        NSLog(@"%@",message);
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
-                                                        message:[NSString stringWithFormat:@"%@", message]
-                                                       delegate:nil cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        [alert show];
+        
+        [self showError:error WithMessage:message];
+        
     }];
     
 }
@@ -93,12 +92,8 @@
     [_feedClient updateDatasourceWithLocation:locationDict inFeed:_feed_id success:^(id object) {
         [self didSetLocation];
     } failure:^(NSError *error, NSDictionary *message) {
-        NSLog(@"%@",message);
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
-                                                        message:[NSString stringWithFormat:@"%@", message]
-                                                       delegate:nil cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        [alert show];
+        
+        [self showError:error WithMessage:message];
         
         [self resignAllFirstResponder];
     }];
@@ -129,6 +124,16 @@
     
     [self resignAllFirstResponder];
     
+}
+
+#pragma mark - helper
+
+-(void)showError:(NSError*)error WithMessage:(NSDictionary*)message{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                    message:[NSString stringWithFormat:@"%@", message]
+                                                   delegate:nil cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];
 }
 
 -(void)resignAllFirstResponder{

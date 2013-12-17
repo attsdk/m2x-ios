@@ -84,18 +84,25 @@
         [_feedClient postDataValues:newValue forStream:_streamName inFeed:_feed_id success:^(id object) {
             [self getStreamValues];
         } failure:^(NSError *error, NSDictionary *message) {
-            NSLog(@"%@",message);
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
-                                                            message:[NSString stringWithFormat:@"%@", message]
-                                                           delegate:nil cancelButtonTitle:@"OK"
-                                                  otherButtonTitles:nil];
-            [alert show];
+            
+            [self showError:error WithMessage:message];
+            
         }];
         
     }
     
     [_tfNewValue resignFirstResponder];
     
+}
+
+#pragma mark - helper
+
+-(void)showError:(NSError*)error WithMessage:(NSDictionary*)message{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                    message:[NSString stringWithFormat:@"%@", message]
+                                                   delegate:nil cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];
 }
 
 #pragma mark - TableView delegate
