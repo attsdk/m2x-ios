@@ -34,6 +34,7 @@
 		0B6646F01858D18100BCA4B6 /* FeedsClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B6646E11858D18100BCA4B6 /* FeedsClient.m */; };
 		0B6646F11858D18100BCA4B6 /* KeysClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B6646E31858D18100BCA4B6 /* KeysClient.m */; };
 		0B6646F21858D18100BCA4B6 /* M2x.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B6646E51858D18100BCA4B6 /* M2x.m */; };
+		0B7471F61860A1C2006F48B4 /* CreateBatchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B7471F51860A1C2006F48B4 /* CreateBatchViewController.m */; };
 		0B810E29185F4C7300D22F49 /* FeedDescriptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B810E22185F4C7300D22F49 /* FeedDescriptionViewController.m */; };
 		0B810E2A185F4C7300D22F49 /* FeedLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B810E24185F4C7300D22F49 /* FeedLocationViewController.m */; };
 		0B810E2B185F4C7300D22F49 /* FeedsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B810E26185F4C7300D22F49 /* FeedsListViewController.m */; };
@@ -102,6 +103,8 @@
 		0B6646E31858D18100BCA4B6 /* KeysClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeysClient.m; sourceTree = "<group>"; };
 		0B6646E41858D18100BCA4B6 /* M2x.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M2x.h; sourceTree = "<group>"; };
 		0B6646E51858D18100BCA4B6 /* M2x.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M2x.m; sourceTree = "<group>"; };
+		0B7471F41860A1C2006F48B4 /* CreateBatchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateBatchViewController.h; sourceTree = "<group>"; };
+		0B7471F51860A1C2006F48B4 /* CreateBatchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateBatchViewController.m; sourceTree = "<group>"; };
 		0B810E21185F4C7300D22F49 /* FeedDescriptionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedDescriptionViewController.h; sourceTree = "<group>"; };
 		0B810E22185F4C7300D22F49 /* FeedDescriptionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedDescriptionViewController.m; sourceTree = "<group>"; };
 		0B810E23185F4C7300D22F49 /* FeedLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedLocationViewController.h; sourceTree = "<group>"; };
@@ -288,6 +291,8 @@
 				0B810E3E185F87F000D22F49 /* BatchDetailsViewController.m */,
 				0B810E4A185F9ECD00D22F49 /* AddDataSourceViewController.h */,
 				0B810E4B185F9ECD00D22F49 /* AddDataSourceViewController.m */,
+				0B7471F41860A1C2006F48B4 /* CreateBatchViewController.h */,
+				0B7471F51860A1C2006F48B4 /* CreateBatchViewController.m */,
 			);
 			path = DataSources;
 			sourceTree = "<group>";
@@ -411,6 +416,7 @@
 				0B6646EB1858D18100BCA4B6 /* AFURLConnectionOperation.m in Sources */,
 				0B65FBB3184E114700C88810 /* ViewController.m in Sources */,
 				0B810E2C185F4C7300D22F49 /* StreamValuesViewController.m in Sources */,
+				0B7471F61860A1C2006F48B4 /* CreateBatchViewController.m in Sources */,
 				0B65FBAA184E114700C88810 /* AppDelegate.m in Sources */,
 				0B6646ED1858D18100BCA4B6 /* AFURLResponseSerialization.m in Sources */,
 				0B6646EC1858D18100BCA4B6 /* AFURLRequestSerialization.m in Sources */,

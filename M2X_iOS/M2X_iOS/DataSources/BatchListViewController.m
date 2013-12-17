@@ -1,6 +1,7 @@
 
 #import "BatchListViewController.h"
 #import "BatchDetailsViewController.h"
+#import "CreateBatchViewController.h"
 
 @interface BatchListViewController ()
 
@@ -25,6 +26,10 @@
     
     _dataSourceClient = [[DataSourceClient alloc] init];
     
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+    
     //get list of feeds without parameters
     [_dataSourceClient listBatchWithSuccess:^(id object) {
         //success callback
@@ -35,6 +40,7 @@
         [self showError:error WithMessage:message];
         
     }];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -93,19 +99,28 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     
-    BatchDetailsViewController *batchDetailsVC = segue.destinationViewController;
+    if([[segue identifier] isEqualToString:@"createBatch"]){
     
-    UITableViewCell *batch_tableViewSelected = sender;
+        CreateBatchViewController *createBatchVC = segue.destinationViewController;
+        
+        createBatchVC.dataSourceClient = _dataSourceClient;
     
-    NSIndexPath *batchIndexPath = [[self tableView] indexPathForCell:batch_tableViewSelected];
-    
-    NSDictionary *batchDict = [_data objectAtIndex:[batchIndexPath row]];
-    
-    batchDetailsVC.batch_id = [batchDict valueForKey:@"id"];
-    
-    batchDetailsVC.dataSourceClient = _dataSourceClient;
-    
-    batchDetailsVC.title = [batchDict valueForKey:@"name"];
+    }else{
+        
+        BatchDetailsViewController *batchDetailsVC = segue.destinationViewController;
+        
+        UITableViewCell *batch_tableViewSelected = sender;
+        
+        NSIndexPath *batchIndexPath = [[self tableView] indexPathForCell:batch_tableViewSelected];
+        
+        NSDictionary *batchDict = [_data objectAtIndex:[batchIndexPath row]];
+        
+        batchDetailsVC.batch_id = [batchDict valueForKey:@"id"];
+        
+        batchDetailsVC.dataSourceClient = _dataSourceClient;
+        
+        batchDetailsVC.title = [batchDict valueForKey:@"name"];
+    }
     
 }
 
