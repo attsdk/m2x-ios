@@ -31,6 +31,18 @@
     
 }
 
+-(NSString*)dateToISO8601:(NSDate*)date{
+    
+    // Convert nsdate to string
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    NSLocale *enUSPOSIXLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
+    [dateFormatter setLocale:enUSPOSIXLocale];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss'Z'"];
+    
+    return [dateFormatter stringFromDate:date];
+    
+}
+
 #pragma mark - Http methods
 
 -(void)getWithPath:(NSString*)path andParameters:(NSDictionary*)parameters api_key:(NSString*)api_key_used success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure{

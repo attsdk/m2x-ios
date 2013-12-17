@@ -6,8 +6,6 @@
     
 }
 
-@property (strong, nonatomic) NSString *masterKey;
-@property (strong, nonatomic) NSString *feedKey;
 @property (strong, nonatomic) DataSourceClient *dataSourceClient;
 
 @property (nonatomic, retain) NSMutableArray *data;
