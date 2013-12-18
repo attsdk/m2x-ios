@@ -86,7 +86,7 @@
     
     NSString *description = [feedData valueForKey:@"description"];
 
-    //check the value in not null
+    //check if the description is not null
     if([description isEqual:[NSNull null]])
         [[cell detailTextLabel] setText:@""];
     else

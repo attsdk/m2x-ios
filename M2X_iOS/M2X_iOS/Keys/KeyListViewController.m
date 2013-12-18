@@ -1,6 +1,7 @@
 
 #import "KeyListViewController.h"
 #import "CreateKeyViewController.h"
+#import "KeyDetailsViewController.h"
 #import "KeysClient.h"
 
 @interface KeyListViewController ()
@@ -99,9 +100,27 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     
-    CreateKeyViewController *createKeyVC = segue.destinationViewController;
-    
-    createKeyVC.keysClient = _keysClient;
+    if ([[segue identifier] isEqualToString:@"goCreateKeyViewController"]){
+        
+        CreateKeyViewController *createKeyVC = segue.destinationViewController;
+        
+        createKeyVC.keysClient = _keysClient;
+        
+    }else if ([[segue identifier] isEqualToString:@"goKeyDescription"]){
+        
+        UITableViewCell *key_tableViewSelected = sender;
+        
+        NSIndexPath *keyIndexPath = [[self tableView] indexPathForCell:key_tableViewSelected];
+        
+        NSDictionary *keyDict = [_keysArray objectAtIndex:[keyIndexPath row]];
+        
+        KeyDetailsViewController *keyDescriptionVC = segue.destinationViewController;
+        
+        keyDescriptionVC.keysClient = _keysClient;
+        
+        keyDescriptionVC.key = [keyDict valueForKey:@"key"];
+        
+    }
     
 }
 

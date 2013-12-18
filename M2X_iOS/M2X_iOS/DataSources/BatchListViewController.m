@@ -79,10 +79,17 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    NSDictionary *feedData = [_data objectAtIndex:indexPath.row];
+    NSDictionary *batchData = [_data objectAtIndex:indexPath.row];
     
-    [[cell textLabel] setText:[feedData valueForKey:@"name"]];
-    [[cell detailTextLabel] setText:[feedData valueForKey:@"description"]];
+    [[cell textLabel] setText:[batchData valueForKey:@"name"]];
+    
+    NSString *description = [batchData valueForKey:@"description"];
+    
+    //check if the description is not null
+    if([description isEqual:[NSNull null]])
+        [[cell detailTextLabel] setText:@""];
+    else
+        [[cell detailTextLabel] setText:description];
     
     return cell;
 }

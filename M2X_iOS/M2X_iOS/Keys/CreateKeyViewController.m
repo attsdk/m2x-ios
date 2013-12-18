@@ -50,15 +50,12 @@
     if([_swDelete isOn]) [permissions addObject:@"DELETE"];
     
     //create key object
-    NSDictionary *key = @{ @"name": [_tfMasterKeyLabel text],
-                           @"permissions": permissions,
-                           @"feed": [NSNull null],
-                           @"stream": [NSNull null] };
+    NSMutableDictionary *key = [NSMutableDictionary dictionaryWithObjects:[NSArray arrayWithObjects:[_tfMasterKeyLabel text],permissions,[NSNull null],[NSNull null],nil]
+                                                                  forKeys:[NSArray arrayWithObjects:@"name",@"permissions",@"feed",@"stream",nil]];
     
     //Set the expiry date:
     if([_swExpiryDate isOn] && ![[_tfExpiryDate text] isEqualToString:@""])
         [key setValue:[_tfExpiryDate text] forKey:@"expires_at"];
-    
     
     [_keysClient createKey:key success:^(id object) {
         
