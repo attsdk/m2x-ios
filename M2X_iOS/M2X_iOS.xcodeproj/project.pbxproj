@@ -241,14 +241,14 @@
 			isa = PBXGroup;
 			children = (
 				0B6646CA1858D18100BCA4B6 /* AFNetworking */,
+				0B6646E41858D18100BCA4B6 /* M2x.h */,
+				0B6646E51858D18100BCA4B6 /* M2x.m */,
 				0B6646DE1858D18100BCA4B6 /* DataSourceClient.h */,
 				0B6646DF1858D18100BCA4B6 /* DataSourceClient.m */,
 				0B6646E01858D18100BCA4B6 /* FeedsClient.h */,
 				0B6646E11858D18100BCA4B6 /* FeedsClient.m */,
 				0B6646E21858D18100BCA4B6 /* KeysClient.h */,
 				0B6646E31858D18100BCA4B6 /* KeysClient.m */,
-				0B6646E41858D18100BCA4B6 /* M2x.h */,
-				0B6646E51858D18100BCA4B6 /* M2x.m */,
 			);
 			name = lib;
 			path = ../lib;

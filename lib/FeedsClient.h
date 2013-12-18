@@ -185,7 +185,8 @@ typedef void (^M2XAPIClientFailureError)(NSError *error,NSDictionary *message);
  Create a new trigger associated with the specified feed.
  
  i.e.:
- NSDictionary *trigger = @{ @"stream": @"temperature",
+ NSDictionary *trigger = @{ @"name": @"trigger1",
+    @"stream": @"temperature",
     @"condition": @">",
     @"value": @"30",
     @"callback_url": @"http://example.com",
@@ -236,7 +237,7 @@ typedef void (^M2XAPIClientFailureError)(NSError *error,NSDictionary *message);
 /**
  Retrieve list of HTTP requests received lately by the specified feed (up to 100 entries).
  */
--(void)requestLogForFeed:(NSString*)feed_id success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure;
+-(void)viewRequestLogForFeed:(NSString*)feed_id success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure;
 
 @property (nonatomic,strong) NSString *feed_key;
 

@@ -157,7 +157,7 @@
     
 }
 
--(void)requestLogForFeed:(NSString*)feed_id success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure{
+-(void)viewRequestLogForFeed:(NSString*)feed_id success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure{
     
     NSString *path = [NSString stringWithFormat:@"/feeds/%@/log",feed_id];
     
