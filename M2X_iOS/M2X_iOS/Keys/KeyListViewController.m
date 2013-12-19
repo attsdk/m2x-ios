@@ -25,6 +25,7 @@
     [super viewDidLoad];
     
     _keysClient = [[KeysClient alloc] init];
+    
     _keysArray = [NSMutableArray array];
     
 }

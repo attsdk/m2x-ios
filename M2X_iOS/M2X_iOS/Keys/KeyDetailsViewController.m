@@ -45,6 +45,7 @@
         [_lblName setText:name];
         [_lblKey setText:key];
         [_lblPermissions setText:permissions];
+        //check if expires_at isn't set.
         if(![expiresAt isEqual:[NSNull null]]){
             [_lblExpiresAtLabel setHidden:NO];
             [_lblExpiresAt setText:expiresAt];
