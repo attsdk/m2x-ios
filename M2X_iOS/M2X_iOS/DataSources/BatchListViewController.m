@@ -53,13 +53,9 @@
 
 -(void)didGetBatches:(NSDictionary*)batches{
     
-    NSDictionary *response = [batches objectForKey:@"batches"];
-    
     _data = [NSMutableArray array];
     
-    for (id batch in response) {
-        [_data addObject:batch];
-    }
+    [_data addObjectsFromArray:[batches objectForKey:@"batches"]];
     
     [self.tableView reloadData];
     

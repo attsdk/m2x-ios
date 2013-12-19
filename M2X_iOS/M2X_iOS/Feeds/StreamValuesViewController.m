@@ -62,11 +62,7 @@
     
     [_valueList removeAllObjects];
     
-    NSDictionary *streamsInDictionary = [values objectForKey:@"values"];
-    
-    for (id stream in streamsInDictionary) {
-        [_valueList addObject:stream];
-    }
+    [_valueList addObjectsFromArray:[values objectForKey:@"values"]];
     
     [_tableViewStreamValues reloadData];
     

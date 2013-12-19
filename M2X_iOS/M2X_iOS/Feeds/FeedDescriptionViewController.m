@@ -26,6 +26,15 @@
     
     _tableViewStreams.dataSource = self;
     
+    NSDictionary *newValue = @{ @"values": @[ @{ @"value": @"20" } ] };
+    
+    [_feedClient postDataValues:newValue forStream:@"temperature" inFeed:_feed_id success:^(id object) {
+        //success block
+    } failure:^(NSError *error, NSDictionary *message) {
+        NSLog(@"Error: %@",[error description]);
+        NSLog(@"Message: %@",message);
+    }];
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -74,13 +83,7 @@
     
     [_streamList removeAllObjects];
     
-    //[_streamList addObjectsFromArray:[feed_description objectForKey:@"streams"]];
-    
-    NSDictionary *streamsInDictionary = [feed_description objectForKey:@"streams"];
-    
-    for (id stream in streamsInDictionary) {
-        [_streamList addObject:stream];
-    }
+    [_streamList addObjectsFromArray:[feed_description objectForKey:@"streams"]];
     
     [_tableViewStreams reloadData];
     
@@ -117,7 +120,15 @@
     NSDictionary *valueUnitDic = [feedData objectForKey:@"unit"];
     
     [[cell textLabel] setText:[feedData valueForKey:@"name"]];
-    [[cell detailTextLabel] setText:[NSString stringWithFormat:@"value: %@ %@",[feedData valueForKey:@"value"],[valueUnitDic valueForKey:@"symbol"]]];
+    
+    NSString *value = [feedData valueForKey:@"value"];
+    
+    if([value  isEqual: [NSNull null]]){
+        [[cell detailTextLabel] setText:@"No Stream Data Available."];
+    }else{
+        [[cell detailTextLabel] setText:[NSString stringWithFormat:@"value: %@ %@",value,[valueUnitDic valueForKey:@"symbol"]]];
+    }
+    
     
     return cell;
 }

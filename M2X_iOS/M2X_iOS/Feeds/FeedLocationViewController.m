@@ -58,7 +58,7 @@
 
 - (void)didGetFeedLocation:(NSDictionary*)feed_location{
     
-    //Locations inputs fill
+    //Locations inputs
     [_tfLocationName setText:[feed_location valueForKey:@"name"]];
     [_tfLatitude setText:[feed_location valueForKey:@"latitude"]];
     [_tfLongitude setText:[feed_location valueForKey:@"longitude"]];
@@ -66,11 +66,7 @@
     
     [_locationsList removeAllObjects];
     
-    NSDictionary *locationInDictionary = [feed_location objectForKey:@"waypoints"];
-    
-    for (id stream in locationInDictionary) {
-        [_locationsList addObject:stream];
-    }
+    [_locationsList addObjectsFromArray:[feed_location objectForKey:@"waypoints"]];
     
     [_tableViewLocations reloadData];
     
@@ -90,12 +86,13 @@
                                     @"elevation": [NSString stringWithFormat:@"%f",location.altitude]};
     
     [_feedClient updateDatasourceWithLocation:locationDict inFeed:_feed_id success:^(id object) {
-        [self didSetLocation];
+        
+        [self getFeedLocations];
+        
     } failure:^(NSError *error, NSDictionary *message) {
         
         [self showError:error WithMessage:message];
-        
-        [self resignAllFirstResponder];
+
     }];
     
     [self getFeedLocations];
@@ -118,14 +115,6 @@
     
 }
 
--(void)didSetLocation{
-    
-    [self getFeedLocations];
-    
-    [self resignAllFirstResponder];
-    
-}
-
 #pragma mark - helper
 
 -(void)showError:(NSError*)error WithMessage:(NSDictionary*)message{
@@ -134,15 +123,6 @@
                                                    delegate:nil cancelButtonTitle:@"OK"
                                           otherButtonTitles:nil];
     [alert show];
-}
-
--(void)resignAllFirstResponder{
-    //hide keyboard
-    
-    [_tfElevation resignFirstResponder];
-    [_tfLatitude resignFirstResponder];
-    [_tfLongitude resignFirstResponder];
-    [_tfLocationName resignFirstResponder];
 }
 
 #pragma mark - TableView delegate

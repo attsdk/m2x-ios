@@ -91,11 +91,7 @@
     
     [_dataSources removeAllObjects];
     
-    NSDictionary *dataSourcesInDictionary = [dataSourcesList objectForKey:@"datasources"];
-    
-    for (id dataSource in dataSourcesInDictionary) {
-        [_dataSources addObject:dataSource];
-    }
+    [_dataSources addObjectsFromArray:[dataSourcesList objectForKey:@"datasources"]];
     
     [_tableViewDataSources reloadData];
     

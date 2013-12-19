@@ -59,8 +59,10 @@
     
     _data = [NSMutableArray array];
     
-    for (id feed in response) {
-        [_data addObject:feed];
+    for (NSDictionary *feed in response) {
+        //show only active feeds
+        if([[feed valueForKey:@"status"] isEqualToString:@"enabled"])
+            [_data addObject:feed];
     }
     
     [self.tableView reloadData];

@@ -25,6 +25,7 @@
     [super viewDidLoad];
     
     _keysClient = [[KeysClient alloc] init];
+    _keysArray = [NSMutableArray array];
     
 }
 
@@ -52,13 +53,9 @@
 
 - (void)didGetKeysList:(NSDictionary*)keysList{
     
-    NSDictionary *response = [keysList objectForKey:@"keys"];
+    [_keysArray removeAllObjects];
     
-    _keysArray = [NSMutableArray array];
-    
-    for (id batch in response) {
-        [_keysArray addObject:batch];
-    }
+    [_keysArray addObjectsFromArray:[keysList objectForKey:@"keys"]];
     
     [self.tableView reloadData];
     
