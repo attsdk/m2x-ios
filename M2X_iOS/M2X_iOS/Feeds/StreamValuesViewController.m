@@ -25,7 +25,8 @@
     
     _tableViewStreamValues.dataSource = self;
     
-    [_lblUnit setText:[_streamUnit valueForKey:@"symbol"]];
+    if(![[_streamUnit valueForKey:@"symbol"] isEqual:[NSNull null]])
+        [_lblUnit setText:[_streamUnit valueForKey:@"symbol"]];
     
     [self getStreamValues];
 }
@@ -124,7 +125,10 @@
     
     NSDictionary *valueData = [_valueList objectAtIndex:indexPath.row];
     
-    [[cell textLabel] setText:[NSString stringWithFormat:@"%@ %@",[valueData valueForKey:@"value"],[_streamUnit valueForKey:@"symbol"]]];
+    
+    [[cell textLabel] setText:[NSString stringWithFormat:@"%@ %@",[valueData valueForKey:@"value"],
+                               ([[_streamUnit valueForKey:@"symbol"] isEqual:[NSNull null]]) ? @"" : [_streamUnit valueForKey:@"symbol"]
+                               ]];
     
     NSDate *createdDate = [[M2x shared] iSO8601ToDate:[valueData valueForKey:@"at"]];
     

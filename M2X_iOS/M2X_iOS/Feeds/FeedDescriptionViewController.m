@@ -21,28 +21,20 @@
 
 - (void)viewDidLoad
 {
+    
     [super viewDidLoad];
     
     _streamList = [NSMutableArray array];
     
     _tableViewStreams.dataSource = self;
     
-    NSDictionary *newValue = @{ @"values": @[ @{ @"value": @"20" } ] };
-    
-    [_feedClient postDataValues:newValue forStream:@"temperature" inFeed:_feed_id success:^(id object) {
-        //success block
-    } failure:^(NSError *error, NSDictionary *message) {
-        NSLog(@"Error: %@",[error description]);
-        NSLog(@"Message: %@",message);
-    }];
-    
 }
 
 -(void)viewWillAppear:(BOOL)animated{
+    
     [super viewWillAppear:animated];
     
     [self getFeedDescription];
-    
     
 }
 
@@ -127,7 +119,9 @@
     if([value  isEqual: [NSNull null]]){
         [[cell detailTextLabel] setText:@"No Stream Data Available."];
     }else{
-        [[cell detailTextLabel] setText:[NSString stringWithFormat:@"value: %@ %@",value,[valueUnitDic valueForKey:@"symbol"]]];
+        [[cell detailTextLabel] setText:[NSString stringWithFormat:@"value: %@ %@",value,
+                                         ([[valueUnitDic valueForKey:@"symbol"] isEqual:[NSNull null]]) ? @"" : [valueUnitDic valueForKey:@"symbol"]
+                                         ]];
     }
     
     
