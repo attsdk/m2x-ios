@@ -2,6 +2,7 @@
 #import "FeedDescriptionViewController.h"
 #import "StreamValuesViewController.h"
 #import "FeedLocationViewController.h"
+#import "AddStreamViewController.h"
 
 @interface FeedDescriptionViewController ()
 
@@ -137,32 +138,42 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     
-    UITableViewCell *stream_tableViewSelected = sender;
     
     if ([[segue identifier] isEqualToString:@"toStreamValuesSegue"])
     {
+        UITableViewCell *stream_tableViewSelected = sender;
+        
         NSIndexPath *valueIndex = [_tableViewStreams indexPathForCell:stream_tableViewSelected];
         
         NSDictionary *streamDict = [_streamList objectAtIndex:[valueIndex row]];
         
         StreamValuesViewController *streamValuesVC = segue.destinationViewController;
         
-        streamValuesVC.feed_id = _feed_id;
+        [streamValuesVC setFeedClient:_feedClient];
         
-        streamValuesVC.feedClient = _feedClient;
+        [streamValuesVC setFeed_id:_feed_id];
         
-        streamValuesVC.streamUnit = [streamDict objectForKey:@"unit"];
-        streamValuesVC.streamName = [streamDict valueForKey:@"name"];
+        [streamValuesVC setStreamName:[streamDict valueForKey:@"name"]];
         
-        streamValuesVC.title = [streamDict valueForKey:@"name"];
+        [streamValuesVC setStreamUnit:[streamDict objectForKey:@"unit"]];
+        
+        [streamValuesVC setTitle:[streamDict valueForKey:@"name"]];
+        
+    }else if([[segue identifier] isEqualToString:@"toAddStream"]) {
+        
+        AddStreamViewController *addStreaVC = segue.destinationViewController;
+        
+        [addStreaVC setFeedClient:_feedClient];
+        
+        [addStreaVC setFeed_id:_feed_id];
         
     }else{ // segue is "toLocationsManagerSegue"
         
         FeedLocationViewController *locationVC = segue.destinationViewController;
         
-        locationVC.feed_id = _feed_id;
+        [locationVC setFeed_id:_feed_id];
         
-        locationVC.feedClient = _feedClient;
+        [locationVC setFeedClient:_feedClient];
         
     }
     

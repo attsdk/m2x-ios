@@ -48,6 +48,7 @@
 		0B810E48185F919B00D22F49 /* green.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B810E46185F919B00D22F49 /* green.png */; };
 		0B810E49185F919B00D22F49 /* red.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B810E47185F919B00D22F49 /* red.png */; };
 		0B810E4C185F9ECD00D22F49 /* AddDataSourceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B810E4B185F9ECD00D22F49 /* AddDataSourceViewController.m */; };
+		0BAD9DF41864C4210070487E /* AddStreamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BAD9DF31864C4210070487E /* AddStreamViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -133,6 +134,8 @@
 		0B810E47185F919B00D22F49 /* red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red.png; sourceTree = "<group>"; };
 		0B810E4A185F9ECD00D22F49 /* AddDataSourceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddDataSourceViewController.h; sourceTree = "<group>"; };
 		0B810E4B185F9ECD00D22F49 /* AddDataSourceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddDataSourceViewController.m; sourceTree = "<group>"; };
+		0BAD9DF21864C4210070487E /* AddStreamViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddStreamViewController.h; sourceTree = "<group>"; };
+		0BAD9DF31864C4210070487E /* AddStreamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddStreamViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -306,6 +309,8 @@
 				0B810E26185F4C7300D22F49 /* FeedsListViewController.m */,
 				0B810E27185F4C7300D22F49 /* StreamValuesViewController.h */,
 				0B810E28185F4C7300D22F49 /* StreamValuesViewController.m */,
+				0BAD9DF21864C4210070487E /* AddStreamViewController.h */,
+				0BAD9DF31864C4210070487E /* AddStreamViewController.m */,
 			);
 			path = Feeds;
 			sourceTree = "<group>";
@@ -442,6 +447,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0B6646EB1858D18100BCA4B6 /* AFURLConnectionOperation.m in Sources */,
+				0BAD9DF41864C4210070487E /* AddStreamViewController.m in Sources */,
 				0B65FBB3184E114700C88810 /* ViewController.m in Sources */,
 				0B810E2C185F4C7300D22F49 /* StreamValuesViewController.m in Sources */,
 				0B7471F61860A1C2006F48B4 /* CreateBatchViewController.m in Sources */,
