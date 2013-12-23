@@ -15,8 +15,9 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-    [_tfMasterKey setText:@"59f68e0b7d47133bc17a46d9759b9072"];
-    [_tfURL setText:@"http://api-m2x.att.citrusbyte.com/v1"];
+    // Pre-set API key and API URL
+    //    [_tfMasterKey setText:@"your_api_key"];
+    //    [_tfURL setText:@"your_api_url"];
     
     [_tfMasterKey setDelegate:self];
     [_tfURL setDelegate:self];

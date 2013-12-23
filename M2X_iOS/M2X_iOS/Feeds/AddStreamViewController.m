@@ -61,6 +61,10 @@
     [alert show];
 }
 
+
+
+#pragma mark - inputs focus
+
 //hide text fields
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
@@ -69,14 +73,10 @@
     return YES;
 }
 
-
-
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    CGRect textFieldRect =
-    [self.view.window convertRect:textField.bounds fromView:textField];
-    CGRect viewRect =
-    [self.view.window convertRect:self.view.bounds fromView:self.view];
+    CGRect textFieldRect = [self.view.window convertRect:textField.bounds fromView:textField];
+    CGRect viewRect = [self.view.window convertRect:self.view.bounds fromView:self.view];
     
     CGFloat midline = textFieldRect.origin.y + 0.5 * textFieldRect.size.height;
     CGFloat numerator = midline - viewRect.origin.y - 0.2 * viewRect.size.height;
@@ -92,10 +92,8 @@
         heightFraction = 1.0;
     }
     
-    UIInterfaceOrientation orientation =
-    [[UIApplication sharedApplication] statusBarOrientation];
-    if (orientation == UIInterfaceOrientationPortrait ||
-        orientation == UIInterfaceOrientationPortraitUpsideDown)
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    if (orientation == UIInterfaceOrientationPortrait || orientation == UIInterfaceOrientationPortraitUpsideDown)
     {
         _animatedDistance = floor(216 * heightFraction);
     }
