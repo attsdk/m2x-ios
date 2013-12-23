@@ -1,4 +1,4 @@
-#iOS M2X API Client
+# iOS M2X API Client
 
 The AT&T [M2X API](https://m2x.att.com/developer/documentation/overview) provides all the needed operations to connect your devices to AT&T's M2X service. This client provides an easy to use interface for your favorite mobile platform, iOS.
 
@@ -66,7 +66,7 @@ As well as the parameters, the response returns in a `NSDictionary` object.
 
 If required, a [Feed API key](https://m2x.att.com/developer/documentation/overview#API-Keys) can be set in this classes.
 
-### [FeedsClient](/lib/FeedsClient.h) ([Spec](https://m2x.att.com/developer/documentation/feed))
+#### [FeedsClient](/lib/FeedsClient.h) ([Spec](https://m2x.att.com/developer/documentation/feed))
 
 ```objc
 	FeedsClient *_feedClient = [[FeedsClient alloc] init];
@@ -135,7 +135,24 @@ NSDictionary *newValue = @{ @"values": @[ @{ @"value": @"20" } ] };
 }];
 ```
 
-### [DataSourceClient](/lib/DataSourceClient.h) ([Spec](https://m2x.att.com/developer/documentation/datasource))
+**Create a Trigger**
+
+```objc
+NSDictionary *trigger = @{ @"name": @"trigger1",
+                           @"stream": @"temperature",
+                           @"condition": @">",
+                           @"value": @"30",
+                           @"callback_url": @"http://example.com",
+                           @"status": @"enabled" };
+
+[feedClient createTrigger:trigger inFeed:@"ee9501931bcb3f9b0d25fde5eaf4abd8" success:^(id object) {
+    /*success block*/
+} failure:^(NSError *error, NSDictionary *message) {
+    NSLog(@"error: %@",error);
+}];
+```
+
+#### [DataSourceClient](/lib/DataSourceClient.h) ([Spec](https://m2x.att.com/developer/documentation/datasource))
 
 
 ```objc
@@ -198,7 +215,7 @@ NSDictionary *batch = @{ @"name": @"your_batch_name" ,
 }];
 ```
 
-### [KeysClient](/lib/DataSourceClient.h) ([Spec](https://m2x.att.com/developer/documentation/keys))
+#### [KeysClient](/lib/DataSourceClient.h) ([Spec](https://m2x.att.com/developer/documentation/keys))
 
 ```objc
 KeysClient keyClient = [[KeysClient alloc] init];
@@ -251,6 +268,12 @@ KeysClient keyClient = [[KeysClient alloc] init];
     NSLog(@"Message: %@",message);
 }];
 ```
+
+## Demo App
+
+This repository came with a simple app that implements some of the API methods in the folder `M2X_iOS`.
+
+
 
 ## License
 
