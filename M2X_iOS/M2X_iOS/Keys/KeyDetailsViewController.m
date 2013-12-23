@@ -73,8 +73,10 @@
 - (IBAction)regenerateKey:(id)sender {
     [_keysClient regenerateKey:_key success:^(id object) {
         
+        _key = [object valueForKey:@"key"];
         //Update key label
-        [_lblKey setText:[object valueForKey:@"key"]];
+        [_lblKey setText:_key];
+        
         
     } failure:^(NSError *error, NSDictionary *message) {
         
