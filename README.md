@@ -1,6 +1,6 @@
 # iOS M2X API Client
 
-The AT&T [M2X API](https://m2x.att.com/developer/documentation/overview) provides all the needed operations to connect your devices to AT&T's M2X service. This client provides an easy to use interface for your favorite mobile platform, iOS.
+The AT&T [M2X API](https://m2x.att.com/developer/documentation/overview) provides all the needed operations to connect your devices to AT&T's M2X service. This client provides an easy to use interface for your favorite mobile platform, [iOS](https://developer.apple.com/programs/ios/).
 
 ## Getting Started
 
@@ -59,10 +59,10 @@ The method `-iSO8601ToDate:` parse from a ISO8601 Date `NSString` to `NSDate`:
 
 ### API Clients
 ---
-The clients (`FeedsClient`, `DataSourceClient` and `KeysClient`) provides an interface to make all the requests on the respectives API.
+The clients (`FeedsClient`, `DataSourceClient` and `KeysClient`) provide an interface to make all the requests on the respectives API.
 
 If the call requires parameters, it must be encapsulated in a `NSDictionary` following the respective estructure from the [API Documentation](https://m2x.att.com/developer/documentation/overview).
-As well as the parameters, the response returns in a `NSDictionary` object. 
+As well as the parameters, the response is returned in a `NSDictionary` object. 
 
 If required, a [Feed API key](https://m2x.att.com/developer/documentation/overview#API-Keys) can be set in this classes.
 
@@ -271,10 +271,10 @@ KeysClient keyClient = [[KeysClient alloc] init];
 
 ## Demo App
 
-This repository came with a simple app that implements some of the API methods in the folder `M2X_iOS`.
+This repository comes with a simple app that implements some of the API methods. It can be found in the following folder: `M2X_iOS`.
 
 
 
 ## License
 
-The iOS M2X API Client is available under the MIT license. See the LICENSE file for more info.
+The iOS M2X API Client is available under the MIT license. See the LICENSE file for more information.
