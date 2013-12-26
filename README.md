@@ -269,6 +269,12 @@ KeysClient keyClient = [[KeysClient alloc] init];
 }];
 ```
 
+#### Errors and Messages
+
+The errors and messages are handled in the failure block. The *error* parameter is a `NSError` object that encapsulate the error information, for example the HTTP status code. And the *message* parameter is a `NSDictionary` and contains the response message from the API.
+
+To get the HTTP status code from *error* use the method `- localizedDescription`.
+
 ## Demo App
 
 This repository comes with a simple app that implements some of the API methods. It can be found in the following folder: `M2X_iOS`.
