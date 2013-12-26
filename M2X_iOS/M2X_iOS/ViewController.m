@@ -15,9 +15,12 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-    // Pre-set API key and API URL
-    //    [_tfMasterKey setText:@"your_api_key"];
-    //    [_tfURL setText:@"your_api_url"];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    [_tfMasterKey setText:[defaults stringForKey:@"api_key"]];
+
+    [_tfURL setText:[defaults stringForKey:@"api_url"]];
+    
     
     [_tfMasterKey setDelegate:self];
     [_tfURL setDelegate:self];
@@ -25,12 +28,21 @@
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    [defaults setObject:[_tfMasterKey text] forKey:@"api_key"];
+    
+    [defaults setObject:[_tfURL text] forKey:@"api_url"];
+    
+    [defaults synchronize];
+    
     
     M2x* m2x = [M2x shared];
     //set the Master Api Key
-    m2x.api_key = [self.tfMasterKey text];
+    m2x.api_key = [_tfMasterKey text];
     //set the api url
-    m2x.api_url = [self.tfURL text];
+    m2x.api_url = [_tfURL text];
     
 }
 
