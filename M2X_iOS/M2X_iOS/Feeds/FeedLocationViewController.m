@@ -91,11 +91,11 @@
         
     } failure:^(NSError *error, NSDictionary *message) {
         
+        [self getFeedLocations];
         [self showError:error WithMessage:message];
 
     }];
     
-    [self getFeedLocations];
 }
 
 - (IBAction)didBtnPressed:(id)sender {
