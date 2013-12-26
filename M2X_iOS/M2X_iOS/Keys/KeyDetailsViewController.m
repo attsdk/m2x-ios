@@ -61,7 +61,7 @@
 }
 
 -(void)showError:(NSError*)error WithMessage:(NSDictionary*)message{
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[error localizedDescription]
                                                     message:[NSString stringWithFormat:@"%@", message]
                                                    delegate:nil cancelButtonTitle:@"OK"
                                           otherButtonTitles:nil];
