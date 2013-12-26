@@ -34,22 +34,41 @@
 }
 
 - (IBAction)addStream:(id)sender {
-    NSMutableDictionary *stream = [NSMutableDictionary dictionary];
     
-    NSDictionary *unit = @{ @"label": [_tfUnit text], @"symbol": [_tfSymbol text] };
+    NSString *streamID = [_tfStreamId text];
     
-    [stream setObject:unit forKey:@"unit"];
+    NSString *streamIDaceptedCharacters = @"^[a-zA-Z0-9\\-\\_]+$";
     
-    if(![[_tfLogAValue text] isEqualToString:@""])
-        [stream setObject:[_tfLogAValue text] forKey:@"value"];
+    NSPredicate *checkCharacters = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", streamIDaceptedCharacters];
     
-    [_feedClient createDataForStream:[_tfStreamId text] inFeed:_feed_id withParameters:stream success:^(id object) {
-        //stream successfully added, go back.
-        [self.navigationController popViewControllerAnimated:YES];
+    if ([checkCharacters evaluateWithObject: streamID]) {
+    
+        NSMutableDictionary *stream = [NSMutableDictionary dictionary];
         
-    } failure:^(NSError *error, NSDictionary *message) {
-        [self showError:error WithMessage:message];
-    }];
+        NSDictionary *unit = @{ @"label": [_tfUnit text], @"symbol": [_tfSymbol text] };
+        
+        [stream setObject:unit forKey:@"unit"];
+        
+        if(![[_tfLogAValue text] isEqualToString:@""])
+            [stream setObject:[_tfLogAValue text] forKey:@"value"];
+        
+        [_feedClient createDataForStream:streamID inFeed:_feed_id withParameters:stream success:^(id object) {
+            //stream successfully added, go back.
+            [self.navigationController popViewControllerAnimated:YES];
+            
+        } failure:^(NSError *error, NSDictionary *message) {
+            [self showError:error WithMessage:message];
+        }];
+        
+    }else{
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Invalid Stream ID"
+                                                        message:@"Stream IDs can only contain letters, numbers, undescores, and dashes — no spaces or special characters are allowed."
+                                                       delegate:nil cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+        
+    }
 
 }
 
