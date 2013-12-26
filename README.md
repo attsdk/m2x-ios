@@ -114,7 +114,7 @@ NSDictionary *locationDict = @{ @"name": _currentLocality,
 	//Callback function
     [self didSetLocation];
 } failure:^(NSError *error, NSDictionary *message) {
-    NSLog(@"Error: %@",[error description]);
+    NSLog(@"Error: %@",[error localizedDescription]);
     NSLog(@"Message: %@",message);
 }];
 ```
@@ -130,7 +130,7 @@ NSDictionary *newValue = @{ @"values": @[ @{ @"value": @"20" } ] };
                      success:^(id object) { /*success block*/ }
                      failure:^(NSError *error, NSDictionary *message) 
 {
-    NSLog(@"Error: %@",[error description]);
+    NSLog(@"Error: %@",[error localizedDescription]);
     NSLog(@"Message: %@",message);
 }];
 ```
@@ -148,7 +148,19 @@ NSDictionary *trigger = @{ @"name": @"trigger1",
 [feedClient createTrigger:trigger inFeed:@"ee9501931bcb3f9b0d25fde5eaf4abd8" success:^(id object) {
     /*success block*/
 } failure:^(NSError *error, NSDictionary *message) {
-    NSLog(@"error: %@",error);
+    NSLog(@"error: %@",[error localizedDescription]);
+    NSLog(@"Message: %@",message);
+}];
+```
+
+**View Request Log**
+
+```objc
+[feedClient viewRequestLogForFeed:@"YOUR_FEED_ID" success:^(id object) {
+  NSArray *requests = [object objectForKey:@"requests"];
+} failure:^(NSError *error, NSDictionary *message) {
+  NSLog(@"error: %@",[error localizedDescription]);
+  NSLog(@"Message: %@",message);
 }];
 ```
 
@@ -160,6 +172,22 @@ NSDictionary *trigger = @{ @"name": @"trigger1",
   [dataSourceClient setFeed_key:@"YOUR_FEED_API_KEY"];
 ```
 
+**Create Blueprint:**
+
+```objc
+NSDictionary *blueprint = @{ @"name": @"Sample Blueprint",
+                      @"description": @"Longer description for Sample Blueprint",
+                       @"visibility": @"public" };
+    
+[dataSourceClient createBlueprint:bp success:^(id object) {
+    /*blueprint created*/
+    NSDictionary *blueprintCreated = object;
+} failure:^(NSError *error, NSDictionary *message) {
+    NSLog(@"%@",message);
+    NSLog(@"%@",error);
+}];
+```
+
 **List Data Sources from a Batch:**
 
 ```objc
@@ -168,7 +196,7 @@ NSDictionary *trigger = @{ @"name": @"trigger1",
     [dataSources addObjectsFromArray:[dataSourcesList objectForKey:@"datasources"]];
     [tableViewDataSources reloadData];
 } failure:^(NSError *error, NSDictionary *message) {
-    NSLog(@"Error: %@",[error description]);
+    NSLog(@"Error: %@",[error localizedDescription]);
     NSLog(@"Message: %@",message);   
 }];
 ```
@@ -181,7 +209,7 @@ NSDictionary *serial = @{ @"serial": @"your_new_serial" };
 [dataSourceClient addDataSourceToBatch:@"batch_id" withParameters:serial success:^(id object) {
     //data source successfully added.
 } failure:^(NSError *error, NSDictionary *message) {
-    NSLog(@"Error: %@",[error description]);
+    NSLog(@"Error: %@",[error localizedDescription]);
     NSLog(@"Message: %@",message);
 }];
 ```
@@ -195,8 +223,9 @@ NSDictionary *batch = @{ @"name": @"your_batch_name" ,
     
 [dataSourceClient createBatch:batch success:^(id object) {
     //batch successfully created.
+    NSDictionary *batchCreated = object;
 } failure:^(NSError *error, NSDictionary *message) {
-    NSLog(@"Error: %@",[error description]);
+    NSLog(@"Error: %@",[error localizedDescription]);
     NSLog(@"Message: %@",message);
 }];
 ```
@@ -204,13 +233,29 @@ NSDictionary *batch = @{ @"name": @"your_batch_name" ,
 **View Data Source Details:**
 
 ```objc
-[_dataSourceClient viewDetailsForDataSourceId:@"datasource_id" success:^(id object) {
+[dataSourceClient viewDetailsForDataSourceId:@"datasource_id" success:^(id object) {
     //set label with data source info.
     [lblDSName setText:[object valueForKey:@"name"]];
     [lblDSDescription setText:[object valueForKey:@"name"]];
     [lblDSSerial setText:[object valueForKey:@"serial"]];
 } failure:^(NSError *error, NSDictionary *message) {
-    NSLog(@"Error: %@",[error description]);
+    NSLog(@"Error: %@",[error localizedDescription]);
+    NSLog(@"Message: %@",message);
+}];
+```
+
+**Create Data Source:**
+
+```objc
+NSDictionary *datasource = @{ @"name": @"Sample Data Source",
+                       @"description": @"Longer description for Sample Data Source",
+                        @"visibility": @"public" };
+    
+[dataSourceClient createDataSource:datasource success:^(id object) {
+    /*Data Source created*/
+    NSDictionary *dataSourceCreated = object;
+} failure:^(NSError *error, NSDictionary *message) {
+    NSLog(@"Error: %@",[error localizedDescription]);
     NSLog(@"Message: %@",message);
 }];
 ```
@@ -230,7 +275,7 @@ KeysClient keyClient = [[KeysClient alloc] init];
     [keysArray addObjectsFromArray:[object objectForKey:@"keys"]];
     [self.tableView reloadData];
 } failure:^(NSError *error, NSDictionary *message) {
-    NSLog(@"Error: %@",[error description]);
+    NSLog(@"Error: %@",[error localizedDescription]);
     NSLog(@"Message: %@",message);
 }];
 ```
@@ -252,7 +297,7 @@ KeysClient keyClient = [[KeysClient alloc] init];
         [lblExpiresAt setText:expiresAt];
     }  
 } failure:^(NSError *error, NSDictionary *message) {
-    NSLog(@"Error: %@",[error description]);
+    NSLog(@"Error: %@",[error localizedDescription]);
     NSLog(@"Message: %@",message);
 }];
 ```
@@ -264,7 +309,7 @@ KeysClient keyClient = [[KeysClient alloc] init];
     //Update key label
     [_lblKey setText:[object valueForKey:@"key"]];
 } failure:^(NSError *error, NSDictionary *message) {
-    NSLog(@"Error: %@",[error description]);
+    NSLog(@"Error: %@",[error localizedDescription]);
     NSLog(@"Message: %@",message);
 }];
 ```
