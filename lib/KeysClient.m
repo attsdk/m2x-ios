@@ -5,7 +5,12 @@
 @implementation KeysClient
 
 -(NSString *)getApiKey{
-    return (_feed_key) ? _feed_key : [M2x shared].api_key;
+    
+    if([_feed_key isEqualToString:@""]){
+        return [M2x shared].api_key;
+    }
+    
+    return _feed_key;
 }
 
 -(void)listKeysWithParameters:(NSDictionary *)parameters success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure{
