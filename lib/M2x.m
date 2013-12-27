@@ -19,7 +19,7 @@
 }
 
 -(NSString *)getApiUrl{
-    return _api_url ? _api_url : API_URL;
+    return [_api_url isEqualToString:@""] ? API_URL : _api_url;
 }
 
 -(NSDate*)iSO8601ToDate:(NSString*)dateString{

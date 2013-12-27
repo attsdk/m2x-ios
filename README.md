@@ -69,8 +69,8 @@ If required, a [Feed API key](https://m2x.att.com/developer/documentation/overvi
 #### [FeedsClient](/lib/FeedsClient.h) ([Spec](https://m2x.att.com/developer/documentation/feed))
 
 ```objc
-	FeedsClient *_feedClient = [[FeedsClient alloc] init];
-	[_feedClient setFeed_key:@"YOUR_FEED_API_KEY"];
+FeedsClient *feedClient = [[FeedsClient alloc] init];
+[feedClient setFeed_key:@"YOUR_FEED_API_KEY"];
 ```
 
 **List Feeds in a `NSMutableArray`:**
@@ -78,7 +78,7 @@ If required, a [Feed API key](https://m2x.att.com/developer/documentation/overvi
 ```objc
 
 //retrieve a list of feeds without parameters
-[_feedClient listWithParameters:nil success:^(id object) {
+[feedClient listWithParameters:nil success:^(id object) {
 
   NSDictionary *response = [value objectForKey:@"feeds"];
   feedList = [NSMutableArray array];
@@ -110,7 +110,7 @@ NSDictionary *locationDict = @{ @"name": _currentLocality,
                            @"longitude": [NSString stringWithFormat:@"%f",location.coordinate.longitude],
                            @"elevation": [NSString stringWithFormat:@"%f",location.altitude] };
 
-[_feedClient updateDatasourceWithLocation:locationDict inFeed:_feed_id success:^(id object) {
+[feedClient updateDatasourceWithLocation:locationDict inFeed:@"your_feed_id" success:^(id object) {
 	//Callback function
     [self didSetLocation];
 } failure:^(NSError *error, NSDictionary *message) {
@@ -124,9 +124,9 @@ NSDictionary *locationDict = @{ @"name": _currentLocality,
 ```objc
 NSDictionary *newValue = @{ @"values": @[ @{ @"value": @"20" } ] };
                    
-[_feedClient postDataValues:newValue 
+[feedClient postDataValues:newValue 
                   forStream:@"stream_name" 
-                     inFeed:_feed_id 
+                     inFeed:@"your_feed_id" 
                      success:^(id object) { /*success block*/ }
                      failure:^(NSError *error, NSDictionary *message) 
 {
@@ -168,8 +168,8 @@ NSDictionary *trigger = @{ @"name": @"trigger1",
 
 
 ```objc
-  DataSourceClient dataSourceClient = [[DataSourceClient alloc] init];
-  [dataSourceClient setFeed_key:@"YOUR_FEED_API_KEY"];
+DataSourceClient dataSourceClient = [[DataSourceClient alloc] init];
+[dataSourceClient setFeed_key:@"YOUR_FEED_API_KEY"];
 ```
 
 **Create Blueprint:**
@@ -307,7 +307,7 @@ KeysClient keyClient = [[KeysClient alloc] init];
 ```objc
 [keysClient regenerateKey:_key success:^(id object) {
     //Update key label
-    [_lblKey setText:[object valueForKey:@"key"]];
+    [lblKey setText:[object valueForKey:@"key"]];
 } failure:^(NSError *error, NSDictionary *message) {
     NSLog(@"Error: %@",[error localizedDescription]);
     NSLog(@"Message: %@",message);
