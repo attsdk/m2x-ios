@@ -6,7 +6,7 @@
 
 -(NSString *)getApiKey{
     
-    if([_feed_key isEqualToString:@""]){
+    if(!_feed_key || [_feed_key isEqualToString:@""]){
         return [M2x shared].api_key;
     }
     
