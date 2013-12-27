@@ -15,7 +15,7 @@ If you have questions about any M2X specific terms, please consult the M2X gloss
 
 Copy the content from the `lib` folder to your project. 
 
-Note: The `lib` folder contains the AFNetworking library to make the HTTP requests.
+Note: The `lib` folder contains the AFNetworking library to make HTTP requests.
 
 ## Requirements and Dependencies
 
@@ -27,11 +27,11 @@ The client has the following library dependency:
 
 ## Architecture
 
-Currently, the client supports M2X API v1. All M2X API specifications can be found at [M2X API Documentation](https://m2x.att.com/developer/documentation/overview).
+Currently, the client supports M2X API v1. All M2X API specifications can be found in the [M2X API Documentation](https://m2x.att.com/developer/documentation/overview).
 
 ### M2X Class
 
-M2X is the main class that provides the methods to set the API Url ("https://api-m2x.att.com/v1" as default) and the Master Key.
+M2X is the main class that provides the methods to set the API URL ("https://api-m2x.att.com/v1" as default) and the Master Key.
 
 **Example:**
 
@@ -64,7 +64,7 @@ The clients (`FeedsClient`, `DataSourceClient` and `KeysClient`) provide an inte
 If the call requires parameters, it must be encapsulated in a `NSDictionary` following the respective estructure from the [API Documentation](https://m2x.att.com/developer/documentation/overview).
 As well as the parameters, the response is returned in a `NSDictionary` object. 
 
-If required, a [Feed API key](https://m2x.att.com/developer/documentation/overview#API-Keys) can be set in this classes.
+If required, a [Feed API key](https://m2x.att.com/developer/documentation/overview#API-Keys) can be set in these classes.
 
 #### [FeedsClient](/lib/FeedsClient.h) ([Spec](https://m2x.att.com/developer/documentation/feed))
 
