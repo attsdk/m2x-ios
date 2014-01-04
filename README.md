@@ -13,7 +13,7 @@ If you have questions about any M2X specific terms, please consult the M2X gloss
 
 ##Installation
 
-Copy the content from the `lib` folder to your project. 
+Copy the content from the `lib` folder to your project.
 
 Note: The `lib` folder contains the AFNetworking library to make HTTP requests.
 
@@ -62,7 +62,7 @@ The method `-iSO8601ToDate:` parse from a ISO8601 Date `NSString` to `NSDate`:
 The clients (`FeedsClient`, `DataSourceClient` and `KeysClient`) provide an interface to make all the requests on the respectives API.
 
 If the call requires parameters, it must be encapsulated in a `NSDictionary` following the respective estructure from the [API Documentation](https://m2x.att.com/developer/documentation/overview).
-As well as the parameters, the response is returned in a `NSDictionary` object. 
+As well as the parameters, the response is returned in a `NSDictionary` object.
 
 If required, a [Feed API key](https://m2x.att.com/developer/documentation/overview#API-Keys) can be set in these classes.
 
@@ -123,12 +123,12 @@ NSDictionary *locationDict = @{ @"name": _currentLocality,
 
 ```objc
 NSDictionary *newValue = @{ @"values": @[ @{ @"value": @"20" } ] };
-                   
-[feedClient postDataValues:newValue 
-                  forStream:@"stream_name" 
-                     inFeed:@"your_feed_id" 
+
+[feedClient postDataValues:newValue
+                  forStream:@"stream_name"
+                     inFeed:@"your_feed_id"
                      success:^(id object) { /*success block*/ }
-                     failure:^(NSError *error, NSDictionary *message) 
+                     failure:^(NSError *error, NSDictionary *message)
 {
     NSLog(@"Error: %@",[error localizedDescription]);
     NSLog(@"Message: %@",message);
@@ -178,7 +178,7 @@ DataSourceClient dataSourceClient = [[DataSourceClient alloc] init];
 NSDictionary *blueprint = @{ @"name": @"Sample Blueprint",
                       @"description": @"Longer description for Sample Blueprint",
                        @"visibility": @"public" };
-    
+
 [dataSourceClient createBlueprint:bp success:^(id object) {
     /*blueprint created*/
     NSDictionary *blueprintCreated = object;
@@ -197,7 +197,7 @@ NSDictionary *blueprint = @{ @"name": @"Sample Blueprint",
     [tableViewDataSources reloadData];
 } failure:^(NSError *error, NSDictionary *message) {
     NSLog(@"Error: %@",[error localizedDescription]);
-    NSLog(@"Message: %@",message);   
+    NSLog(@"Message: %@",message);
 }];
 ```
 
@@ -220,7 +220,7 @@ NSDictionary *serial = @{ @"serial": @"your_new_serial" };
 NSDictionary *batch = @{ @"name": @"your_batch_name" ,
                   @"description": @"a_description",
                    @"visibility": @"private" };
-    
+
 [dataSourceClient createBatch:batch success:^(id object) {
     //batch successfully created.
     NSDictionary *batchCreated = object;
@@ -250,7 +250,7 @@ NSDictionary *batch = @{ @"name": @"your_batch_name" ,
 NSDictionary *datasource = @{ @"name": @"Sample Data Source",
                        @"description": @"Longer description for Sample Data Source",
                         @"visibility": @"public" };
-    
+
 [dataSourceClient createDataSource:datasource success:^(id object) {
     /*Data Source created*/
     NSDictionary *dataSourceCreated = object;
@@ -270,8 +270,8 @@ KeysClient keyClient = [[KeysClient alloc] init];
 **List Keys:**
 
 ```objc
-[keysClient listKeysWithParameters:nil success:^(id object) {  
-    [keysArray removeAllObjects];   
+[keysClient listKeysWithParameters:nil success:^(id object) {
+    [keysArray removeAllObjects];
     [keysArray addObjectsFromArray:[object objectForKey:@"keys"]];
     [self.tableView reloadData];
 } failure:^(NSError *error, NSDictionary *message) {
@@ -283,7 +283,7 @@ KeysClient keyClient = [[KeysClient alloc] init];
 **View Key Details:**
 
 ```objc
-[keysClient viewDetailsForKey:_key success:^(id object) {     
+[keysClient viewDetailsForKey:_key success:^(id object) {
     NSString *name = [object valueForKey:@"name"];
     NSString *key = [object valueForKey:@"key"];
     NSString *expiresAt = [object valueForKey:@"expires_at"];
@@ -295,7 +295,7 @@ KeysClient keyClient = [[KeysClient alloc] init];
     //check if expires_at isn't set.
     if(![expiresAt isEqual:[NSNull null]]){
         [lblExpiresAt setText:expiresAt];
-    }  
+    }
 } failure:^(NSError *error, NSDictionary *message) {
     NSLog(@"Error: %@",[error localizedDescription]);
     NSLog(@"Message: %@",message);
