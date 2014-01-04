@@ -18,8 +18,23 @@
     return shared;
 }
 
+
+-(id)init {
+    if (self = [super init]) {
+        self.api_url = API_URL;
+    }
+    return self;
+}
+
+-(void)setApi_url:(NSString *)api_url {
+    if (api_url && ![api_url isEqualToString:@""]) {
+        _api_url = [api_url stringByTrimmingCharactersInSet:
+                    [NSCharacterSet characterSetWithCharactersInString:@"/ "]];        
+    }
+}
+
 -(NSString *)getApiUrl{
-    return [_api_url isEqualToString:@""] ? API_URL : _api_url;
+    return _api_url;
 }
 
 -(NSDate*)iSO8601ToDate:(NSString*)dateString{
