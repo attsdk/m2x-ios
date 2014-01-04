@@ -6,8 +6,8 @@ typedef void (^M2XAPIClientFailureError)(NSError *error,NSDictionary *message);
 
 @interface M2x : NSObject
 
-//The API url don't must have the last slash.
-#define API_URL @"https://api-m2x.att.com/v1"
+// API URL must not have the last slash.
+#define API_URL @"http://api-m2x.att.com/v1"
 
 +(M2x*) shared;
 

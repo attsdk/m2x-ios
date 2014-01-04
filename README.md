@@ -31,7 +31,7 @@ Currently, the client supports M2X API v1. All M2X API specifications can be fou
 
 ### M2X Class
 
-M2X is the main class that provides the methods to set the API URL ("https://api-m2x.att.com/v1" as default) and the Master Key.
+M2X is the main class that provides the methods to set the API URL ("http://api-m2x.att.com/v1" as default) and the Master Key.
 
 **Example:**
 
@@ -41,7 +41,7 @@ M2x* m2x = [M2x shared];
 //set the Master Api Key
 m2x.api_key = @"your_api_key";
 //set the api url
-m2x.api_url = @"your_api_url"; // https://api-m2x.att.com/v1 as default
+m2x.api_url = @"your_api_url"; // http://api-m2x.att.com/v1 as default
 ```
 
 The method `-iSO8601ToDate:` parse from a ISO8601 Date `NSString` to `NSDate`:
