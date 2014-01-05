@@ -75,6 +75,10 @@ FeedsClient *feedClient = [[FeedsClient alloc] init];
 
 ```objc
 
+// Note that for this call you need your Master API Key,
+// otherwise you'll get a 401 Unauthorized error.
+[feedClient setFeed_key:@"YOUR_MASTER_API_KEY"];
+
 //retrieve a list of feeds without parameters
 [feedClient listWithParameters:nil success:^(id object) {
 
