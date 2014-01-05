@@ -40,8 +40,6 @@ M2X is the main class that provides the methods to set the API URL ("http://api-
 M2x* m2x = [M2x shared];
 //set the Master Api Key
 m2x.api_key = @"your_api_key";
-//set the api url
-m2x.api_url = @"your_api_url"; // http://api-m2x.att.com/v1 as default
 ```
 
 The method `-iSO8601ToDate:` parse from a ISO8601 Date `NSString` to `NSDate`:
