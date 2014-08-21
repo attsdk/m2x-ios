@@ -3,6 +3,7 @@
 #import "StreamValuesViewController.h"
 #import "FeedLocationViewController.h"
 #import "AddStreamViewController.h"
+#import "NSDate+M2X.h"
 
 @interface FeedDescriptionViewController ()
 
@@ -66,7 +67,7 @@
     [_lblFeedId setText:[feed_description valueForKey:@"id"]];
     
     //format date
-    NSDate *createdDate = [[M2x shared] iSO8601ToDate:[feed_description valueForKey:@"created"]];
+    NSDate *createdDate = [NSDate fromISO8601:[feed_description valueForKey:@"created"]];
     
     NSString *dateString = [NSDateFormatter localizedStringFromDate:createdDate
                                                           dateStyle:NSDateFormatterShortStyle

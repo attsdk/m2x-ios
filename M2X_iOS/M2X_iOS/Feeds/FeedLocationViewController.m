@@ -1,6 +1,7 @@
 
 #import "FeedLocationViewController.h"
 #import "FeedsClient.h"
+#import "NSDate+M2X.h"
 
 @interface FeedLocationViewController ()
 
@@ -161,7 +162,7 @@
     
     NSString *timeString = [valueData valueForKey:@"timestamp"];
     
-    NSDate *timestamp = [[M2x shared] iSO8601ToDate:timeString];
+    NSDate *timestamp = [NSDate fromISO8601:timeString];
     
     [[cell textLabel] setText:[NSString stringWithFormat:@"Lat:%@ | Long:%@ | E:%@",
                                [formatter stringFromNumber:latitude],

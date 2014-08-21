@@ -1,6 +1,7 @@
 
 #import "DatePickerViewController.h"
 #import "M2x.h"
+#import "NSDate+M2X.h"
 
 @interface DatePickerViewController ()
 
@@ -32,7 +33,7 @@
     
     NSDate *date = [_dpExpiryDate date];
     
-    NSString *dateString = [[M2x shared] dateToISO8601:date];
+    NSString *dateString = [date toISO8601];
     
     [_tfExpiryDate setText:dateString];
     

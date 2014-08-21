@@ -1,5 +1,6 @@
 
 #import "StreamValuesViewController.h"
+#import "NSDate+M2X.h"
 
 @interface StreamValuesViewController ()
 
@@ -73,21 +74,23 @@
 
 - (IBAction)postValue:(id)sender {
     
-    if(![[_tfNewValue text] isEqual: @""]){
-        
+    if (![[_tfNewValue text] isEqual: @""])
+    {
         NSDictionary *newValue = @{ @"values": @[
-                   @{ @"value": [_tfNewValue text] } ] };
+                   @{ @"value": _tfNewValue.text,
+                      @"at": [[NSDate date] toISO8601] } ] };
         
-        [_feedClient postDataValues:newValue forStream:_streamName inFeed:_feed_id success:^(id object) {
+        [_feedClient postDataValues:newValue
+                          forStream:_streamName
+                             inFeed:_feed_id
+                            success:^(id object)
+        {
             [self getStreamValues];
         } failure:^(NSError *error, NSDictionary *message) {
-            
             [self showError:error WithMessage:message];
-            
         }];
         
     }
-    
     [_tfNewValue resignFirstResponder];
     
 }
@@ -130,7 +133,7 @@
                                ([[_streamUnit valueForKey:@"symbol"] isEqual:[NSNull null]]) ? @"" : [_streamUnit valueForKey:@"symbol"]
                                ]];
     
-    NSDate *createdDate = [[M2x shared] iSO8601ToDate:[valueData valueForKey:@"at"]];
+    NSDate *createdDate = [NSDate fromISO8601:[valueData valueForKey:@"at"]];
     
     NSString *dateString = [NSDateFormatter localizedStringFromDate:createdDate
                                                           dateStyle:NSDateFormatterShortStyle

@@ -37,16 +37,18 @@
     NSDictionary *serial = @{ @"serial": [_tfSerial text] };
     
     //Add Data Source to the Batch
+    __weak typeof(self) weakSelf = self;
+    
     [_dataSourceClient addDataSourceToBatch:_batch_id
                              withParameters:serial
                                     success:^(id object) {
                                         
                                         //data source successfully added, go back.
-                                        [self.navigationController popViewControllerAnimated:YES];
+                                        [weakSelf.navigationController popViewControllerAnimated:YES];
                                         
                                     } failure:^(NSError *error, NSDictionary *message) {
                                         
-                                        [self showError:error WithMessage:message];
+                                        [weakSelf showError:error WithMessage:message];
                                         
                                     }];
     

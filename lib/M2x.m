@@ -37,27 +37,6 @@
     return _api_url;
 }
 
--(NSDate*)iSO8601ToDate:(NSString*)dateString{
-    
-    // Convert string  to date object
-    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    [dateFormat setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZ"];
-    return [dateFormat dateFromString:dateString];
-    
-}
-
--(NSString*)dateToISO8601:(NSDate*)date{
-    
-    // Convert nsdate to string
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    NSLocale *enUSPOSIXLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
-    [dateFormatter setLocale:enUSPOSIXLocale];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss'Z'"];
-    
-    return [dateFormatter stringFromDate:date];
-    
-}
-
 #pragma mark - Http methods
 
 -(void)getWithPath:(NSString*)path andParameters:(NSDictionary*)parameters api_key:(NSString*)api_key_used success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure{
@@ -86,7 +65,9 @@
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = request;
     
-    [manager POST:[NSString stringWithFormat:@"%@%@", [M2x shared].api_url, path] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager POST:[NSString stringWithFormat:@"%@%@", [M2x shared].api_url, path]
+       parameters:parameters
+          success:^(AFHTTPRequestOperation *operation, id responseObject) {
         success(responseObject);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         failure(error,[operation responseObject]);

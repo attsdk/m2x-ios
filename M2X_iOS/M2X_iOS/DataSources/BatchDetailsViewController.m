@@ -1,6 +1,7 @@
 
 #import "BatchDetailsViewController.h"
 #import "AddDataSourceViewController.h"
+#import "NSDate+M2X.h"
 
 @interface BatchDetailsViewController ()
 
@@ -63,7 +64,7 @@
     [_lblBatchID setText:[batchDescription valueForKey:@"id"]];
     
     //format date
-    NSDate *createdDate = [[M2x shared] iSO8601ToDate:[batchDescription valueForKey:@"created"]];
+    NSDate *createdDate = [NSDate fromISO8601:[batchDescription valueForKey:@"created"]];
     
     NSString *dateString = [NSDateFormatter localizedStringFromDate:createdDate
                                                           dateStyle:NSDateFormatterShortStyle
