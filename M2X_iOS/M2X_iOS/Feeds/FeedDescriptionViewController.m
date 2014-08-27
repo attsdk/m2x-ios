@@ -51,7 +51,6 @@
 
     [_feedClient viewDetailsForFeedId:_feed_id success:^(id object) {
         
-        NSLog(@"%@",object);
         [self didGetFeedDescription:object];
         
     } failure:^(NSError *error, NSDictionary *message) {

@@ -4,30 +4,25 @@
 
 @interface StreamValuesViewController ()
 
+@property (weak, nonatomic) IBOutlet UITextField *tfNewValue;
+@property (weak, nonatomic) IBOutlet UITableView *tableViewStreamValues;
+@property (weak, nonatomic) IBOutlet UILabel *lblUnit;
+
+@property (nonatomic, retain) NSMutableArray *valueList;
+
 @end
 
 @implementation StreamValuesViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
     
-    _valueList = [NSMutableArray array];
+    self.tableViewStreamValues.dataSource = self;
     
-    _tableViewStreamValues.dataSource = self;
-    
-    if(![[_streamUnit valueForKey:@"symbol"] isEqual:[NSNull null]])
-        [_lblUnit setText:[_streamUnit valueForKey:@"symbol"]];
+    if (![self.streamUnit[@"symbol"] isEqual:[NSNull null]]) {
+        self.lblUnit = self.streamUnit[@"symbol"];
+    }
     
     [self getStreamValues];
 }
@@ -40,69 +35,69 @@
  
 #pragma mark - request
 
--(void)getStreamValues{
-    
-    //assign a limit of streams values
+-(void)getStreamValues
+{
+    NSLog(@"Downloading stream values.");
     NSDictionary *parameters = @{ @"limit": @"100" };
-    
-    [_feedClient listDataValuesFromTheStream:_streamName inFeed:_feed_id WithParameters:parameters success:^(id object) {
-        NSLog(@"%@",object);
-        [self didGetStreamValues:object];
-        
-    } failure:^(NSError *error, NSDictionary *message) {
-        NSLog(@"%@",message);
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
-                                                        message:[NSString stringWithFormat:@"%@", message]
-                                                       delegate:nil cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        [alert show];
+    [_feedClient listDataValuesFromTheStream:_streamName
+                                      inFeed:_feed_id
+                              WithParameters:parameters
+                                     success:^(NSDictionary *object)
+    {
+        self.valueList = object[@"values"];
+        [self.tableViewStreamValues reloadData];
+        NSLog(@"%d stream values displayed.", self.valueList.count);
+    }
+                                     failure:^(NSError *error, NSDictionary *message)
+    {
+        [[[UIAlertView alloc] initWithTitle:@"Error"
+                                    message:[NSString stringWithFormat:@"%@", message]
+                                   delegate:nil
+                          cancelButtonTitle:@"OK"
+                          otherButtonTitles:nil] show];
     }];
-    
-}
-
--(void)didGetStreamValues:(NSDictionary*)values{
-    
-    [_valueList removeAllObjects];
-    
-    [_valueList addObjectsFromArray:[values objectForKey:@"values"]];
-    
-    [_tableViewStreamValues reloadData];
     
 }
 
 #pragma mark - IBAction
 
-- (IBAction)postValue:(id)sender {
-    
-    if (![[_tfNewValue text] isEqual: @""])
+- (IBAction)postValue:(UIButton *)sender
+{
+    if (![self.tfNewValue.text isEqualToString:@""])
     {
-        NSDictionary *newValue = @{ @"values": @[
-                   @{ @"value": _tfNewValue.text,
-                      @"at": [[NSDate date] toISO8601] } ] };
+        sender.enabled = NO;
+        [_tfNewValue resignFirstResponder];
         
-        [_feedClient postDataValues:newValue
+        NSDictionary *value = @{ @"values": @[
+                   @{ @"value": _tfNewValue.text, @"at": [[NSDate date] toISO8601] }
+                   ] };
+        
+        [_feedClient postDataValues:value
                           forStream:_streamName
                              inFeed:_feed_id
                             success:^(id object)
         {
             [self getStreamValues];
-        } failure:^(NSError *error, NSDictionary *message) {
+            self.tfNewValue.text = @"";
+            sender.enabled = YES;
+        }
+                            failure:^(NSError *error, NSDictionary *message)
+        {
             [self showError:error WithMessage:message];
+            sender.enabled = YES;
         }];
-        
     }
-    [_tfNewValue resignFirstResponder];
-    
 }
 
 #pragma mark - helper
 
--(void)showError:(NSError*)error WithMessage:(NSDictionary*)message{
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[error localizedDescription]
-                                                    message:[NSString stringWithFormat:@"%@", message]
-                                                   delegate:nil cancelButtonTitle:@"OK"
-                                          otherButtonTitles:nil];
-    [alert show];
+-(void)showError:(NSError*)error WithMessage:(NSDictionary*)message
+{
+    [[[UIAlertView alloc] initWithTitle:[error localizedDescription]
+                                message:[NSString stringWithFormat:@"%@", message]
+                               delegate:nil
+                      cancelButtonTitle:@"OK"
+                      otherButtonTitles:nil] show];
 }
 
 #pragma mark - TableView delegate
@@ -117,7 +112,7 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [_valueList count];
+    return self.valueList.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -126,8 +121,7 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    NSDictionary *valueData = [_valueList objectAtIndex:indexPath.row];
-    
+    NSDictionary *valueData = self.valueList[indexPath.row];
     
     [[cell textLabel] setText:[NSString stringWithFormat:@"%@ %@",[valueData valueForKey:@"value"],
                                ([[_streamUnit valueForKey:@"symbol"] isEqual:[NSNull null]]) ? @"" : [_streamUnit valueForKey:@"symbol"]
