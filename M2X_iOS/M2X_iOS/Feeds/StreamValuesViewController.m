@@ -27,17 +27,10 @@
     [self getStreamValues];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
- 
 #pragma mark - request
 
 -(void)getStreamValues
 {
-    NSLog(@"Downloading stream values.");
     NSDictionary *parameters = @{ @"limit": @"100" };
     [_feedClient listDataValuesFromTheStream:_streamName
                                       inFeed:_feed_id

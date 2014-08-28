@@ -59,12 +59,12 @@
     
 }
 
--(void)didGetBatchDescription:(NSDictionary*)batchDescription{
+-(void)didGetBatchDescription:(NSDictionary*)batch{
     
-    [_lblBatchID setText:[batchDescription valueForKey:@"id"]];
+    [_lblBatchID setText:batch[@"id"]];
     
     //format date
-    NSDate *createdDate = [NSDate fromISO8601:[batchDescription valueForKey:@"created"]];
+    NSDate *createdDate = [NSDate fromISO8601:batch[@"created"]];
     
     NSString *dateString = [NSDateFormatter localizedStringFromDate:createdDate
                                                           dateStyle:NSDateFormatterShortStyle

@@ -42,17 +42,21 @@ M2x* m2x = [M2x shared];
 m2x.api_key = @"your_api_key";
 ```
 
-The method `-iSO8601ToDate:` parse from a ISO8601 Date `NSString` to `NSDate`:
+### M2X Categories
+
+M2X includes the NSDate+M2X category to make it easier to send and receive dates using the ISO8601 standard.
 
 ```objc
--(NSDate*)iSO8601ToDate:(NSString*)dateString;
+- (NSString *) toISO8601;
++ (NSDate *) fromISO8601:(NSString *)dateString;
 ```
 
+These methods can be used to convert to and from a NSDate or NSString object.
 
-`-dateToISO8601:` parse from `NSDate` to a ISO8601 Date `NSString`:
+**Example:**
 
 ```objc
--(NSString*)dateToISO8601:(NSDate*)date;
+NSDate *batchCreationDate = [NSDate fromISO8601:batch[@"created"]];
 ```
 
 ### API Clients
