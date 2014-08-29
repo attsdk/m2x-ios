@@ -8,7 +8,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblCreated;
 @property (weak, nonatomic) IBOutlet UITableView *tableViewStreams;
 
-@property (nonatomic, retain) NSMutableArray *streamList;
+@property (nonatomic, strong) NSMutableArray *streamList;
 @property (nonatomic, strong) FeedsClient *feedClient;
 @property (nonatomic, strong) NSString *feed_id;
 

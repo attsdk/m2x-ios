@@ -17,7 +17,7 @@ typedef void (^M2XAPIClientFailureError)(NSError *error,NSDictionary *message);
 -(void)putWithPath:(NSString*)path andParameters:(NSDictionary*)parameters api_key:(NSString*)api_key_used success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure;
 -(void)deleteWithPath:(NSString*)path andParameters:(NSDictionary*)parameters api_key:(NSString*)api_key_used success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure;
 
-@property (nonatomic,strong, getter = getApiUrl) NSString *api_url;
-@property (nonatomic, retain) NSString *api_key;
+@property (nonatomic, strong, getter = getApiUrl) NSString *api_url;
+@property (nonatomic, strong) NSString *api_key;
 
 @end

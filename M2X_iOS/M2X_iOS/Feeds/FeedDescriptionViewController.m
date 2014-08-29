@@ -130,47 +130,32 @@
 
 #pragma mark - segue
 
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    
-    
-    if ([[segue identifier] isEqualToString:@"toStreamValuesSegue"])
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"toStreamValuesSegue"])
     {
         UITableViewCell *stream_tableViewSelected = sender;
-        
-        NSIndexPath *valueIndex = [_tableViewStreams indexPathForCell:stream_tableViewSelected];
-        
-        NSDictionary *streamDict = [_streamList objectAtIndex:[valueIndex row]];
-        
+        NSIndexPath *valueIndex = [self.tableViewStreams indexPathForCell:stream_tableViewSelected];
+        NSDictionary *streamDict = self.streamList[valueIndex.row];
         StreamValuesViewController *streamValuesVC = segue.destinationViewController;
+        streamValuesVC.feedClient = self.feedClient;
+        streamValuesVC.feed_id = _feed_id;
+        streamValuesVC.streamName = streamDict[@"name"];
+        streamValuesVC.streamUnit = streamDict[@"unit"];
+        streamValuesVC.title = streamDict[@"name"];
         
-        [streamValuesVC setFeedClient:_feedClient];
+    } else if([segue.identifier isEqualToString:@"toAddStream"]) {
         
-        [streamValuesVC setFeed_id:_feed_id];
+        AddStreamViewController *addStreamVC = segue.destinationViewController;
+        addStreamVC.feedClient = self.feedClient;
+        addStreamVC.feed_id = _feed_id;
         
-        [streamValuesVC setStreamName:[streamDict valueForKey:@"name"]];
-        
-        [streamValuesVC setStreamUnit:[streamDict objectForKey:@"unit"]];
-        
-        [streamValuesVC setTitle:[streamDict valueForKey:@"name"]];
-        
-    }else if([[segue identifier] isEqualToString:@"toAddStream"]) {
-        
-        AddStreamViewController *addStreaVC = segue.destinationViewController;
-        
-        [addStreaVC setFeedClient:_feedClient];
-        
-        [addStreaVC setFeed_id:_feed_id];
-        
-    }else{ // segue is "toLocationsManagerSegue"
+    } else if([segue.identifier isEqualToString:@"toLocationsManagerSegue"]) {
         
         FeedLocationViewController *locationVC = segue.destinationViewController;
-        
-        [locationVC setFeed_id:_feed_id];
-        
-        [locationVC setFeedClient:_feedClient];
-        
+        locationVC.feedClient = _feedClient;
+        locationVC.feed_id = _feed_id;
     }
-    
 }
 
 #pragma mark - helper

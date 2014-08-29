@@ -8,7 +8,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableViewStreamValues;
 @property (weak, nonatomic) IBOutlet UILabel *lblUnit;
 
-@property (nonatomic, retain) NSMutableArray *valueList;
+@property (nonatomic, strong) NSMutableArray *valueList;
 
 @end
 
@@ -21,7 +21,7 @@
     self.tableViewStreamValues.dataSource = self;
     
     if (![self.streamUnit[@"symbol"] isEqual:[NSNull null]]) {
-        self.lblUnit = self.streamUnit[@"symbol"];
+        self.lblUnit.text = self.streamUnit[@"symbol"];
     }
     
     [self getStreamValues];
@@ -31,6 +31,7 @@
 
 -(void)getStreamValues
 {
+    NSLog(@"Getting stream values");
     NSDictionary *parameters = @{ @"limit": @"100" };
     [_feedClient listDataValuesFromTheStream:_streamName
                                       inFeed:_feed_id
@@ -58,14 +59,18 @@
 {
     if (![self.tfNewValue.text isEqualToString:@""])
     {
+        NSNumber *value = @([self.tfNewValue.text floatValue]);
+        NSLog(@"Posting value %@", value);
         sender.enabled = NO;
         [_tfNewValue resignFirstResponder];
         
-        NSDictionary *value = @{ @"values": @[
-                   @{ @"value": _tfNewValue.text, @"at": [[NSDate date] toISO8601] }
-                   ] };
+        NSString *now = [NSDate date].toISO8601;
+        NSDictionary *args = @{ @"values": @[
+                                        @{ @"value": value, @"at": now }
+                                        ]
+                                };
         
-        [_feedClient postDataValues:value
+        [_feedClient postDataValues:args
                           forStream:_streamName
                              inFeed:_feed_id
                             success:^(id object)

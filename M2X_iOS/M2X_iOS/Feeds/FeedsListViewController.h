@@ -10,7 +10,7 @@
 @property (strong, nonatomic) NSString *feedKey;
 @property (strong, nonatomic) FeedsClient *feedClient;
 
-@property (nonatomic, retain) NSMutableArray *data;
+@property (nonatomic, strong) NSMutableArray *data;
 
 
 

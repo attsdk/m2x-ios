@@ -8,5 +8,6 @@
 
 @property (strong, nonatomic) DataSourceClient *dataSourceClient;
 
-@property (nonatomic, retain) NSMutableArray *data;
+@property (nonatomic, strong) NSMutableArray *data;
+
 @end

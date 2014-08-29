@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6206.8" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Pn1-Z3-PaM">
     <dependencies>
-        <deployment defaultVersion="1536" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7026.1"/>
         <capability name="Constraints with attributes relative to the layout margin" minToolsVersion="6.0"/>
     </dependencies>
@@ -21,7 +20,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NbK-Se-uj8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="724" y="658"/>
+            <point key="canvasLocation" x="204" y="658"/>
         </scene>
         <!--Batches-->
         <scene sceneID="iLg-db-NAD">
@@ -75,7 +74,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SMb-Db-Mk4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1191" y="658"/>
+            <point key="canvasLocation" x="724" y="658"/>
         </scene>
         <!--Create Batch View Controller-->
         <scene sceneID="y62-93-AlZ">
@@ -145,7 +144,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ibH-X7-oqs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1191" y="1371"/>
+            <point key="canvasLocation" x="724" y="1371"/>
         </scene>
         <!--Batch-->
         <scene sceneID="xmA-YD-rey">
@@ -274,7 +273,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gBE-jM-ptZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1648" y="658"/>
+            <point key="canvasLocation" x="1191" y="658"/>
         </scene>
         <!--Add Data Source Serial-->
         <scene sceneID="XML-wd-xgT">
@@ -324,7 +323,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PdM-sF-3z1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2127" y="658"/>
+            <point key="canvasLocation" x="1648" y="658"/>
         </scene>
         <!--iOS M2X Client Demo-->
         <scene sceneID="kja-MQ-Sp5">
@@ -362,7 +361,7 @@
                                 </constraints>
                                 <items>
                                     <navigationItem title="AT&amp;T M2X Client Demo" id="LEj-yK-msX">
-                                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="tVc-AX-4Gi">
+                                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="tVc-AX-4Gi">
                                             <connections>
                                                 <action selector="doSave:" destination="Pn1-Z3-PaM" id="uXL-N8-gbr"/>
                                             </connections>
@@ -576,7 +575,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BlS-5q-aaD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1734" y="-1441"/>
+            <point key="canvasLocation" x="1648" y="-1441"/>
         </scene>
         <!--Create Key View Controller-->
         <scene sceneID="BiI-3a-r5A">
@@ -1024,7 +1023,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RbU-FZ-6ft" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2670" y="-766"/>
+            <point key="canvasLocation" x="2187" y="-68"/>
         </scene>
         <!--Feed Description View Controller-->
         <scene sceneID="Peu-at-d8g">
@@ -1247,7 +1246,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qdc-OQ-ObN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2127" y="-68"/>
+            <point key="canvasLocation" x="2187" y="658"/>
         </scene>
         <!--Keys-->
         <scene sceneID="XJy-vp-1jl">
