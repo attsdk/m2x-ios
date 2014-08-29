@@ -19,7 +19,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.homeManager = [HMHomeManager new];
+    self.homeManager = [[HMHomeManager alloc] init];
     self.homeManager.delegate = self;
 }
 
