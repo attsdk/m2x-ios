@@ -21,7 +21,10 @@
 {
     [super viewDidLoad];
     self.accessories = [NSMutableArray new];
+    
+    NSLog(@"Looking for new accessories");
     self.accesoryBrowser = [HMAccessoryBrowser new];
+    self.accesoryBrowser.delegate = self;
     [self.accesoryBrowser startSearchingForNewAccessories];
 }
 
@@ -54,6 +57,7 @@
 
 - (void)accessoryBrowser:(HMAccessoryBrowser *)browser didFindNewAccessory:(HMAccessory *)accessory
 {
+    NSLog(@"Found accessory: %@", accessory);
     [self.accessories addObject:accessory];
     NSSortDescriptor *byName = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
     NSArray *sorted = [self.accessories sortedArrayUsingDescriptors:@[byName]];
@@ -63,6 +67,7 @@
 
 - (void)accessoryBrowser:(HMAccessoryBrowser *)browser didRemoveNewAccessory:(HMAccessory *)accessory
 {
+    NSLog(@"Lost contact with accessory: %@", accessory);
     [self.accessories removeObject:accessory];
     [self.tableView reloadData];
 }

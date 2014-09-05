@@ -33,6 +33,8 @@
 		8394978E19BA002E005FFD10 /* AccessoriesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8394978D19BA002E005FFD10 /* AccessoriesViewController.m */; };
 		8394979119BA00D4005FFD10 /* AccessoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8394979019BA00D4005FFD10 /* AccessoryViewController.m */; };
 		8394979419BA133E005FFD10 /* AccessoryBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8394979319BA133E005FFD10 /* AccessoryBrowserViewController.m */; };
+		8394979719BA5451005FFD10 /* ServicesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8394979619BA5451005FFD10 /* ServicesViewController.m */; };
+		8394979D19BA5908005FFD10 /* ServiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8394979C19BA5908005FFD10 /* ServiceViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +101,10 @@
 		8394979019BA00D4005FFD10 /* AccessoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AccessoryViewController.m; path = ../AccessoryViewController.m; sourceTree = "<group>"; };
 		8394979219BA133E005FFD10 /* AccessoryBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccessoryBrowserViewController.h; sourceTree = "<group>"; };
 		8394979319BA133E005FFD10 /* AccessoryBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccessoryBrowserViewController.m; sourceTree = "<group>"; };
+		8394979519BA5451005FFD10 /* ServicesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServicesViewController.h; sourceTree = "<group>"; };
+		8394979619BA5451005FFD10 /* ServicesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServicesViewController.m; sourceTree = "<group>"; };
+		8394979B19BA5908005FFD10 /* ServiceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceViewController.h; sourceTree = "<group>"; };
+		8394979C19BA5908005FFD10 /* ServiceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServiceViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +167,10 @@
 				8394978D19BA002E005FFD10 /* AccessoriesViewController.m */,
 				8394979219BA133E005FFD10 /* AccessoryBrowserViewController.h */,
 				8394979319BA133E005FFD10 /* AccessoryBrowserViewController.m */,
+				8394979519BA5451005FFD10 /* ServicesViewController.h */,
+				8394979619BA5451005FFD10 /* ServicesViewController.m */,
+				8394979B19BA5908005FFD10 /* ServiceViewController.h */,
+				8394979C19BA5908005FFD10 /* ServiceViewController.m */,
 			);
 			path = HomeKitDemo;
 			sourceTree = "<group>";
@@ -346,12 +356,14 @@
 			files = (
 				832849BE19ABBB5B005CA81E /* FeedsClient.m in Sources */,
 				832849B419ABBB5B005CA81E /* AFHTTPRequestOperation.m in Sources */,
+				8394979D19BA5908005FFD10 /* ServiceViewController.m in Sources */,
 				832849BD19ABBB5B005CA81E /* DataSourceClient.m in Sources */,
 				832849BF19ABBB5B005CA81E /* KeysClient.m in Sources */,
 				832849B519ABBB5B005CA81E /* AFHTTPRequestOperationManager.m in Sources */,
 				8328466019B8EFDD00D21E90 /* HomeViewController.m in Sources */,
 				832849B719ABBB5B005CA81E /* AFNetworkReachabilityManager.m in Sources */,
 				832849C019ABBB5B005CA81E /* M2x.m in Sources */,
+				8394979719BA5451005FFD10 /* ServicesViewController.m in Sources */,
 				832849BB19ABBB5B005CA81E /* AFURLResponseSerialization.m in Sources */,
 				8394978E19BA002E005FFD10 /* AccessoriesViewController.m in Sources */,
 				832849B919ABBB5B005CA81E /* AFURLConnectionOperation.m in Sources */,

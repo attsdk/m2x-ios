@@ -7,6 +7,7 @@
 //
 
 #import "RoomViewController.h"
+#import "ServicesViewController.h"
 
 @interface RoomViewController ()
 
@@ -20,9 +21,15 @@
     self.title = room.name;
 }
 
-- (IBAction)addAccessory:(id)sender
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    
+    if ([segue.identifier isEqualToString:@"ToValues"])
+    {
+        ServicesViewController *vc = segue.destinationViewController;
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        HMAccessory *accessory = self.room.accessories[indexPath.row];
+        vc.accessory = accessory;
+    }
 }
 
 #pragma mark - UITableViewDataSource protocol

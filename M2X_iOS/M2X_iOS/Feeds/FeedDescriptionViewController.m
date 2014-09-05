@@ -137,12 +137,12 @@
         UITableViewCell *stream_tableViewSelected = sender;
         NSIndexPath *valueIndex = [self.tableViewStreams indexPathForCell:stream_tableViewSelected];
         NSDictionary *streamDict = self.streamList[valueIndex.row];
-        StreamValuesViewController *streamValuesVC = segue.destinationViewController;
-        streamValuesVC.feedClient = self.feedClient;
-        streamValuesVC.feed_id = _feed_id;
-        streamValuesVC.streamName = streamDict[@"name"];
-        streamValuesVC.streamUnit = streamDict[@"unit"];
-        streamValuesVC.title = streamDict[@"name"];
+        StreamValuesViewController *StreamValuesVC = segue.destinationViewController;
+        StreamValuesVC.feedClient = self.feedClient;
+        StreamValuesVC.feed_id = _feed_id;
+        StreamValuesVC.streamName = streamDict[@"name"];
+        StreamValuesVC.streamUnit = streamDict[@"unit"];
+        StreamValuesVC.title = streamDict[@"name"];
         
     } else if([segue.identifier isEqualToString:@"toAddStream"]) {
         

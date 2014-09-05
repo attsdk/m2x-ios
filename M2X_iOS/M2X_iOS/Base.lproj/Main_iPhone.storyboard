@@ -1242,7 +1242,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="lblUnit" destination="lfI-4t-W4T" id="Gw9-xo-Gr6"/>
-                        <outlet property="tableViewStreamValues" destination="qmN-te-Ywo" id="Qpb-EK-M54"/>
+                        <outlet property="tableViewStreamValues" destination="qmN-te-Ywo" id="Ahd-kF-Wit"/>
                         <outlet property="tfNewValue" destination="dIG-CU-hUB" id="2HV-Vy-egx"/>
                     </connections>
                 </viewController>

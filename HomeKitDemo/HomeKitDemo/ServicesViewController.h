@@ -1,5 +1,5 @@
 //
-//  AccessoryViewController.h
+//  ServicesViewController.h
 //  HomeKitDemo
 //
 //  Created by Leandro Tami on 9/5/14.
@@ -9,9 +9,8 @@
 #import <UIKit/UIKit.h>
 #import <HomeKit/HomeKit.h>
 
-@interface AccessoryViewController : UITableViewController <UIPickerViewDataSource, UIPickerViewDelegate>
+@interface ServicesViewController : UITableViewController
 
-@property (nonatomic, strong) HMHome *home;
 @property (nonatomic, strong) HMAccessory *accessory;
 
 @end
