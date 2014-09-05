@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8328466019B8EFDD00D21E90 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8328465F19B8EFDD00D21E90 /* HomeViewController.m */; };
 		8328494819ABBACD005CA81E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8328494719ABBACD005CA81E /* main.m */; };
 		8328494B19ABBACD005CA81E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8328494A19ABBACD005CA81E /* AppDelegate.m */; };
 		8328495119ABBACD005CA81E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8328494F19ABBACD005CA81E /* Main.storyboard */; };
@@ -28,6 +29,10 @@
 		832849C119ABBB5B005CA81E /* NSDate+M2X.m in Sources */ = {isa = PBXBuildFile; fileRef = 832849B319ABBB5B005CA81E /* NSDate+M2X.m */; };
 		832849C419ABBC47005CA81E /* HomesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 832849C319ABBC47005CA81E /* HomesViewController.m */; };
 		832849C619ABBD11005CA81E /* HomeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 832849C519ABBD11005CA81E /* HomeKit.framework */; };
+		833CD75019B90CF9000D8A78 /* RoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 833CD74F19B90CF9000D8A78 /* RoomViewController.m */; };
+		8394978E19BA002E005FFD10 /* AccessoriesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8394978D19BA002E005FFD10 /* AccessoriesViewController.m */; };
+		8394979119BA00D4005FFD10 /* AccessoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8394979019BA00D4005FFD10 /* AccessoryViewController.m */; };
+		8394979419BA133E005FFD10 /* AccessoryBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8394979319BA133E005FFD10 /* AccessoryBrowserViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +46,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8328465E19B8EFDD00D21E90 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		8328465F19B8EFDD00D21E90 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		8328494219ABBACD005CA81E /* HomeKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HomeKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8328494619ABBACD005CA81E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8328494719ABBACD005CA81E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -83,6 +90,15 @@
 		832849C219ABBC47005CA81E /* HomesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomesViewController.h; sourceTree = "<group>"; };
 		832849C319ABBC47005CA81E /* HomesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomesViewController.m; sourceTree = "<group>"; };
 		832849C519ABBD11005CA81E /* HomeKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HomeKit.framework; path = System/Library/Frameworks/HomeKit.framework; sourceTree = SDKROOT; };
+		833CD74E19B90CF9000D8A78 /* RoomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoomViewController.h; sourceTree = "<group>"; };
+		833CD74F19B90CF9000D8A78 /* RoomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoomViewController.m; sourceTree = "<group>"; };
+		837B21C519B8E79600D5CF03 /* HomeKitDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = HomeKitDemo.entitlements; sourceTree = "<group>"; };
+		8394978C19BA002E005FFD10 /* AccessoriesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccessoriesViewController.h; sourceTree = "<group>"; };
+		8394978D19BA002E005FFD10 /* AccessoriesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccessoriesViewController.m; sourceTree = "<group>"; };
+		8394978F19BA00D4005FFD10 /* AccessoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AccessoryViewController.h; path = ../AccessoryViewController.h; sourceTree = "<group>"; };
+		8394979019BA00D4005FFD10 /* AccessoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AccessoryViewController.m; path = ../AccessoryViewController.m; sourceTree = "<group>"; };
+		8394979219BA133E005FFD10 /* AccessoryBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccessoryBrowserViewController.h; sourceTree = "<group>"; };
+		8394979319BA133E005FFD10 /* AccessoryBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccessoryBrowserViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,7 +123,6 @@
 		8328493919ABBACD005CA81E = {
 			isa = PBXGroup;
 			children = (
-				832849C519ABBD11005CA81E /* HomeKit.framework */,
 				8328499519ABBB5B005CA81E /* lib */,
 				8328494419ABBACD005CA81E /* HomeKitDemo */,
 				8328495B19ABBACD005CA81E /* HomeKitDemoTests */,
@@ -127,6 +142,8 @@
 		8328494419ABBACD005CA81E /* HomeKitDemo */ = {
 			isa = PBXGroup;
 			children = (
+				837B21C519B8E79600D5CF03 /* HomeKitDemo.entitlements */,
+				837B21C319B8DB4400D5CF03 /* Frameworks */,
 				8328494919ABBACD005CA81E /* AppDelegate.h */,
 				8328494A19ABBACD005CA81E /* AppDelegate.m */,
 				8328494F19ABBACD005CA81E /* Main.storyboard */,
@@ -134,6 +151,16 @@
 				8328494519ABBACD005CA81E /* Supporting Files */,
 				832849C219ABBC47005CA81E /* HomesViewController.h */,
 				832849C319ABBC47005CA81E /* HomesViewController.m */,
+				8328465E19B8EFDD00D21E90 /* HomeViewController.h */,
+				8328465F19B8EFDD00D21E90 /* HomeViewController.m */,
+				833CD74E19B90CF9000D8A78 /* RoomViewController.h */,
+				833CD74F19B90CF9000D8A78 /* RoomViewController.m */,
+				8394978F19BA00D4005FFD10 /* AccessoryViewController.h */,
+				8394979019BA00D4005FFD10 /* AccessoryViewController.m */,
+				8394978C19BA002E005FFD10 /* AccessoriesViewController.h */,
+				8394978D19BA002E005FFD10 /* AccessoriesViewController.m */,
+				8394979219BA133E005FFD10 /* AccessoryBrowserViewController.h */,
+				8394979319BA133E005FFD10 /* AccessoryBrowserViewController.m */,
 			);
 			path = HomeKitDemo;
 			sourceTree = "<group>";
@@ -209,6 +236,14 @@
 			path = AFNetworking;
 			sourceTree = "<group>";
 		};
+		837B21C319B8DB4400D5CF03 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				832849C519ABBD11005CA81E /* HomeKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -258,6 +293,7 @@
 				TargetAttributes = {
 					8328494119ABBACD005CA81E = {
 						CreatedOnToolsVersion = 6.0;
+						DevelopmentTeam = 4PUW4LLWZC;
 					};
 					8328495719ABBACD005CA81E = {
 						CreatedOnToolsVersion = 6.0;
@@ -313,11 +349,16 @@
 				832849BD19ABBB5B005CA81E /* DataSourceClient.m in Sources */,
 				832849BF19ABBB5B005CA81E /* KeysClient.m in Sources */,
 				832849B519ABBB5B005CA81E /* AFHTTPRequestOperationManager.m in Sources */,
+				8328466019B8EFDD00D21E90 /* HomeViewController.m in Sources */,
 				832849B719ABBB5B005CA81E /* AFNetworkReachabilityManager.m in Sources */,
 				832849C019ABBB5B005CA81E /* M2x.m in Sources */,
 				832849BB19ABBB5B005CA81E /* AFURLResponseSerialization.m in Sources */,
+				8394978E19BA002E005FFD10 /* AccessoriesViewController.m in Sources */,
 				832849B919ABBB5B005CA81E /* AFURLConnectionOperation.m in Sources */,
 				832849B819ABBB5B005CA81E /* AFSecurityPolicy.m in Sources */,
+				8394979119BA00D4005FFD10 /* AccessoryViewController.m in Sources */,
+				833CD75019B90CF9000D8A78 /* RoomViewController.m in Sources */,
+				8394979419BA133E005FFD10 /* AccessoryBrowserViewController.m in Sources */,
 				832849B619ABBB5B005CA81E /* AFHTTPSessionManager.m in Sources */,
 				832849BA19ABBB5B005CA81E /* AFURLRequestSerialization.m in Sources */,
 				832849BC19ABBB5B005CA81E /* AFURLSessionManager.m in Sources */,
@@ -439,9 +480,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = HomeKitDemo/HomeKitDemo.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = HomeKitDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SDKROOT)/usr/lib/system",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -450,9 +499,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = HomeKitDemo/HomeKitDemo.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = HomeKitDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SDKROOT)/usr/lib/system",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -509,6 +566,7 @@
 				8328496419ABBACD005CA81E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8328496519ABBACD005CA81E /* Build configuration list for PBXNativeTarget "HomeKitDemoTests" */ = {
 			isa = XCConfigurationList;
@@ -517,6 +575,7 @@
 				8328496719ABBACD005CA81E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

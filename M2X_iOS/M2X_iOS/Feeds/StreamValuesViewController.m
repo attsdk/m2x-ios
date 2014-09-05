@@ -9,6 +9,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblUnit;
 
 @property (nonatomic, strong) NSMutableArray *valueList;
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
 
 @end
 
@@ -23,6 +24,12 @@
     if (![self.streamUnit[@"symbol"] isEqual:[NSNull null]]) {
         self.lblUnit.text = self.streamUnit[@"symbol"];
     }
+    
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.tableViewStreamValues addSubview:self.refreshControl];
+    [self.refreshControl addTarget:self
+                            action:@selector(getStreamValues)
+                  forControlEvents:UIControlEventValueChanged];
     
     [self getStreamValues];
 }
@@ -41,9 +48,11 @@
         self.valueList = object[@"values"];
         [self.tableViewStreamValues reloadData];
         NSLog(@"%d stream values displayed.", self.valueList.count);
+        [self.refreshControl endRefreshing];
     }
                                      failure:^(NSError *error, NSDictionary *message)
     {
+        [self.refreshControl endRefreshing];
         [[[UIAlertView alloc] initWithTitle:@"Error"
                                     message:[NSString stringWithFormat:@"%@", message]
                                    delegate:nil
@@ -118,21 +127,14 @@
     static NSString *CellIdentifier = @"Cell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
     NSDictionary *valueData = self.valueList[indexPath.row];
-    
-    [[cell textLabel] setText:[NSString stringWithFormat:@"%@ %@",[valueData valueForKey:@"value"],
-                               ([[_streamUnit valueForKey:@"symbol"] isEqual:[NSNull null]]) ? @"" : [_streamUnit valueForKey:@"symbol"]
-                               ]];
-    
-    NSDate *createdDate = [NSDate fromISO8601:[valueData valueForKey:@"at"]];
-    
+    NSDate *createdDate = [NSDate fromISO8601:valueData[@"at"]];
     NSString *dateString = [NSDateFormatter localizedStringFromDate:createdDate
                                                           dateStyle:NSDateFormatterShortStyle
                                                           timeStyle:NSDateFormatterShortStyle];
     
-    [[cell detailTextLabel] setText:[NSString stringWithFormat:@"at: %@",dateString]];
-    
+    cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", valueData[@"value"], _streamUnit[@"symbol"] ];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"at: %@", dateString];
     return cell;
 }
 

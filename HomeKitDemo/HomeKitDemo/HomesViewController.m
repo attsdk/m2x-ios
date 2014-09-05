@@ -7,6 +7,7 @@
 //
 
 #import "HomesViewController.h"
+#import "HomeViewController.h"
 
 @interface HomesViewController ()
 
@@ -19,24 +20,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.homeManager = [[HMHomeManager alloc] init];
+    self.homeManager = [HMHomeManager new];
     self.homeManager.delegate = self;
 }
 
-- (void)createHomeWithName:(NSString *)homeName
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    [self.homeManager addHomeWithName:homeName
-                    completionHandler:^(HMHome *home, NSError *error)
-    {
-        if (error) {
-            NSLog(@"Failed to create home: %@", error.description);
-            [[[UIAlertView alloc] initWithTitle:@""
-                                        message:@"Could not create home"
-                                       delegate:nil
-                              cancelButtonTitle:@"OK"
-                              otherButtonTitles:nil] show];
-        }
-    }];
+    if ([segue.identifier isEqualToString:@"ToHome"]) {
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        HomeViewController *vc = segue.destinationViewController;
+        vc.home = self.homeManager.homes[indexPath.row];
+    }
 }
 
 #pragma mark - IBActions
@@ -76,7 +70,20 @@
     if (buttonIndex)
     {
         UITextField *nameField = [alertView textFieldAtIndex:0];
-        [self createHomeWithName:nameField.text];
+        [self.homeManager addHomeWithName:nameField.text
+                        completionHandler:^(HMHome *home, NSError *error)
+         {
+             if (error) {
+                 NSLog(@"Failed to create home: %@", error.description);
+                 [[[UIAlertView alloc] initWithTitle:@""
+                                             message:@"Could not create home"
+                                            delegate:nil
+                                   cancelButtonTitle:@"OK"
+                                   otherButtonTitles:nil] show];
+             } else {
+                 NSLog(@"Home '%@' created successfully", home.name);
+             }
+         }];
     }
 }
 

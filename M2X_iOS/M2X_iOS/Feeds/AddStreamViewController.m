@@ -8,51 +8,38 @@
 
 @implementation AddStreamViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
-    [_tfStreamId setDelegate:self];
-    [_tfLogAValue setDelegate:self];
-    [_tfSymbol setDelegate:self];
-    [_tfUnit setDelegate:self];
-}
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    self.tfStreamId.delegate = self;
+    self.tfLogAValue.delegate = self;
+    self.tfSymbol.delegate = self;
+    self.tfUnit.delegate = self;
 }
 
 - (IBAction)addStream:(id)sender {
     
     NSString *streamID = [_tfStreamId text];
     
-    NSString *streamIDaceptedCharacters = @"^[a-zA-Z0-9\\-\\_]+$";
+    NSString *acceptedChars = @"^[a-zA-Z0-9\\-\\_]+$";
     
-    NSPredicate *checkCharacters = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", streamIDaceptedCharacters];
+    NSPredicate *checkCharacters = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", acceptedChars];
     
     if ([checkCharacters evaluateWithObject: streamID]) {
     
-        NSMutableDictionary *stream = [NSMutableDictionary dictionary];
+        NSMutableDictionary *args = [NSMutableDictionary dictionary];
         
-        NSDictionary *unit = @{ @"label": [_tfUnit text], @"symbol": [_tfSymbol text] };
+        args[@"unit"] = @{ @"label": self.tfUnit.text, @"symbol": self.tfSymbol.text };
         
-        [stream setObject:unit forKey:@"unit"];
+        if (![self.tfLogAValue.text isEqualToString:@""]) {
+            args[@"value"] = self.tfLogAValue.text;
+        }
         
-        if(![[_tfLogAValue text] isEqualToString:@""])
-            [stream setObject:[_tfLogAValue text] forKey:@"value"];
-        
-        [_feedClient createDataForStream:streamID inFeed:_feed_id withParameters:stream success:^(id object) {
+        [_feedClient createDataForStream:streamID
+                                  inFeed:_feed_id
+                          withParameters:args
+                                 success:^(id object) {
             //stream successfully added, go back.
             [self.navigationController popViewControllerAnimated:YES];
             
@@ -60,24 +47,27 @@
             [self showError:error WithMessage:message];
         }];
         
-    }else{
+    } else {
         
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Invalid Stream ID"
-                                                        message:@"Stream IDs can only contain letters, numbers, undescores, and dashes — no spaces or special characters are allowed."
-                                                       delegate:nil cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        [alert show];
+        [[[UIAlertView alloc] initWithTitle:@"Invalid Stream ID"
+                                    message:@"Stream IDs can only contain letters, numbers, undescores, "
+                                            @"and dashes — no spaces or special characters are allowed."
+                                   delegate:nil
+                          cancelButtonTitle:@"OK"
+                          otherButtonTitles:nil] show];
         
     }
 
 }
 
--(void)showError:(NSError*)error WithMessage:(NSDictionary*)message{
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[error localizedDescription]
-                                                    message:[NSString stringWithFormat:@"%@", message]
-                                                   delegate:nil cancelButtonTitle:@"OK"
-                                          otherButtonTitles:nil];
-    [alert show];
+-(void)showError:(NSError*)error
+     WithMessage:(NSDictionary*)message
+{
+    [[[UIAlertView alloc] initWithTitle:[error localizedDescription]
+                                message:message.description
+                               delegate:nil
+                      cancelButtonTitle:@"OK"
+                      otherButtonTitles:nil] show];
 }
 
 
