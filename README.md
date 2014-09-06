@@ -334,4 +334,4 @@ This repository comes with a simple app that implements some of the API methods.
 
 ## License
 
-The iOS M2X API Client is available under the MIT license. See the LICENSE file for more information.
+The iOS M2X API Client is available under the MIT license. See the [LICENSE](LICENSE) file for more information.
