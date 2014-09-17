@@ -19,11 +19,35 @@ Note: The `lib` folder contains the AFNetworking library to make HTTP requests.
 
 ## Requirements and Dependencies
 
-The M2X iOS Client was developed in **iOS SDK 7.0**.
+The M2X iOS Client is compatible with the **iOS 7 SDK** (or above). The HomeKit demo app will only work with Xcode 6, the **iOS 8.0 SDK**, and a compatible HomeKit device or with the HomeKit Accessory Simulator.
 
 The client has the following library dependency:
 
 * AFNetworking, 2.0, [https://github.com/AFNetworking/AFNetworking](https://github.com/AFNetworking/AFNetworking)
+
+## HomeKit Demo App
+
+The SDK includes a demo app demonstrating integration possibilities between the iOS 8 HomeKit framework and M2X. To build the demo app you'll need Xcode 6 and a HomeKit-compatible thermostat. You could also simulate the thermostat using the HomeKit Accessory Simulator, available in the Hardware IO Tools.
+
+The HomeKit Demo App is capable of monitoring a thermostat's current temperature characteristic, capture temperature values and post them to M2X simply by tapping a button. 
+
+After running the Demo App for the first time, you will have to:
+
+* Provide a feed ID for testing purposes
+* Provide a valid stream name belonging to the previously defined Feed
+* Finally, enter a valid M2X key with enough POST permissions. Using the Master Key is possible but not required.
+
+If you haven't done it before you will have setup your home and accessories.
+
+* Create a Home by tapping the + button and assign a name for it.
+* Select the Home, tap the + button and select "Create New Room". Enter a name for the new room, then tap OK.
+* Find a new accessory: tap the + button and select "Find New Accessory". This will display the Accessory Browser. At this point you should turn on your HomeKit-compatible device or open the HomeKit Accessory Simulator. Your accessory should appear on the list. When it does, select it and follow the indications on screen.
+* Tap on the accessory name and assign it to the newly created room.
+
+Finally, in order to view and post data you simply need to:
+
+* Tap on the room name, then the accessory name and finally on the service name. This should start displaying a new current temperature value every 1 second.
+* Tap the Save button to post all currently available data points to M2X. Old data will be automatically removed from the table.
 
 ## Architecture
 
@@ -128,7 +152,8 @@ NSDictionary *locationDict = @{ @"name": _currentLocality,
 **Post Data Stream Values:**
 
 ```objc
-NSDictionary *newValue = @{ @"values": @[ @{ @"value": @"20" } ] };
+NSString *now = [NSDate date].toISO8601;
+NSDictionary *newValue = @{ @"values": @[ @{ @"value": @"20", @"at": now } ] };
 
 [feedClient postDataValues:newValue
                   forStream:@"stream_name"

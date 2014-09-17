@@ -83,16 +83,9 @@
             NSDictionary *item = @{ @"at": now,
                                     @"value": value };
             [self.values insertObject:item atIndex:0];
-            [self postToM2X:value withTimestamp:now];
             [self.tableView reloadData];
         }
     }];
-}
-
-- (void)postToM2X:(NSNumber *)value
-    withTimestamp:(NSString *)timestamp
-{
-    
 }
 
 - (IBAction)saveValuesToM2X:(id)sender
