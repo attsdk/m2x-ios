@@ -7,6 +7,7 @@
 //
 
 #import "ServicesViewController.h"
+#import "ServiceViewController.h"
 
 @interface ServicesViewController ()
 
@@ -18,6 +19,17 @@
 {
     self.title = [NSString stringWithFormat:@"Services of %@", self.accessory.name];
     [self.tableView reloadData];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"ToService"])
+    {
+        ServiceViewController *vc = segue.destinationViewController;
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        vc.accessory = self.accessory;
+        vc.service = self.accessory.services[indexPath.row];
+    }
 }
 
 #pragma mark - UITableViewDataSource protocol

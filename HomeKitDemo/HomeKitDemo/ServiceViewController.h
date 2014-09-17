@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 #import <HomeKit/HomeKit.h>
 
-@interface ServiceViewController : UITableViewController
+@interface ServiceViewController : UITableViewController <UIAlertViewDelegate>
+
+@property (nonatomic, strong) HMAccessory *accessory;
+@property (nonatomic, strong) HMService *service;
 
 @end

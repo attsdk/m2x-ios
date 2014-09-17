@@ -22,9 +22,11 @@
     self.title = self.accessory.name;
     if (self.accessory.room) {
         NSUInteger index = [self.home.rooms indexOfObject:self.accessory.room];
-        [self.roomPicker selectRow:index+1
-                       inComponent:0
-                          animated:NO];
+        if (index != NSNotFound) {
+            [self.roomPicker selectRow:index+1
+                           inComponent:0
+                              animated:NO];            
+        }
     }
     self.hasChangedRoom = NO;
 }

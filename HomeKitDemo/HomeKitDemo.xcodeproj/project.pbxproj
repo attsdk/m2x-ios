@@ -30,6 +30,7 @@
 		832849C419ABBC47005CA81E /* HomesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 832849C319ABBC47005CA81E /* HomesViewController.m */; };
 		832849C619ABBD11005CA81E /* HomeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 832849C519ABBD11005CA81E /* HomeKit.framework */; };
 		833CD75019B90CF9000D8A78 /* RoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 833CD74F19B90CF9000D8A78 /* RoomViewController.m */; };
+		836D614219C9C9F100F21102 /* SetupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 836D614119C9C9F100F21102 /* SetupViewController.m */; };
 		8394978E19BA002E005FFD10 /* AccessoriesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8394978D19BA002E005FFD10 /* AccessoriesViewController.m */; };
 		8394979119BA00D4005FFD10 /* AccessoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8394979019BA00D4005FFD10 /* AccessoryViewController.m */; };
 		8394979419BA133E005FFD10 /* AccessoryBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8394979319BA133E005FFD10 /* AccessoryBrowserViewController.m */; };
@@ -94,6 +95,8 @@
 		832849C519ABBD11005CA81E /* HomeKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HomeKit.framework; path = System/Library/Frameworks/HomeKit.framework; sourceTree = SDKROOT; };
 		833CD74E19B90CF9000D8A78 /* RoomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoomViewController.h; sourceTree = "<group>"; };
 		833CD74F19B90CF9000D8A78 /* RoomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoomViewController.m; sourceTree = "<group>"; };
+		836D614019C9C9F100F21102 /* SetupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetupViewController.h; sourceTree = "<group>"; };
+		836D614119C9C9F100F21102 /* SetupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetupViewController.m; sourceTree = "<group>"; };
 		837B21C519B8E79600D5CF03 /* HomeKitDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = HomeKitDemo.entitlements; sourceTree = "<group>"; };
 		8394978C19BA002E005FFD10 /* AccessoriesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccessoriesViewController.h; sourceTree = "<group>"; };
 		8394978D19BA002E005FFD10 /* AccessoriesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccessoriesViewController.m; sourceTree = "<group>"; };
@@ -171,6 +174,8 @@
 				8394979619BA5451005FFD10 /* ServicesViewController.m */,
 				8394979B19BA5908005FFD10 /* ServiceViewController.h */,
 				8394979C19BA5908005FFD10 /* ServiceViewController.m */,
+				836D614019C9C9F100F21102 /* SetupViewController.h */,
+				836D614119C9C9F100F21102 /* SetupViewController.m */,
 			);
 			path = HomeKitDemo;
 			sourceTree = "<group>";
@@ -367,6 +372,7 @@
 				832849BB19ABBB5B005CA81E /* AFURLResponseSerialization.m in Sources */,
 				8394978E19BA002E005FFD10 /* AccessoriesViewController.m in Sources */,
 				832849B919ABBB5B005CA81E /* AFURLConnectionOperation.m in Sources */,
+				836D614219C9C9F100F21102 /* SetupViewController.m in Sources */,
 				832849B819ABBB5B005CA81E /* AFSecurityPolicy.m in Sources */,
 				8394979119BA00D4005FFD10 /* AccessoryViewController.m in Sources */,
 				833CD75019B90CF9000D8A78 /* RoomViewController.m in Sources */,

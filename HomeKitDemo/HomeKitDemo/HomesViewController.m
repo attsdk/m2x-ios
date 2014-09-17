@@ -21,7 +21,7 @@
 {
     [super viewDidLoad];
     self.homeManager = [HMHomeManager new];
-    self.homeManager.delegate = self;
+    self.homeManager.delegate = self;    
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -75,6 +75,7 @@
          {
              if (error) {
                  NSLog(@"Failed to create home: %@", error.description);
+
                  [[[UIAlertView alloc] initWithTitle:@""
                                              message:@"Could not create home"
                                             delegate:nil

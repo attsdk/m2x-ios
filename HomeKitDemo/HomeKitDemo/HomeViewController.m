@@ -33,7 +33,6 @@
     }
     else if ([segue.identifier isEqualToString:@"ToAccessoryBrowser"])
     {
-        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         AccessoryBrowserViewController *vc = segue.destinationViewController;
         vc.delegate = self;
     }
