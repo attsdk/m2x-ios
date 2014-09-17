@@ -2,7 +2,7 @@
 //  RoomViewController.m
 //  HomeKitDemo
 //
-//  Created by Leandro Tami on 9/4/14.
+
 //  Copyright (c) 2014 AT&T. All rights reserved.
 //
 
