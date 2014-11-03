@@ -1,7 +1,8 @@
 
 #import "M2x.h"
 #import "AFNetworking.h"
-
+#include <sys/types.h>
+#include <sys/sysctl.h>
 
 @implementation M2x
 
@@ -21,7 +22,7 @@
 
 -(id)init {
     if (self = [super init]) {
-        self.api_url = API_URL;
+        self.api_url = M2X_API_URL;
     }
     return self;
 }
@@ -37,13 +38,28 @@
     return _api_url;
 }
 
+-(NSString *)platform{
+    size_t size;
+    sysctlbyname("hw.machine", NULL, &size, NULL, 0);
+    char *machine = malloc(size);
+    sysctlbyname("hw.machine", machine, &size, NULL, 0);
+    NSString *platform = [NSString stringWithUTF8String:machine];
+    free(machine);
+    return platform;
+}
+
+-(void)prepareRequest:(AFHTTPRequestSerializer *)request api_key:(NSString*)api_key_used {
+    [request setValue:api_key_used forHTTPHeaderField:@"X-M2X-KEY"];
+
+    [request setValue:[NSString stringWithFormat:@"M2X/%@ (iOS %@; %@)", M2X_LIB_VERSION, [[UIDevice currentDevice] systemVersion], [self platform]] forHTTPHeaderField:@"User-Agent"];
+}
+
 #pragma mark - Http methods
 
 -(void)getWithPath:(NSString*)path andParameters:(NSDictionary*)parameters api_key:(NSString*)api_key_used success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure{
     
     AFHTTPRequestSerializer *request = [AFHTTPRequestSerializer serializer];
-    
-    [request setValue:api_key_used forHTTPHeaderField:@"X-M2X-KEY"];
+    [self prepareRequest:request api_key:api_key_used];
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = request;
@@ -58,10 +74,9 @@
 
 -(void)postWithPath:(NSString*)path andParameters:(NSDictionary*)parameters api_key:(NSString*)api_key_used success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure{
     
-    AFHTTPRequestSerializer *request = [AFHTTPRequestSerializer serializer];
-    
-    [request setValue:api_key_used forHTTPHeaderField:@"X-M2X-KEY"];
-    
+    AFHTTPRequestSerializer *request = [AFJSONRequestSerializer serializer];
+    [self prepareRequest:request api_key:api_key_used];
+
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = request;
     
@@ -77,10 +92,9 @@
 
 -(void)putWithPath:(NSString*)path andParameters:(NSDictionary*)parameters api_key:(NSString*)api_key_used success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure{
     
-    AFHTTPRequestSerializer *request = [AFHTTPRequestSerializer serializer];
-    
-    [request setValue:api_key_used forHTTPHeaderField:@"X-M2X-KEY"];
-    
+    AFHTTPRequestSerializer *request = [AFJSONRequestSerializer serializer];
+    [self prepareRequest:request api_key:api_key_used];
+
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = request;
     
@@ -95,9 +109,8 @@
 -(void)deleteWithPath:(NSString*)path andParameters:(NSDictionary*)parameters api_key:(NSString*)api_key_used success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure{
     
     AFHTTPRequestSerializer *request = [AFHTTPRequestSerializer serializer];
-    
-    [request setValue:api_key_used forHTTPHeaderField:@"X-M2X-KEY"];
-    
+    [self prepareRequest:request api_key:api_key_used];
+
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = request;
     
