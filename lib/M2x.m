@@ -1,6 +1,5 @@
 
 #import "M2x.h"
-//#import "AFNetworking.h"
 #include <sys/types.h>
 #include <sys/sysctl.h>
 

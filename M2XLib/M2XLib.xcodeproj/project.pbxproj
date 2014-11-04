@@ -7,35 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E22E81C71A00133100B8E451 /* libM2XLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E22E81BB1A00133100B8E451 /* libM2XLib.a */; };
-		E22E81F31A00134B00B8E451 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = E22E81D71A00134B00B8E451 /* AFHTTPRequestOperation.m */; };
-		E22E81F41A00134B00B8E451 /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E22E81D91A00134B00B8E451 /* AFHTTPRequestOperationManager.m */; };
-		E22E81F51A00134B00B8E451 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E22E81DB1A00134B00B8E451 /* AFHTTPSessionManager.m */; };
-		E22E81F61A00134B00B8E451 /* AFNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E22E81DE1A00134B00B8E451 /* AFNetworkReachabilityManager.m */; };
-		E22E81F71A00134B00B8E451 /* AFSecurityPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = E22E81E01A00134B00B8E451 /* AFSecurityPolicy.m */; };
-		E22E81F81A00134B00B8E451 /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = E22E81E21A00134B00B8E451 /* AFURLConnectionOperation.m */; };
-		E22E81F91A00134B00B8E451 /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = E22E81E41A00134B00B8E451 /* AFURLRequestSerialization.m */; };
-		E22E81FA1A00134B00B8E451 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = E22E81E61A00134B00B8E451 /* AFURLResponseSerialization.m */; };
-		E22E81FB1A00134B00B8E451 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E22E81E81A00134B00B8E451 /* AFURLSessionManager.m */; };
-		E22E81FC1A00134B00B8E451 /* DataSourceClient.m in Sources */ = {isa = PBXBuildFile; fileRef = E22E81EA1A00134B00B8E451 /* DataSourceClient.m */; };
-		E22E81FD1A00134B00B8E451 /* FeedsClient.m in Sources */ = {isa = PBXBuildFile; fileRef = E22E81EC1A00134B00B8E451 /* FeedsClient.m */; };
-		E22E81FE1A00134B00B8E451 /* KeysClient.m in Sources */ = {isa = PBXBuildFile; fileRef = E22E81EE1A00134B00B8E451 /* KeysClient.m */; };
-		E22E81FF1A00134B00B8E451 /* M2x.m in Sources */ = {isa = PBXBuildFile; fileRef = E22E81F01A00134B00B8E451 /* M2x.m */; };
-		E22E82001A00134B00B8E451 /* NSDate+M2X.m in Sources */ = {isa = PBXBuildFile; fileRef = E22E81F21A00134B00B8E451 /* NSDate+M2X.m */; };
+		E225D7261A0955ED0046DDE3 /* libM2XLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E225D71A1A0955ED0046DDE3 /* libM2XLib.a */; };
+		E225D73F1A09560F0046DDE3 /* DataSourceClient.m in Sources */ = {isa = PBXBuildFile; fileRef = E225D7361A09560F0046DDE3 /* DataSourceClient.m */; };
+		E225D7401A09560F0046DDE3 /* FeedsClient.m in Sources */ = {isa = PBXBuildFile; fileRef = E225D7381A09560F0046DDE3 /* FeedsClient.m */; };
+		E225D7411A09560F0046DDE3 /* KeysClient.m in Sources */ = {isa = PBXBuildFile; fileRef = E225D73A1A09560F0046DDE3 /* KeysClient.m */; };
+		E225D7421A09560F0046DDE3 /* M2x.m in Sources */ = {isa = PBXBuildFile; fileRef = E225D73C1A09560F0046DDE3 /* M2x.m */; };
+		E225D7431A09560F0046DDE3 /* NSDate+M2X.m in Sources */ = {isa = PBXBuildFile; fileRef = E225D73E1A09560F0046DDE3 /* NSDate+M2X.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		E22E81C81A00133100B8E451 /* PBXContainerItemProxy */ = {
+		E225D7271A0955ED0046DDE3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = E22E81B31A00133100B8E451 /* Project object */;
+			containerPortal = E225D7121A0955ED0046DDE3 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = E22E81BA1A00133100B8E451;
+			remoteGlobalIDString = E225D7191A0955ED0046DDE3;
 			remoteInfo = M2XLib;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		E22E81B91A00133100B8E451 /* CopyFiles */ = {
+		E225D7181A0955ED0046DDE3 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "include/$(PRODUCT_NAME)";
@@ -47,148 +38,110 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		E22E81BB1A00133100B8E451 /* libM2XLib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libM2XLib.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		E22E81C61A00133100B8E451 /* M2XLibTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = M2XLibTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		E22E81CC1A00133100B8E451 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E22E81D61A00134B00B8E451 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
-		E22E81D71A00134B00B8E451 /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
-		E22E81D81A00134B00B8E451 /* AFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
-		E22E81D91A00134B00B8E451 /* AFHTTPRequestOperationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperationManager.m; sourceTree = "<group>"; };
-		E22E81DA1A00134B00B8E451 /* AFHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPSessionManager.h; sourceTree = "<group>"; };
-		E22E81DB1A00134B00B8E451 /* AFHTTPSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPSessionManager.m; sourceTree = "<group>"; };
-		E22E81DC1A00134B00B8E451 /* AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworking.h; sourceTree = "<group>"; };
-		E22E81DD1A00134B00B8E451 /* AFNetworkReachabilityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkReachabilityManager.h; sourceTree = "<group>"; };
-		E22E81DE1A00134B00B8E451 /* AFNetworkReachabilityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkReachabilityManager.m; sourceTree = "<group>"; };
-		E22E81DF1A00134B00B8E451 /* AFSecurityPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFSecurityPolicy.h; sourceTree = "<group>"; };
-		E22E81E01A00134B00B8E451 /* AFSecurityPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFSecurityPolicy.m; sourceTree = "<group>"; };
-		E22E81E11A00134B00B8E451 /* AFURLConnectionOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLConnectionOperation.h; sourceTree = "<group>"; };
-		E22E81E21A00134B00B8E451 /* AFURLConnectionOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLConnectionOperation.m; sourceTree = "<group>"; };
-		E22E81E31A00134B00B8E451 /* AFURLRequestSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLRequestSerialization.h; sourceTree = "<group>"; };
-		E22E81E41A00134B00B8E451 /* AFURLRequestSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLRequestSerialization.m; sourceTree = "<group>"; };
-		E22E81E51A00134B00B8E451 /* AFURLResponseSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLResponseSerialization.h; sourceTree = "<group>"; };
-		E22E81E61A00134B00B8E451 /* AFURLResponseSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLResponseSerialization.m; sourceTree = "<group>"; };
-		E22E81E71A00134B00B8E451 /* AFURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLSessionManager.h; sourceTree = "<group>"; };
-		E22E81E81A00134B00B8E451 /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
-		E22E81E91A00134B00B8E451 /* DataSourceClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataSourceClient.h; path = ../../lib/DataSourceClient.h; sourceTree = "<group>"; };
-		E22E81EA1A00134B00B8E451 /* DataSourceClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataSourceClient.m; path = ../../lib/DataSourceClient.m; sourceTree = "<group>"; };
-		E22E81EB1A00134B00B8E451 /* FeedsClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FeedsClient.h; path = ../../lib/FeedsClient.h; sourceTree = "<group>"; };
-		E22E81EC1A00134B00B8E451 /* FeedsClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FeedsClient.m; path = ../../lib/FeedsClient.m; sourceTree = "<group>"; };
-		E22E81ED1A00134B00B8E451 /* KeysClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KeysClient.h; path = ../../lib/KeysClient.h; sourceTree = "<group>"; };
-		E22E81EE1A00134B00B8E451 /* KeysClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KeysClient.m; path = ../../lib/KeysClient.m; sourceTree = "<group>"; };
-		E22E81EF1A00134B00B8E451 /* M2x.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = M2x.h; path = ../../lib/M2x.h; sourceTree = "<group>"; };
-		E22E81F01A00134B00B8E451 /* M2x.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = M2x.m; path = ../../lib/M2x.m; sourceTree = "<group>"; };
-		E22E81F11A00134B00B8E451 /* NSDate+M2X.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDate+M2X.h"; path = "../../lib/NSDate+M2X.h"; sourceTree = "<group>"; };
-		E22E81F21A00134B00B8E451 /* NSDate+M2X.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDate+M2X.m"; path = "../../lib/NSDate+M2X.m"; sourceTree = "<group>"; };
+		E225D71A1A0955ED0046DDE3 /* libM2XLib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libM2XLib.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		E225D7251A0955ED0046DDE3 /* M2XLibTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = M2XLibTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E225D72B1A0955ED0046DDE3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E225D7351A09560F0046DDE3 /* DataSourceClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataSourceClient.h; sourceTree = "<group>"; };
+		E225D7361A09560F0046DDE3 /* DataSourceClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataSourceClient.m; sourceTree = "<group>"; };
+		E225D7371A09560F0046DDE3 /* FeedsClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedsClient.h; sourceTree = "<group>"; };
+		E225D7381A09560F0046DDE3 /* FeedsClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedsClient.m; sourceTree = "<group>"; };
+		E225D7391A09560F0046DDE3 /* KeysClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeysClient.h; sourceTree = "<group>"; };
+		E225D73A1A09560F0046DDE3 /* KeysClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeysClient.m; sourceTree = "<group>"; };
+		E225D73B1A09560F0046DDE3 /* M2x.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M2x.h; sourceTree = "<group>"; };
+		E225D73C1A09560F0046DDE3 /* M2x.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M2x.m; sourceTree = "<group>"; };
+		E225D73D1A09560F0046DDE3 /* NSDate+M2X.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+M2X.h"; sourceTree = "<group>"; };
+		E225D73E1A09560F0046DDE3 /* NSDate+M2X.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+M2X.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		E22E81B81A00133100B8E451 /* Frameworks */ = {
+		E225D7171A0955ED0046DDE3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E22E81C31A00133100B8E451 /* Frameworks */ = {
+		E225D7221A0955ED0046DDE3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E22E81C71A00133100B8E451 /* libM2XLib.a in Frameworks */,
+				E225D7261A0955ED0046DDE3 /* libM2XLib.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		E22E81B21A00133100B8E451 = {
+		E225D7111A0955ED0046DDE3 = {
 			isa = PBXGroup;
 			children = (
-				E22E81BD1A00133100B8E451 /* M2XLib */,
-				E22E81CA1A00133100B8E451 /* M2XLibTests */,
-				E22E81BC1A00133100B8E451 /* Products */,
+				E225D71C1A0955ED0046DDE3 /* M2XLib */,
+				E225D7291A0955ED0046DDE3 /* M2XLibTests */,
+				E225D71B1A0955ED0046DDE3 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		E22E81BC1A00133100B8E451 /* Products */ = {
+		E225D71B1A0955ED0046DDE3 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E22E81BB1A00133100B8E451 /* libM2XLib.a */,
-				E22E81C61A00133100B8E451 /* M2XLibTests.xctest */,
+				E225D71A1A0955ED0046DDE3 /* libM2XLib.a */,
+				E225D7251A0955ED0046DDE3 /* M2XLibTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		E22E81BD1A00133100B8E451 /* M2XLib */ = {
+		E225D71C1A0955ED0046DDE3 /* M2XLib */ = {
 			isa = PBXGroup;
 			children = (
-				E22E81D51A00134B00B8E451 /* AFNetworking */,
-				E22E81E91A00134B00B8E451 /* DataSourceClient.h */,
-				E22E81EA1A00134B00B8E451 /* DataSourceClient.m */,
-				E22E81EB1A00134B00B8E451 /* FeedsClient.h */,
-				E22E81EC1A00134B00B8E451 /* FeedsClient.m */,
-				E22E81ED1A00134B00B8E451 /* KeysClient.h */,
-				E22E81EE1A00134B00B8E451 /* KeysClient.m */,
-				E22E81EF1A00134B00B8E451 /* M2x.h */,
-				E22E81F01A00134B00B8E451 /* M2x.m */,
-				E22E81F11A00134B00B8E451 /* NSDate+M2X.h */,
-				E22E81F21A00134B00B8E451 /* NSDate+M2X.m */,
+				E225D7341A09560F0046DDE3 /* lib */,
 			);
 			path = M2XLib;
 			sourceTree = "<group>";
 		};
-		E22E81CA1A00133100B8E451 /* M2XLibTests */ = {
+		E225D7291A0955ED0046DDE3 /* M2XLibTests */ = {
 			isa = PBXGroup;
 			children = (
-				E22E81CB1A00133100B8E451 /* Supporting Files */,
+				E225D72A1A0955ED0046DDE3 /* Supporting Files */,
 			);
 			path = M2XLibTests;
 			sourceTree = "<group>";
 		};
-		E22E81CB1A00133100B8E451 /* Supporting Files */ = {
+		E225D72A1A0955ED0046DDE3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				E22E81CC1A00133100B8E451 /* Info.plist */,
+				E225D72B1A0955ED0046DDE3 /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		E22E81D51A00134B00B8E451 /* AFNetworking */ = {
+		E225D7341A09560F0046DDE3 /* lib */ = {
 			isa = PBXGroup;
 			children = (
-				E22E81D61A00134B00B8E451 /* AFHTTPRequestOperation.h */,
-				E22E81D71A00134B00B8E451 /* AFHTTPRequestOperation.m */,
-				E22E81D81A00134B00B8E451 /* AFHTTPRequestOperationManager.h */,
-				E22E81D91A00134B00B8E451 /* AFHTTPRequestOperationManager.m */,
-				E22E81DA1A00134B00B8E451 /* AFHTTPSessionManager.h */,
-				E22E81DB1A00134B00B8E451 /* AFHTTPSessionManager.m */,
-				E22E81DC1A00134B00B8E451 /* AFNetworking.h */,
-				E22E81DD1A00134B00B8E451 /* AFNetworkReachabilityManager.h */,
-				E22E81DE1A00134B00B8E451 /* AFNetworkReachabilityManager.m */,
-				E22E81DF1A00134B00B8E451 /* AFSecurityPolicy.h */,
-				E22E81E01A00134B00B8E451 /* AFSecurityPolicy.m */,
-				E22E81E11A00134B00B8E451 /* AFURLConnectionOperation.h */,
-				E22E81E21A00134B00B8E451 /* AFURLConnectionOperation.m */,
-				E22E81E31A00134B00B8E451 /* AFURLRequestSerialization.h */,
-				E22E81E41A00134B00B8E451 /* AFURLRequestSerialization.m */,
-				E22E81E51A00134B00B8E451 /* AFURLResponseSerialization.h */,
-				E22E81E61A00134B00B8E451 /* AFURLResponseSerialization.m */,
-				E22E81E71A00134B00B8E451 /* AFURLSessionManager.h */,
-				E22E81E81A00134B00B8E451 /* AFURLSessionManager.m */,
+				E225D7351A09560F0046DDE3 /* DataSourceClient.h */,
+				E225D7361A09560F0046DDE3 /* DataSourceClient.m */,
+				E225D7371A09560F0046DDE3 /* FeedsClient.h */,
+				E225D7381A09560F0046DDE3 /* FeedsClient.m */,
+				E225D7391A09560F0046DDE3 /* KeysClient.h */,
+				E225D73A1A09560F0046DDE3 /* KeysClient.m */,
+				E225D73B1A09560F0046DDE3 /* M2x.h */,
+				E225D73C1A09560F0046DDE3 /* M2x.m */,
+				E225D73D1A09560F0046DDE3 /* NSDate+M2X.h */,
+				E225D73E1A09560F0046DDE3 /* NSDate+M2X.m */,
 			);
-			name = AFNetworking;
-			path = ../../lib/AFNetworking;
+			name = lib;
+			path = ../../lib;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		E22E81BA1A00133100B8E451 /* M2XLib */ = {
+		E225D7191A0955ED0046DDE3 /* M2XLib */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E22E81CF1A00133100B8E451 /* Build configuration list for PBXNativeTarget "M2XLib" */;
+			buildConfigurationList = E225D72E1A0955EE0046DDE3 /* Build configuration list for PBXNativeTarget "M2XLib" */;
 			buildPhases = (
-				E22E81B71A00133100B8E451 /* Sources */,
-				E22E81B81A00133100B8E451 /* Frameworks */,
-				E22E81B91A00133100B8E451 /* CopyFiles */,
+				E225D7161A0955ED0046DDE3 /* Sources */,
+				E225D7171A0955ED0046DDE3 /* Frameworks */,
+				E225D7181A0955ED0046DDE3 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -196,64 +149,64 @@
 			);
 			name = M2XLib;
 			productName = M2XLib;
-			productReference = E22E81BB1A00133100B8E451 /* libM2XLib.a */;
+			productReference = E225D71A1A0955ED0046DDE3 /* libM2XLib.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		E22E81C51A00133100B8E451 /* M2XLibTests */ = {
+		E225D7241A0955ED0046DDE3 /* M2XLibTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E22E81D21A00133100B8E451 /* Build configuration list for PBXNativeTarget "M2XLibTests" */;
+			buildConfigurationList = E225D7311A0955EE0046DDE3 /* Build configuration list for PBXNativeTarget "M2XLibTests" */;
 			buildPhases = (
-				E22E81C21A00133100B8E451 /* Sources */,
-				E22E81C31A00133100B8E451 /* Frameworks */,
-				E22E81C41A00133100B8E451 /* Resources */,
+				E225D7211A0955ED0046DDE3 /* Sources */,
+				E225D7221A0955ED0046DDE3 /* Frameworks */,
+				E225D7231A0955ED0046DDE3 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				E22E81C91A00133100B8E451 /* PBXTargetDependency */,
+				E225D7281A0955ED0046DDE3 /* PBXTargetDependency */,
 			);
 			name = M2XLibTests;
 			productName = M2XLibTests;
-			productReference = E22E81C61A00133100B8E451 /* M2XLibTests.xctest */;
+			productReference = E225D7251A0955ED0046DDE3 /* M2XLibTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		E22E81B31A00133100B8E451 /* Project object */ = {
+		E225D7121A0955ED0046DDE3 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = citrusbyte.com;
 				TargetAttributes = {
-					E22E81BA1A00133100B8E451 = {
+					E225D7191A0955ED0046DDE3 = {
 						CreatedOnToolsVersion = 6.1;
 					};
-					E22E81C51A00133100B8E451 = {
+					E225D7241A0955ED0046DDE3 = {
 						CreatedOnToolsVersion = 6.1;
 					};
 				};
 			};
-			buildConfigurationList = E22E81B61A00133100B8E451 /* Build configuration list for PBXProject "M2XLib" */;
+			buildConfigurationList = E225D7151A0955ED0046DDE3 /* Build configuration list for PBXProject "M2XLib" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = E22E81B21A00133100B8E451;
-			productRefGroup = E22E81BC1A00133100B8E451 /* Products */;
+			mainGroup = E225D7111A0955ED0046DDE3;
+			productRefGroup = E225D71B1A0955ED0046DDE3 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				E22E81BA1A00133100B8E451 /* M2XLib */,
-				E22E81C51A00133100B8E451 /* M2XLibTests */,
+				E225D7191A0955ED0046DDE3 /* M2XLib */,
+				E225D7241A0955ED0046DDE3 /* M2XLibTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		E22E81C41A00133100B8E451 /* Resources */ = {
+		E225D7231A0955ED0046DDE3 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -263,28 +216,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		E22E81B71A00133100B8E451 /* Sources */ = {
+		E225D7161A0955ED0046DDE3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E22E81FB1A00134B00B8E451 /* AFURLSessionManager.m in Sources */,
-				E22E81F51A00134B00B8E451 /* AFHTTPSessionManager.m in Sources */,
-				E22E81F71A00134B00B8E451 /* AFSecurityPolicy.m in Sources */,
-				E22E81F41A00134B00B8E451 /* AFHTTPRequestOperationManager.m in Sources */,
-				E22E81F61A00134B00B8E451 /* AFNetworkReachabilityManager.m in Sources */,
-				E22E81F81A00134B00B8E451 /* AFURLConnectionOperation.m in Sources */,
-				E22E81F91A00134B00B8E451 /* AFURLRequestSerialization.m in Sources */,
-				E22E81FD1A00134B00B8E451 /* FeedsClient.m in Sources */,
-				E22E82001A00134B00B8E451 /* NSDate+M2X.m in Sources */,
-				E22E81FA1A00134B00B8E451 /* AFURLResponseSerialization.m in Sources */,
-				E22E81F31A00134B00B8E451 /* AFHTTPRequestOperation.m in Sources */,
-				E22E81FE1A00134B00B8E451 /* KeysClient.m in Sources */,
-				E22E81FF1A00134B00B8E451 /* M2x.m in Sources */,
-				E22E81FC1A00134B00B8E451 /* DataSourceClient.m in Sources */,
+				E225D7401A09560F0046DDE3 /* FeedsClient.m in Sources */,
+				E225D7431A09560F0046DDE3 /* NSDate+M2X.m in Sources */,
+				E225D7411A09560F0046DDE3 /* KeysClient.m in Sources */,
+				E225D73F1A09560F0046DDE3 /* DataSourceClient.m in Sources */,
+				E225D7421A09560F0046DDE3 /* M2x.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E22E81C21A00133100B8E451 /* Sources */ = {
+		E225D7211A0955ED0046DDE3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -294,15 +238,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		E22E81C91A00133100B8E451 /* PBXTargetDependency */ = {
+		E225D7281A0955ED0046DDE3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = E22E81BA1A00133100B8E451 /* M2XLib */;
-			targetProxy = E22E81C81A00133100B8E451 /* PBXContainerItemProxy */;
+			target = E225D7191A0955ED0046DDE3 /* M2XLib */;
+			targetProxy = E225D7271A0955ED0046DDE3 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		E22E81CD1A00133100B8E451 /* Debug */ = {
+		E225D72C1A0955EE0046DDE3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -335,14 +279,14 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
 		};
-		E22E81CE1A00133100B8E451 /* Release */ = {
+		E225D72D1A0955EE0046DDE3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -369,14 +313,14 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
-		E22E81D01A00133100B8E451 /* Debug */ = {
+		E225D72F1A0955EE0046DDE3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				OTHER_LDFLAGS = "-ObjC";
@@ -385,7 +329,7 @@
 			};
 			name = Debug;
 		};
-		E22E81D11A00133100B8E451 /* Release */ = {
+		E225D7301A0955EE0046DDE3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				OTHER_LDFLAGS = "-ObjC";
@@ -394,7 +338,7 @@
 			};
 			name = Release;
 		};
-		E22E81D31A00133100B8E451 /* Debug */ = {
+		E225D7321A0955EE0046DDE3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
@@ -411,7 +355,7 @@
 			};
 			name = Debug;
 		};
-		E22E81D41A00133100B8E451 /* Release */ = {
+		E225D7331A0955EE0046DDE3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
@@ -427,32 +371,34 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		E22E81B61A00133100B8E451 /* Build configuration list for PBXProject "M2XLib" */ = {
+		E225D7151A0955ED0046DDE3 /* Build configuration list for PBXProject "M2XLib" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E22E81CD1A00133100B8E451 /* Debug */,
-				E22E81CE1A00133100B8E451 /* Release */,
+				E225D72C1A0955EE0046DDE3 /* Debug */,
+				E225D72D1A0955EE0046DDE3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E22E81CF1A00133100B8E451 /* Build configuration list for PBXNativeTarget "M2XLib" */ = {
+		E225D72E1A0955EE0046DDE3 /* Build configuration list for PBXNativeTarget "M2XLib" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E22E81D01A00133100B8E451 /* Debug */,
-				E22E81D11A00133100B8E451 /* Release */,
+				E225D72F1A0955EE0046DDE3 /* Debug */,
+				E225D7301A0955EE0046DDE3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
-		E22E81D21A00133100B8E451 /* Build configuration list for PBXNativeTarget "M2XLibTests" */ = {
+		E225D7311A0955EE0046DDE3 /* Build configuration list for PBXNativeTarget "M2XLibTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E22E81D31A00133100B8E451 /* Debug */,
-				E22E81D41A00133100B8E451 /* Release */,
+				E225D7321A0955EE0046DDE3 /* Debug */,
+				E225D7331A0955EE0046DDE3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = E22E81B31A00133100B8E451 /* Project object */;
+	rootObject = E225D7121A0955ED0046DDE3 /* Project object */;
 }
