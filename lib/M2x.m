@@ -1,8 +1,12 @@
 
 #import "M2x.h"
-#import "AFNetworking.h"
+//#import "AFNetworking.h"
 #include <sys/types.h>
 #include <sys/sysctl.h>
+
+@interface M2x()
+@property (strong, nonatomic) NSURLSession *session;
+@end
 
 @implementation M2x
 
@@ -23,6 +27,7 @@
 -(id)init {
     if (self = [super init]) {
         self.api_url = M2X_API_URL;
+        self.session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
     }
     return self;
 }
@@ -48,78 +53,116 @@
     return platform;
 }
 
--(void)prepareRequest:(AFHTTPRequestSerializer *)request api_key:(NSString*)api_key_used {
+-(void)prepareUrlRequest:(NSMutableURLRequest *)request api_key:(NSString*)api_key_used {
     [request setValue:api_key_used forHTTPHeaderField:@"X-M2X-KEY"];
-
+    
     [request setValue:[NSString stringWithFormat:@"M2X/%@ (iOS %@; %@)", M2X_LIB_VERSION, [[UIDevice currentDevice] systemVersion], [self platform]] forHTTPHeaderField:@"User-Agent"];
+}
+
+-(void)prepareUrlRequest:(NSMutableURLRequest *)request parameters:(NSDictionary *)parameters {
+    NSArray *keys = [parameters allKeys];
+    for (NSString *key in keys) {
+        NSString *encodedKey = [key stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        NSString *encodedValue = [parameters[key] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        if (key == [keys firstObject]) {
+            request.URL = [NSURL URLWithString:[NSString stringWithFormat:@"%@?%@=%@", request.URL, encodedKey, encodedValue]];
+        } else {
+            request.URL = [NSURL URLWithString:[NSString stringWithFormat:@"%@&%@=%@", request.URL, encodedKey, encodedValue]];
+        }
+    }
 }
 
 #pragma mark - Http methods
 
 -(void)getWithPath:(NSString*)path andParameters:(NSDictionary*)parameters api_key:(NSString*)api_key_used success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure{
     
-    AFHTTPRequestSerializer *request = [AFHTTPRequestSerializer serializer];
-    [self prepareRequest:request api_key:api_key_used];
-    
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.requestSerializer = request;
-    
-    [manager GET:[NSString stringWithFormat:@"%@%@", [M2x shared].api_url, path] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        success(responseObject);
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        failure(error,[operation responseObject]);
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", [M2x shared].api_url, path]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [self prepareUrlRequest:request api_key:api_key_used];
+    [self prepareUrlRequest:request parameters:parameters];
+    NSURLSessionDataTask *task = [self.session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        NSError *jsonError = nil;
+        NSDictionary *obj = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&jsonError];
+        if (error) {
+            failure(error, obj);
+        } else {
+            success(obj);
+        }
     }];
-    
+    [task resume];
 }
 
 -(void)postWithPath:(NSString*)path andParameters:(NSDictionary*)parameters api_key:(NSString*)api_key_used success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure{
     
-    AFHTTPRequestSerializer *request = [AFJSONRequestSerializer serializer];
-    [self prepareRequest:request api_key:api_key_used];
-
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.requestSerializer = request;
+    NSError *error = nil;
+    NSData *postData = [NSJSONSerialization dataWithJSONObject:parameters options:0 error:&error];
+    if (error) {
+        failure(error, nil);
+        return;
+    }
     
-    [manager POST:[NSString stringWithFormat:@"%@%@", [M2x shared].api_url, path]
-       parameters:parameters
-          success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        success(responseObject);
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        failure(error,[operation responseObject]);
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", [M2x shared].api_url, path]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [self prepareUrlRequest:request api_key:api_key_used];
+    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request setHTTPMethod:@"POST"];
+    [request setHTTPBody:postData];
+    NSURLSessionDataTask *task = [self.session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        NSError *jsonError = nil;
+        NSDictionary *obj = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&jsonError];
+        if (error) {
+            failure(error, obj);
+        } else {
+            success(obj);
+        }
     }];
-    
+    [task resume];
 }
 
 -(void)putWithPath:(NSString*)path andParameters:(NSDictionary*)parameters api_key:(NSString*)api_key_used success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure{
-    
-    AFHTTPRequestSerializer *request = [AFJSONRequestSerializer serializer];
-    [self prepareRequest:request api_key:api_key_used];
 
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.requestSerializer = request;
-    
-    [manager PUT:[NSString stringWithFormat:@"%@%@", [M2x shared].api_url, path] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        success(responseObject);
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        failure(error,[operation responseObject]);
+    NSError *error = nil;
+    NSData *postData = [NSJSONSerialization dataWithJSONObject:parameters options:0 error:&error];
+    if (error) {
+        failure(error, nil);
+        return;
+    }
+
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", [M2x shared].api_url, path]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [self prepareUrlRequest:request api_key:api_key_used];
+    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request setHTTPMethod:@"PUT"];
+    [request setHTTPBody:postData];
+    NSURLSessionDataTask *task = [self.session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        NSError *jsonError = nil;
+        NSDictionary *obj = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&jsonError];
+        if (error) {
+            failure(error, obj);
+        } else {
+            success(obj);
+        }
     }];
-    
+    [task resume];
 }
 
 -(void)deleteWithPath:(NSString*)path andParameters:(NSDictionary*)parameters api_key:(NSString*)api_key_used success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure{
     
-    AFHTTPRequestSerializer *request = [AFHTTPRequestSerializer serializer];
-    [self prepareRequest:request api_key:api_key_used];
-
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.requestSerializer = request;
-    
-    [manager DELETE:[NSString stringWithFormat:@"%@%@", [M2x shared].api_url, path] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        success(responseObject);
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        failure(error,[operation responseObject]);
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", [M2x shared].api_url, path]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request setHTTPMethod:@"DELETE"];
+    [self prepareUrlRequest:request api_key:api_key_used];
+    [self prepareUrlRequest:request parameters:parameters];
+    NSURLSessionDataTask *task = [self.session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        NSError *jsonError = nil;
+        NSDictionary *obj = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&jsonError];
+        if (error) {
+            failure(error, obj);
+        } else {
+            success(obj);
+        }
     }];
-    
+    [task resume];
 }
 
 @end

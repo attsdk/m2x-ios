@@ -15,21 +15,15 @@ If you have questions about any M2X specific terms, please consult the M2X gloss
 
 Copy the content from the `lib` folder to your project.
 
-Note: The `lib` folder contains the AFNetworking library to make HTTP requests.
-
 ## Requirements and Dependencies
 
 The M2X iOS Client is compatible with the **iOS 7 SDK** (or above). The HomeKit demo app will only work with Xcode 6, the **iOS 8.0 SDK**, and a compatible HomeKit device or with the HomeKit Accessory Simulator.
-
-The client has the following library dependency:
-
-* AFNetworking, 2.0, [https://github.com/AFNetworking/AFNetworking](https://github.com/AFNetworking/AFNetworking)
 
 ## HomeKit Demo App
 
 The SDK includes a demo app demonstrating integration possibilities between the iOS 8 HomeKit framework and M2X. To build the demo app you'll need Xcode 6 and a HomeKit-compatible thermostat. You could also simulate the thermostat using the HomeKit Accessory Simulator, available in the Hardware IO Tools.
 
-The HomeKit Demo App is capable of monitoring a thermostat's current temperature characteristic, capture temperature values and post them to M2X simply by tapping a button. 
+The HomeKit Demo App is capable of monitoring a thermostat's current temperature characteristic, capture temperature values and post them to M2X simply by tapping a button.
 
 After running the Demo App for the first time, you will have to:
 
