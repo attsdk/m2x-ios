@@ -1,5 +1,5 @@
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import "NSDate+M2X.h"
 
 typedef void (^M2XAPIClientSuccessObject)(id object);
