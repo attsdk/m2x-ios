@@ -16,7 +16,7 @@ typedef void (^M2XAPIClientFailureError)(NSError *error,NSDictionary *message);
  Retrieve list of keys associated with the specified account. This method accepts one optional parameter:
  "feed": a Feed ID; it will list all the keys that are associated with that specific feed or its streams
  */
--(void)listKeysWithParameters:(NSDictionary*)parameters success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure;
+-(NSURLRequest *)listKeysWithParameters:(NSDictionary*)parameters success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure;
 
 ///------------------------------------
 /// @Create Key
@@ -34,7 +34,7 @@ typedef void (^M2XAPIClientFailureError)(NSError *error,NSDictionary *message);
                        }
  
  */
--(void)createKey:(NSDictionary*)key success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure;
+-(NSURLRequest *)createKey:(NSDictionary*)key success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure;
 
 
 ///------------------------------------
@@ -44,7 +44,7 @@ typedef void (^M2XAPIClientFailureError)(NSError *error,NSDictionary *message);
 /**
  Get details of a specific key associated with a developer account.
  */
--(void)viewDetailsForKey:(NSString*)key success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure;
+-(NSURLRequest *)viewDetailsForKey:(NSString*)key success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure;
 
 
 ///------------------------------------
@@ -54,7 +54,7 @@ typedef void (^M2XAPIClientFailureError)(NSError *error,NSDictionary *message);
 /**
  Update name or permissions of an existing key associated with the specified account. Same validations as in Create Key applies.
  */
--(void)updateKey:(NSString*)key withParameters:(NSDictionary*)parameters success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure;
+-(NSURLRequest *)updateKey:(NSString*)key withParameters:(NSDictionary*)parameters success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure;
 
 
 ///------------------------------------
@@ -64,7 +64,7 @@ typedef void (^M2XAPIClientFailureError)(NSError *error,NSDictionary *message);
 /**
  Regenerate the specified key.
  */
--(void)regenerateKey:(NSString*)key success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure;
+-(NSURLRequest *)regenerateKey:(NSString*)key success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure;
 
 ///------------------------------------
 /// @Delete Key
@@ -73,7 +73,7 @@ typedef void (^M2XAPIClientFailureError)(NSError *error,NSDictionary *message);
 /**
  Delete an existing key.
  */
--(void)deleteKey:(NSString*)key success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure;
+-(NSURLRequest *)deleteKey:(NSString*)key success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure;
 
 @property (nonatomic,strong) NSString *feed_key;
 

@@ -1,5 +1,5 @@
 //
-//  DataSourceTest.m
+//  KeysTests.m
 //  M2XLib
 //
 //  Created by Luis Floreani on 11/4/14.
@@ -8,12 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
+#import "KeysClient.h"
 
-@interface DataSourceTest : XCTestCase
+@interface KeysTests : XCTestCase
 
 @end
 
-@implementation DataSourceTest
+@implementation KeysTests
 
 - (void)setUp {
     [super setUp];
@@ -25,16 +26,13 @@
     [super tearDown];
 }
 
-- (void)testExample {
-    // This is an example of a functional test case.
-    XCTAssert(YES, @"Pass");
-}
-
-- (void)testPerformanceExample {
-    // This is an example of a performance test case.
-    [self measureBlock:^{
-        // Put the code you want to measure the time of here.
-    }];
+- (void)testKeysListing {
+    KeysClient *client = [KeysClient new];
+    
+    NSURLRequest *req = [client listKeysWithParameters:@{@"limit": @"10", @"q": @"bla"} success:nil failure:nil];
+    
+    XCTAssertEqualObjects(req.URL.path, @"/v1/keys");
+    XCTAssertEqualObjects(req.URL.query, @"limit=10&q=bla");
 }
 
 @end

@@ -13,7 +13,7 @@
 		E2D2B3E21A095F2700E8A733 /* KeysClient.m in Sources */ = {isa = PBXBuildFile; fileRef = E2D2B3DB1A095F2700E8A733 /* KeysClient.m */; };
 		E2D2B3E31A095F2700E8A733 /* M2x.m in Sources */ = {isa = PBXBuildFile; fileRef = E2D2B3DD1A095F2700E8A733 /* M2x.m */; };
 		E2D2B3E41A095F2700E8A733 /* NSDate+M2X.m in Sources */ = {isa = PBXBuildFile; fileRef = E2D2B3DF1A095F2700E8A733 /* NSDate+M2X.m */; };
-		E2D2B3E71A09608F00E8A733 /* DataSourceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = E2D2B3E61A09608F00E8A733 /* DataSourceTest.m */; };
+		E2D2B3E91A096D7600E8A733 /* KeysTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E2D2B3E81A096D7600E8A733 /* KeysTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,7 +52,7 @@
 		E2D2B3DD1A095F2700E8A733 /* M2x.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M2x.m; sourceTree = "<group>"; };
 		E2D2B3DE1A095F2700E8A733 /* NSDate+M2X.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+M2X.h"; sourceTree = "<group>"; };
 		E2D2B3DF1A095F2700E8A733 /* NSDate+M2X.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+M2X.m"; sourceTree = "<group>"; };
-		E2D2B3E61A09608F00E8A733 /* DataSourceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataSourceTest.m; sourceTree = "<group>"; };
+		E2D2B3E81A096D7600E8A733 /* KeysTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeysTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,7 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				E25935B51A095F0000BE1B2D /* Supporting Files */,
-				E2D2B3E61A09608F00E8A733 /* DataSourceTest.m */,
+				E2D2B3E81A096D7600E8A733 /* KeysTests.m */,
 			);
 			path = M2XLibTests;
 			sourceTree = "<group>";
@@ -235,7 +235,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E2D2B3E71A09608F00E8A733 /* DataSourceTest.m in Sources */,
+				E2D2B3E91A096D7600E8A733 /* KeysTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

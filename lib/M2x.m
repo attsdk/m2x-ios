@@ -73,7 +73,7 @@
 
 #pragma mark - Http methods
 
--(void)getWithPath:(NSString*)path andParameters:(NSDictionary*)parameters api_key:(NSString*)api_key_used success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure{
+-(NSURLRequest *)getWithPath:(NSString*)path andParameters:(NSDictionary*)parameters api_key:(NSString*)api_key_used success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure{
     
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", [M2x shared].api_url, path]];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
@@ -89,15 +89,17 @@
         }
     }];
     [task resume];
+    
+    return request;
 }
 
--(void)postWithPath:(NSString*)path andParameters:(NSDictionary*)parameters api_key:(NSString*)api_key_used success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure{
+-(NSURLRequest *)postWithPath:(NSString*)path andParameters:(NSDictionary*)parameters api_key:(NSString*)api_key_used success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure{
     
     NSError *error = nil;
     NSData *postData = [NSJSONSerialization dataWithJSONObject:parameters options:0 error:&error];
     if (error) {
         failure(error, nil);
-        return;
+        return nil;
     }
     
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", [M2x shared].api_url, path]];
@@ -116,15 +118,17 @@
         }
     }];
     [task resume];
+    
+    return request;
 }
 
--(void)putWithPath:(NSString*)path andParameters:(NSDictionary*)parameters api_key:(NSString*)api_key_used success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure{
+-(NSURLRequest *)putWithPath:(NSString*)path andParameters:(NSDictionary*)parameters api_key:(NSString*)api_key_used success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure{
 
     NSError *error = nil;
     NSData *postData = [NSJSONSerialization dataWithJSONObject:parameters options:0 error:&error];
     if (error) {
         failure(error, nil);
-        return;
+        return nil;
     }
 
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", [M2x shared].api_url, path]];
@@ -143,9 +147,11 @@
         }
     }];
     [task resume];
+    
+    return request;
 }
 
--(void)deleteWithPath:(NSString*)path andParameters:(NSDictionary*)parameters api_key:(NSString*)api_key_used success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure{
+-(NSURLRequest *)deleteWithPath:(NSString*)path andParameters:(NSDictionary*)parameters api_key:(NSString*)api_key_used success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure{
     
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", [M2x shared].api_url, path]];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
@@ -162,6 +168,8 @@
         }
     }];
     [task resume];
+    
+    return request;
 }
 
 @end
