@@ -16,7 +16,7 @@ typedef void (^M2XAPIClientFailureError)(NSError *error,NSDictionary *message);
 /**
 Retrieve list of data source blueprints accessible by the authenticated API key.
 */
--(void)listBlueprintsWithSuccess:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure;
+-(void)listBlueprintsWithCompletionHandler:(M2XAPICallback)completionHandler;
 
 
 ///------------------------------------
@@ -26,7 +26,7 @@ Retrieve list of data source blueprints accessible by the authenticated API key.
 /**
  Create a new data source blueprint.
  */
--(void)createBlueprint:(NSDictionary*)blueprint success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure;
+-(void)createBlueprint:(NSDictionary*)blueprint completionHandler:(M2XAPICallback)completionHandler;
 
 
 ///------------------------------------
@@ -36,7 +36,7 @@ Retrieve list of data source blueprints accessible by the authenticated API key.
 /**
  Retrieve information about an existing data source blueprint.
  */
--(void)viewDetailsForBlueprintId:(NSString*)blueprint_id success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure;
+-(void)viewDetailsForBlueprintId:(NSString*)blueprint_id completionHandler:(M2XAPICallback)completionHandler;
 
 
 ///------------------------------------
@@ -50,7 +50,7 @@ Retrieve list of data source blueprints accessible by the authenticated API key.
  "visibility" either "public" or "private".
  "tags" a comma separated string of tags (optional).
  */
--(void)updateDetailsForBlueprintId:(NSString*)blueprint_id withParameters:(NSDictionary*)parameters success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure;
+-(void)updateDetailsForBlueprintId:(NSString*)blueprint_id withParameters:(NSDictionary*)parameters completionHandler:(M2XAPICallback)completionHandler;
 
 
 ///------------------------------------
@@ -60,7 +60,7 @@ Retrieve list of data source blueprints accessible by the authenticated API key.
 /**
  Delete an existing data source blueprint.
  */
--(void)deleteBlueprint:(NSString*)blueprint_id success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure;
+-(void)deleteBlueprint:(NSString*)blueprint_id completionHandler:(M2XAPICallback)completionHandler;
 
 ///------------------------------------
 /// @List Distributions
@@ -69,7 +69,7 @@ Retrieve list of data source blueprints accessible by the authenticated API key.
 /**
  Retrieve list of data source distributions accessible by the authenticated API key.
  */
--(void)listDistributionWithSuccess:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure;
+-(void)listDistributionWithCompletionHandler:(M2XAPICallback)completionHandler;
 
 ///------------------------------------
 /// @Create Distribution
@@ -85,7 +85,7 @@ Retrieve list of data source blueprints accessible by the authenticated API key.
                         @"tags": @"tag1, tag2", //optional
                         }
  */
--(void)createDistribution:(NSDictionary*)batch success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure;
+-(void)createDistribution:(NSDictionary*)batch completionHandler:(M2XAPICallback)completionHandler;
 
 
 ///------------------------------------
@@ -95,7 +95,7 @@ Retrieve list of data source blueprints accessible by the authenticated API key.
 /**
  Retrieve information about an existing data source batch.
  */
--(void)viewDetailsForDistributionId:(NSString*)batch_id success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure;
+-(void)viewDetailsForDistributionId:(NSString*)batch_id completionHandler:(M2XAPICallback)completionHandler;
 
 
 ///------------------------------------
@@ -109,7 +109,7 @@ Retrieve list of data source blueprints accessible by the authenticated API key.
  "visibility" either "public" or "private".
  "tags" a comma separated string of tags (optional).
  */
--(void)updateDetailsForDistributionId:(NSString*)batch_id withParameters:(NSDictionary*)parameters success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure;
+-(void)updateDetailsForDistributionId:(NSString*)batch_id withParameters:(NSDictionary*)parameters completionHandler:(M2XAPICallback)completionHandler;
 
 
 ///------------------------------------
@@ -119,7 +119,7 @@ Retrieve list of data source blueprints accessible by the authenticated API key.
 /**
  Retrieve list of data sources added to the specified batch
  */
--(void)listDataSourcesfromDistribution:(NSString*)batch_id success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure;
+-(void)listDataSourcesfromDistribution:(NSString*)batch_id completionHandler:(M2XAPICallback)completionHandler;
 
 
 ///------------------------------------
@@ -133,7 +133,7 @@ Retrieve list of data source blueprints accessible by the authenticated API key.
  
  NSDictionary *parameters = @{ @"serial": @"ABC1234" };
  */
--(void)addDataSourceToDistribution:(NSString*)batch_id withParameters:(NSDictionary*)parameters success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure;
+-(void)addDataSourceToDistribution:(NSString*)batch_id withParameters:(NSDictionary*)parameters completionHandler:(M2XAPICallback)completionHandler;
 
 
 ///------------------------------------
@@ -143,7 +143,7 @@ Retrieve list of data source blueprints accessible by the authenticated API key.
 /**
  Delete an existing data source batch.
  */
--(void)deleteDistribution:(NSString*)batch_id success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure;
+-(void)deleteDistribution:(NSString*)batch_id completionHandler:(M2XAPICallback)completionHandler;
 
 ///------------------------------------
 /// @List Data Sources
@@ -152,7 +152,7 @@ Retrieve list of data source blueprints accessible by the authenticated API key.
 /**
  Retrieve list of data sources accessible by the authenticated API key.
  */
--(void)listDataSourcesWithSuccess:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure;
+-(void)listDataSourcesWithcompletionHandler:(M2XAPICallback)completionHandler;
 
 
 ///------------------------------------
@@ -167,7 +167,7 @@ Retrieve list of data source blueprints accessible by the authenticated API key.
  "visibility" either "public" or "private".
  "tags" a comma separated list of tags (optional).
  */
--(void)createDataSource:(NSDictionary*)dataSource success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure;
+-(void)createDataSource:(NSDictionary*)dataSource completionHandler:(M2XAPICallback)completionHandler;
 
 
 ///------------------------------------
@@ -177,7 +177,7 @@ Retrieve list of data source blueprints accessible by the authenticated API key.
 /**
  Retrieve information about an existing data source.
  */
--(void)viewDetailsForDataSourceId:(NSString*)datasource_id success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure;
+-(void)viewDetailsForDataSourceId:(NSString*)datasource_id completionHandler:(M2XAPICallback)completionHandler;
 
 
 ///------------------------------------
@@ -192,7 +192,7 @@ Retrieve list of data source blueprints accessible by the authenticated API key.
  "visibility" either "public" or "private".
  "tags" a comma separated list of tags (optional).
  */
--(void)updateDetailsForDataSourceId:(NSString*)datasource_id withParameters:(NSDictionary*)parameters success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure;
+-(void)updateDetailsForDataSourceId:(NSString*)datasource_id withParameters:(NSDictionary*)parameters completionHandler:(M2XAPICallback)completionHandler;
 
 
 ///------------------------------------
@@ -202,6 +202,6 @@ Retrieve list of data source blueprints accessible by the authenticated API key.
 /**
  Delete an existing data source.
  */
--(void)deleteDatasource:(NSString*)datasource_id success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure;
+-(void)deleteDatasource:(NSString*)datasource_id completionHandler:(M2XAPICallback)completionHandler;
 
 @end

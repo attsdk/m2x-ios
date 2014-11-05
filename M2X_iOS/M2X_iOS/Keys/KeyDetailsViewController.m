@@ -34,27 +34,25 @@
 
 - (void)getKeyDetails{
     
-    [_keysClient viewDetailsForKey:_key success:^(id object) {
-        
-        NSString *name = [object valueForKey:@"name"];
-        NSString *key = [object valueForKey:@"key"];
-        NSString *expiresAt = [object valueForKey:@"expires_at"];
-        
-        NSString *permissions = [[object objectForKey:@"permissions"] componentsJoinedByString:@", "];
-
-        [_lblName setText:name];
-        [_lblKey setText:key];
-        [_lblPermissions setText:permissions];
-        //check if expires_at isn't set.
-        if(![expiresAt isEqual:[NSNull null]]){
-            [_lblExpiresAtLabel setHidden:NO];
-            [_lblExpiresAt setText:expiresAt];
+    [_keysClient viewDetailsForKey:_key completionHandler:^(id object, NSURLResponse *response, NSError *error) {
+        if (error) {
+            [self showError:error WithMessage:error.userInfo];
+        } else {
+            NSString *name = [object valueForKey:@"name"];
+            NSString *key = [object valueForKey:@"key"];
+            NSString *expiresAt = [object valueForKey:@"expires_at"];
+            
+            NSString *permissions = [[object objectForKey:@"permissions"] componentsJoinedByString:@", "];
+            
+            [_lblName setText:name];
+            [_lblKey setText:key];
+            [_lblPermissions setText:permissions];
+            //check if expires_at isn't set.
+            if(![expiresAt isEqual:[NSNull null]]){
+                [_lblExpiresAtLabel setHidden:NO];
+                [_lblExpiresAt setText:expiresAt];
+            }
         }
-        
-        
-    } failure:^(NSError *error, NSDictionary *message) {
-        
-        [self showError:error WithMessage:message];
         
     }];
     
@@ -71,16 +69,14 @@
 #pragma mark - btn
 
 - (IBAction)regenerateKey:(id)sender {
-    [_keysClient regenerateKey:_key success:^(id object) {
-        
-        _key = [object valueForKey:@"key"];
-        //Update key label
-        [_lblKey setText:_key];
-        
-        
-    } failure:^(NSError *error, NSDictionary *message) {
-        
-        [self showError:error WithMessage:message];
+    [_keysClient regenerateKey:_key completionHandler:^(id object, NSURLResponse *response, NSError *error) {
+        if (error) {
+            [self showError:error WithMessage:error.userInfo];
+        } else {
+            _key = [object valueForKey:@"key"];
+            //Update key label
+            [_lblKey setText:_key];
+        }
         
     }];
 }
@@ -100,15 +96,13 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 1) {
-        [_keysClient deleteKey:_key success:^(id object) {
+        [_keysClient deleteKey:_key completionHandler:^(id object, NSURLResponse *response, NSError *error) {
             
-            //key deleted.
-            [self.navigationController popViewControllerAnimated:YES];
-            
-        } failure:^(NSError *error, NSDictionary *message) {
-            
-            [self showError:error WithMessage:message];
-            
+            if (error) {
+                [self showError:error WithMessage:error.userInfo];
+            } else {
+                [self.navigationController popViewControllerAnimated:YES];
+            }
         }];
     }
 }

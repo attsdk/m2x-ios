@@ -45,14 +45,12 @@
 
 - (void)getFeedLocations{
     
-    [_feedClient readDataLocationInFeed:_feed_id success:^(id object) {
-        
-        [self didGetFeedLocation:object];
-        
-    } failure:^(NSError *error, NSDictionary *message) {
-        
-        [self showError:error WithMessage:message];
-        
+    [_feedClient readDataLocationInFeed:_feed_id completionHandler:^(id object, NSURLResponse *response, NSError *error) {
+        if (error) {
+            [self showError:error WithMessage:error.userInfo];
+        } else {
+            [self didGetFeedLocation:object];
+        }
     }];
     
 }
@@ -86,15 +84,12 @@
                                     @"longitude": [NSString stringWithFormat:@"%f",location.coordinate.longitude],
                                     @"elevation": [NSString stringWithFormat:@"%f",location.altitude]};
     
-    [_feedClient updateDatasourceWithLocation:locationDict inFeed:_feed_id success:^(id object) {
-        
-        [self getFeedLocations];
-        
-    } failure:^(NSError *error, NSDictionary *message) {
-        
-        [self getFeedLocations];
-        [self showError:error WithMessage:message];
-
+    [_feedClient updateDatasourceWithLocation:locationDict inFeed:_feed_id completionHandler:^(id object, NSURLResponse *response, NSError *error) {
+        if (error) {
+            [self showError:error WithMessage:error.userInfo];
+        } else {
+            [self getFeedLocations];
+        }
     }];
     
 }

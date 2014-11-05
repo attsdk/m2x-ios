@@ -25,12 +25,12 @@
     _feedClient = [[CBBFeedsClient alloc] init];
     
     //get list of feeds without parameters
-    [_feedClient listWithParameters:nil success:^(id object) {
-        //success callback
-        [self didGetFeedList:object];
-    } failure:^(NSError *error, NSDictionary *message) {
-        
-        [self showError:error WithMessage:message];
+    [_feedClient listWithParameters:nil completionHandler:^(id object, NSURLResponse *response, NSError *error) {
+        if (error) {
+            [self showError:error WithMessage:error.userInfo];
+        } else {
+            [self didGetFeedList:object];
+        }
         
     }];
 }

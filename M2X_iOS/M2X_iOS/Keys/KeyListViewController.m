@@ -32,14 +32,12 @@
 
 - (void)viewDidAppear:(BOOL)animated{
     
-    [_keysClient listKeysWithParameters:nil success:^(id object) {
-        
-        [self didGetKeysList:object];
-        
-    } failure:^(NSError *error, NSDictionary *message) {
-        
-        [self showError:error WithMessage:message];
-        
+    [_keysClient listKeysWithParameters:nil completionHandler:^(id object, NSURLResponse *response, NSError *error) {
+        if (error) {
+            [self showError:error WithMessage:error.userInfo];
+        } else {
+            [self didGetKeysList:object];
+        }
     }];
     
 }

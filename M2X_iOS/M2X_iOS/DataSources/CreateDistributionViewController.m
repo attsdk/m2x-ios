@@ -44,14 +44,12 @@
                              @"description": [_tfDescription text],
                              @"visibility": [_smtVisibility titleForSegmentAtIndex:[_smtVisibility selectedSegmentIndex]]};
     
-    [_dataSourceClient createDistribution:distribution success:^(id object) {
-        
-        //distribution successfully created.
-        [self.navigationController popViewControllerAnimated:YES];
-        
-    } failure:^(NSError *error, NSDictionary *message) {
-        
-        [self showError:error WithMessage:message];
+    [_dataSourceClient createDistribution:distribution completionHandler:^(id object, NSURLResponse *response, NSError *error) {
+        if (error) {
+            [self showError:error WithMessage:error.userInfo];
+        } else {
+            [self.navigationController popViewControllerAnimated:YES];
+        }
         
     }];
     

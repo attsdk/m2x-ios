@@ -3,9 +3,6 @@
 #import "CBBM2x.h"
 #import "CBBBaseClient.h"
 
-typedef void (^M2XAPIClientSuccessObject)(id object);
-typedef void (^M2XAPIClientFailureError)(NSError *error,NSDictionary *message);
-
 @interface CBBKeysClient : CBBBaseClient
 
 
@@ -17,7 +14,7 @@ typedef void (^M2XAPIClientFailureError)(NSError *error,NSDictionary *message);
  Retrieve list of keys associated with the specified account. This method accepts one optional parameter:
  "feed": a Feed ID; it will list all the keys that are associated with that specific feed or its streams
  */
--(NSURLRequest *)listKeysWithParameters:(NSDictionary*)parameters success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure;
+-(NSURLRequest *)listKeysWithParameters:(NSDictionary*)parameters completionHandler:(M2XAPICallback)completionHandler;
 
 ///------------------------------------
 /// @Create Key
@@ -35,7 +32,7 @@ typedef void (^M2XAPIClientFailureError)(NSError *error,NSDictionary *message);
                        }
  
  */
--(NSURLRequest *)createKey:(NSDictionary*)key success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure;
+-(NSURLRequest *)createKey:(NSDictionary*)key completionHandler:(M2XAPICallback)completionHandler;
 
 
 ///------------------------------------
@@ -45,7 +42,7 @@ typedef void (^M2XAPIClientFailureError)(NSError *error,NSDictionary *message);
 /**
  Get details of a specific key associated with a developer account.
  */
--(NSURLRequest *)viewDetailsForKey:(NSString*)key success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure;
+-(NSURLRequest *)viewDetailsForKey:(NSString*)key completionHandler:(M2XAPICallback)completionHandler;
 
 
 ///------------------------------------
@@ -55,7 +52,7 @@ typedef void (^M2XAPIClientFailureError)(NSError *error,NSDictionary *message);
 /**
  Update name or permissions of an existing key associated with the specified account. Same validations as in Create Key applies.
  */
--(NSURLRequest *)updateKey:(NSString*)key withParameters:(NSDictionary*)parameters success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure;
+-(NSURLRequest *)updateKey:(NSString*)key withParameters:(NSDictionary*)parameters completionHandler:(M2XAPICallback)completionHandler;
 
 
 ///------------------------------------
@@ -65,7 +62,7 @@ typedef void (^M2XAPIClientFailureError)(NSError *error,NSDictionary *message);
 /**
  Regenerate the specified key.
  */
--(NSURLRequest *)regenerateKey:(NSString*)key success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure;
+-(NSURLRequest *)regenerateKey:(NSString*)key completionHandler:(M2XAPICallback)completionHandler;
 
 ///------------------------------------
 /// @Delete Key
@@ -74,6 +71,6 @@ typedef void (^M2XAPIClientFailureError)(NSError *error,NSDictionary *message);
 /**
  Delete an existing key.
  */
--(NSURLRequest *)deleteKey:(NSString*)key success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure;
+-(NSURLRequest *)deleteKey:(NSString*)key completionHandler:(M2XAPICallback)completionHandler;
 
 @end

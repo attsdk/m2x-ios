@@ -49,14 +49,12 @@
 
 -(void)getFeedDescription{
 
-    [_feedClient viewDetailsForFeedId:_feed_id success:^(id object) {
-        
-        [self didGetFeedDescription:object];
-        
-    } failure:^(NSError *error, NSDictionary *message) {
-        
-        [self showError:error WithMessage:message];
-        
+    [_feedClient viewDetailsForFeedId:_feed_id completionHandler:^(id object, NSURLResponse *response, NSError *error) {
+        if (error) {
+            [self showError:error WithMessage:error.userInfo];
+        } else {
+            [self didGetFeedDescription:object];
+        }
     }];
     
 }

@@ -43,21 +43,22 @@
     [_feedClient listDataValuesFromTheStream:_streamName
                                       inFeed:_feed_id
                               WithParameters:parameters
-                                     success:^(NSDictionary *object)
+                                     completionHandler:^(id object, NSURLResponse *response, NSError *error)
     {
-        self.valueList = object[@"values"];
-        [self.tableViewStreamValues reloadData];
-        NSLog(@"%d stream values displayed.", self.valueList.count);
-        [self.refreshControl endRefreshing];
-    }
-                                     failure:^(NSError *error, NSDictionary *message)
-    {
-        [self.refreshControl endRefreshing];
-        [[[UIAlertView alloc] initWithTitle:@"Error"
-                                    message:[NSString stringWithFormat:@"%@", message]
-                                   delegate:nil
-                          cancelButtonTitle:@"OK"
-                          otherButtonTitles:nil] show];
+        if (error) {
+            [self.refreshControl endRefreshing];
+            [[[UIAlertView alloc] initWithTitle:@"Error"
+                                        message:[NSString stringWithFormat:@"%@", error.localizedDescription]
+                                       delegate:nil
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil] show];
+
+        } else {
+            self.valueList = object[@"values"];
+            [self.tableViewStreamValues reloadData];
+            NSLog(@"%d stream values displayed.", self.valueList.count);
+            [self.refreshControl endRefreshing];
+        }
     }];
     
 }
@@ -82,16 +83,16 @@
         [_feedClient postDataValues:args
                           forStream:_streamName
                              inFeed:_feed_id
-                            success:^(id object)
+                            completionHandler:^(id object, NSURLResponse *response, NSError *error)
         {
-            [self getStreamValues];
-            self.tfNewValue.text = @"";
-            sender.enabled = YES;
-        }
-                            failure:^(NSError *error, NSDictionary *message)
-        {
-            [self showError:error WithMessage:message];
-            sender.enabled = YES;
+            if (error) {
+                [self showError:error WithMessage:error.userInfo];
+                sender.enabled = YES;
+            } else {
+                [self getStreamValues];
+                self.tfNewValue.text = @"";
+                sender.enabled = YES;
+            }
         }];
     }
 }

@@ -3,9 +3,6 @@
 #import "CBBM2x.h"
 #import "CBBBaseClient.h"
 
-typedef void (^M2XAPIClientSuccessObject)(id object);
-typedef void (^M2XAPIClientFailureError)(NSError *error,NSDictionary *message);
-
 @interface CBBFeedsClient : CBBBaseClient
 
 ///------------------------------------
@@ -28,7 +25,7 @@ typedef void (^M2XAPIClientFailureError)(NSError *error,NSDictionary *message);
  "distance" a numeric value specified in distance_units.
  "distance_unit" either mi, miles or km.
  */
--(void)listWithParameters:(NSDictionary*)parameters success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure;
+-(void)listWithParameters:(NSDictionary*)parameters completionHandler:(M2XAPICallback)completionHandler;
 
 ///------------------------------------
 /// @View Feed Details
@@ -37,7 +34,7 @@ typedef void (^M2XAPIClientFailureError)(NSError *error,NSDictionary *message);
 /**
  Get details of an existing feed.
 */
--(void)viewDetailsForFeedId:(NSString*)feed_id success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure;
+-(void)viewDetailsForFeedId:(NSString*)feed_id completionHandler:(M2XAPICallback)completionHandler;
 
 ///------------------------------------
 /// @List Data Streams
@@ -46,7 +43,7 @@ typedef void (^M2XAPIClientFailureError)(NSError *error,NSDictionary *message);
 /**
  Retrieve list of data streams associated with the specified feed.
  */
--(void)listDataStreamsForFeedId:(NSString*)feed_id success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure;
+-(void)listDataStreamsForFeedId:(NSString*)feed_id completionHandler:(M2XAPICallback)completionHandler;
 
 ///------------------------------------
 /// @List Data Stream Values
@@ -61,7 +58,7 @@ typedef void (^M2XAPIClientFailureError)(NSError *error,NSDictionary *message);
  "end" (optional)
  "limit" (optional)
  */
--(void)listDataValuesFromTheStream:(NSString*)stream inFeed:(NSString*)feed_id WithParameters:(NSDictionary*)parameters success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure;
+-(void)listDataValuesFromTheStream:(NSString*)stream inFeed:(NSString*)feed_id WithParameters:(NSDictionary*)parameters completionHandler:(M2XAPICallback)completionHandler;
 
 ///------------------------------------
 /// @Post Data Stream Values
@@ -81,7 +78,7 @@ typedef void (^M2XAPIClientFailureError)(NSError *error,NSDictionary *message);
     @{ @"at": @"2013-09-09T20:15:00Z", @"value": @"30" },
     @{ "value": "15" } ] };
  */
--(void)postDataValues:(NSDictionary*)values forStream:(NSString*)stream inFeed:(NSString*)feed_id success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure;
+-(void)postDataValues:(NSDictionary*)values forStream:(NSString*)stream inFeed:(NSString*)feed_id completionHandler:(M2XAPICallback)completionHandler;
 
 ///------------------------------------
 /// @Post values to multiple streams at once.
@@ -108,7 +105,7 @@ typedef void (^M2XAPIClientFailureError)(NSError *error,NSDictionary *message);
     }
  }
  */
--(void)postMultipleValues:(NSDictionary*)values inFeed:(NSString*)feed_id success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure;
+-(void)postMultipleValues:(NSDictionary*)values inFeed:(NSString*)feed_id completionHandler:(M2XAPICallback)completionHandler;
 
 ///------------------------------------
 /// @Read Datasource Location
@@ -117,7 +114,7 @@ typedef void (^M2XAPIClientFailureError)(NSError *error,NSDictionary *message);
 /**
  Get location details of the datasource associated with a specific feed.
  */
--(void)readDataLocationInFeed:(NSString*)feed_id success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure;
+-(void)readDataLocationInFeed:(NSString*)feed_id completionHandler:(M2XAPICallback)completionHandler;
 
 ///------------------------------------
 /// @Update Datasource Location
@@ -131,7 +128,7 @@ typedef void (^M2XAPIClientFailureError)(NSError *error,NSDictionary *message);
  "longitude" (required)
  "elevation" (optional)
  */
--(void)updateDatasourceWithLocation:(NSDictionary*)location inFeed:(NSString*)feed_id success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure;
+-(void)updateDatasourceWithLocation:(NSDictionary*)location inFeed:(NSString*)feed_id completionHandler:(M2XAPICallback)completionHandler;
 
 ///------------------------------------
 /// @Update Data Stream
@@ -140,7 +137,7 @@ typedef void (^M2XAPIClientFailureError)(NSError *error,NSDictionary *message);
 /**
  Update a data stream associated with the specified feed (if a stream with this name does not exist it gets created).
  */
--(void)updateDataForStream:(NSString*)stream inFeed:(NSString*)feed_id withParameters:(NSDictionary*)parameters success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure;
+-(void)updateDataForStream:(NSString*)stream inFeed:(NSString*)feed_id withParameters:(NSDictionary*)parameters completionHandler:(M2XAPICallback)completionHandler;
 
 ///------------------------------------
 /// @Create Data Stream
@@ -149,7 +146,7 @@ typedef void (^M2XAPIClientFailureError)(NSError *error,NSDictionary *message);
 /**
  Create a data stream associated with the specified feed.
  */
--(void)createDataForStream:(NSString*)stream inFeed:(NSString*)feed_id withParameters:(NSDictionary*)parameters success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure;
+-(void)createDataForStream:(NSString*)stream inFeed:(NSString*)feed_id withParameters:(NSDictionary*)parameters completionHandler:(M2XAPICallback)completionHandler;
 
 ///------------------------------------
 /// @View Data Stream
@@ -158,7 +155,7 @@ typedef void (^M2XAPIClientFailureError)(NSError *error,NSDictionary *message);
 /**
  Get details of a specific data stream associated with an existing feed.
  */
--(void)viewDataForStream:(NSString*)stream inFeed:(NSString*)feed_id success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure;
+-(void)viewDataForStream:(NSString*)stream inFeed:(NSString*)feed_id completionHandler:(M2XAPICallback)completionHandler;
 
 ///------------------------------------
 /// @Delete Data Stream
@@ -167,7 +164,7 @@ typedef void (^M2XAPIClientFailureError)(NSError *error,NSDictionary *message);
 /**
  Delete an existing data stream associated with a specific feed.
  */
--(void)deleteDataStream:(NSString*)stream inFeed:(NSString*)feed_id success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure;
+-(void)deleteDataStream:(NSString*)stream inFeed:(NSString*)feed_id completionHandler:(M2XAPICallback)completionHandler;
 
 ///------------------------------------
 /// @List Triggers
@@ -176,7 +173,7 @@ typedef void (^M2XAPIClientFailureError)(NSError *error,NSDictionary *message);
 /**
  Retrieve list of triggers associated with the specified feed.
  */
--(void)listTriggersinFeed:(NSString*)feed_id success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure;
+-(void)listTriggersinFeed:(NSString*)feed_id completionHandler:(M2XAPICallback)completionHandler;
 
 ///------------------------------------
 /// @Create Trigger
@@ -193,7 +190,7 @@ typedef void (^M2XAPIClientFailureError)(NSError *error,NSDictionary *message);
     @"callback_url": @"http://example.com",
     @"status": @"enabled" };
  */
--(void)createTrigger:(NSDictionary*)trigger inFeed:(NSString*)feed_id success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure;
+-(void)createTrigger:(NSDictionary*)trigger inFeed:(NSString*)feed_id completionHandler:(M2XAPICallback)completionHandler;
 
 ///------------------------------------
 /// @View Trigger
@@ -202,7 +199,7 @@ typedef void (^M2XAPIClientFailureError)(NSError *error,NSDictionary *message);
 /**
  Get details of a specific trigger associated with an existing feed.
  */
--(void)viewTrigger:(NSString*)trigger_id inFeed:(NSString*)feed_id success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure;
+-(void)viewTrigger:(NSString*)trigger_id inFeed:(NSString*)feed_id completionHandler:(M2XAPICallback)completionHandler;
 
 ///------------------------------------
 /// @Update Trigger
@@ -211,7 +208,7 @@ typedef void (^M2XAPIClientFailureError)(NSError *error,NSDictionary *message);
 /**
  Update an existing trigger associated with the specified feed.
  */
--(void)UpdateTrigger:(NSString*)trigger_id inFeed:(NSString*)feed_id success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure;
+-(void)UpdateTrigger:(NSString*)trigger_id inFeed:(NSString*)feed_id completionHandler:(M2XAPICallback)completionHandler;
 
 ///------------------------------------
 /// @Test Trigger
@@ -220,7 +217,7 @@ typedef void (^M2XAPIClientFailureError)(NSError *error,NSDictionary *message);
 /**
  Test the specified trigger by firing it with a fake value. This method can be used by developers of client applications to test the way their apps receive and handle M2X notifications.
  */
--(void)testTrigger:(NSString*)trigger_id inFeed:(NSString*)feed_id success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure;
+-(void)testTrigger:(NSString*)trigger_id inFeed:(NSString*)feed_id completionHandler:(M2XAPICallback)completionHandler;
 
 ///------------------------------------
 /// @Delete Trigger
@@ -229,7 +226,7 @@ typedef void (^M2XAPIClientFailureError)(NSError *error,NSDictionary *message);
 /**
  Delete an existing trigger associated with a specific feed.
  */
--(void)deleteTrigger:(NSString*)trigger_id inFeed:(NSString*)feed_id success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure;
+-(void)deleteTrigger:(NSString*)trigger_id inFeed:(NSString*)feed_id completionHandler:(M2XAPICallback)completionHandler;
 
 ///------------------------------------
 /// @View Request Log
@@ -238,6 +235,6 @@ typedef void (^M2XAPIClientFailureError)(NSError *error,NSDictionary *message);
 /**
  Retrieve list of HTTP requests received lately by the specified feed (up to 100 entries).
  */
--(void)viewRequestLogForFeed:(NSString*)feed_id success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure;
+-(void)viewRequestLogForFeed:(NSString*)feed_id completionHandler:(M2XAPICallback)completionHandler;
 
 @end

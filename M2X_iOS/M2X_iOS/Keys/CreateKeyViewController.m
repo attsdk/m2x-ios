@@ -57,15 +57,12 @@
     if([_swExpiryDate isOn] && ![[_tfExpiryDate text] isEqualToString:@""])
         [key setValue:[_tfExpiryDate text] forKey:@"expires_at"];
     
-    [_keysClient createKey:key success:^(id object) {
-        
-        //distribution successfully created.
-        [self.navigationController popViewControllerAnimated:YES];
-        
-    } failure:^(NSError *error, NSDictionary *message) {
-        
-        [self showError:error WithMessage:message];
-        
+    [_keysClient createKey:key completionHandler:^(id object, NSURLResponse *response, NSError *error) {
+        if (error) {
+            [self showError:error WithMessage:error.userInfo];
+        } else {
+            [self.navigationController popViewControllerAnimated:YES];
+        }
     }];
     
 }

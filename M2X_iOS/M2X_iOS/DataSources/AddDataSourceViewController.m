@@ -41,15 +41,13 @@
     
     [_dataSourceClient addDataSourceToDistribution:_distribution_id
                              withParameters:serial
-                                    success:^(id object) {
+                                    completionHandler:^(id object, NSURLResponse *response, NSError *error) {
                                         
-                                        //data source successfully added, go back.
-                                        [weakSelf.navigationController popViewControllerAnimated:YES];
-                                        
-                                    } failure:^(NSError *error, NSDictionary *message) {
-                                        
-                                        [weakSelf showError:error WithMessage:message];
-                                        
+                                        if (error) {
+                                            [weakSelf showError:error WithMessage:error.userInfo];
+                                        } else {
+                                            [weakSelf.navigationController popViewControllerAnimated:YES];
+                                        }
                                     }];
     
 }

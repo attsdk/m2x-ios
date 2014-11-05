@@ -31,14 +31,16 @@
     client.apiKey = nil;
     
     __block BOOL failed = NO;
-    [client getWithPath:@"/mypath" andParameters:@{@"param1": @"1", @"param2": @"2"} apiKey:client.apiKey success:^(id object) {
-        XCTFail(@"can't be here");
-    } failure:^(NSError *error, NSDictionary *message) {
-        XCTAssertTrue(error);
-        XCTAssertEqual(error.code, CBBM2xNoApiKey);
-        failed = YES;
+    [client getWithPath:@"/mypath" andParameters:@{@"param1": @"1", @"param2": @"2"} apiKey:client.apiKey completionHandler:^(id object, NSURLResponse *response, NSError *error) {
+        if (error) {
+            XCTAssertTrue(error);
+            XCTAssertEqual(error.code, CBBM2xNoApiKey);
+            failed = YES;
+        } else {
+            XCTFail(@"can't be here");
+        }
     }];
-    
+
     XCTAssertTrue(failed);
 }
 
@@ -47,7 +49,7 @@
     client.apiKey = @"1234";
     
     XCTAssertTrue(client.apiUrl);
-    NSURLRequest *request = [client getWithPath:@"/mypath" andParameters:@{@"param1": @"1", @"param2": @"2"} apiKey:client.apiKey success:nil failure:nil];
+    NSURLRequest *request = [client getWithPath:@"/mypath" andParameters:@{@"param1": @"1", @"param2": @"2"} apiKey:client.apiKey completionHandler:nil];
     
     XCTAssertNotNil(request.URL.host);
     XCTAssertEqualObjects(request.HTTPMethod, @"GET");
@@ -65,7 +67,7 @@
     client.apiKey = @"1234";
     
     XCTAssertTrue(client.apiUrl);
-    NSURLRequest *request = [client deleteWithPath:@"/mypath" andParameters:@{@"param1": @"1", @"param2": @"2"} apiKey:client.apiKey success:nil failure:nil];
+    NSURLRequest *request = [client deleteWithPath:@"/mypath" andParameters:@{@"param1": @"1", @"param2": @"2"} apiKey:client.apiKey completionHandler:nil];
     
     XCTAssertNotNil(request.URL.host);
     XCTAssertEqualObjects(request.HTTPMethod, @"DELETE");
@@ -83,7 +85,7 @@
     client.apiKey = @"1234";
     
     XCTAssertTrue(client.apiUrl);
-    NSURLRequest *request = [client postWithPath:@"/mypath" andParameters:@{@"param1": @"1", @"param2": @"2"} apiKey:client.apiKey success:nil failure:nil];
+    NSURLRequest *request = [client postWithPath:@"/mypath" andParameters:@{@"param1": @"1", @"param2": @"2"} apiKey:client.apiKey completionHandler:nil];
     
     XCTAssertNotNil(request.URL.host);
     XCTAssertEqualObjects(request.HTTPMethod, @"POST");
@@ -104,7 +106,7 @@
     client.apiKey = @"1234";
     
     XCTAssertTrue(client.apiUrl);
-    NSURLRequest *request = [client putWithPath:@"/mypath" andParameters:@{@"param1": @"1", @"param2": @"2"} apiKey:client.apiKey success:nil failure:nil];
+    NSURLRequest *request = [client putWithPath:@"/mypath" andParameters:@{@"param1": @"1", @"param2": @"2"} apiKey:client.apiKey completionHandler:nil];
     
     XCTAssertNotNil(request.URL.host);
     XCTAssertEqualObjects(request.HTTPMethod, @"PUT");

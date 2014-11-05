@@ -32,7 +32,7 @@
     CBBKeysClient *client = [CBBKeysClient new];
     client.feedKey = nil;
     
-    NSURLRequest *request = [client listKeysWithParameters:nil success:nil failure:nil];
+    NSURLRequest *request = [client listKeysWithParameters:nil completionHandler:nil];
     
     XCTAssertEqualObjects(request.allHTTPHeaderFields[@"X-M2X-KEY"], @"apiKey");
 }
@@ -43,7 +43,7 @@
     CBBKeysClient *client = [CBBKeysClient new];
     client.feedKey = @"feedKey";
     
-    NSURLRequest *request = [client listKeysWithParameters:nil success:nil failure:nil];
+    NSURLRequest *request = [client listKeysWithParameters:nil completionHandler:nil];
 
     XCTAssertEqualObjects(request.allHTTPHeaderFields[@"X-M2X-KEY"], @"feedKey");
 }
@@ -52,7 +52,7 @@
     CBBKeysClient *client = [CBBKeysClient new];
     client.feedKey = @"1234";
     
-    NSURLRequest *req = [client listKeysWithParameters:@{@"limit": @"10", @"q": @"bla"} success:nil failure:nil];
+    NSURLRequest *req = [client listKeysWithParameters:@{@"limit": @"10", @"q": @"bla"} completionHandler:nil];
     
     XCTAssertEqualObjects(req.URL.path, @"/v1/keys");
     XCTAssertTrue([req.URL.query rangeOfString:@"limit=10"].location != NSNotFound);

@@ -39,12 +39,14 @@
         [_feedClient createDataForStream:streamID
                                   inFeed:_feed_id
                           withParameters:args
-                                 success:^(id object) {
-            //stream successfully added, go back.
-            [self.navigationController popViewControllerAnimated:YES];
+                       completionHandler:^(id object, NSURLResponse *response, NSError *error) {
+                           
+                       if (error) {
+                           [self showError:error WithMessage:[error userInfo]];
+                       } else {
+                           [self.navigationController popViewControllerAnimated:YES];
+                       }
             
-        } failure:^(NSError *error, NSDictionary *message) {
-            [self showError:error WithMessage:message];
         }];
         
     } else {

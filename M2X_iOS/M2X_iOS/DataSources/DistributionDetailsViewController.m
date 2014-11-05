@@ -47,14 +47,13 @@
 
 -(void)getDistributionDescription{
     
-    [_dataSourceClient viewDetailsForDistributionId:_distribution_id success:^(id object) {
+    [_dataSourceClient viewDetailsForDistributionId:_distribution_id completionHandler:^(id object, NSURLResponse *response, NSError *error) {
         
-        [self didGetDistributionDescription:object];
-        
-    } failure:^(NSError *error, NSDictionary *message) {
-        
-        [self showError:error WithMessage:message];
-        
+        if (error) {
+            [self showError:error WithMessage:error.userInfo];
+        } else {
+            [self didGetDistributionDescription:object];
+        }
     }];
     
 }
@@ -76,14 +75,12 @@
 
 -(void)getDataSourcesForDistribution{
     
-    [_dataSourceClient listDataSourcesfromDistribution:_distribution_id success:^(id object) {
-        
-        [self didGetDataSourcesForDistribution:object];
-        
-    } failure:^(NSError *error, NSDictionary *message) {
-
-        [self showError:error WithMessage:message];
-        
+    [_dataSourceClient listDataSourcesfromDistribution:_distribution_id completionHandler:^(id object, NSURLResponse *response, NSError *error) {
+        if (error) {
+            [self showError:error WithMessage:error.userInfo];
+        } else {
+            [self didGetDistributionDescription:object];
+        }
     }];
     
 }

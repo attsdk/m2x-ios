@@ -18,14 +18,14 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     //get list of feeds without parameters
-    [_dataSourceClient listDistributionWithSuccess:^(id object)
+    [_dataSourceClient listDistributionWithCompletionHandler:^(id object, NSURLResponse *response, NSError *error)
     {
-        //success callback
-        [self didGetDistributions:object];
-    }
-                                    failure:^(NSError *error, NSDictionary *message)
-    {
-        [self showError:error WithMessage:message];
+        if (error) {
+            [self showError:error WithMessage:error.userInfo];
+        } else {
+            [self didGetDistributions:object];
+        }
+
     }];
 }
 

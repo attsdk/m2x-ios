@@ -65,11 +65,11 @@ static NSString * const CBBM2xErrorDomain = @"CBBM2xErrorDomain";
 
 #pragma mark - Http methods
 
--(NSURLRequest *)getWithPath:(NSString*)path andParameters:(NSDictionary*)parameters apiKey:(NSString*)apiKey_used success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure {
+-(NSURLRequest *)getWithPath:(NSString*)path andParameters:(NSDictionary*)parameters apiKey:(NSString*)apiKey_used completionHandler:(M2XAPICallback)completionHandler {
     if (!apiKey_used) {
         NSError *error = [NSError errorWithDomain:CBBM2xErrorDomain code:CBBM2xNoApiKey userInfo:@{NSLocalizedFailureReasonErrorKey: @"Missing API key"}];
-        if (failure) {
-            failure(error, nil);            
+        if (completionHandler) {
+            completionHandler(nil, nil, error);
         }
         return nil;
     }
@@ -79,19 +79,15 @@ static NSString * const CBBM2xErrorDomain = @"CBBM2xErrorDomain";
     [self prepareUrlRequest:request apiKey:apiKey_used];
     [self prepareUrlRequest:request parameters:parameters];
     
-    if (!success) {
+    if (!completionHandler) {
         return request;
     }
 
     NSURLSessionDataTask *task = [self.session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         NSError *jsonError = nil;
         NSDictionary *obj = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&jsonError];
-        if (error) {
-            if (failure) {
-                failure(error, obj);
-            }
-        } else {
-            success(obj);
+        if (completionHandler) {
+            completionHandler(obj, response, error ? error : jsonError);
         }
     }];
     [task resume];
@@ -99,12 +95,11 @@ static NSString * const CBBM2xErrorDomain = @"CBBM2xErrorDomain";
     return request;
 }
 
--(NSURLRequest *)postWithPath:(NSString*)path andParameters:(NSDictionary*)parameters apiKey:(NSString*)apiKey_used success:(M2XAPIClientSuccessObject)success failure:
-(M2XAPIClientFailureError)failure {
+-(NSURLRequest *)postWithPath:(NSString*)path andParameters:(NSDictionary*)parameters apiKey:(NSString*)apiKey_used completionHandler:(M2XAPICallback)completionHandler {
     if (!apiKey_used) {
         NSError *error = [NSError errorWithDomain:CBBM2xErrorDomain code:100 userInfo:@{NSLocalizedFailureReasonErrorKey: @"Missing API key"}];
-        if (failure) {
-            failure(error, nil);
+        if (completionHandler) {
+            completionHandler(nil, nil, error);
         }
         return nil;
     }
@@ -112,7 +107,7 @@ static NSString * const CBBM2xErrorDomain = @"CBBM2xErrorDomain";
     NSError *error = nil;
     NSData *postData = [NSJSONSerialization dataWithJSONObject:parameters options:0 error:&error];
     if (error) {
-        failure(error, nil);
+        completionHandler(nil, nil, error);
         return nil;
     }
     
@@ -123,19 +118,15 @@ static NSString * const CBBM2xErrorDomain = @"CBBM2xErrorDomain";
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:postData];
     
-    if (!success) {
+    if (!completionHandler) {
         return request;
     }
 
     NSURLSessionDataTask *task = [self.session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         NSError *jsonError = nil;
         NSDictionary *obj = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&jsonError];
-        if (error) {
-            if (failure) {
-                failure(error, obj);
-            }
-        } else {
-            success(obj);
+        if (completionHandler) {
+            completionHandler(obj, response, error ? error : jsonError);
         }
     }];
     [task resume];
@@ -143,11 +134,11 @@ static NSString * const CBBM2xErrorDomain = @"CBBM2xErrorDomain";
     return request;
 }
 
--(NSURLRequest *)putWithPath:(NSString*)path andParameters:(NSDictionary*)parameters apiKey:(NSString*)apiKey_used success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure {
+-(NSURLRequest *)putWithPath:(NSString*)path andParameters:(NSDictionary*)parameters apiKey:(NSString*)apiKey_used completionHandler:(M2XAPICallback)completionHandler {
     if (!apiKey_used) {
         NSError *error = [NSError errorWithDomain:CBBM2xErrorDomain code:100 userInfo:@{NSLocalizedFailureReasonErrorKey: @"Missing API key"}];
-        if (failure) {
-            failure(error, nil);
+        if (completionHandler) {
+            completionHandler(nil, nil, error);
         }
         return nil;
     }
@@ -155,7 +146,7 @@ static NSString * const CBBM2xErrorDomain = @"CBBM2xErrorDomain";
     NSError *error = nil;
     NSData *postData = [NSJSONSerialization dataWithJSONObject:parameters options:0 error:&error];
     if (error) {
-        failure(error, nil);
+        completionHandler(nil, nil, error);
         return nil;
     }
 
@@ -166,19 +157,15 @@ static NSString * const CBBM2xErrorDomain = @"CBBM2xErrorDomain";
     [request setHTTPMethod:@"PUT"];
     [request setHTTPBody:postData];
     
-    if (!success) {
+    if (!completionHandler) {
         return request;
     }
     
     NSURLSessionDataTask *task = [self.session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         NSError *jsonError = nil;
         NSDictionary *obj = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&jsonError];
-        if (error) {
-            if (failure) {
-                failure(error, obj);
-            }
-        } else {
-            success(obj);
+        if (completionHandler) {
+            completionHandler(obj, response, error ? error : jsonError);
         }
     }];
     [task resume];
@@ -186,11 +173,11 @@ static NSString * const CBBM2xErrorDomain = @"CBBM2xErrorDomain";
     return request;
 }
 
--(NSURLRequest *)deleteWithPath:(NSString*)path andParameters:(NSDictionary*)parameters apiKey:(NSString*)apiKey_used success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure {
+-(NSURLRequest *)deleteWithPath:(NSString*)path andParameters:(NSDictionary*)parameters apiKey:(NSString*)apiKey_used completionHandler:(M2XAPICallback)completionHandler {
     if (!apiKey_used) {
         NSError *error = [NSError errorWithDomain:CBBM2xErrorDomain code:100 userInfo:@{NSLocalizedFailureReasonErrorKey: @"Missing API key"}];
-        if (failure) {
-            failure(error, nil);
+        if (completionHandler) {
+            completionHandler(nil, nil, error);
         }
         return nil;
     }
@@ -201,19 +188,15 @@ static NSString * const CBBM2xErrorDomain = @"CBBM2xErrorDomain";
     [self prepareUrlRequest:request apiKey:apiKey_used];
     [self prepareUrlRequest:request parameters:parameters];
     
-    if (!success) {
+    if (!completionHandler) {
         return request;
     }
 
     NSURLSessionDataTask *task = [self.session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         NSError *jsonError = nil;
         NSDictionary *obj = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&jsonError];
-        if (error) {
-            if (failure) {
-                failure(error, obj);
-            }
-        } else {
-            success(obj);
+        if (completionHandler) {
+            completionHandler(obj, response, error ? error : jsonError);
         }
     }];
     [task resume];
