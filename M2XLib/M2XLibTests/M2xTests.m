@@ -50,6 +50,7 @@
     NSURLRequest *request = [client getWithPath:@"/mypath" andParameters:@{@"param1": @"1", @"param2": @"2"} apiKey:client.apiKey success:nil failure:nil];
     
     XCTAssertNotNil(request.URL.host);
+    XCTAssertEqualObjects(request.HTTPMethod, @"GET");
     XCTAssertEqualObjects([[NSURL URLWithString:client.apiUrl] host], request.URL.host);
     XCTAssertEqualObjects(request.allHTTPHeaderFields[@"X-M2X-KEY"], client.apiKey);
     XCTAssertTrue([request.allHTTPHeaderFields[@"User-Agent"] rangeOfString:@"M2X/"].location != NSNotFound);
@@ -57,6 +58,66 @@
     XCTAssertEqualObjects(@"/v1/mypath", request.URL.path);
     XCTAssertTrue([request.URL.query rangeOfString:@"param1=1"].location != NSNotFound);
     XCTAssertTrue([request.URL.query rangeOfString:@"param2=2"].location != NSNotFound);
+}
+
+- (void)testDelete {
+    CBBM2x *client = [CBBM2x shared];
+    client.apiKey = @"1234";
+    
+    XCTAssertTrue(client.apiUrl);
+    NSURLRequest *request = [client deleteWithPath:@"/mypath" andParameters:@{@"param1": @"1", @"param2": @"2"} apiKey:client.apiKey success:nil failure:nil];
+    
+    XCTAssertNotNil(request.URL.host);
+    XCTAssertEqualObjects(request.HTTPMethod, @"DELETE");
+    XCTAssertEqualObjects([[NSURL URLWithString:client.apiUrl] host], request.URL.host);
+    XCTAssertEqualObjects(request.allHTTPHeaderFields[@"X-M2X-KEY"], client.apiKey);
+    XCTAssertTrue([request.allHTTPHeaderFields[@"User-Agent"] rangeOfString:@"M2X/"].location != NSNotFound);
+    
+    XCTAssertEqualObjects(@"/v1/mypath", request.URL.path);
+    XCTAssertTrue([request.URL.query rangeOfString:@"param1=1"].location != NSNotFound);
+    XCTAssertTrue([request.URL.query rangeOfString:@"param2=2"].location != NSNotFound);
+}
+
+- (void)testPost {
+    CBBM2x *client = [CBBM2x shared];
+    client.apiKey = @"1234";
+    
+    XCTAssertTrue(client.apiUrl);
+    NSURLRequest *request = [client postWithPath:@"/mypath" andParameters:@{@"param1": @"1", @"param2": @"2"} apiKey:client.apiKey success:nil failure:nil];
+    
+    XCTAssertNotNil(request.URL.host);
+    XCTAssertEqualObjects(request.HTTPMethod, @"POST");
+    XCTAssertEqualObjects([[NSURL URLWithString:client.apiUrl] host], request.URL.host);
+    XCTAssertEqualObjects(request.allHTTPHeaderFields[@"X-M2X-KEY"], client.apiKey);
+    XCTAssertTrue([request.allHTTPHeaderFields[@"User-Agent"] rangeOfString:@"M2X/"].location != NSNotFound);
+
+    XCTAssertEqualObjects(request.allHTTPHeaderFields[@"Content-Type"], @"application/json");
+
+    XCTAssertEqualObjects(@"/v1/mypath", request.URL.path);
+    NSString *body = [[NSString alloc] initWithData:request.HTTPBody encoding:NSUTF8StringEncoding];
+    XCTAssertTrue([body rangeOfString:@"\"param1\":\"1\""].location != NSNotFound);
+    XCTAssertTrue([body rangeOfString:@"\"param2\":\"2\""].location != NSNotFound);
+}
+
+- (void)testPut {
+    CBBM2x *client = [CBBM2x shared];
+    client.apiKey = @"1234";
+    
+    XCTAssertTrue(client.apiUrl);
+    NSURLRequest *request = [client putWithPath:@"/mypath" andParameters:@{@"param1": @"1", @"param2": @"2"} apiKey:client.apiKey success:nil failure:nil];
+    
+    XCTAssertNotNil(request.URL.host);
+    XCTAssertEqualObjects(request.HTTPMethod, @"PUT");
+    XCTAssertEqualObjects([[NSURL URLWithString:client.apiUrl] host], request.URL.host);
+    XCTAssertEqualObjects(request.allHTTPHeaderFields[@"X-M2X-KEY"], client.apiKey);
+    XCTAssertTrue([request.allHTTPHeaderFields[@"User-Agent"] rangeOfString:@"M2X/"].location != NSNotFound);
+    
+    XCTAssertEqualObjects(request.allHTTPHeaderFields[@"Content-Type"], @"application/json");
+    
+    XCTAssertEqualObjects(@"/v1/mypath", request.URL.path);
+    NSString *body = [[NSString alloc] initWithData:request.HTTPBody encoding:NSUTF8StringEncoding];
+    XCTAssertTrue([body rangeOfString:@"\"param1\":\"1\""].location != NSNotFound);
+    XCTAssertTrue([body rangeOfString:@"\"param2\":\"2\""].location != NSNotFound);
 }
 
 @end
