@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6206.9" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Pn1-Z3-PaM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Pn1-Z3-PaM">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7026.1"/>
-        <capability name="Constraints with attributes relative to the layout margin" minToolsVersion="6.0"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Batches-->
+        <!--Distributions-->
         <scene sceneID="Jhs-J0-vkJ">
             <objects>
                 <navigationController id="Cj0-zF-hFx" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Batches" image="Batches" id="iXi-Fa-5w4"/>
+                    <tabBarItem key="tabBarItem" title="Distributions" image="Distributions" id="iXi-Fa-5w4"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="jRd-CU-AIS">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -22,10 +23,10 @@
             </objects>
             <point key="canvasLocation" x="204" y="658"/>
         </scene>
-        <!--Batches-->
+        <!--Distributions-->
         <scene sceneID="iLg-db-NAD">
             <objects>
-                <tableViewController title="Batches" id="7HH-PV-vy4" customClass="BatchListViewController" sceneMemberID="viewController">
+                <tableViewController title="Distributions" id="7HH-PV-vy4" customClass="DistributionListViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="5Zq-km-yP2">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -64,10 +65,10 @@
                             <outlet property="delegate" destination="7HH-PV-vy4" id="sko-5L-kdv"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Batches" id="cpS-Ug-FFC">
+                    <navigationItem key="navigationItem" title="Distributions" id="cpS-Ug-FFC">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="fcQ-mY-y06">
                             <connections>
-                                <segue destination="7LC-o7-NO4" kind="push" identifier="createBatch" id="RfH-O7-uhs"/>
+                                <segue destination="7LC-o7-NO4" kind="push" identifier="createDistribution" id="RfH-O7-uhs"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -76,10 +77,10 @@
             </objects>
             <point key="canvasLocation" x="724" y="658"/>
         </scene>
-        <!--Create Batch View Controller-->
+        <!--Create Distribution View Controller-->
         <scene sceneID="y62-93-AlZ">
             <objects>
-                <viewController id="7LC-o7-NO4" customClass="CreateBatchViewController" sceneMemberID="viewController">
+                <viewController id="7LC-o7-NO4" customClass="CreateDistributionViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="twF-jx-VIQ"/>
                         <viewControllerLayoutGuide type="bottom" id="HYd-V6-vYk"/>
@@ -125,11 +126,11 @@
                             </segmentedControl>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4i9-Kf-6Tj">
                                 <rect key="frame" x="20" y="276" width="280" height="30"/>
-                                <state key="normal" title="Create Batch">
+                                <state key="normal" title="Create Distribution">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="createBatch:" destination="7LC-o7-NO4" eventType="touchUpInside" id="Drf-GO-Xjn"/>
+                                    <action selector="createDistribution:" destination="7LC-o7-NO4" eventType="touchUpInside" id="Drf-GO-Xjn"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -146,10 +147,10 @@
             </objects>
             <point key="canvasLocation" x="724" y="1371"/>
         </scene>
-        <!--Batch-->
+        <!--Distribution-->
         <scene sceneID="xmA-YD-rey">
             <objects>
-                <viewController id="RDY-UL-7v3" customClass="BatchDetailsViewController" sceneMemberID="viewController">
+                <viewController id="RDY-UL-7v3" customClass="DistributionDetailsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Bic-Cm-3Jr"/>
                         <viewControllerLayoutGuide type="bottom" id="sfr-rT-s1F"/>
@@ -164,34 +165,34 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sMx-fe-joV">
-                                <rect key="frame" x="79" y="72" width="221" height="17"/>
+                                <rect key="frame" x="116" y="72" width="184" height="17"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="17" id="5to-Mc-Xpj"/>
-                                    <constraint firstAttribute="width" constant="221" id="VMZ-7Y-vaI"/>
+                                    <constraint firstAttribute="width" constant="184" id="VMZ-7Y-vaI"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b1A-U9-lt8">
-                                <rect key="frame" x="79" y="95" width="221" height="19"/>
+                                <rect key="frame" x="116" y="95" width="184" height="19"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="221" id="ONr-aY-DfB"/>
+                                    <constraint firstAttribute="width" constant="184" id="ONr-aY-DfB"/>
                                     <constraint firstAttribute="height" constant="19" id="m0J-LS-NFC"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Batch Id:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ncd-Uf-59F">
-                                <rect key="frame" x="20" y="72" width="59" height="17"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distribution Id:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ncd-Uf-59F">
+                                <rect key="frame" x="20" y="72" width="95" height="17"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.32060971469999999" green="0.32060971469999999" blue="0.32060971469999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Created:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xlI-ck-Kmo">
-                                <rect key="frame" x="23" y="97" width="56" height="17"/>
+                                <rect key="frame" x="20" y="97" width="56" height="17"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.32060971469999999" green="0.32060971469999999" blue="0.32060971469999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -248,8 +249,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="sMx-fe-joV" secondAttribute="trailing" constant="20" id="6IQ-zC-JB8"/>
-                            <constraint firstItem="sMx-fe-joV" firstAttribute="leading" secondItem="ncd-Uf-59F" secondAttribute="trailing" id="7ZT-e4-bFj"/>
-                            <constraint firstItem="b1A-U9-lt8" firstAttribute="leading" secondItem="xlI-ck-Kmo" secondAttribute="trailing" id="8gI-Vp-nLk"/>
+                            <constraint firstItem="sMx-fe-joV" firstAttribute="leading" secondItem="ncd-Uf-59F" secondAttribute="trailing" constant="1" id="7ZT-e4-bFj"/>
+                            <constraint firstItem="b1A-U9-lt8" firstAttribute="leading" secondItem="xlI-ck-Kmo" secondAttribute="trailing" constant="40" id="8gI-Vp-nLk"/>
                             <constraint firstItem="obu-FW-JQU" firstAttribute="leading" secondItem="cQD-pZ-ioe" secondAttribute="leading" id="KEu-Br-FJU"/>
                             <constraint firstItem="sfr-rT-s1F" firstAttribute="top" secondItem="obu-FW-JQU" secondAttribute="bottom" id="LRz-AW-rhV"/>
                             <constraint firstItem="obu-FW-JQU" firstAttribute="top" secondItem="Bic-Cm-3Jr" secondAttribute="bottom" constant="118" id="MZd-3d-Z0D"/>
@@ -264,10 +265,10 @@
                             <constraint firstItem="awP-OW-sof" firstAttribute="top" secondItem="Bic-Cm-3Jr" secondAttribute="bottom" constant="66" id="sEA-iJ-huc"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Batch" id="Oe8-Hh-gta"/>
+                    <navigationItem key="navigationItem" title="Distribution" id="Oe8-Hh-gta"/>
                     <connections>
-                        <outlet property="lblBatchID" destination="sMx-fe-joV" id="aIc-W6-g0r"/>
                         <outlet property="lblCreatedAt" destination="b1A-U9-lt8" id="9FK-25-cJi"/>
+                        <outlet property="lblDistributionID" destination="sMx-fe-joV" id="aIc-W6-g0r"/>
                         <outlet property="tableViewDataSources" destination="obu-FW-JQU" id="zdp-Dm-wMS"/>
                     </connections>
                 </viewController>
@@ -612,7 +613,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="createBatch:" destination="7LC-o7-NO4" eventType="touchUpInside" id="The-NL-3Dh"/>
+                                    <action selector="createDistribution:" destination="7LC-o7-NO4" eventType="touchUpInside" id="The-NL-3Dh"/>
                                     <action selector="createMasterkey:" destination="eF5-QT-XhX" eventType="touchUpInside" id="9U7-DT-bTC"/>
                                 </connections>
                             </button>
@@ -1276,16 +1277,13 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Batches" width="32" height="32"/>
+        <image name="Distributions" width="32" height="32"/>
         <image name="Feeds" width="32" height="32"/>
         <image name="Key" width="32" height="32"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4">
-            <size key="portraitSize" width="320" height="568"/>
-            <size key="landscapeSize" width="568" height="320"/>
-        </simulatedScreenMetrics>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
 </document>

@@ -1,13 +1,13 @@
 
-#import "BatchDetailsViewController.h"
+#import "DistributionDetailsViewController.h"
 #import "AddDataSourceViewController.h"
 #import "NSDate+M2X.h"
 
-@interface BatchDetailsViewController ()
+@interface DistributionDetailsViewController ()
 
 @end
 
-@implementation BatchDetailsViewController
+@implementation DistributionDetailsViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -31,9 +31,9 @@
 
 - (void)viewDidAppear:(BOOL)animated{
     
-    [self getBatchDescription];
+    [self getDistributionDescription];
     
-    [self getDataSourcesForBatch];
+    [self getDataSourcesForDistribution];
     
 }
 
@@ -45,11 +45,11 @@
 
 #pragma mark - self
 
--(void)getBatchDescription{
+-(void)getDistributionDescription{
     
-    [_dataSourceClient viewDetailsForBatchId:_batch_id success:^(id object) {
+    [_dataSourceClient viewDetailsForDistributionId:_distribution_id success:^(id object) {
         
-        [self didGetBatchDescription:object];
+        [self didGetDistributionDescription:object];
         
     } failure:^(NSError *error, NSDictionary *message) {
         
@@ -59,12 +59,12 @@
     
 }
 
--(void)didGetBatchDescription:(NSDictionary*)batch{
+-(void)didGetDistributionDescription:(NSDictionary*)distribution{
     
-    [_lblBatchID setText:batch[@"id"]];
+    [_lblDistributionID setText:distribution[@"id"]];
     
     //format date
-    NSDate *createdDate = [NSDate fromISO8601:batch[@"created"]];
+    NSDate *createdDate = [NSDate fromISO8601:distribution[@"created"]];
     
     NSString *dateString = [NSDateFormatter localizedStringFromDate:createdDate
                                                           dateStyle:NSDateFormatterShortStyle
@@ -74,11 +74,11 @@
     
 }
 
--(void)getDataSourcesForBatch{
+-(void)getDataSourcesForDistribution{
     
-    [_dataSourceClient listDataSourcesfromBatch:_batch_id success:^(id object) {
+    [_dataSourceClient listDataSourcesfromDistribution:_distribution_id success:^(id object) {
         
-        [self didGetDataSourcesForBatch:object];
+        [self didGetDataSourcesForDistribution:object];
         
     } failure:^(NSError *error, NSDictionary *message) {
 
@@ -88,7 +88,7 @@
     
 }
 
--(void)didGetDataSourcesForBatch:(NSDictionary*)dataSourcesList{
+-(void)didGetDataSourcesForDistribution:(NSDictionary*)dataSourcesList{
     
     [_dataSources removeAllObjects];
     
@@ -105,7 +105,7 @@
     
     AddDataSourceViewController *addDataSourceVC = segue.destinationViewController;
     
-    addDataSourceVC.batch_id = _batch_id;
+    addDataSourceVC.distribution_id = _distribution_id;
     
     addDataSourceVC.dataSourceClient = _dataSourceClient;
     

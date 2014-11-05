@@ -1,11 +1,11 @@
 
-#import "CreateBatchViewController.h"
+#import "CreateDistributionViewController.h"
 
-@interface CreateBatchViewController ()
+@interface CreateDistributionViewController ()
 
 @end
 
-@implementation CreateBatchViewController
+@implementation CreateDistributionViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -34,19 +34,19 @@
 
 #pragma mark - IBOutlet
 
-- (IBAction)createBatch:(id)sender {
+- (IBAction)createDistribution:(id)sender {
     
     if([[_tfName text] isEqualToString:@""]){
         return;
     }
     
-    NSDictionary *batch = @{ @"name": [_tfName text] ,
+    NSDictionary *distribution = @{ @"name": [_tfName text] ,
                              @"description": [_tfDescription text],
                              @"visibility": [_smtVisibility titleForSegmentAtIndex:[_smtVisibility selectedSegmentIndex]]};
     
-    [_dataSourceClient createBatch:batch success:^(id object) {
+    [_dataSourceClient createDistribution:distribution success:^(id object) {
         
-        //batch successfully created.
+        //distribution successfully created.
         [self.navigationController popViewControllerAnimated:YES];
         
     } failure:^(NSError *error, NSDictionary *message) {

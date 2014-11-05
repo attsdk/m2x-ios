@@ -1,13 +1,13 @@
 
-#import "BatchListViewController.h"
-#import "BatchDetailsViewController.h"
-#import "CreateBatchViewController.h"
+#import "DistributionListViewController.h"
+#import "DistributionDetailsViewController.h"
+#import "CreateDistributionViewController.h"
 
-@interface BatchListViewController ()
+@interface DistributionListViewController ()
 
 @end
 
-@implementation BatchListViewController
+@implementation DistributionListViewController
 
 - (void)viewDidLoad
 {
@@ -18,10 +18,10 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     //get list of feeds without parameters
-    [_dataSourceClient listBatchWithSuccess:^(id object)
+    [_dataSourceClient listDistributionWithSuccess:^(id object)
     {
         //success callback
-        [self didGetBatches:object];
+        [self didGetDistributions:object];
     }
                                     failure:^(NSError *error, NSDictionary *message)
     {
@@ -29,10 +29,10 @@
     }];
 }
 
--(void)didGetBatches:(NSDictionary*)batches
+-(void)didGetDistributions:(NSDictionary*)distributions
 {
     _data = [NSMutableArray array];
-    [_data addObjectsFromArray:[batches objectForKey:@"batches"]];
+    [_data addObjectsFromArray:[distributions objectForKey:@"distributions"]];
     [self.tableView reloadData];
 }
 
@@ -68,17 +68,17 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     
-    if ([segue.identifier isEqualToString:@"createBatch"])
+    if ([segue.identifier isEqualToString:@"createDistribution"])
     {
-        CreateBatchViewController *createBatchVC = segue.destinationViewController;
-        createBatchVC.dataSourceClient = _dataSourceClient;
+        CreateDistributionViewController *createDistributionVC = segue.destinationViewController;
+        createDistributionVC.dataSourceClient = _dataSourceClient;
     } else
     {
-        BatchDetailsViewController *batchDetailsVC = segue.destinationViewController;
+        DistributionDetailsViewController *batchDetailsVC = segue.destinationViewController;
         UITableViewCell *batch_tableViewSelected = sender;
         NSIndexPath *batchIndexPath = [[self tableView] indexPathForCell:batch_tableViewSelected];
         NSDictionary *batchDict = [_data objectAtIndex:[batchIndexPath row]];
-        batchDetailsVC.batch_id = [batchDict valueForKey:@"id"];
+        batchDetailsVC.distribution_id = [batchDict valueForKey:@"id"];
         batchDetailsVC.dataSourceClient = _dataSourceClient;
         batchDetailsVC.title = [batchDict valueForKey:@"name"];
     }

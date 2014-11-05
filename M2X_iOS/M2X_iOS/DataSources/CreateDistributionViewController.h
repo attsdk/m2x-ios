@@ -2,7 +2,7 @@
 #import <UIKit/UIKit.h>
 #import "CBBDataSourceClient.h"
 
-@interface CreateBatchViewController : UIViewController <UITextFieldDelegate>
+@interface CreateDistributionViewController : UIViewController <UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *tfName;
 @property (weak, nonatomic) IBOutlet UITextField *tfDescription;

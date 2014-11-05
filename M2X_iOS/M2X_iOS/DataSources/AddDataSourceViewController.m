@@ -36,10 +36,10 @@
     //Create the Dictionary
     NSDictionary *serial = @{ @"serial": [_tfSerial text] };
     
-    //Add Data Source to the Batch
+    //Add Data Source to the Distribution
     __weak typeof(self) weakSelf = self;
     
-    [_dataSourceClient addDataSourceToBatch:_batch_id
+    [_dataSourceClient addDataSourceToDistribution:_distribution_id
                              withParameters:serial
                                     success:^(id object) {
                                         

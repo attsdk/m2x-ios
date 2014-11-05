@@ -16,7 +16,7 @@ typedef void (^M2XAPIClientFailureError)(NSError *error,NSDictionary *message);
  The list of feeds can be filtered by using one or more of the following parameters:
  
  "q": Text to search (optional). Only those feeds containing this text in its name or description will be returned.
- "type" (optional): If passed, only feeds of this type will be returned. Possible values are "blueprint", "batch" and "datasource".
+ "type" (optional): If passed, only feeds of this type will be returned. Possible values are "blueprint", "distribution" and "datasource".
  "page": Page number to be retrieved.
  "limit": Number of feeds to return per page.
  "tags" A comma delimited tags list.

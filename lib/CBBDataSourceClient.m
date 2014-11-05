@@ -44,58 +44,58 @@
     
 }
 
--(void)listBatchWithSuccess:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure{
+-(void)listDistributionWithSuccess:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure{
     
-    NSString *path = @"/batches";
-    
-    [[CBBM2x shared] getWithPath:path andParameters:nil apiKey:[self apiKey] success:success failure:failure];
-    
-}
-
--(void)createBatch:(NSDictionary *)batch success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure{
-    
-    NSString *path = @"/batches";
-    
-    [[CBBM2x shared] postWithPath:path andParameters:batch apiKey:[self apiKey] success:success failure:failure];
-    
-}
-
--(void)viewDetailsForBatchId:(NSString *)batch_id success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure{
-    
-    NSString *path = [NSString stringWithFormat:@"/batches/%@",batch_id];
+    NSString *path = @"/distributions";
     
     [[CBBM2x shared] getWithPath:path andParameters:nil apiKey:[self apiKey] success:success failure:failure];
     
 }
 
--(void)updateDetailsForBatchId:(NSString *)batch_id withParameters:(NSDictionary *)parameters success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure{
+-(void)createDistribution:(NSDictionary *)distribution success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure{
     
-    NSString *path = [NSString stringWithFormat:@"/batches/%@",batch_id];
+    NSString *path = @"/distributions";
+    
+    [[CBBM2x shared] postWithPath:path andParameters:distribution apiKey:[self apiKey] success:success failure:failure];
+    
+}
+
+-(void)viewDetailsForDistributionId:(NSString *)distribution_id success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure{
+    
+    NSString *path = [NSString stringWithFormat:@"/distributions/%@",distribution_id];
+    
+    [[CBBM2x shared] getWithPath:path andParameters:nil apiKey:[self apiKey] success:success failure:failure];
+    
+}
+
+-(void)updateDetailsForDistributionId:(NSString *)distribution_id withParameters:(NSDictionary *)parameters success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure{
+    
+    NSString *path = [NSString stringWithFormat:@"/distributions/%@",distribution_id];
     
     [[CBBM2x shared] putWithPath:path andParameters:nil apiKey:[self apiKey] success:success failure:failure];
     
 }
 
 
--(void)listDataSourcesfromBatch:(NSString *)batch_id success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure{
+-(void)listDataSourcesfromDistribution:(NSString *)distribution_id success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure{
     
-    NSString *path = [NSString stringWithFormat:@"/batches/%@/datasources",batch_id];
+    NSString *path = [NSString stringWithFormat:@"/distributions/%@/datasources",distribution_id];
     
     [[CBBM2x shared] getWithPath:path andParameters:nil apiKey:[self apiKey] success:success failure:failure];
     
 }
 
--(void)addDataSourceToBatch:(NSString *)batch_id withParameters:(NSDictionary *)parameters success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure{
+-(void)addDataSourceToDistribution:(NSString *)distribution_id withParameters:(NSDictionary *)parameters success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure{
     
-    NSString *path = [NSString stringWithFormat:@"/batches/%@/datasources",batch_id];
+    NSString *path = [NSString stringWithFormat:@"/distributions/%@/datasources",distribution_id];
     
     [[CBBM2x shared] postWithPath:path andParameters:parameters apiKey:[self apiKey] success:success failure:failure];
     
 }
 
--(void)deleteBatch:(NSString *)batch_id success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure{
+-(void)deleteDistribution:(NSString *)distribution_id success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure{
     
-    NSString *path = [NSString stringWithFormat:@"/batches/%@",batch_id];
+    NSString *path = [NSString stringWithFormat:@"/distributions/%@",distribution_id];
     
     [[CBBM2x shared] deleteWithPath:path andParameters:nil apiKey:[self apiKey] success:success failure:failure];
     

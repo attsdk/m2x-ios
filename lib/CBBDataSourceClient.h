@@ -63,43 +63,43 @@ Retrieve list of data source blueprints accessible by the authenticated API key.
 -(void)deleteBlueprint:(NSString*)blueprint_id success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure;
 
 ///------------------------------------
-/// @List Batches
+/// @List Distributions
 ///------------------------------------
 
 /**
- Retrieve list of data source batches accessible by the authenticated API key.
+ Retrieve list of data source distributions accessible by the authenticated API key.
  */
--(void)listBatchWithSuccess:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure;
+-(void)listDistributionWithSuccess:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure;
 
 ///------------------------------------
-/// @Create Batch
+/// @Create Distribution
 ///------------------------------------
 
 /**
  Create a new data source batch.
  
  i.e.:
- NSDictionary *key = @{ @"name": @"newBatch",
+ NSDictionary *key = @{ @"name": @"newDistribution",
                  @"description": @"this is the description", //optional
                   @"visibility": "public", //or "private"
                         @"tags": @"tag1, tag2", //optional
                         }
  */
--(void)createBatch:(NSDictionary*)batch success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure;
+-(void)createDistribution:(NSDictionary*)batch success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure;
 
 
 ///------------------------------------
-/// @View Batch Details
+/// @View Distribution Details
 ///------------------------------------
 
 /**
  Retrieve information about an existing data source batch.
  */
--(void)viewDetailsForBatchId:(NSString*)batch_id success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure;
+-(void)viewDetailsForDistributionId:(NSString*)batch_id success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure;
 
 
 ///------------------------------------
-/// @Update Batch Details
+/// @Update Distribution Details
 ///------------------------------------
 
 /**
@@ -109,21 +109,21 @@ Retrieve list of data source blueprints accessible by the authenticated API key.
  "visibility" either "public" or "private".
  "tags" a comma separated string of tags (optional).
  */
--(void)updateDetailsForBatchId:(NSString*)batch_id withParameters:(NSDictionary*)parameters success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure;
+-(void)updateDetailsForDistributionId:(NSString*)batch_id withParameters:(NSDictionary*)parameters success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure;
 
 
 ///------------------------------------
-/// @List Data Sources from a Batch
+/// @List Data Sources from a Distribution
 ///------------------------------------
 
 /**
  Retrieve list of data sources added to the specified batch
  */
--(void)listDataSourcesfromBatch:(NSString*)batch_id success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure;
+-(void)listDataSourcesfromDistribution:(NSString*)batch_id success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure;
 
 
 ///------------------------------------
-/// @Add Data Source to an existing Batch
+/// @Add Data Source to an existing Distribution
 ///------------------------------------
 
 /**
@@ -133,17 +133,17 @@ Retrieve list of data source blueprints accessible by the authenticated API key.
  
  NSDictionary *parameters = @{ @"serial": @"ABC1234" };
  */
--(void)addDataSourceToBatch:(NSString*)batch_id withParameters:(NSDictionary*)parameters success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure;
+-(void)addDataSourceToDistribution:(NSString*)batch_id withParameters:(NSDictionary*)parameters success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure;
 
 
 ///------------------------------------
-/// @Delete Batch
+/// @Delete Distribution
 ///------------------------------------
 
 /**
  Delete an existing data source batch.
  */
--(void)deleteBatch:(NSString*)batch_id success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure;
+-(void)deleteDistribution:(NSString*)batch_id success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure;
 
 ///------------------------------------
 /// @List Data Sources

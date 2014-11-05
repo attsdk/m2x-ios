@@ -2,14 +2,14 @@
 #import <UIKit/UIKit.h>
 #import "CBBDataSourceClient.h"
 
-@interface BatchDetailsViewController : UIViewController <UITableViewDataSource,UITableViewDelegate>
+@interface DistributionDetailsViewController : UIViewController <UITableViewDataSource,UITableViewDelegate>
 
 @property (nonatomic, strong) NSMutableArray *dataSources;
 @property (nonatomic, strong) CBBDataSourceClient *dataSourceClient;
-@property (nonatomic, strong) NSString *batch_id;
+@property (nonatomic, strong) NSString *distribution_id;
 @property (weak, nonatomic) IBOutlet UITableView *tableViewDataSources;
 
-@property (weak, nonatomic) IBOutlet UILabel *lblBatchID;
+@property (weak, nonatomic) IBOutlet UILabel *lblDistributionID;
 @property (weak, nonatomic) IBOutlet UILabel *lblCreatedAt;
 
 @end

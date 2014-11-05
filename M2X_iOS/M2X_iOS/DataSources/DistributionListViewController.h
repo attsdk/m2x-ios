@@ -2,7 +2,7 @@
 #import <UIKit/UIKit.h>
 #import "CBBDataSourceClient.h"
 
-@interface BatchListViewController : UITableViewController{
+@interface DistributionListViewController : UITableViewController{
     
 }
 

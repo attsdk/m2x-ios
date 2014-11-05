@@ -22,7 +22,7 @@
 		0B65FBBE184E114700C88810 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B65FB9D184E114700C88810 /* UIKit.framework */; };
 		0B65FBC6184E114800C88810 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0B65FBC4184E114800C88810 /* InfoPlist.strings */; };
 		0B65FBC8184E114800C88810 /* M2X_iOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B65FBC7184E114800C88810 /* M2X_iOSTests.m */; };
-		0B7471F61860A1C2006F48B4 /* CreateBatchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B7471F51860A1C2006F48B4 /* CreateBatchViewController.m */; };
+		0B7471F61860A1C2006F48B4 /* CreateDistributionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B7471F51860A1C2006F48B4 /* CreateDistributionViewController.m */; };
 		0B7471FA1860BA01006F48B4 /* KeyListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B7471F91860BA01006F48B4 /* KeyListViewController.m */; };
 		0B7472001860C6C0006F48B4 /* CreateKeyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B7471FF1860C6C0006F48B4 /* CreateKeyViewController.m */; };
 		0B7472031860D16B006F48B4 /* DatePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B7472021860D16B006F48B4 /* DatePickerViewController.m */; };
@@ -30,8 +30,8 @@
 		0B810E2A185F4C7300D22F49 /* FeedLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B810E24185F4C7300D22F49 /* FeedLocationViewController.m */; };
 		0B810E2B185F4C7300D22F49 /* FeedsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B810E26185F4C7300D22F49 /* FeedsListViewController.m */; };
 		0B810E2C185F4C7300D22F49 /* StreamValuesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B810E28185F4C7300D22F49 /* StreamValuesViewController.m */; };
-		0B810E39185F742100D22F49 /* BatchListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B810E38185F742100D22F49 /* BatchListViewController.m */; };
-		0B810E3F185F87F000D22F49 /* BatchDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B810E3E185F87F000D22F49 /* BatchDetailsViewController.m */; };
+		0B810E39185F742100D22F49 /* DistributionListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B810E38185F742100D22F49 /* DistributionListViewController.m */; };
+		0B810E3F185F87F000D22F49 /* DistributionDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B810E3E185F87F000D22F49 /* DistributionDetailsViewController.m */; };
 		0B810E48185F919B00D22F49 /* green.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B810E46185F919B00D22F49 /* green.png */; };
 		0B810E49185F919B00D22F49 /* red.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B810E47185F919B00D22F49 /* red.png */; };
 		0B810E4C185F9ECD00D22F49 /* AddDataSourceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B810E4B185F9ECD00D22F49 /* AddDataSourceViewController.m */; };
@@ -76,8 +76,8 @@
 		0B65FBC3184E114800C88810 /* M2X_iOSTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "M2X_iOSTests-Info.plist"; sourceTree = "<group>"; };
 		0B65FBC5184E114800C88810 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0B65FBC7184E114800C88810 /* M2X_iOSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = M2X_iOSTests.m; sourceTree = "<group>"; };
-		0B7471F41860A1C2006F48B4 /* CreateBatchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateBatchViewController.h; sourceTree = "<group>"; };
-		0B7471F51860A1C2006F48B4 /* CreateBatchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateBatchViewController.m; sourceTree = "<group>"; };
+		0B7471F41860A1C2006F48B4 /* CreateDistributionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateDistributionViewController.h; sourceTree = "<group>"; };
+		0B7471F51860A1C2006F48B4 /* CreateDistributionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateDistributionViewController.m; sourceTree = "<group>"; };
 		0B7471F81860BA01006F48B4 /* KeyListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyListViewController.h; sourceTree = "<group>"; };
 		0B7471F91860BA01006F48B4 /* KeyListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyListViewController.m; sourceTree = "<group>"; };
 		0B7471FE1860C6C0006F48B4 /* CreateKeyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateKeyViewController.h; sourceTree = "<group>"; };
@@ -92,10 +92,10 @@
 		0B810E26185F4C7300D22F49 /* FeedsListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedsListViewController.m; sourceTree = "<group>"; };
 		0B810E27185F4C7300D22F49 /* StreamValuesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreamValuesViewController.h; sourceTree = "<group>"; };
 		0B810E28185F4C7300D22F49 /* StreamValuesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StreamValuesViewController.m; sourceTree = "<group>"; };
-		0B810E37185F742100D22F49 /* BatchListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BatchListViewController.h; sourceTree = "<group>"; };
-		0B810E38185F742100D22F49 /* BatchListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BatchListViewController.m; sourceTree = "<group>"; };
-		0B810E3D185F87F000D22F49 /* BatchDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BatchDetailsViewController.h; sourceTree = "<group>"; };
-		0B810E3E185F87F000D22F49 /* BatchDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BatchDetailsViewController.m; sourceTree = "<group>"; };
+		0B810E37185F742100D22F49 /* DistributionListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DistributionListViewController.h; sourceTree = "<group>"; };
+		0B810E38185F742100D22F49 /* DistributionListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DistributionListViewController.m; sourceTree = "<group>"; };
+		0B810E3D185F87F000D22F49 /* DistributionDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DistributionDetailsViewController.h; sourceTree = "<group>"; };
+		0B810E3E185F87F000D22F49 /* DistributionDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DistributionDetailsViewController.m; sourceTree = "<group>"; };
 		0B810E46185F919B00D22F49 /* green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = green.png; sourceTree = "<group>"; };
 		0B810E47185F919B00D22F49 /* red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red.png; sourceTree = "<group>"; };
 		0B810E4A185F9ECD00D22F49 /* AddDataSourceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddDataSourceViewController.h; sourceTree = "<group>"; };
@@ -253,14 +253,14 @@
 		0B810E2D185F4F7B00D22F49 /* DataSources */ = {
 			isa = PBXGroup;
 			children = (
-				0B810E37185F742100D22F49 /* BatchListViewController.h */,
-				0B810E38185F742100D22F49 /* BatchListViewController.m */,
-				0B810E3D185F87F000D22F49 /* BatchDetailsViewController.h */,
-				0B810E3E185F87F000D22F49 /* BatchDetailsViewController.m */,
+				0B810E37185F742100D22F49 /* DistributionListViewController.h */,
+				0B810E38185F742100D22F49 /* DistributionListViewController.m */,
+				0B810E3D185F87F000D22F49 /* DistributionDetailsViewController.h */,
+				0B810E3E185F87F000D22F49 /* DistributionDetailsViewController.m */,
 				0B810E4A185F9ECD00D22F49 /* AddDataSourceViewController.h */,
 				0B810E4B185F9ECD00D22F49 /* AddDataSourceViewController.m */,
-				0B7471F41860A1C2006F48B4 /* CreateBatchViewController.h */,
-				0B7471F51860A1C2006F48B4 /* CreateBatchViewController.m */,
+				0B7471F41860A1C2006F48B4 /* CreateDistributionViewController.h */,
+				0B7471F51860A1C2006F48B4 /* CreateDistributionViewController.m */,
 			);
 			path = DataSources;
 			sourceTree = "<group>";
@@ -404,7 +404,7 @@
 				0BAD9DF41864C4210070487E /* AddStreamViewController.m in Sources */,
 				0B65FBB3184E114700C88810 /* ViewController.m in Sources */,
 				0B810E2C185F4C7300D22F49 /* StreamValuesViewController.m in Sources */,
-				0B7471F61860A1C2006F48B4 /* CreateBatchViewController.m in Sources */,
+				0B7471F61860A1C2006F48B4 /* CreateDistributionViewController.m in Sources */,
 				0B65FBAA184E114700C88810 /* AppDelegate.m in Sources */,
 				E24E2B181A0A63470019D3EB /* CBBBaseClient.m in Sources */,
 				0B7472031860D16B006F48B4 /* DatePickerViewController.m in Sources */,
@@ -413,7 +413,7 @@
 				0B7472001860C6C0006F48B4 /* CreateKeyViewController.m in Sources */,
 				8328499019ABBB45005CA81E /* CBBDataSourceClient.m in Sources */,
 				8328499119ABBB45005CA81E /* CBBFeedsClient.m in Sources */,
-				0B810E3F185F87F000D22F49 /* BatchDetailsViewController.m in Sources */,
+				0B810E3F185F87F000D22F49 /* DistributionDetailsViewController.m in Sources */,
 				8328499219ABBB45005CA81E /* CBBKeysClient.m in Sources */,
 				0B65FBA6184E114700C88810 /* main.m in Sources */,
 				0B810E29185F4C7300D22F49 /* FeedDescriptionViewController.m in Sources */,
@@ -422,7 +422,7 @@
 				0B810E4C185F9ECD00D22F49 /* AddDataSourceViewController.m in Sources */,
 				8328499419ABBB45005CA81E /* NSDate+M2X.m in Sources */,
 				8328499319ABBB45005CA81E /* CBBM2x.m in Sources */,
-				0B810E39185F742100D22F49 /* BatchListViewController.m in Sources */,
+				0B810E39185F742100D22F49 /* DistributionListViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -59,7 +59,7 @@
     
     [_keysClient createKey:key success:^(id object) {
         
-        //batch successfully created.
+        //distribution successfully created.
         [self.navigationController popViewControllerAnimated:YES];
         
     } failure:^(NSError *error, NSDictionary *message) {
