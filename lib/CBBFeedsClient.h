@@ -1,11 +1,12 @@
 
 #import <Foundation/Foundation.h>
-#import "M2x.h"
+#import "CBBM2x.h"
+#import "CBBBaseClient.h"
 
 typedef void (^M2XAPIClientSuccessObject)(id object);
 typedef void (^M2XAPIClientFailureError)(NSError *error,NSDictionary *message);
 
-@interface FeedsClient : NSObject
+@interface CBBFeedsClient : CBBBaseClient
 
 ///------------------------------------
 /// @List/Search Feeds
@@ -238,7 +239,5 @@ typedef void (^M2XAPIClientFailureError)(NSError *error,NSDictionary *message);
  Retrieve list of HTTP requests received lately by the specified feed (up to 100 entries).
  */
 -(void)viewRequestLogForFeed:(NSString*)feed_id success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure;
-
-@property (nonatomic,strong) NSString *feed_key;
 
 @end

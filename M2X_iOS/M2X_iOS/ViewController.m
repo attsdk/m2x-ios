@@ -1,8 +1,8 @@
 
 #import "ViewController.h"
 #import "FeedsListViewController.h"
-#import "FeedsClient.h"
-#import "M2x.h"
+#import "CBBFeedsClient.h"
+#import "CBBM2x.h"
 
 @interface ViewController ()
 
@@ -23,7 +23,7 @@
     self.tfMasterKey.text = [defaults stringForKey:@"api_key"];
     self.tfMasterKey.delegate = self;
 
-    self.tfURL.text = [[defaults stringForKey:@"api_url"] length] > 0 ? [defaults stringForKey:@"api_url"] : [[M2x shared] apiUrl];
+    self.tfURL.text = [[defaults stringForKey:@"api_url"] length] > 0 ? [defaults stringForKey:@"api_url"] : [[CBBM2x shared] apiUrl];
     self.tfURL.delegate = self;
 
 }
@@ -36,7 +36,7 @@
     [defaults synchronize];
     
     
-    M2x* m2x = [M2x shared];
+    CBBM2x* m2x = [CBBM2x shared];
     m2x.apiKey = [_tfMasterKey text]; // Master API Key
     m2x.apiUrl = [_tfURL text]; // M2X API endpoint URL
 }

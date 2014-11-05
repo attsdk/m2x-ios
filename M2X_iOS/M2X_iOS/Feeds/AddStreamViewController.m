@@ -1,6 +1,6 @@
 
 #import "AddStreamViewController.h"
-#import "FeedsClient.h"
+#import "CBBFeedsClient.h"
 
 @interface AddStreamViewController ()
 

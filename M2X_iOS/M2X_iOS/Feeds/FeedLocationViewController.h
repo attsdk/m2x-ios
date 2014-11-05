@@ -1,7 +1,7 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
-#import "FeedsClient.h"
+#import "CBBFeedsClient.h"
 
 @interface FeedLocationViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
@@ -14,7 +14,7 @@
 
 @property (nonatomic, strong) NSString *feed_id;
 @property (nonatomic, strong) NSMutableArray *locationsList;
-@property (nonatomic, strong) FeedsClient *feedClient;
+@property (nonatomic, strong) CBBFeedsClient *feedClient;
 @property (nonatomic, strong) UITextField *current;
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @property (nonatomic, strong) NSString *currentLocality;

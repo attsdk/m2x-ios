@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
-#import "M2x.h"
+#import "CBBM2x.h"
 
 @interface M2xTests : XCTestCase
 
@@ -27,7 +27,7 @@
 }
 
 - (void)testMissingKey {
-    M2x *client = [M2x shared];
+    CBBM2x *client = [CBBM2x shared];
     client.apiKey = nil;
     
     __block BOOL failed = NO;
@@ -43,7 +43,7 @@
 }
 
 - (void)testGet {
-    M2x *client = [M2x shared];
+    CBBM2x *client = [CBBM2x shared];
     client.apiKey = @"1234";
     
     XCTAssertTrue(client.apiUrl);

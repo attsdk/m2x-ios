@@ -36,11 +36,12 @@
 		0B810E49185F919B00D22F49 /* red.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B810E47185F919B00D22F49 /* red.png */; };
 		0B810E4C185F9ECD00D22F49 /* AddDataSourceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B810E4B185F9ECD00D22F49 /* AddDataSourceViewController.m */; };
 		0BAD9DF41864C4210070487E /* AddStreamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BAD9DF31864C4210070487E /* AddStreamViewController.m */; };
-		8328499019ABBB45005CA81E /* DataSourceClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 8328497E19ABBB45005CA81E /* DataSourceClient.m */; };
-		8328499119ABBB45005CA81E /* FeedsClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 8328498019ABBB45005CA81E /* FeedsClient.m */; };
-		8328499219ABBB45005CA81E /* KeysClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 8328498219ABBB45005CA81E /* KeysClient.m */; };
-		8328499319ABBB45005CA81E /* M2x.m in Sources */ = {isa = PBXBuildFile; fileRef = 8328498419ABBB45005CA81E /* M2x.m */; };
+		8328499019ABBB45005CA81E /* CBBDataSourceClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 8328497E19ABBB45005CA81E /* CBBDataSourceClient.m */; };
+		8328499119ABBB45005CA81E /* CBBFeedsClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 8328498019ABBB45005CA81E /* CBBFeedsClient.m */; };
+		8328499219ABBB45005CA81E /* CBBKeysClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 8328498219ABBB45005CA81E /* CBBKeysClient.m */; };
+		8328499319ABBB45005CA81E /* CBBM2x.m in Sources */ = {isa = PBXBuildFile; fileRef = 8328498419ABBB45005CA81E /* CBBM2x.m */; };
 		8328499419ABBB45005CA81E /* NSDate+M2X.m in Sources */ = {isa = PBXBuildFile; fileRef = 8328498619ABBB45005CA81E /* NSDate+M2X.m */; };
+		E24E2B181A0A63470019D3EB /* CBBBaseClient.m in Sources */ = {isa = PBXBuildFile; fileRef = E24E2B171A0A63470019D3EB /* CBBBaseClient.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,16 +102,18 @@
 		0B810E4B185F9ECD00D22F49 /* AddDataSourceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddDataSourceViewController.m; sourceTree = "<group>"; };
 		0BAD9DF21864C4210070487E /* AddStreamViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddStreamViewController.h; sourceTree = "<group>"; };
 		0BAD9DF31864C4210070487E /* AddStreamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddStreamViewController.m; sourceTree = "<group>"; };
-		8328497D19ABBB45005CA81E /* DataSourceClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataSourceClient.h; sourceTree = "<group>"; };
-		8328497E19ABBB45005CA81E /* DataSourceClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataSourceClient.m; sourceTree = "<group>"; };
-		8328497F19ABBB45005CA81E /* FeedsClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedsClient.h; sourceTree = "<group>"; };
-		8328498019ABBB45005CA81E /* FeedsClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedsClient.m; sourceTree = "<group>"; };
-		8328498119ABBB45005CA81E /* KeysClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeysClient.h; sourceTree = "<group>"; };
-		8328498219ABBB45005CA81E /* KeysClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeysClient.m; sourceTree = "<group>"; };
-		8328498319ABBB45005CA81E /* M2x.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M2x.h; sourceTree = "<group>"; };
-		8328498419ABBB45005CA81E /* M2x.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M2x.m; sourceTree = "<group>"; };
+		8328497D19ABBB45005CA81E /* CBBDataSourceClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBBDataSourceClient.h; sourceTree = "<group>"; };
+		8328497E19ABBB45005CA81E /* CBBDataSourceClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBBDataSourceClient.m; sourceTree = "<group>"; };
+		8328497F19ABBB45005CA81E /* CBBFeedsClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBBFeedsClient.h; sourceTree = "<group>"; };
+		8328498019ABBB45005CA81E /* CBBFeedsClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBBFeedsClient.m; sourceTree = "<group>"; };
+		8328498119ABBB45005CA81E /* CBBKeysClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBBKeysClient.h; sourceTree = "<group>"; };
+		8328498219ABBB45005CA81E /* CBBKeysClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBBKeysClient.m; sourceTree = "<group>"; };
+		8328498319ABBB45005CA81E /* CBBM2x.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBBM2x.h; sourceTree = "<group>"; };
+		8328498419ABBB45005CA81E /* CBBM2x.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBBM2x.m; sourceTree = "<group>"; };
 		8328498519ABBB45005CA81E /* NSDate+M2X.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+M2X.h"; sourceTree = "<group>"; };
 		8328498619ABBB45005CA81E /* NSDate+M2X.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+M2X.m"; sourceTree = "<group>"; };
+		E24E2B161A0A63470019D3EB /* CBBBaseClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBBBaseClient.h; sourceTree = "<group>"; };
+		E24E2B171A0A63470019D3EB /* CBBBaseClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBBBaseClient.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -282,14 +285,16 @@
 		8328496819ABBB45005CA81E /* lib */ = {
 			isa = PBXGroup;
 			children = (
-				8328497D19ABBB45005CA81E /* DataSourceClient.h */,
-				8328497E19ABBB45005CA81E /* DataSourceClient.m */,
-				8328497F19ABBB45005CA81E /* FeedsClient.h */,
-				8328498019ABBB45005CA81E /* FeedsClient.m */,
-				8328498119ABBB45005CA81E /* KeysClient.h */,
-				8328498219ABBB45005CA81E /* KeysClient.m */,
-				8328498319ABBB45005CA81E /* M2x.h */,
-				8328498419ABBB45005CA81E /* M2x.m */,
+				E24E2B161A0A63470019D3EB /* CBBBaseClient.h */,
+				E24E2B171A0A63470019D3EB /* CBBBaseClient.m */,
+				8328497D19ABBB45005CA81E /* CBBDataSourceClient.h */,
+				8328497E19ABBB45005CA81E /* CBBDataSourceClient.m */,
+				8328497F19ABBB45005CA81E /* CBBFeedsClient.h */,
+				8328498019ABBB45005CA81E /* CBBFeedsClient.m */,
+				8328498119ABBB45005CA81E /* CBBKeysClient.h */,
+				8328498219ABBB45005CA81E /* CBBKeysClient.m */,
+				8328498319ABBB45005CA81E /* CBBM2x.h */,
+				8328498419ABBB45005CA81E /* CBBM2x.m */,
 				8328498519ABBB45005CA81E /* NSDate+M2X.h */,
 				8328498619ABBB45005CA81E /* NSDate+M2X.m */,
 			);
@@ -401,21 +406,22 @@
 				0B810E2C185F4C7300D22F49 /* StreamValuesViewController.m in Sources */,
 				0B7471F61860A1C2006F48B4 /* CreateBatchViewController.m in Sources */,
 				0B65FBAA184E114700C88810 /* AppDelegate.m in Sources */,
+				E24E2B181A0A63470019D3EB /* CBBBaseClient.m in Sources */,
 				0B7472031860D16B006F48B4 /* DatePickerViewController.m in Sources */,
 				0B810E2B185F4C7300D22F49 /* FeedsListViewController.m in Sources */,
 				0B53F9191861ECA700B7DB7D /* KeyDetailsViewController.m in Sources */,
 				0B7472001860C6C0006F48B4 /* CreateKeyViewController.m in Sources */,
-				8328499019ABBB45005CA81E /* DataSourceClient.m in Sources */,
-				8328499119ABBB45005CA81E /* FeedsClient.m in Sources */,
+				8328499019ABBB45005CA81E /* CBBDataSourceClient.m in Sources */,
+				8328499119ABBB45005CA81E /* CBBFeedsClient.m in Sources */,
 				0B810E3F185F87F000D22F49 /* BatchDetailsViewController.m in Sources */,
-				8328499219ABBB45005CA81E /* KeysClient.m in Sources */,
+				8328499219ABBB45005CA81E /* CBBKeysClient.m in Sources */,
 				0B65FBA6184E114700C88810 /* main.m in Sources */,
 				0B810E29185F4C7300D22F49 /* FeedDescriptionViewController.m in Sources */,
 				0B810E2A185F4C7300D22F49 /* FeedLocationViewController.m in Sources */,
 				0B7471FA1860BA01006F48B4 /* KeyListViewController.m in Sources */,
 				0B810E4C185F9ECD00D22F49 /* AddDataSourceViewController.m in Sources */,
 				8328499419ABBB45005CA81E /* NSDate+M2X.m in Sources */,
-				8328499319ABBB45005CA81E /* M2x.m in Sources */,
+				8328499319ABBB45005CA81E /* CBBM2x.m in Sources */,
 				0B810E39185F742100D22F49 /* BatchListViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

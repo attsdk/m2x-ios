@@ -1,6 +1,6 @@
 
 #import "FeedLocationViewController.h"
-#import "FeedsClient.h"
+#import "CBBFeedsClient.h"
 #import "NSDate+M2X.h"
 
 @interface FeedLocationViewController ()

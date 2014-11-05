@@ -1,23 +1,14 @@
 
-#import "DataSourceClient.h"
-#import "M2x.h"
+#import "CBBDataSourceClient.h"
+#import "CBBM2x.h"
 
-@implementation DataSourceClient
-
--(NSString *)getApiKey{
-    
-    if(!_feed_key || [_feed_key isEqualToString:@""]){
-        return [M2x shared].apiKey;
-    }
-    
-    return _feed_key;
-}
+@implementation CBBDataSourceClient
 
 -(void)listBlueprintsWithSuccess:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure{
     
     NSString *path = @"/blueprints";
     
-    [[M2x shared] getWithPath:path andParameters:nil apiKey:[self getApiKey] success:success failure:failure];
+    [[CBBM2x shared] getWithPath:path andParameters:nil apiKey:[self apiKey] success:success failure:failure];
     
 }
 
@@ -25,7 +16,7 @@
     
     NSString *path = @"/blueprints";
     
-    [[M2x shared] postWithPath:path andParameters:blueprint apiKey:[self getApiKey] success:success failure:failure];
+    [[CBBM2x shared] postWithPath:path andParameters:blueprint apiKey:[self apiKey] success:success failure:failure];
     
 }
 
@@ -33,7 +24,7 @@
     
     NSString *path = [NSString stringWithFormat:@"/blueprints/%@",blueprint_id];
     
-    [[M2x shared] getWithPath:path andParameters:nil apiKey:[self getApiKey] success:success failure:failure];
+    [[CBBM2x shared] getWithPath:path andParameters:nil apiKey:[self apiKey] success:success failure:failure];
     
 }
 
@@ -41,7 +32,7 @@
     
     NSString *path = [NSString stringWithFormat:@"/blueprints/%@",blueprint_id];
     
-    [[M2x shared] putWithPath:path andParameters:parameters apiKey:[self getApiKey] success:success failure:failure];
+    [[CBBM2x shared] putWithPath:path andParameters:parameters apiKey:[self apiKey] success:success failure:failure];
     
 }
 
@@ -49,7 +40,7 @@
     
     NSString *path = [NSString stringWithFormat:@"/blueprints/%@",blueprint_id];
     
-    [[M2x shared] deleteWithPath:path andParameters:nil apiKey:[self getApiKey] success:success failure:failure];
+    [[CBBM2x shared] deleteWithPath:path andParameters:nil apiKey:[self apiKey] success:success failure:failure];
     
 }
 
@@ -57,7 +48,7 @@
     
     NSString *path = @"/batches";
     
-    [[M2x shared] getWithPath:path andParameters:nil apiKey:[self getApiKey] success:success failure:failure];
+    [[CBBM2x shared] getWithPath:path andParameters:nil apiKey:[self apiKey] success:success failure:failure];
     
 }
 
@@ -65,7 +56,7 @@
     
     NSString *path = @"/batches";
     
-    [[M2x shared] postWithPath:path andParameters:batch apiKey:[self getApiKey] success:success failure:failure];
+    [[CBBM2x shared] postWithPath:path andParameters:batch apiKey:[self apiKey] success:success failure:failure];
     
 }
 
@@ -73,7 +64,7 @@
     
     NSString *path = [NSString stringWithFormat:@"/batches/%@",batch_id];
     
-    [[M2x shared] getWithPath:path andParameters:nil apiKey:[self getApiKey] success:success failure:failure];
+    [[CBBM2x shared] getWithPath:path andParameters:nil apiKey:[self apiKey] success:success failure:failure];
     
 }
 
@@ -81,7 +72,7 @@
     
     NSString *path = [NSString stringWithFormat:@"/batches/%@",batch_id];
     
-    [[M2x shared] putWithPath:path andParameters:nil apiKey:[self getApiKey] success:success failure:failure];
+    [[CBBM2x shared] putWithPath:path andParameters:nil apiKey:[self apiKey] success:success failure:failure];
     
 }
 
@@ -90,7 +81,7 @@
     
     NSString *path = [NSString stringWithFormat:@"/batches/%@/datasources",batch_id];
     
-    [[M2x shared] getWithPath:path andParameters:nil apiKey:[self getApiKey] success:success failure:failure];
+    [[CBBM2x shared] getWithPath:path andParameters:nil apiKey:[self apiKey] success:success failure:failure];
     
 }
 
@@ -98,7 +89,7 @@
     
     NSString *path = [NSString stringWithFormat:@"/batches/%@/datasources",batch_id];
     
-    [[M2x shared] postWithPath:path andParameters:parameters apiKey:[self getApiKey] success:success failure:failure];
+    [[CBBM2x shared] postWithPath:path andParameters:parameters apiKey:[self apiKey] success:success failure:failure];
     
 }
 
@@ -106,7 +97,7 @@
     
     NSString *path = [NSString stringWithFormat:@"/batches/%@",batch_id];
     
-    [[M2x shared] deleteWithPath:path andParameters:nil apiKey:[self getApiKey] success:success failure:failure];
+    [[CBBM2x shared] deleteWithPath:path andParameters:nil apiKey:[self apiKey] success:success failure:failure];
     
 }
 
@@ -114,7 +105,7 @@
     
     NSString *path = @"/datasources";
     
-    [[M2x shared] getWithPath:path andParameters:nil apiKey:[self getApiKey] success:success failure:failure];
+    [[CBBM2x shared] getWithPath:path andParameters:nil apiKey:[self apiKey] success:success failure:failure];
     
 }
 
@@ -122,7 +113,7 @@
     
     NSString *path = @"/datasources";
     
-    [[M2x shared] postWithPath:path andParameters:dataSource apiKey:[self getApiKey] success:success failure:failure];
+    [[CBBM2x shared] postWithPath:path andParameters:dataSource apiKey:[self apiKey] success:success failure:failure];
     
 }
 
@@ -130,7 +121,7 @@
     
     NSString *path = [NSString stringWithFormat:@"/datasources/%@",datasource_id];
     
-    [[M2x shared] getWithPath:path andParameters:nil apiKey:[self getApiKey] success:success failure:failure];
+    [[CBBM2x shared] getWithPath:path andParameters:nil apiKey:[self apiKey] success:success failure:failure];
     
 }
 
@@ -138,7 +129,7 @@
     
     NSString *path = [NSString stringWithFormat:@"/datasources/%@",datasource_id];
     
-    [[M2x shared] putWithPath:path andParameters:parameters apiKey:[self getApiKey] success:success failure:failure];
+    [[CBBM2x shared] putWithPath:path andParameters:parameters apiKey:[self apiKey] success:success failure:failure];
     
 }
 
@@ -146,7 +137,7 @@
     
     NSString *path = [NSString stringWithFormat:@"/datasources/%@",datasource_id];
     
-    [[M2x shared] deleteWithPath:path andParameters:nil apiKey:[self getApiKey] success:success failure:failure];
+    [[CBBM2x shared] deleteWithPath:path andParameters:nil apiKey:[self apiKey] success:success failure:failure];
     
 }
 

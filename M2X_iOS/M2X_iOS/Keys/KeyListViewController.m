@@ -2,7 +2,7 @@
 #import "KeyListViewController.h"
 #import "CreateKeyViewController.h"
 #import "KeyDetailsViewController.h"
-#import "KeysClient.h"
+#import "CBBKeysClient.h"
 
 @interface KeyListViewController ()
 
@@ -24,7 +24,7 @@
     
     [super viewDidLoad];
     
-    _keysClient = [[KeysClient alloc] init];
+    _keysClient = [[CBBKeysClient alloc] init];
     
     _keysArray = [NSMutableArray array];
     

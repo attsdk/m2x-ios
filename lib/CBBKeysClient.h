@@ -1,11 +1,12 @@
 
 #import <Foundation/Foundation.h>
-#import "M2x.h"
+#import "CBBM2x.h"
+#import "CBBBaseClient.h"
 
 typedef void (^M2XAPIClientSuccessObject)(id object);
 typedef void (^M2XAPIClientFailureError)(NSError *error,NSDictionary *message);
 
-@interface KeysClient : NSObject
+@interface CBBKeysClient : CBBBaseClient
 
 
 ///------------------------------------
@@ -74,7 +75,5 @@ typedef void (^M2XAPIClientFailureError)(NSError *error,NSDictionary *message);
  Delete an existing key.
  */
 -(NSURLRequest *)deleteKey:(NSString*)key success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure;
-
-@property (nonatomic,strong) NSString *feed_key;
 
 @end

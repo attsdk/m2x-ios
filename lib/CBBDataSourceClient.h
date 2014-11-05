@@ -1,11 +1,12 @@
 
 #import <Foundation/Foundation.h>
-#import "M2x.h"
+#import "CBBM2x.h"
+#import "CBBBaseClient.h"
 
 typedef void (^M2XAPIClientSuccessObject)(id object);
 typedef void (^M2XAPIClientFailureError)(NSError *error,NSDictionary *message);
 
-@interface DataSourceClient : NSObject
+@interface CBBDataSourceClient : CBBBaseClient
 
 
 ///------------------------------------
@@ -202,9 +203,5 @@ Retrieve list of data source blueprints accessible by the authenticated API key.
  Delete an existing data source.
  */
 -(void)deleteDatasource:(NSString*)datasource_id success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure;
-
-
-@property (nonatomic,strong) NSString *feed_key;
-
 
 @end

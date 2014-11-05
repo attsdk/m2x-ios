@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
-#import "KeysClient.h"
+#import "CBBKeysClient.h"
 
 @interface KeysTests : XCTestCase
 
@@ -26,9 +26,31 @@
     [super tearDown];
 }
 
+- (void)testUseApiKeyWhenFeedKeyIsUnavailable {
+    [CBBM2x shared].apiKey = @"apiKey";
+    
+    CBBKeysClient *client = [CBBKeysClient new];
+    client.feedKey = nil;
+    
+    NSURLRequest *request = [client listKeysWithParameters:nil success:nil failure:nil];
+    
+    XCTAssertEqualObjects(request.allHTTPHeaderFields[@"X-M2X-KEY"], @"apiKey");
+}
+
+- (void)testUseFeedKeyWhenAvailable {
+    [CBBM2x shared].apiKey = @"apiKey";
+    
+    CBBKeysClient *client = [CBBKeysClient new];
+    client.feedKey = @"feedKey";
+    
+    NSURLRequest *request = [client listKeysWithParameters:nil success:nil failure:nil];
+
+    XCTAssertEqualObjects(request.allHTTPHeaderFields[@"X-M2X-KEY"], @"feedKey");
+}
+
 - (void)testKeysListing {
-    KeysClient *client = [KeysClient new];
-    client.feed_key = @"1234";
+    CBBKeysClient *client = [CBBKeysClient new];
+    client.feedKey = @"1234";
     
     NSURLRequest *req = [client listKeysWithParameters:@{@"limit": @"10", @"q": @"bla"} success:nil failure:nil];
     

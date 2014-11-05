@@ -1,6 +1,6 @@
 
 #import "FeedsListViewController.h"
-#import "M2x.h"
+#import "CBBM2x.h"
 #import "FeedDescriptionViewController.h"
 
 @interface FeedsListViewController ()
@@ -22,7 +22,7 @@
 {
     [super viewDidLoad];
     
-    _feedClient = [[FeedsClient alloc] init];
+    _feedClient = [[CBBFeedsClient alloc] init];
     
     //get list of feeds without parameters
     [_feedClient listWithParameters:nil success:^(id object) {

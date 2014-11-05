@@ -7,11 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E24E2B151A0A61670019D3EB /* CBBBaseClient.m in Sources */ = {isa = PBXBuildFile; fileRef = E24E2B141A0A61670019D3EB /* CBBBaseClient.m */; };
+		E24E2B1A1A0A63DD0019D3EB /* CBBM2x.m in Sources */ = {isa = PBXBuildFile; fileRef = E24E2B191A0A63DD0019D3EB /* CBBM2x.m */; };
 		E25935B11A095F0000BE1B2D /* libM2XLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E25935A51A095F0000BE1B2D /* libM2XLib.a */; };
-		E2D2B3E01A095F2700E8A733 /* DataSourceClient.m in Sources */ = {isa = PBXBuildFile; fileRef = E2D2B3D71A095F2700E8A733 /* DataSourceClient.m */; };
-		E2D2B3E11A095F2700E8A733 /* FeedsClient.m in Sources */ = {isa = PBXBuildFile; fileRef = E2D2B3D91A095F2700E8A733 /* FeedsClient.m */; };
-		E2D2B3E21A095F2700E8A733 /* KeysClient.m in Sources */ = {isa = PBXBuildFile; fileRef = E2D2B3DB1A095F2700E8A733 /* KeysClient.m */; };
-		E2D2B3E31A095F2700E8A733 /* M2x.m in Sources */ = {isa = PBXBuildFile; fileRef = E2D2B3DD1A095F2700E8A733 /* M2x.m */; };
+		E2D2B3E01A095F2700E8A733 /* CBBDataSourceClient.m in Sources */ = {isa = PBXBuildFile; fileRef = E2D2B3D71A095F2700E8A733 /* CBBDataSourceClient.m */; };
+		E2D2B3E11A095F2700E8A733 /* CBBFeedsClient.m in Sources */ = {isa = PBXBuildFile; fileRef = E2D2B3D91A095F2700E8A733 /* CBBFeedsClient.m */; };
+		E2D2B3E21A095F2700E8A733 /* CBBKeysClient.m in Sources */ = {isa = PBXBuildFile; fileRef = E2D2B3DB1A095F2700E8A733 /* CBBKeysClient.m */; };
 		E2D2B3E41A095F2700E8A733 /* NSDate+M2X.m in Sources */ = {isa = PBXBuildFile; fileRef = E2D2B3DF1A095F2700E8A733 /* NSDate+M2X.m */; };
 		E2D2B3E91A096D7600E8A733 /* KeysTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E2D2B3E81A096D7600E8A733 /* KeysTests.m */; };
 		E2D2B3EB1A0A43DD00E8A733 /* M2xTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E2D2B3EA1A0A43DD00E8A733 /* M2xTests.m */; };
@@ -40,17 +41,19 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		E24E2B131A0A61670019D3EB /* CBBBaseClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBBBaseClient.h; sourceTree = "<group>"; };
+		E24E2B141A0A61670019D3EB /* CBBBaseClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBBBaseClient.m; sourceTree = "<group>"; };
+		E24E2B191A0A63DD0019D3EB /* CBBM2x.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBBM2x.m; sourceTree = "<group>"; };
 		E25935A51A095F0000BE1B2D /* libM2XLib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libM2XLib.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E25935B01A095F0000BE1B2D /* M2XLibTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = M2XLibTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E25935B61A095F0000BE1B2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E2D2B3D61A095F2700E8A733 /* DataSourceClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataSourceClient.h; sourceTree = "<group>"; };
-		E2D2B3D71A095F2700E8A733 /* DataSourceClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataSourceClient.m; sourceTree = "<group>"; };
-		E2D2B3D81A095F2700E8A733 /* FeedsClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedsClient.h; sourceTree = "<group>"; };
-		E2D2B3D91A095F2700E8A733 /* FeedsClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedsClient.m; sourceTree = "<group>"; };
-		E2D2B3DA1A095F2700E8A733 /* KeysClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeysClient.h; sourceTree = "<group>"; };
-		E2D2B3DB1A095F2700E8A733 /* KeysClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeysClient.m; sourceTree = "<group>"; };
-		E2D2B3DC1A095F2700E8A733 /* M2x.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M2x.h; sourceTree = "<group>"; };
-		E2D2B3DD1A095F2700E8A733 /* M2x.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M2x.m; sourceTree = "<group>"; };
+		E2D2B3D61A095F2700E8A733 /* CBBDataSourceClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBBDataSourceClient.h; sourceTree = "<group>"; };
+		E2D2B3D71A095F2700E8A733 /* CBBDataSourceClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBBDataSourceClient.m; sourceTree = "<group>"; };
+		E2D2B3D81A095F2700E8A733 /* CBBFeedsClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBBFeedsClient.h; sourceTree = "<group>"; };
+		E2D2B3D91A095F2700E8A733 /* CBBFeedsClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBBFeedsClient.m; sourceTree = "<group>"; };
+		E2D2B3DA1A095F2700E8A733 /* CBBKeysClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBBKeysClient.h; sourceTree = "<group>"; };
+		E2D2B3DB1A095F2700E8A733 /* CBBKeysClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBBKeysClient.m; sourceTree = "<group>"; };
+		E2D2B3DC1A095F2700E8A733 /* CBBM2x.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBBM2x.h; sourceTree = "<group>"; };
 		E2D2B3DE1A095F2700E8A733 /* NSDate+M2X.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+M2X.h"; sourceTree = "<group>"; };
 		E2D2B3DF1A095F2700E8A733 /* NSDate+M2X.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+M2X.m"; sourceTree = "<group>"; };
 		E2D2B3E81A096D7600E8A733 /* KeysTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeysTests.m; sourceTree = "<group>"; };
@@ -123,16 +126,18 @@
 		E2D2B3D51A095F2700E8A733 /* lib */ = {
 			isa = PBXGroup;
 			children = (
-				E2D2B3D61A095F2700E8A733 /* DataSourceClient.h */,
-				E2D2B3D71A095F2700E8A733 /* DataSourceClient.m */,
-				E2D2B3D81A095F2700E8A733 /* FeedsClient.h */,
-				E2D2B3D91A095F2700E8A733 /* FeedsClient.m */,
-				E2D2B3DA1A095F2700E8A733 /* KeysClient.h */,
-				E2D2B3DB1A095F2700E8A733 /* KeysClient.m */,
-				E2D2B3DC1A095F2700E8A733 /* M2x.h */,
-				E2D2B3DD1A095F2700E8A733 /* M2x.m */,
+				E2D2B3D61A095F2700E8A733 /* CBBDataSourceClient.h */,
+				E2D2B3D71A095F2700E8A733 /* CBBDataSourceClient.m */,
+				E2D2B3D81A095F2700E8A733 /* CBBFeedsClient.h */,
+				E2D2B3D91A095F2700E8A733 /* CBBFeedsClient.m */,
+				E2D2B3DA1A095F2700E8A733 /* CBBKeysClient.h */,
+				E2D2B3DB1A095F2700E8A733 /* CBBKeysClient.m */,
+				E24E2B191A0A63DD0019D3EB /* CBBM2x.m */,
+				E2D2B3DC1A095F2700E8A733 /* CBBM2x.h */,
 				E2D2B3DE1A095F2700E8A733 /* NSDate+M2X.h */,
 				E2D2B3DF1A095F2700E8A733 /* NSDate+M2X.m */,
+				E24E2B131A0A61670019D3EB /* CBBBaseClient.h */,
+				E24E2B141A0A61670019D3EB /* CBBBaseClient.m */,
 			);
 			name = lib;
 			path = ../../lib;
@@ -226,11 +231,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E2D2B3E11A095F2700E8A733 /* FeedsClient.m in Sources */,
+				E2D2B3E11A095F2700E8A733 /* CBBFeedsClient.m in Sources */,
+				E24E2B151A0A61670019D3EB /* CBBBaseClient.m in Sources */,
 				E2D2B3E41A095F2700E8A733 /* NSDate+M2X.m in Sources */,
-				E2D2B3E21A095F2700E8A733 /* KeysClient.m in Sources */,
-				E2D2B3E01A095F2700E8A733 /* DataSourceClient.m in Sources */,
-				E2D2B3E31A095F2700E8A733 /* M2x.m in Sources */,
+				E24E2B1A1A0A63DD0019D3EB /* CBBM2x.m in Sources */,
+				E2D2B3E21A095F2700E8A733 /* CBBKeysClient.m in Sources */,
+				E2D2B3E01A095F2700E8A733 /* CBBDataSourceClient.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

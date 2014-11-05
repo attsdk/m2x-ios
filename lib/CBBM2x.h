@@ -9,9 +9,9 @@ enum {
     CBBM2xNoApiKey = 1,
 };
 
-@interface M2x : NSObject
+@interface CBBM2x : NSObject
 
-+(M2x*) shared;
++(CBBM2x*) shared;
 
 -(NSURLRequest *)getWithPath:(NSString*)path andParameters:(NSDictionary*)parameters apiKey:(NSString*)apiKey_used success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure;
 -(NSURLRequest *)postWithPath:(NSString*)path andParameters:(NSDictionary*)parameters apiKey:(NSString*)apiKey_used success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure;

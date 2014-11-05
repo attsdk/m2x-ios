@@ -1,5 +1,5 @@
 
-#import "M2x.h"
+#import "CBBM2x.h"
 #include <sys/types.h>
 #include <sys/sysctl.h>
 
@@ -9,18 +9,18 @@ static NSString * const m2xLibVersion = @"1.0";
 
 static NSString * const CBBM2xErrorDomain = @"CBBM2xErrorDomain";
 
-@interface M2x()
+@interface CBBM2x()
 @property (strong, nonatomic) NSURLSession *session;
 @end
 
-@implementation M2x
+@implementation CBBM2x
 
-+ (M2x *)shared
++ (CBBM2x *)shared
 {
-    static M2x *shared = nil;
+    static CBBM2x *shared = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        shared = [[M2x alloc] init];
+        shared = [[CBBM2x alloc] init];
     });
     return shared;
 }
@@ -74,7 +74,7 @@ static NSString * const CBBM2xErrorDomain = @"CBBM2xErrorDomain";
         return nil;
     }
     
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", [M2x shared].apiUrl, path]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", [CBBM2x shared].apiUrl, path]];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [self prepareUrlRequest:request apiKey:apiKey_used];
     [self prepareUrlRequest:request parameters:parameters];
@@ -116,7 +116,7 @@ static NSString * const CBBM2xErrorDomain = @"CBBM2xErrorDomain";
         return nil;
     }
     
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", [M2x shared].apiUrl, path]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", [CBBM2x shared].apiUrl, path]];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [self prepareUrlRequest:request apiKey:apiKey_used];
     [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
@@ -159,7 +159,7 @@ static NSString * const CBBM2xErrorDomain = @"CBBM2xErrorDomain";
         return nil;
     }
 
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", [M2x shared].apiUrl, path]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", [CBBM2x shared].apiUrl, path]];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [self prepareUrlRequest:request apiKey:apiKey_used];
     [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
@@ -195,7 +195,7 @@ static NSString * const CBBM2xErrorDomain = @"CBBM2xErrorDomain";
         return nil;
     }
 
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", [M2x shared].apiUrl, path]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", [CBBM2x shared].apiUrl, path]];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setHTTPMethod:@"DELETE"];
     [self prepareUrlRequest:request apiKey:apiKey_used];

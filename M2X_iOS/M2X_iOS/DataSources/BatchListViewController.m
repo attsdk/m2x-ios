@@ -12,7 +12,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.dataSourceClient = [DataSourceClient new];
+    self.dataSourceClient = [CBBDataSourceClient new];
 }
 
 - (void)viewDidAppear:(BOOL)animated

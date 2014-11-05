@@ -1,11 +1,11 @@
 
 #import <UIKit/UIKit.h>
-#import "DataSourceClient.h"
+#import "CBBDataSourceClient.h"
 
 @interface BatchDetailsViewController : UIViewController <UITableViewDataSource,UITableViewDelegate>
 
 @property (nonatomic, strong) NSMutableArray *dataSources;
-@property (nonatomic, strong) DataSourceClient *dataSourceClient;
+@property (nonatomic, strong) CBBDataSourceClient *dataSourceClient;
 @property (nonatomic, strong) NSString *batch_id;
 @property (weak, nonatomic) IBOutlet UITableView *tableViewDataSources;
 

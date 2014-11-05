@@ -1,6 +1,6 @@
 
 #import <UIKit/UIKit.h>
-#import "FeedsClient.h"
+#import "CBBFeedsClient.h"
 
 @interface FeedDescriptionViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
@@ -9,7 +9,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableViewStreams;
 
 @property (nonatomic, strong) NSMutableArray *streamList;
-@property (nonatomic, strong) FeedsClient *feedClient;
+@property (nonatomic, strong) CBBFeedsClient *feedClient;
 @property (nonatomic, strong) NSString *feed_id;
 
 @end
