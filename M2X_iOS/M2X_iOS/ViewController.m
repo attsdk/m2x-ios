@@ -23,7 +23,7 @@
     self.tfMasterKey.text = [defaults stringForKey:@"api_key"];
     self.tfMasterKey.delegate = self;
 
-    self.tfURL.text = [defaults stringForKey:@"api_url"];
+    self.tfURL.text = [[defaults stringForKey:@"api_url"] length] > 0 ? [defaults stringForKey:@"api_url"] : [[M2x shared] apiUrl];
     self.tfURL.delegate = self;
 
 }
@@ -37,8 +37,8 @@
     
     
     M2x* m2x = [M2x shared];
-    m2x.api_key = [_tfMasterKey text]; // Master API Key
-    m2x.api_url = [_tfURL text]; // M2X API endpoint URL
+    m2x.apiKey = [_tfMasterKey text]; // Master API Key
+    m2x.apiUrl = [_tfURL text]; // M2X API endpoint URL
 }
 
 - (IBAction)doSave:(id)sender

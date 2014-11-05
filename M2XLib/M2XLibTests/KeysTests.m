@@ -28,11 +28,13 @@
 
 - (void)testKeysListing {
     KeysClient *client = [KeysClient new];
+    client.feed_key = @"1234";
     
     NSURLRequest *req = [client listKeysWithParameters:@{@"limit": @"10", @"q": @"bla"} success:nil failure:nil];
     
     XCTAssertEqualObjects(req.URL.path, @"/v1/keys");
-    XCTAssertEqualObjects(req.URL.query, @"limit=10&q=bla");
+    XCTAssertTrue([req.URL.query rangeOfString:@"limit=10"].location != NSNotFound);
+    XCTAssertTrue([req.URL.query rangeOfString:@"q=bla"].location != NSNotFound);
 }
 
 @end

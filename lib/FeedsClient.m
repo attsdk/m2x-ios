@@ -4,12 +4,10 @@
 
 @implementation FeedsClient
 
-@synthesize feed_key=_feed_key;
-
 -(NSString *)getApiKey{
     
     if(!_feed_key || [_feed_key isEqualToString:@""]){
-        return [M2x shared].api_key;
+        return [M2x shared].apiKey;
     }
     
     return _feed_key;
@@ -19,7 +17,7 @@
     
     NSString *path = @"/feeds";
     
-    [[M2x shared] getWithPath:path andParameters:parameters api_key:[self getApiKey] success:success failure:failure];
+    [[M2x shared] getWithPath:path andParameters:parameters apiKey:[self getApiKey] success:success failure:failure];
     
 }
 
@@ -27,7 +25,7 @@
     
     NSString *path = [NSString stringWithFormat:@"/feeds/%@", feed_id];
     
-    [[M2x shared] getWithPath:path andParameters:nil api_key:[self getApiKey] success:success failure:failure];
+    [[M2x shared] getWithPath:path andParameters:nil apiKey:[self getApiKey] success:success failure:failure];
     
 }
 
@@ -35,7 +33,7 @@
     
     NSString *path = [NSString stringWithFormat:@"/feeds/%@/streams", feed_id];
     
-    [[M2x shared] getWithPath:path andParameters:nil api_key:[self getApiKey] success:success failure:failure];
+    [[M2x shared] getWithPath:path andParameters:nil apiKey:[self getApiKey] success:success failure:failure];
     
 }
 
@@ -43,7 +41,7 @@
     
     NSString *path = [NSString stringWithFormat:@"/feeds/%@/streams/%@/values",feed_id,stream];
     
-    [[M2x shared] getWithPath:path andParameters:parameters api_key:[self getApiKey] success:success failure:failure];
+    [[M2x shared] getWithPath:path andParameters:parameters apiKey:[self getApiKey] success:success failure:failure];
     
 }
 
@@ -51,7 +49,7 @@
     
     NSString *path = [NSString stringWithFormat:@"/feeds/%@/streams/%@/values",feed_id,stream];
     
-    [[M2x shared] postWithPath:path andParameters:values api_key:[self getApiKey] success:success failure:failure];
+    [[M2x shared] postWithPath:path andParameters:values apiKey:[self getApiKey] success:success failure:failure];
     
 }
 
@@ -59,7 +57,7 @@
     
     NSString *path = [NSString stringWithFormat:@"/feeds/%@",feed_id];
     
-    [[M2x shared] postWithPath:path andParameters:values api_key:[self getApiKey] success:success failure:failure];
+    [[M2x shared] postWithPath:path andParameters:values apiKey:[self getApiKey] success:success failure:failure];
     
 }
 
@@ -68,7 +66,7 @@
     
     NSString *path = [NSString stringWithFormat:@"/feeds/%@/location",feed_id];
     
-    [[M2x shared] getWithPath:path andParameters:nil api_key:[self getApiKey] success:success failure:failure];
+    [[M2x shared] getWithPath:path andParameters:nil apiKey:[self getApiKey] success:success failure:failure];
     
 }
 
@@ -76,7 +74,7 @@
     
     NSString *path = [NSString stringWithFormat:@"/feeds/%@/location",feed_id];
     
-    [[M2x shared] putWithPath:path andParameters:location api_key:[self getApiKey] success:success failure:failure];
+    [[M2x shared] putWithPath:path andParameters:location apiKey:[self getApiKey] success:success failure:failure];
     
 }
 
@@ -84,7 +82,7 @@
     
     NSString *path = [NSString stringWithFormat:@"/feeds/%@/streams/%@",feed_id,stream];
     
-    [[M2x shared] putWithPath:path andParameters:parameters api_key:[self getApiKey] success:success failure:failure];
+    [[M2x shared] putWithPath:path andParameters:parameters apiKey:[self getApiKey] success:success failure:failure];
     
 }
 
@@ -92,7 +90,7 @@
     
     NSString *path = [NSString stringWithFormat:@"/feeds/%@/streams/%@",feed_id,stream];
     
-    [[M2x shared] putWithPath:path andParameters:parameters api_key:[self getApiKey] success:success failure:failure];
+    [[M2x shared] putWithPath:path andParameters:parameters apiKey:[self getApiKey] success:success failure:failure];
     
 }
 
@@ -102,7 +100,7 @@
     
     NSString *path = [NSString stringWithFormat:@"/feeds/%@/streams/%@",feed_id,stream];
     
-    [[M2x shared] getWithPath:path andParameters:nil api_key:[self getApiKey] success:success failure:failure];
+    [[M2x shared] getWithPath:path andParameters:nil apiKey:[self getApiKey] success:success failure:failure];
     
 }
 
@@ -110,7 +108,7 @@
     
     NSString *path = [NSString stringWithFormat:@"/feeds/%@/streams/%@",feed_id,stream];
     
-    [[M2x shared] deleteWithPath:path andParameters:nil api_key:[self getApiKey] success:success failure:failure];
+    [[M2x shared] deleteWithPath:path andParameters:nil apiKey:[self getApiKey] success:success failure:failure];
     
 }
 
@@ -118,7 +116,7 @@
 
     NSString *path = [NSString stringWithFormat:@"/feeds/%@/triggers",feed_id];
     
-    [[M2x shared] getWithPath:path andParameters:nil api_key:[self getApiKey] success:success failure:failure];
+    [[M2x shared] getWithPath:path andParameters:nil apiKey:[self getApiKey] success:success failure:failure];
     
 }
 
@@ -126,7 +124,7 @@
     
     NSString *path = [NSString stringWithFormat:@"/feeds/%@/triggers",feed_id];
     
-    [[M2x shared] postWithPath:path andParameters:trigger api_key:[self getApiKey] success:success failure:failure];
+    [[M2x shared] postWithPath:path andParameters:trigger apiKey:[self getApiKey] success:success failure:failure];
     
 }
 
@@ -134,7 +132,7 @@
     
     NSString *path = [NSString stringWithFormat:@"/feeds/%@/triggers/%@",feed_id,trigger_id];
     
-    [[M2x shared] getWithPath:path andParameters:nil api_key:[self getApiKey] success:success failure:failure];
+    [[M2x shared] getWithPath:path andParameters:nil apiKey:[self getApiKey] success:success failure:failure];
     
 }
 
@@ -142,7 +140,7 @@
     
     NSString *path = [NSString stringWithFormat:@"/feeds/%@/triggers/%@",feed_id,trigger_id];
     
-    [[M2x shared] putWithPath:path andParameters:nil api_key:[self getApiKey] success:success failure:failure];
+    [[M2x shared] putWithPath:path andParameters:nil apiKey:[self getApiKey] success:success failure:failure];
     
 }
 
@@ -150,7 +148,7 @@
     
     NSString *path = [NSString stringWithFormat:@"/feeds/%@/triggers/%@/test",feed_id,trigger_id];
     
-    [[M2x shared] postWithPath:path andParameters:nil api_key:[self getApiKey] success:success failure:failure];
+    [[M2x shared] postWithPath:path andParameters:nil apiKey:[self getApiKey] success:success failure:failure];
     
 }
 
@@ -158,7 +156,7 @@
     
     NSString *path = [NSString stringWithFormat:@"/feeds/%@/triggers/%@/test",feed_id,trigger_id];
     
-    [[M2x shared] postWithPath:path andParameters:nil api_key:[self getApiKey] success:success failure:failure];
+    [[M2x shared] postWithPath:path andParameters:nil apiKey:[self getApiKey] success:success failure:failure];
     
 }
 
@@ -166,7 +164,7 @@
     
     NSString *path = [NSString stringWithFormat:@"/feeds/%@/log",feed_id];
     
-    [[M2x shared] getWithPath:path andParameters:nil api_key:[self getApiKey] success:success failure:failure];
+    [[M2x shared] getWithPath:path andParameters:nil apiKey:[self getApiKey] success:success failure:failure];
     
 }
 

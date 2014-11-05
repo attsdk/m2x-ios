@@ -5,20 +5,20 @@
 typedef void (^M2XAPIClientSuccessObject)(id object);
 typedef void (^M2XAPIClientFailureError)(NSError *error,NSDictionary *message);
 
-@interface M2x : NSObject
+enum {
+    CBBM2xNoApiKey = 1,
+};
 
-// API URL must not have the last slash.
-#define M2X_API_URL @"https://api-m2x.att.com/v1"
-#define M2X_LIB_VERSION @"1.0"
+@interface M2x : NSObject
 
 +(M2x*) shared;
 
--(NSURLRequest *)getWithPath:(NSString*)path andParameters:(NSDictionary*)parameters api_key:(NSString*)api_key_used success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure;
--(NSURLRequest *)postWithPath:(NSString*)path andParameters:(NSDictionary*)parameters api_key:(NSString*)api_key_used success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure;
--(NSURLRequest *)putWithPath:(NSString*)path andParameters:(NSDictionary*)parameters api_key:(NSString*)api_key_used success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure;
--(NSURLRequest *)deleteWithPath:(NSString*)path andParameters:(NSDictionary*)parameters api_key:(NSString*)api_key_used success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure;
+-(NSURLRequest *)getWithPath:(NSString*)path andParameters:(NSDictionary*)parameters apiKey:(NSString*)apiKey_used success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure;
+-(NSURLRequest *)postWithPath:(NSString*)path andParameters:(NSDictionary*)parameters apiKey:(NSString*)apiKey_used success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure;
+-(NSURLRequest *)putWithPath:(NSString*)path andParameters:(NSDictionary*)parameters apiKey:(NSString*)apiKey_used success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure;
+-(NSURLRequest *)deleteWithPath:(NSString*)path andParameters:(NSDictionary*)parameters apiKey:(NSString*)apiKey_used success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure;
 
-@property (nonatomic, strong, getter = getApiUrl) NSString *api_url;
-@property (nonatomic, strong) NSString *api_key;
+@property (nonatomic, copy) NSString *apiUrl;
+@property (nonatomic, copy) NSString *apiKey;
 
 @end

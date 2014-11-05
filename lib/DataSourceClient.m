@@ -7,7 +7,7 @@
 -(NSString *)getApiKey{
     
     if(!_feed_key || [_feed_key isEqualToString:@""]){
-        return [M2x shared].api_key;
+        return [M2x shared].apiKey;
     }
     
     return _feed_key;
@@ -17,7 +17,7 @@
     
     NSString *path = @"/blueprints";
     
-    [[M2x shared] getWithPath:path andParameters:nil api_key:[self getApiKey] success:success failure:failure];
+    [[M2x shared] getWithPath:path andParameters:nil apiKey:[self getApiKey] success:success failure:failure];
     
 }
 
@@ -25,7 +25,7 @@
     
     NSString *path = @"/blueprints";
     
-    [[M2x shared] postWithPath:path andParameters:blueprint api_key:[self getApiKey] success:success failure:failure];
+    [[M2x shared] postWithPath:path andParameters:blueprint apiKey:[self getApiKey] success:success failure:failure];
     
 }
 
@@ -33,7 +33,7 @@
     
     NSString *path = [NSString stringWithFormat:@"/blueprints/%@",blueprint_id];
     
-    [[M2x shared] getWithPath:path andParameters:nil api_key:[self getApiKey] success:success failure:failure];
+    [[M2x shared] getWithPath:path andParameters:nil apiKey:[self getApiKey] success:success failure:failure];
     
 }
 
@@ -41,7 +41,7 @@
     
     NSString *path = [NSString stringWithFormat:@"/blueprints/%@",blueprint_id];
     
-    [[M2x shared] putWithPath:path andParameters:parameters api_key:[self getApiKey] success:success failure:failure];
+    [[M2x shared] putWithPath:path andParameters:parameters apiKey:[self getApiKey] success:success failure:failure];
     
 }
 
@@ -49,7 +49,7 @@
     
     NSString *path = [NSString stringWithFormat:@"/blueprints/%@",blueprint_id];
     
-    [[M2x shared] deleteWithPath:path andParameters:nil api_key:[self getApiKey] success:success failure:failure];
+    [[M2x shared] deleteWithPath:path andParameters:nil apiKey:[self getApiKey] success:success failure:failure];
     
 }
 
@@ -57,7 +57,7 @@
     
     NSString *path = @"/batches";
     
-    [[M2x shared] getWithPath:path andParameters:nil api_key:[self getApiKey] success:success failure:failure];
+    [[M2x shared] getWithPath:path andParameters:nil apiKey:[self getApiKey] success:success failure:failure];
     
 }
 
@@ -65,7 +65,7 @@
     
     NSString *path = @"/batches";
     
-    [[M2x shared] postWithPath:path andParameters:batch api_key:[self getApiKey] success:success failure:failure];
+    [[M2x shared] postWithPath:path andParameters:batch apiKey:[self getApiKey] success:success failure:failure];
     
 }
 
@@ -73,7 +73,7 @@
     
     NSString *path = [NSString stringWithFormat:@"/batches/%@",batch_id];
     
-    [[M2x shared] getWithPath:path andParameters:nil api_key:[self getApiKey] success:success failure:failure];
+    [[M2x shared] getWithPath:path andParameters:nil apiKey:[self getApiKey] success:success failure:failure];
     
 }
 
@@ -81,7 +81,7 @@
     
     NSString *path = [NSString stringWithFormat:@"/batches/%@",batch_id];
     
-    [[M2x shared] putWithPath:path andParameters:nil api_key:[self getApiKey] success:success failure:failure];
+    [[M2x shared] putWithPath:path andParameters:nil apiKey:[self getApiKey] success:success failure:failure];
     
 }
 
@@ -90,7 +90,7 @@
     
     NSString *path = [NSString stringWithFormat:@"/batches/%@/datasources",batch_id];
     
-    [[M2x shared] getWithPath:path andParameters:nil api_key:[self getApiKey] success:success failure:failure];
+    [[M2x shared] getWithPath:path andParameters:nil apiKey:[self getApiKey] success:success failure:failure];
     
 }
 
@@ -98,7 +98,7 @@
     
     NSString *path = [NSString stringWithFormat:@"/batches/%@/datasources",batch_id];
     
-    [[M2x shared] postWithPath:path andParameters:parameters api_key:[self getApiKey] success:success failure:failure];
+    [[M2x shared] postWithPath:path andParameters:parameters apiKey:[self getApiKey] success:success failure:failure];
     
 }
 
@@ -106,7 +106,7 @@
     
     NSString *path = [NSString stringWithFormat:@"/batches/%@",batch_id];
     
-    [[M2x shared] deleteWithPath:path andParameters:nil api_key:[self getApiKey] success:success failure:failure];
+    [[M2x shared] deleteWithPath:path andParameters:nil apiKey:[self getApiKey] success:success failure:failure];
     
 }
 
@@ -114,7 +114,7 @@
     
     NSString *path = @"/datasources";
     
-    [[M2x shared] getWithPath:path andParameters:nil api_key:[self getApiKey] success:success failure:failure];
+    [[M2x shared] getWithPath:path andParameters:nil apiKey:[self getApiKey] success:success failure:failure];
     
 }
 
@@ -122,7 +122,7 @@
     
     NSString *path = @"/datasources";
     
-    [[M2x shared] postWithPath:path andParameters:dataSource api_key:[self getApiKey] success:success failure:failure];
+    [[M2x shared] postWithPath:path andParameters:dataSource apiKey:[self getApiKey] success:success failure:failure];
     
 }
 
@@ -130,7 +130,7 @@
     
     NSString *path = [NSString stringWithFormat:@"/datasources/%@",datasource_id];
     
-    [[M2x shared] getWithPath:path andParameters:nil api_key:[self getApiKey] success:success failure:failure];
+    [[M2x shared] getWithPath:path andParameters:nil apiKey:[self getApiKey] success:success failure:failure];
     
 }
 
@@ -138,7 +138,7 @@
     
     NSString *path = [NSString stringWithFormat:@"/datasources/%@",datasource_id];
     
-    [[M2x shared] putWithPath:path andParameters:parameters api_key:[self getApiKey] success:success failure:failure];
+    [[M2x shared] putWithPath:path andParameters:parameters apiKey:[self getApiKey] success:success failure:failure];
     
 }
 
@@ -146,7 +146,7 @@
     
     NSString *path = [NSString stringWithFormat:@"/datasources/%@",datasource_id];
     
-    [[M2x shared] deleteWithPath:path andParameters:nil api_key:[self getApiKey] success:success failure:failure];
+    [[M2x shared] deleteWithPath:path andParameters:nil apiKey:[self getApiKey] success:success failure:failure];
     
 }
 

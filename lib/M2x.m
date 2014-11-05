@@ -3,14 +3,17 @@
 #include <sys/types.h>
 #include <sys/sysctl.h>
 
+// API URL must not have the last slash.
+static NSString * const m2xApiURL = @"https://api-m2x.att.com/v1";
+static NSString * const m2xLibVersion = @"1.0";
+
+static NSString * const CBBM2xErrorDomain = @"CBBM2xErrorDomain";
+
 @interface M2x()
 @property (strong, nonatomic) NSURLSession *session;
 @end
 
 @implementation M2x
-
-@synthesize api_key = _api_key;
-@synthesize api_url = _api_url;
 
 + (M2x *)shared
 {
@@ -25,21 +28,10 @@
 
 -(id)init {
     if (self = [super init]) {
-        self.api_url = M2X_API_URL;
+        self.apiUrl = m2xApiURL;
         self.session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
     }
     return self;
-}
-
--(void)setApi_url:(NSString *)api_url {
-    if (api_url && ![api_url isEqualToString:@""]) {
-        _api_url = [api_url stringByTrimmingCharactersInSet:
-                    [NSCharacterSet characterSetWithCharactersInString:@"/ "]];        
-    }
-}
-
--(NSString *)getApiUrl{
-    return _api_url;
 }
 
 -(NSString *)platform{
@@ -52,10 +44,10 @@
     return platform;
 }
 
--(void)prepareUrlRequest:(NSMutableURLRequest *)request api_key:(NSString*)api_key_used {
-    [request setValue:api_key_used forHTTPHeaderField:@"X-M2X-KEY"];
+-(void)prepareUrlRequest:(NSMutableURLRequest *)request apiKey:(NSString*)apiKey_used {
+    [request setValue:apiKey_used forHTTPHeaderField:@"X-M2X-KEY"];
     
-    [request setValue:[NSString stringWithFormat:@"M2X/%@ (iOS %@; %@)", M2X_LIB_VERSION, [[UIDevice currentDevice] systemVersion], [self platform]] forHTTPHeaderField:@"User-Agent"];
+    [request setValue:[NSString stringWithFormat:@"M2X/%@ (iOS %@; %@)", m2xLibVersion, [[UIDevice currentDevice] systemVersion], [self platform]] forHTTPHeaderField:@"User-Agent"];
 }
 
 -(void)prepareUrlRequest:(NSMutableURLRequest *)request parameters:(NSDictionary *)parameters {
@@ -73,17 +65,31 @@
 
 #pragma mark - Http methods
 
--(NSURLRequest *)getWithPath:(NSString*)path andParameters:(NSDictionary*)parameters api_key:(NSString*)api_key_used success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure{
+-(NSURLRequest *)getWithPath:(NSString*)path andParameters:(NSDictionary*)parameters apiKey:(NSString*)apiKey_used success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure {
+    if (!apiKey_used) {
+        NSError *error = [NSError errorWithDomain:CBBM2xErrorDomain code:CBBM2xNoApiKey userInfo:@{NSLocalizedFailureReasonErrorKey: @"Missing API key"}];
+        if (failure) {
+            failure(error, nil);            
+        }
+        return nil;
+    }
     
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", [M2x shared].api_url, path]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", [M2x shared].apiUrl, path]];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    [self prepareUrlRequest:request api_key:api_key_used];
+    [self prepareUrlRequest:request apiKey:apiKey_used];
     [self prepareUrlRequest:request parameters:parameters];
+    
+    if (!success) {
+        return request;
+    }
+
     NSURLSessionDataTask *task = [self.session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         NSError *jsonError = nil;
         NSDictionary *obj = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&jsonError];
         if (error) {
-            failure(error, obj);
+            if (failure) {
+                failure(error, obj);
+            }
         } else {
             success(obj);
         }
@@ -93,8 +99,16 @@
     return request;
 }
 
--(NSURLRequest *)postWithPath:(NSString*)path andParameters:(NSDictionary*)parameters api_key:(NSString*)api_key_used success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure{
-    
+-(NSURLRequest *)postWithPath:(NSString*)path andParameters:(NSDictionary*)parameters apiKey:(NSString*)apiKey_used success:(M2XAPIClientSuccessObject)success failure:
+(M2XAPIClientFailureError)failure {
+    if (!apiKey_used) {
+        NSError *error = [NSError errorWithDomain:CBBM2xErrorDomain code:100 userInfo:@{NSLocalizedFailureReasonErrorKey: @"Missing API key"}];
+        if (failure) {
+            failure(error, nil);
+        }
+        return nil;
+    }
+
     NSError *error = nil;
     NSData *postData = [NSJSONSerialization dataWithJSONObject:parameters options:0 error:&error];
     if (error) {
@@ -102,17 +116,24 @@
         return nil;
     }
     
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", [M2x shared].api_url, path]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", [M2x shared].apiUrl, path]];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    [self prepareUrlRequest:request api_key:api_key_used];
+    [self prepareUrlRequest:request apiKey:apiKey_used];
     [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:postData];
+    
+    if (!success) {
+        return request;
+    }
+
     NSURLSessionDataTask *task = [self.session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         NSError *jsonError = nil;
         NSDictionary *obj = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&jsonError];
         if (error) {
-            failure(error, obj);
+            if (failure) {
+                failure(error, obj);
+            }
         } else {
             success(obj);
         }
@@ -122,7 +143,14 @@
     return request;
 }
 
--(NSURLRequest *)putWithPath:(NSString*)path andParameters:(NSDictionary*)parameters api_key:(NSString*)api_key_used success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure{
+-(NSURLRequest *)putWithPath:(NSString*)path andParameters:(NSDictionary*)parameters apiKey:(NSString*)apiKey_used success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure {
+    if (!apiKey_used) {
+        NSError *error = [NSError errorWithDomain:CBBM2xErrorDomain code:100 userInfo:@{NSLocalizedFailureReasonErrorKey: @"Missing API key"}];
+        if (failure) {
+            failure(error, nil);
+        }
+        return nil;
+    }
 
     NSError *error = nil;
     NSData *postData = [NSJSONSerialization dataWithJSONObject:parameters options:0 error:&error];
@@ -131,17 +159,24 @@
         return nil;
     }
 
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", [M2x shared].api_url, path]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", [M2x shared].apiUrl, path]];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    [self prepareUrlRequest:request api_key:api_key_used];
+    [self prepareUrlRequest:request apiKey:apiKey_used];
     [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [request setHTTPMethod:@"PUT"];
     [request setHTTPBody:postData];
+    
+    if (!success) {
+        return request;
+    }
+    
     NSURLSessionDataTask *task = [self.session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         NSError *jsonError = nil;
         NSDictionary *obj = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&jsonError];
         if (error) {
-            failure(error, obj);
+            if (failure) {
+                failure(error, obj);
+            }
         } else {
             success(obj);
         }
@@ -151,18 +186,32 @@
     return request;
 }
 
--(NSURLRequest *)deleteWithPath:(NSString*)path andParameters:(NSDictionary*)parameters api_key:(NSString*)api_key_used success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure{
-    
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", [M2x shared].api_url, path]];
+-(NSURLRequest *)deleteWithPath:(NSString*)path andParameters:(NSDictionary*)parameters apiKey:(NSString*)apiKey_used success:(M2XAPIClientSuccessObject)success failure:(M2XAPIClientFailureError)failure {
+    if (!apiKey_used) {
+        NSError *error = [NSError errorWithDomain:CBBM2xErrorDomain code:100 userInfo:@{NSLocalizedFailureReasonErrorKey: @"Missing API key"}];
+        if (failure) {
+            failure(error, nil);
+        }
+        return nil;
+    }
+
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", [M2x shared].apiUrl, path]];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setHTTPMethod:@"DELETE"];
-    [self prepareUrlRequest:request api_key:api_key_used];
+    [self prepareUrlRequest:request apiKey:apiKey_used];
     [self prepareUrlRequest:request parameters:parameters];
+    
+    if (!success) {
+        return request;
+    }
+
     NSURLSessionDataTask *task = [self.session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         NSError *jsonError = nil;
         NSDictionary *obj = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&jsonError];
         if (error) {
-            failure(error, obj);
+            if (failure) {
+                failure(error, obj);
+            }
         } else {
             success(obj);
         }

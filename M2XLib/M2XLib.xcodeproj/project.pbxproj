@@ -14,6 +14,7 @@
 		E2D2B3E31A095F2700E8A733 /* M2x.m in Sources */ = {isa = PBXBuildFile; fileRef = E2D2B3DD1A095F2700E8A733 /* M2x.m */; };
 		E2D2B3E41A095F2700E8A733 /* NSDate+M2X.m in Sources */ = {isa = PBXBuildFile; fileRef = E2D2B3DF1A095F2700E8A733 /* NSDate+M2X.m */; };
 		E2D2B3E91A096D7600E8A733 /* KeysTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E2D2B3E81A096D7600E8A733 /* KeysTests.m */; };
+		E2D2B3EB1A0A43DD00E8A733 /* M2xTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E2D2B3EA1A0A43DD00E8A733 /* M2xTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		E2D2B3DE1A095F2700E8A733 /* NSDate+M2X.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+M2X.h"; sourceTree = "<group>"; };
 		E2D2B3DF1A095F2700E8A733 /* NSDate+M2X.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+M2X.m"; sourceTree = "<group>"; };
 		E2D2B3E81A096D7600E8A733 /* KeysTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeysTests.m; sourceTree = "<group>"; };
+		E2D2B3EA1A0A43DD00E8A733 /* M2xTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M2xTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 			children = (
 				E25935B51A095F0000BE1B2D /* Supporting Files */,
 				E2D2B3E81A096D7600E8A733 /* KeysTests.m */,
+				E2D2B3EA1A0A43DD00E8A733 /* M2xTests.m */,
 			);
 			path = M2XLibTests;
 			sourceTree = "<group>";
@@ -236,6 +239,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E2D2B3E91A096D7600E8A733 /* KeysTests.m in Sources */,
+				E2D2B3EB1A0A43DD00E8A733 /* M2xTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
