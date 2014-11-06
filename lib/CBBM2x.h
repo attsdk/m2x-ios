@@ -2,7 +2,7 @@
 #import <UIKit/UIKit.h>
 #import "NSDate+M2X.h"
 
-typedef void (^M2XAPICallback)(id object, NSURLResponse *response, NSError *error);
+typedef void (^M2XAPICallback)(id object, NSHTTPURLResponse *response, NSError *error);
 
 typedef enum : NSInteger {
     CBBM2xNoApiKey = 1,

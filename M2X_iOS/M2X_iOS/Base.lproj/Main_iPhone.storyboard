@@ -1238,9 +1238,7 @@
                             <constraint firstItem="v9Y-Jf-GNv" firstAttribute="leading" secondItem="tib-m8-uYN" secondAttribute="leadingMargin" constant="4" id="vRQ-Lo-KWh"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Stream Name" id="a9d-UA-m1F">
-                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="IQM-vE-GZT"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Stream Name" id="a9d-UA-m1F"/>
                     <connections>
                         <outlet property="lblUnit" destination="lfI-4t-W4T" id="Gw9-xo-Gr6"/>
                         <outlet property="tableViewStreamValues" destination="qmN-te-Ywo" id="Ahd-kF-Wit"/>

@@ -76,7 +76,7 @@
         
         NSString *now = [NSDate date].toISO8601;
         NSDictionary *args = @{ @"values": @[
-                                        @{ @"value": value, @"at": now }
+                                        @{ @"value": value, @"timestamp": now }
                                         ]
                                 };
         
@@ -129,7 +129,7 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     NSDictionary *valueData = self.valueList[indexPath.row];
-    NSDate *createdDate = [NSDate fromISO8601:valueData[@"at"]];
+    NSDate *createdDate = [NSDate fromISO8601:valueData[@"timestamp"]];
     NSString *dateString = [NSDateFormatter localizedStringFromDate:createdDate
                                                           dateStyle:NSDateFormatterShortStyle
                                                           timeStyle:NSDateFormatterShortStyle];

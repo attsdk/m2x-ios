@@ -79,9 +79,12 @@ NSString * const CBBM2xErrorDomain = @"CBBM2xErrorDomain";
     
     NSURLSessionDataTask *task = [self.session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         NSError *jsonError = nil;
-        NSDictionary *obj = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&jsonError];
+        id obj = nil;
+        if ([data length] > 0) {
+            obj = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&jsonError];
+        }
         if (completionHandler) {
-            completionHandler(obj, response, error ? error : jsonError);
+            completionHandler(obj, (NSHTTPURLResponse *)response, error ? error : jsonError);
         }
     }];
     [task resume];

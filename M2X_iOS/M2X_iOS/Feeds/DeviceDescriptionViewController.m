@@ -38,6 +38,7 @@
     
     [self getDeviceDescription];
     
+    [self getDeviceStreams];
 }
 
 - (void)didReceiveMemoryWarning
@@ -47,6 +48,18 @@
 }
 
 #pragma mark - support
+
+-(void)getDeviceStreams {
+    CBBStreamClient *streamClient = [CBBStreamClient new];
+    [streamClient listDataStreamsForDeviceId:_device_id completionHandler:^(id object, NSURLResponse *response, NSError *error) {
+        [_streamList removeAllObjects];
+        
+        [_streamList addObjectsFromArray:[object objectForKey:@"streams"]];
+        
+        [_tableViewStreams reloadData];
+    }];
+    
+}
 
 -(void)getDeviceDescription{
 
@@ -72,13 +85,6 @@
                                                           timeStyle:NSDateFormatterShortStyle];
     
     [_lblCreated setText:dateString];
-    
-    [_streamList removeAllObjects];
-    
-    [_streamList addObjectsFromArray:[device_description objectForKey:@"streams"]];
-    
-    [_tableViewStreams reloadData];
-    
 }
 
 
