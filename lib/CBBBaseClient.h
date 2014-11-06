@@ -10,7 +10,7 @@
 
 @interface CBBBaseClient : NSObject
 
-@property (nonatomic, copy) NSString *feedKey;
+@property (nonatomic, copy) NSString *deviceKey;
 
 - (NSString *)apiKey;
 

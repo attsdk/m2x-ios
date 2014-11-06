@@ -68,7 +68,7 @@
 /**
  Retrieve list of data sources added to the specified batch
  */
--(void)listDataSourcesfromDistribution:(NSString*)batch_id completionHandler:(M2XAPICallback)completionHandler;
+-(void)listDevicesfromDistribution:(NSString*)batch_id completionHandler:(M2XAPICallback)completionHandler;
 
 
 ///------------------------------------
@@ -82,7 +82,7 @@
  
  NSDictionary *parameters = @{ @"serial": @"ABC1234" };
  */
--(void)addDataSourceToDistribution:(NSString*)batch_id withParameters:(NSDictionary*)parameters completionHandler:(M2XAPICallback)completionHandler;
+-(void)addDeviceToDistribution:(NSString*)batch_id withParameters:(NSDictionary*)parameters completionHandler:(M2XAPICallback)completionHandler;
 
 
 ///------------------------------------

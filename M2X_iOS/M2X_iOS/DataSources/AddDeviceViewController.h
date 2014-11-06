@@ -2,7 +2,7 @@
 #import <UIKit/UIKit.h>
 #import "CBBDistributionClient.h"
 
-@interface AddDataSourceViewController : UIViewController
+@interface AddDeviceViewController : UIViewController
 
 @property (nonatomic, strong) CBBDistributionClient *dataSourceClient;
 @property (nonatomic, strong) NSString *distribution_id;

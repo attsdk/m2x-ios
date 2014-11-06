@@ -1,6 +1,6 @@
 
 #import "DistributionDetailsViewController.h"
-#import "AddDataSourceViewController.h"
+#import "AddDeviceViewController.h"
 #import "NSDate+M2X.h"
 
 @interface DistributionDetailsViewController ()
@@ -75,7 +75,7 @@
 
 -(void)getDataSourcesForDistribution{
     
-    [_dataSourceClient listDataSourcesfromDistribution:_distribution_id completionHandler:^(id object, NSURLResponse *response, NSError *error) {
+    [_dataSourceClient listDevicesfromDistribution:_distribution_id completionHandler:^(id object, NSURLResponse *response, NSError *error) {
         if (error) {
             [self showError:error WithMessage:error.userInfo];
         } else {
@@ -85,11 +85,11 @@
     
 }
 
--(void)didGetDataSourcesForDistribution:(NSDictionary*)dataSourcesList{
+-(void)didGetDevicesForDistribution:(NSDictionary*)dataSourcesList{
     
     [_dataSources removeAllObjects];
     
-    [_dataSources addObjectsFromArray:[dataSourcesList objectForKey:@"datasources"]];
+    [_dataSources addObjectsFromArray:[dataSourcesList objectForKey:@"devices"]];
     
     [_tableViewDataSources reloadData];
     
@@ -100,7 +100,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     
-    AddDataSourceViewController *addDataSourceVC = segue.destinationViewController;
+    AddDeviceViewController *addDataSourceVC = segue.destinationViewController;
     
     addDataSourceVC.distribution_id = _distribution_id;
     

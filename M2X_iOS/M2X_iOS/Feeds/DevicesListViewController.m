@@ -1,13 +1,13 @@
 
-#import "FeedsListViewController.h"
+#import "DevicesListViewController.h"
 #import "CBBM2x.h"
-#import "FeedDescriptionViewController.h"
+#import "DeviceDescriptionViewController.h"
 
-@interface FeedsListViewController ()
+@interface DevicesListViewController ()
 
 @end
 
-@implementation FeedsListViewController
+@implementation DevicesListViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -22,14 +22,14 @@
 {
     [super viewDidLoad];
     
-    _feedClient = [[CBBFeedsClient alloc] init];
+    _deviceClient = [[CBBDeviceClient alloc] init];
     
-    //get list of feeds without parameters
-    [_feedClient listWithParameters:nil completionHandler:^(id object, NSURLResponse *response, NSError *error) {
+    //get list of devices without parameters
+    [_deviceClient listDevicesWithCompletionHandler:^(id object, NSURLResponse *response, NSError *error) {
         if (error) {
             [self showError:error WithMessage:error.userInfo];
         } else {
-            [self didGetFeedList:object];
+            [self didGetDeviceList:object];
         }
         
     }];
@@ -48,21 +48,21 @@
 
 #pragma mark - helpers methods
 
--(void)setMasterKey:(NSString *)masterkey andFeedKey:(NSString *)feedKey{
+-(void)setMasterKey:(NSString *)masterkey andDeviceKey:(NSString *)deviceKey{
     _masterKey =  masterkey;
-    _feedKey = feedKey;
+    _deviceKey = deviceKey;
 }
 
--(void)didGetFeedList: (id) value
+-(void)didGetDeviceList: (id) value
 {
-    NSDictionary *response = [value objectForKey:@"feeds"];
+    NSDictionary *response = [value objectForKey:@"devices"];
     
     _data = [NSMutableArray array];
     
-    for (NSDictionary *feed in response) {
-        //show only active feeds
-        if([[feed valueForKey:@"status"] isEqualToString:@"enabled"])
-            [_data addObject:feed];
+    for (NSDictionary *device in response) {
+        //show only active devices
+        if([[device valueForKey:@"status"] isEqualToString:@"enabled"])
+            [_data addObject:device];
     }
     
     [self.tableView reloadData];
@@ -82,11 +82,11 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    NSDictionary *feedData = [_data objectAtIndex:indexPath.row];
+    NSDictionary *deviceData = [_data objectAtIndex:indexPath.row];
     
-    [[cell textLabel] setText:[feedData valueForKey:@"name"]];
+    [[cell textLabel] setText:[deviceData valueForKey:@"name"]];
     
-    NSString *description = [feedData valueForKey:@"description"];
+    NSString *description = [deviceData valueForKey:@"description"];
 
     //check if the description is not null
     if([description isEqual:[NSNull null]])
@@ -109,19 +109,19 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
         
-    FeedDescriptionViewController *feedDetailsVC = segue.destinationViewController;
+    DeviceDescriptionViewController *deviceDetailsVC = segue.destinationViewController;
     
-    UITableViewCell *feed_tableViewSelected = sender;
+    UITableViewCell *device_tableViewSelected = sender;
     
-    NSIndexPath *feedIndexPath = [[self tableView] indexPathForCell:feed_tableViewSelected];
+    NSIndexPath *deviceIndexPath = [[self tableView] indexPathForCell:device_tableViewSelected];
     
-    NSDictionary *feedDict = [_data objectAtIndex:[feedIndexPath row]];
+    NSDictionary *deviceDict = [_data objectAtIndex:[deviceIndexPath row]];
     
-    feedDetailsVC.feed_id = [feedDict valueForKey:@"id"];
+    deviceDetailsVC.device_id = [deviceDict valueForKey:@"id"];
     
-    feedDetailsVC.feedClient = _feedClient;
+    deviceDetailsVC.deviceClient = _deviceClient;
     
-    feedDetailsVC.title = [feedDict valueForKey:@"name"];
+    deviceDetailsVC.title = [deviceDict valueForKey:@"name"];
     
 }
 

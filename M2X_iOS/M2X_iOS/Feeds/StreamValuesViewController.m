@@ -40,8 +40,8 @@
 {
     NSLog(@"Getting stream values");
     NSDictionary *parameters = @{ @"limit": @"100" };
-    [_feedClient listDataValuesFromTheStream:_streamName
-                                      inFeed:_feed_id
+    [_deviceClient listDataValuesFromTheStream:_streamName
+                                      inDevice:_device_id
                               WithParameters:parameters
                                      completionHandler:^(id object, NSURLResponse *response, NSError *error)
     {
@@ -80,9 +80,9 @@
                                         ]
                                 };
         
-        [_feedClient postDataValues:args
+        [_deviceClient postDataValues:args
                           forStream:_streamName
-                             inFeed:_feed_id
+                             inDevice:_device_id
                             completionHandler:^(id object, NSURLResponse *response, NSError *error)
         {
             if (error) {

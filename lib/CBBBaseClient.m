@@ -12,11 +12,11 @@
 @implementation CBBBaseClient
 
 - (NSString *)apiKey {
-    if(!_feedKey || [_feedKey isEqualToString:@""]){
+    if(!_deviceKey || [_deviceKey isEqualToString:@""]){
         return [CBBM2x shared].apiKey;
     }
     
-    return _feedKey;
+    return _deviceKey;
 }
 
 @end

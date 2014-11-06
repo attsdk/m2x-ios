@@ -30,7 +30,7 @@
     [CBBM2x shared].apiKey = @"apiKey";
     
     CBBKeysClient *client = [CBBKeysClient new];
-    client.feedKey = nil;
+    client.deviceKey = nil;
     
     NSURLRequest *request = [client listKeysWithParameters:nil completionHandler:nil];
     
@@ -41,16 +41,16 @@
     [CBBM2x shared].apiKey = @"apiKey";
     
     CBBKeysClient *client = [CBBKeysClient new];
-    client.feedKey = @"feedKey";
+    client.deviceKey = @"deviceKey";
     
     NSURLRequest *request = [client listKeysWithParameters:nil completionHandler:nil];
 
-    XCTAssertEqualObjects(request.allHTTPHeaderFields[@"X-M2X-KEY"], @"feedKey");
+    XCTAssertEqualObjects(request.allHTTPHeaderFields[@"X-M2X-KEY"], @"deviceKey");
 }
 
 - (void)testKeysListing {
     CBBKeysClient *client = [CBBKeysClient new];
-    client.feedKey = @"1234";
+    client.deviceKey = @"1234";
     
     NSURLRequest *req = [client listKeysWithParameters:@{@"limit": @"10", @"q": @"bla"} completionHandler:nil];
     

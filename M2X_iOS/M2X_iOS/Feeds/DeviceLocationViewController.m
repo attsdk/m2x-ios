@@ -1,13 +1,13 @@
 
-#import "FeedLocationViewController.h"
-#import "CBBFeedsClient.h"
+#import "DeviceLocationViewController.h"
+#import "CBBStreamClient.h"
 #import "NSDate+M2X.h"
 
-@interface FeedLocationViewController ()
+@interface DeviceLocationViewController ()
 
 @end
 
-@implementation FeedLocationViewController
+@implementation DeviceLocationViewController
 
 
 
@@ -34,7 +34,7 @@
     _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     [_locationManager startUpdatingLocation];
     
-    [self getFeedLocations];
+    [self getDeviceLocations];
 }
 
 - (void)didReceiveMemoryWarning
@@ -43,29 +43,29 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)getFeedLocations{
+- (void)getDeviceLocations{
     
-    [_feedClient readDataLocationInFeed:_feed_id completionHandler:^(id object, NSURLResponse *response, NSError *error) {
+    [_deviceClient readDataLocationInDevice:_device_id completionHandler:^(id object, NSURLResponse *response, NSError *error) {
         if (error) {
             [self showError:error WithMessage:error.userInfo];
         } else {
-            [self didGetFeedLocation:object];
+            [self didGetDeviceLocation:object];
         }
     }];
     
 }
 
-- (void)didGetFeedLocation:(NSDictionary*)feed_location{
+- (void)didGetDeviceLocation:(NSDictionary*)device_location{
     
     //Locations inputs
-    [_tfLocationName setText:[feed_location valueForKey:@"name"]];
-    [_tfLatitude setText:[feed_location valueForKey:@"latitude"]];
-    [_tfLongitude setText:[feed_location valueForKey:@"longitude"]];
-    [_tfElevation setText:[feed_location valueForKey:@"elevation"]];
+    [_tfLocationName setText:[device_location valueForKey:@"name"]];
+    [_tfLatitude setText:[device_location valueForKey:@"latitude"]];
+    [_tfLongitude setText:[device_location valueForKey:@"longitude"]];
+    [_tfElevation setText:[device_location valueForKey:@"elevation"]];
     
     [_locationsList removeAllObjects];
     
-    [_locationsList addObjectsFromArray:[feed_location objectForKey:@"waypoints"]];
+    [_locationsList addObjectsFromArray:[device_location objectForKey:@"waypoints"]];
     
     [_tableViewLocations reloadData];
     
@@ -84,11 +84,11 @@
                                     @"longitude": [NSString stringWithFormat:@"%f",location.coordinate.longitude],
                                     @"elevation": [NSString stringWithFormat:@"%f",location.altitude]};
     
-    [_feedClient updateDatasourceWithLocation:locationDict inFeed:_feed_id completionHandler:^(id object, NSURLResponse *response, NSError *error) {
+    [_deviceClient updateDeviceWithLocation:locationDict inDevice:_device_id completionHandler:^(id object, NSURLResponse *response, NSError *error) {
         if (error) {
             [self showError:error WithMessage:error.userInfo];
         } else {
-            [self getFeedLocations];
+            [self getDeviceLocations];
         }
     }];
     

@@ -1,15 +1,16 @@
 
-#import "FeedDescriptionViewController.h"
+#import "DeviceDescriptionViewController.h"
 #import "StreamValuesViewController.h"
-#import "FeedLocationViewController.h"
+#import "DeviceLocationViewController.h"
 #import "AddStreamViewController.h"
 #import "NSDate+M2X.h"
+#import "CBBStreamClient.h"
 
-@interface FeedDescriptionViewController ()
+@interface DeviceDescriptionViewController ()
 
 @end
 
-@implementation FeedDescriptionViewController
+@implementation DeviceDescriptionViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -35,7 +36,7 @@
     
     [super viewWillAppear:animated];
     
-    [self getFeedDescription];
+    [self getDeviceDescription];
     
 }
 
@@ -47,24 +48,24 @@
 
 #pragma mark - support
 
--(void)getFeedDescription{
+-(void)getDeviceDescription{
 
-    [_feedClient viewDetailsForFeedId:_feed_id completionHandler:^(id object, NSURLResponse *response, NSError *error) {
+    [_deviceClient viewDetailsForDeviceId:_device_id completionHandler:^(id object, NSURLResponse *response, NSError *error) {
         if (error) {
             [self showError:error WithMessage:error.userInfo];
         } else {
-            [self didGetFeedDescription:object];
+            [self didGetDeviceDescription:object];
         }
     }];
     
 }
 
-- (void)didGetFeedDescription:(NSDictionary*)feed_description{
+- (void)didGetDeviceDescription:(NSDictionary*)device_description{
     
-    [_lblFeedId setText:[feed_description valueForKey:@"id"]];
+    [_lblDeviceId setText:[device_description valueForKey:@"id"]];
     
     //format date
-    NSDate *createdDate = [NSDate fromISO8601:[feed_description valueForKey:@"created"]];
+    NSDate *createdDate = [NSDate fromISO8601:[device_description valueForKey:@"created"]];
     
     NSString *dateString = [NSDateFormatter localizedStringFromDate:createdDate
                                                           dateStyle:NSDateFormatterShortStyle
@@ -74,7 +75,7 @@
     
     [_streamList removeAllObjects];
     
-    [_streamList addObjectsFromArray:[feed_description objectForKey:@"streams"]];
+    [_streamList addObjectsFromArray:[device_description objectForKey:@"streams"]];
     
     [_tableViewStreams reloadData];
     
@@ -106,13 +107,13 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    NSDictionary *feedData = [_streamList objectAtIndex:indexPath.row];
+    NSDictionary *deviceData = [_streamList objectAtIndex:indexPath.row];
     
-    NSDictionary *valueUnitDic = [feedData objectForKey:@"unit"];
+    NSDictionary *valueUnitDic = [deviceData objectForKey:@"unit"];
     
-    [[cell textLabel] setText:[feedData valueForKey:@"name"]];
+    [[cell textLabel] setText:[deviceData valueForKey:@"name"]];
     
-    NSString *value = [feedData valueForKey:@"value"];
+    NSString *value = [deviceData valueForKey:@"value"];
     
     if([value  isEqual: [NSNull null]]){
         [[cell detailTextLabel] setText:@"No Stream Data Available."];
@@ -130,14 +131,15 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    CBBStreamClient *streamClient = [CBBStreamClient new];
     if ([segue.identifier isEqualToString:@"toStreamValuesSegue"])
     {
         UITableViewCell *stream_tableViewSelected = sender;
         NSIndexPath *valueIndex = [self.tableViewStreams indexPathForCell:stream_tableViewSelected];
         NSDictionary *streamDict = self.streamList[valueIndex.row];
         StreamValuesViewController *StreamValuesVC = segue.destinationViewController;
-        StreamValuesVC.feedClient = self.feedClient;
-        StreamValuesVC.feed_id = _feed_id;
+        StreamValuesVC.deviceClient = streamClient;
+        StreamValuesVC.device_id = _device_id;
         StreamValuesVC.streamName = streamDict[@"name"];
         StreamValuesVC.streamUnit = streamDict[@"unit"];
         StreamValuesVC.title = streamDict[@"name"];
@@ -145,14 +147,14 @@
     } else if([segue.identifier isEqualToString:@"toAddStream"]) {
         
         AddStreamViewController *addStreamVC = segue.destinationViewController;
-        addStreamVC.feedClient = self.feedClient;
-        addStreamVC.feed_id = _feed_id;
+        addStreamVC.deviceClient = streamClient;
+        addStreamVC.device_id = _device_id;
         
     } else if([segue.identifier isEqualToString:@"toLocationsManagerSegue"]) {
         
-        FeedLocationViewController *locationVC = segue.destinationViewController;
-        locationVC.feedClient = _feedClient;
-        locationVC.feed_id = _feed_id;
+        DeviceLocationViewController *locationVC = segue.destinationViewController;
+        locationVC.deviceClient = _deviceClient;
+        locationVC.device_id = _device_id;
     }
 }
 

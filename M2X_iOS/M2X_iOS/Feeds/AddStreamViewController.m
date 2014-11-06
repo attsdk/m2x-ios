@@ -1,6 +1,6 @@
 
 #import "AddStreamViewController.h"
-#import "CBBFeedsClient.h"
+#import "CBBStreamClient.h"
 
 @interface AddStreamViewController ()
 
@@ -36,8 +36,8 @@
             args[@"value"] = self.tfLogAValue.text;
         }
         
-        [_feedClient createDataForStream:streamID
-                                  inFeed:_feed_id
+        [_deviceClient createDataForStream:streamID
+                                  inDevice:_device_id
                           withParameters:args
                        completionHandler:^(id object, NSURLResponse *response, NSError *error) {
                            

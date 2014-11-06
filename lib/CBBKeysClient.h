@@ -12,7 +12,7 @@
 
 /**
  Retrieve list of keys associated with the specified account. This method accepts one optional parameter:
- "feed": a Feed ID; it will list all the keys that are associated with that specific feed or its streams
+ "device": a Device ID; it will list all the keys that are associated with that specific device or its streams
  */
 -(NSURLRequest *)listKeysWithParameters:(NSDictionary*)parameters completionHandler:(M2XAPICallback)completionHandler;
 
@@ -26,7 +26,7 @@
  i.e.:
  NSDictionary *key = @{ @"name": @"newkey",
                  "@permissions": @[@"GET", @"PUT"],
-                        @"feed": [NSNull null], //optional
+                        @"device": [NSNull null], //optional
                       @"stream": [NSNull null], //optional
                   @"expires_at": [NSNull null]  //optional
                        }

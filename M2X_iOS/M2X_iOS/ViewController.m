@@ -1,7 +1,7 @@
 
 #import "ViewController.h"
-#import "FeedsListViewController.h"
-#import "CBBFeedsClient.h"
+#import "DevicesListViewController.h"
+#import "CBBStreamClient.h"
 #import "CBBM2x.h"
 
 @interface ViewController ()

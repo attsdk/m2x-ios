@@ -17,7 +17,7 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    //get list of feeds without parameters
+    //get list of devices without parameters
     [_dataSourceClient listDistributionsWithCompletionHandler:^(id object, NSURLResponse *response, NSError *error)
     {
         if (error) {

@@ -1,11 +1,11 @@
 
-#import "AddDataSourceViewController.h"
+#import "AddDeviceViewController.h"
 
-@interface AddDataSourceViewController ()
+@interface AddDeviceViewController ()
 
 @end
 
-@implementation AddDataSourceViewController
+@implementation AddDeviceViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -27,7 +27,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-- (IBAction)addDataSourceBtnPushed:(id)sender {
+- (IBAction)addDeviceBtnPushed:(id)sender {
     
     if([[_tfSerial text] isEqualToString:@""]){
         return;
@@ -39,7 +39,7 @@
     //Add Data Source to the Distribution
     __weak typeof(self) weakSelf = self;
     
-    [_dataSourceClient addDataSourceToDistribution:_distribution_id
+    [_dataSourceClient addDeviceToDistribution:_distribution_id
                              withParameters:serial
                                     completionHandler:^(id object, NSURLResponse *response, NSError *error) {
                                         

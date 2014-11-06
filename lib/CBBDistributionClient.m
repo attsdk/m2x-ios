@@ -43,17 +43,17 @@
 }
 
 
--(void)listDataSourcesfromDistribution:(NSString *)distribution_id completionHandler:(M2XAPICallback)completionHandler{
+-(void)listDevicesfromDistribution:(NSString *)distribution_id completionHandler:(M2XAPICallback)completionHandler{
     
-    NSString *path = [NSString stringWithFormat:@"/distributions/%@/datasources",distribution_id];
+    NSString *path = [NSString stringWithFormat:@"/distributions/%@/devices",distribution_id];
     
     [[CBBM2x shared] getWithPath:path andParameters:nil apiKey:[self apiKey] completionHandler:completionHandler];
     
 }
 
--(void)addDataSourceToDistribution:(NSString *)distribution_id withParameters:(NSDictionary *)parameters completionHandler:(M2XAPICallback)completionHandler{
+-(void)addDeviceToDistribution:(NSString *)distribution_id withParameters:(NSDictionary *)parameters completionHandler:(M2XAPICallback)completionHandler{
     
-    NSString *path = [NSString stringWithFormat:@"/distributions/%@/datasources",distribution_id];
+    NSString *path = [NSString stringWithFormat:@"/distributions/%@/devices",distribution_id];
     
     [[CBBM2x shared] postWithPath:path andParameters:parameters apiKey:[self apiKey] completionHandler:completionHandler];
     

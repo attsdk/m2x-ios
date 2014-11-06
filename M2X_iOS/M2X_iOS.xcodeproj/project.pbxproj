@@ -26,18 +26,18 @@
 		0B7471FA1860BA01006F48B4 /* KeyListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B7471F91860BA01006F48B4 /* KeyListViewController.m */; };
 		0B7472001860C6C0006F48B4 /* CreateKeyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B7471FF1860C6C0006F48B4 /* CreateKeyViewController.m */; };
 		0B7472031860D16B006F48B4 /* DatePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B7472021860D16B006F48B4 /* DatePickerViewController.m */; };
-		0B810E29185F4C7300D22F49 /* FeedDescriptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B810E22185F4C7300D22F49 /* FeedDescriptionViewController.m */; };
-		0B810E2A185F4C7300D22F49 /* FeedLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B810E24185F4C7300D22F49 /* FeedLocationViewController.m */; };
-		0B810E2B185F4C7300D22F49 /* FeedsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B810E26185F4C7300D22F49 /* FeedsListViewController.m */; };
+		0B810E29185F4C7300D22F49 /* DeviceDescriptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B810E22185F4C7300D22F49 /* DeviceDescriptionViewController.m */; };
+		0B810E2A185F4C7300D22F49 /* DeviceLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B810E24185F4C7300D22F49 /* DeviceLocationViewController.m */; };
+		0B810E2B185F4C7300D22F49 /* DevicesListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B810E26185F4C7300D22F49 /* DevicesListViewController.m */; };
 		0B810E2C185F4C7300D22F49 /* StreamValuesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B810E28185F4C7300D22F49 /* StreamValuesViewController.m */; };
 		0B810E39185F742100D22F49 /* DistributionListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B810E38185F742100D22F49 /* DistributionListViewController.m */; };
 		0B810E3F185F87F000D22F49 /* DistributionDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B810E3E185F87F000D22F49 /* DistributionDetailsViewController.m */; };
 		0B810E48185F919B00D22F49 /* green.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B810E46185F919B00D22F49 /* green.png */; };
 		0B810E49185F919B00D22F49 /* red.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B810E47185F919B00D22F49 /* red.png */; };
-		0B810E4C185F9ECD00D22F49 /* AddDataSourceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B810E4B185F9ECD00D22F49 /* AddDataSourceViewController.m */; };
+		0B810E4C185F9ECD00D22F49 /* AddDeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B810E4B185F9ECD00D22F49 /* AddDeviceViewController.m */; };
 		0BAD9DF41864C4210070487E /* AddStreamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BAD9DF31864C4210070487E /* AddStreamViewController.m */; };
-		8328499019ABBB45005CA81E /* CBBDataSourceClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 8328497E19ABBB45005CA81E /* CBBDataSourceClient.m */; };
-		8328499119ABBB45005CA81E /* CBBFeedsClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 8328498019ABBB45005CA81E /* CBBFeedsClient.m */; };
+		8328499019ABBB45005CA81E /* CBBDeviceClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 8328497E19ABBB45005CA81E /* CBBDeviceClient.m */; };
+		8328499119ABBB45005CA81E /* CBBStreamClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 8328498019ABBB45005CA81E /* CBBStreamClient.m */; };
 		8328499219ABBB45005CA81E /* CBBKeysClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 8328498219ABBB45005CA81E /* CBBKeysClient.m */; };
 		8328499319ABBB45005CA81E /* CBBM2x.m in Sources */ = {isa = PBXBuildFile; fileRef = 8328498419ABBB45005CA81E /* CBBM2x.m */; };
 		8328499419ABBB45005CA81E /* NSDate+M2X.m in Sources */ = {isa = PBXBuildFile; fileRef = 8328498619ABBB45005CA81E /* NSDate+M2X.m */; };
@@ -85,12 +85,12 @@
 		0B7471FF1860C6C0006F48B4 /* CreateKeyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateKeyViewController.m; sourceTree = "<group>"; };
 		0B7472011860D16B006F48B4 /* DatePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatePickerViewController.h; sourceTree = "<group>"; };
 		0B7472021860D16B006F48B4 /* DatePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatePickerViewController.m; sourceTree = "<group>"; };
-		0B810E21185F4C7300D22F49 /* FeedDescriptionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedDescriptionViewController.h; sourceTree = "<group>"; };
-		0B810E22185F4C7300D22F49 /* FeedDescriptionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedDescriptionViewController.m; sourceTree = "<group>"; };
-		0B810E23185F4C7300D22F49 /* FeedLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedLocationViewController.h; sourceTree = "<group>"; };
-		0B810E24185F4C7300D22F49 /* FeedLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedLocationViewController.m; sourceTree = "<group>"; };
-		0B810E25185F4C7300D22F49 /* FeedsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedsListViewController.h; sourceTree = "<group>"; };
-		0B810E26185F4C7300D22F49 /* FeedsListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedsListViewController.m; sourceTree = "<group>"; };
+		0B810E21185F4C7300D22F49 /* DeviceDescriptionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceDescriptionViewController.h; sourceTree = "<group>"; };
+		0B810E22185F4C7300D22F49 /* DeviceDescriptionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceDescriptionViewController.m; sourceTree = "<group>"; };
+		0B810E23185F4C7300D22F49 /* DeviceLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceLocationViewController.h; sourceTree = "<group>"; };
+		0B810E24185F4C7300D22F49 /* DeviceLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceLocationViewController.m; sourceTree = "<group>"; };
+		0B810E25185F4C7300D22F49 /* DevicesListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DevicesListViewController.h; sourceTree = "<group>"; };
+		0B810E26185F4C7300D22F49 /* DevicesListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DevicesListViewController.m; sourceTree = "<group>"; };
 		0B810E27185F4C7300D22F49 /* StreamValuesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreamValuesViewController.h; sourceTree = "<group>"; };
 		0B810E28185F4C7300D22F49 /* StreamValuesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StreamValuesViewController.m; sourceTree = "<group>"; };
 		0B810E37185F742100D22F49 /* DistributionListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DistributionListViewController.h; sourceTree = "<group>"; };
@@ -99,14 +99,14 @@
 		0B810E3E185F87F000D22F49 /* DistributionDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DistributionDetailsViewController.m; sourceTree = "<group>"; };
 		0B810E46185F919B00D22F49 /* green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = green.png; sourceTree = "<group>"; };
 		0B810E47185F919B00D22F49 /* red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red.png; sourceTree = "<group>"; };
-		0B810E4A185F9ECD00D22F49 /* AddDataSourceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddDataSourceViewController.h; sourceTree = "<group>"; };
-		0B810E4B185F9ECD00D22F49 /* AddDataSourceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddDataSourceViewController.m; sourceTree = "<group>"; };
+		0B810E4A185F9ECD00D22F49 /* AddDeviceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddDeviceViewController.h; sourceTree = "<group>"; };
+		0B810E4B185F9ECD00D22F49 /* AddDeviceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddDeviceViewController.m; sourceTree = "<group>"; };
 		0BAD9DF21864C4210070487E /* AddStreamViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddStreamViewController.h; sourceTree = "<group>"; };
 		0BAD9DF31864C4210070487E /* AddStreamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddStreamViewController.m; sourceTree = "<group>"; };
-		8328497D19ABBB45005CA81E /* CBBDataSourceClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBBDataSourceClient.h; sourceTree = "<group>"; };
-		8328497E19ABBB45005CA81E /* CBBDataSourceClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBBDataSourceClient.m; sourceTree = "<group>"; };
-		8328497F19ABBB45005CA81E /* CBBFeedsClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBBFeedsClient.h; sourceTree = "<group>"; };
-		8328498019ABBB45005CA81E /* CBBFeedsClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBBFeedsClient.m; sourceTree = "<group>"; };
+		8328497D19ABBB45005CA81E /* CBBDeviceClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBBDeviceClient.h; sourceTree = "<group>"; };
+		8328497E19ABBB45005CA81E /* CBBDeviceClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBBDeviceClient.m; sourceTree = "<group>"; };
+		8328497F19ABBB45005CA81E /* CBBStreamClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBBStreamClient.h; sourceTree = "<group>"; };
+		8328498019ABBB45005CA81E /* CBBStreamClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBBStreamClient.m; sourceTree = "<group>"; };
 		8328498119ABBB45005CA81E /* CBBKeysClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBBKeysClient.h; sourceTree = "<group>"; };
 		8328498219ABBB45005CA81E /* CBBKeysClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBBKeysClient.m; sourceTree = "<group>"; };
 		8328498319ABBB45005CA81E /* CBBM2x.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBBM2x.h; sourceTree = "<group>"; };
@@ -181,7 +181,7 @@
 				0B810E40185F90CF00D22F49 /* Resources */,
 				0B7471F71860B949006F48B4 /* Keys */,
 				0B810E2D185F4F7B00D22F49 /* DataSources */,
-				0B810E20185F4C7300D22F49 /* Feeds */,
+				0B810E20185F4C7300D22F49 /* Devices */,
 				0B65FBA8184E114700C88810 /* AppDelegate.h */,
 				0B65FBA9184E114700C88810 /* AppDelegate.m */,
 				0B65FBB1184E114700C88810 /* ViewController.h */,
@@ -236,20 +236,21 @@
 			path = Keys;
 			sourceTree = "<group>";
 		};
-		0B810E20185F4C7300D22F49 /* Feeds */ = {
+		0B810E20185F4C7300D22F49 /* Devices */ = {
 			isa = PBXGroup;
 			children = (
-				0B810E21185F4C7300D22F49 /* FeedDescriptionViewController.h */,
-				0B810E22185F4C7300D22F49 /* FeedDescriptionViewController.m */,
-				0B810E23185F4C7300D22F49 /* FeedLocationViewController.h */,
-				0B810E24185F4C7300D22F49 /* FeedLocationViewController.m */,
-				0B810E25185F4C7300D22F49 /* FeedsListViewController.h */,
-				0B810E26185F4C7300D22F49 /* FeedsListViewController.m */,
+				0B810E21185F4C7300D22F49 /* DeviceDescriptionViewController.h */,
+				0B810E22185F4C7300D22F49 /* DeviceDescriptionViewController.m */,
+				0B810E23185F4C7300D22F49 /* DeviceLocationViewController.h */,
+				0B810E24185F4C7300D22F49 /* DeviceLocationViewController.m */,
+				0B810E25185F4C7300D22F49 /* DevicesListViewController.h */,
+				0B810E26185F4C7300D22F49 /* DevicesListViewController.m */,
 				0B810E27185F4C7300D22F49 /* StreamValuesViewController.h */,
 				0B810E28185F4C7300D22F49 /* StreamValuesViewController.m */,
 				0BAD9DF21864C4210070487E /* AddStreamViewController.h */,
 				0BAD9DF31864C4210070487E /* AddStreamViewController.m */,
 			);
+			name = Devices;
 			path = Feeds;
 			sourceTree = "<group>";
 		};
@@ -260,8 +261,8 @@
 				0B810E38185F742100D22F49 /* DistributionListViewController.m */,
 				0B810E3D185F87F000D22F49 /* DistributionDetailsViewController.h */,
 				0B810E3E185F87F000D22F49 /* DistributionDetailsViewController.m */,
-				0B810E4A185F9ECD00D22F49 /* AddDataSourceViewController.h */,
-				0B810E4B185F9ECD00D22F49 /* AddDataSourceViewController.m */,
+				0B810E4A185F9ECD00D22F49 /* AddDeviceViewController.h */,
+				0B810E4B185F9ECD00D22F49 /* AddDeviceViewController.m */,
 				0B7471F41860A1C2006F48B4 /* CreateDistributionViewController.h */,
 				0B7471F51860A1C2006F48B4 /* CreateDistributionViewController.m */,
 			);
@@ -292,10 +293,10 @@
 				E29A850B1A0BADA100F90735 /* CBBDistributionClient.m */,
 				E24E2B161A0A63470019D3EB /* CBBBaseClient.h */,
 				E24E2B171A0A63470019D3EB /* CBBBaseClient.m */,
-				8328497D19ABBB45005CA81E /* CBBDataSourceClient.h */,
-				8328497E19ABBB45005CA81E /* CBBDataSourceClient.m */,
-				8328497F19ABBB45005CA81E /* CBBFeedsClient.h */,
-				8328498019ABBB45005CA81E /* CBBFeedsClient.m */,
+				8328497D19ABBB45005CA81E /* CBBDeviceClient.h */,
+				8328497E19ABBB45005CA81E /* CBBDeviceClient.m */,
+				8328497F19ABBB45005CA81E /* CBBStreamClient.h */,
+				8328498019ABBB45005CA81E /* CBBStreamClient.m */,
 				8328498119ABBB45005CA81E /* CBBKeysClient.h */,
 				8328498219ABBB45005CA81E /* CBBKeysClient.m */,
 				8328498319ABBB45005CA81E /* CBBM2x.h */,
@@ -413,18 +414,18 @@
 				0B65FBAA184E114700C88810 /* AppDelegate.m in Sources */,
 				E24E2B181A0A63470019D3EB /* CBBBaseClient.m in Sources */,
 				0B7472031860D16B006F48B4 /* DatePickerViewController.m in Sources */,
-				0B810E2B185F4C7300D22F49 /* FeedsListViewController.m in Sources */,
+				0B810E2B185F4C7300D22F49 /* DevicesListViewController.m in Sources */,
 				0B53F9191861ECA700B7DB7D /* KeyDetailsViewController.m in Sources */,
 				0B7472001860C6C0006F48B4 /* CreateKeyViewController.m in Sources */,
-				8328499019ABBB45005CA81E /* CBBDataSourceClient.m in Sources */,
-				8328499119ABBB45005CA81E /* CBBFeedsClient.m in Sources */,
+				8328499019ABBB45005CA81E /* CBBDeviceClient.m in Sources */,
+				8328499119ABBB45005CA81E /* CBBStreamClient.m in Sources */,
 				0B810E3F185F87F000D22F49 /* DistributionDetailsViewController.m in Sources */,
 				8328499219ABBB45005CA81E /* CBBKeysClient.m in Sources */,
 				0B65FBA6184E114700C88810 /* main.m in Sources */,
-				0B810E29185F4C7300D22F49 /* FeedDescriptionViewController.m in Sources */,
-				0B810E2A185F4C7300D22F49 /* FeedLocationViewController.m in Sources */,
+				0B810E29185F4C7300D22F49 /* DeviceDescriptionViewController.m in Sources */,
+				0B810E2A185F4C7300D22F49 /* DeviceLocationViewController.m in Sources */,
 				0B7471FA1860BA01006F48B4 /* KeyListViewController.m in Sources */,
-				0B810E4C185F9ECD00D22F49 /* AddDataSourceViewController.m in Sources */,
+				0B810E4C185F9ECD00D22F49 /* AddDeviceViewController.m in Sources */,
 				E29A850C1A0BADA100F90735 /* CBBDistributionClient.m in Sources */,
 				8328499419ABBB45005CA81E /* NSDate+M2X.m in Sources */,
 				8328499319ABBB45005CA81E /* CBBM2x.m in Sources */,

@@ -51,7 +51,7 @@
     
     //create key object
     NSMutableDictionary *key = [NSMutableDictionary dictionaryWithObjects:[NSArray arrayWithObjects:[_tfMasterKeyLabel text],permissions,[NSNull null],[NSNull null],nil]
-                                                                  forKeys:[NSArray arrayWithObjects:@"name",@"permissions",@"feed",@"stream",nil]];
+                                                                  forKeys:[NSArray arrayWithObjects:@"name",@"permissions",@"device",@"stream",nil]];
     
     //Set the expiry date:
     if([_swExpiryDate isOn] && ![[_tfExpiryDate text] isEqualToString:@""])

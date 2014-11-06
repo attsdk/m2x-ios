@@ -279,7 +279,7 @@
         <!--Add Data Source Serial-->
         <scene sceneID="XML-wd-xgT">
             <objects>
-                <viewController id="hHg-az-VaT" customClass="AddDataSourceViewController" sceneMemberID="viewController">
+                <viewController id="hHg-az-VaT" customClass="AddDeviceViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Sws-lG-CzT"/>
                         <viewControllerLayoutGuide type="bottom" id="qwd-kw-JH3"/>
@@ -305,7 +305,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="addDataSourceBtnPushed:" destination="hHg-az-VaT" eventType="touchUpInside" id="WZD-DM-u3c"/>
+                                    <action selector="addDeviceBtnPushed:" destination="hHg-az-VaT" eventType="touchUpInside" id="otW-3P-22l"/>
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="hk8-NF-n7M">
@@ -688,11 +688,11 @@
             </objects>
             <point key="canvasLocation" x="1648" y="-766"/>
         </scene>
-        <!--Feeds-->
+        <!--Devices-->
         <scene sceneID="9XG-gB-4ta">
             <objects>
                 <navigationController id="rg6-I0-WF0" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Feeds" image="Feeds" id="fmC-qP-zRh"/>
+                    <tabBarItem key="tabBarItem" title="Devices" image="Feeds" id="fmC-qP-zRh"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ABv-uj-hza">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -705,10 +705,10 @@
             </objects>
             <point key="canvasLocation" x="724" y="-68"/>
         </scene>
-        <!--Feeds-->
+        <!--Devices-->
         <scene sceneID="yCA-LQ-DHy">
             <objects>
-                <tableViewController title="Feeds" id="7PW-Vp-prs" customClass="FeedsListViewController" sceneMemberID="viewController">
+                <tableViewController title="Devices" id="7PW-Vp-prs" customClass="DevicesListViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="06L-8d-YB3">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -748,7 +748,7 @@
                             <outlet property="delegate" destination="7PW-Vp-prs" id="UI8-BX-60g"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Feeds" id="f6p-dk-698"/>
+                    <navigationItem key="navigationItem" title="Devices" id="f6p-dk-698"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4HY-PO-XRX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -801,7 +801,7 @@
         <!--Location-->
         <scene sceneID="nIr-un-TSJ">
             <objects>
-                <viewController id="TB8-Gm-8bQ" customClass="FeedLocationViewController" sceneMemberID="viewController">
+                <viewController id="TB8-Gm-8bQ" customClass="DeviceLocationViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="65q-xv-k8z"/>
                         <viewControllerLayoutGuide type="bottom" id="Rx0-iJ-fi2"/>
@@ -1026,10 +1026,10 @@
             </objects>
             <point key="canvasLocation" x="2187" y="-68"/>
         </scene>
-        <!--Feed Description View Controller-->
+        <!--Device Description View Controller-->
         <scene sceneID="Peu-at-d8g">
             <objects>
-                <viewController id="gLt-jp-gqt" customClass="FeedDescriptionViewController" sceneMemberID="viewController">
+                <viewController id="gLt-jp-gqt" customClass="DeviceDescriptionViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jNJ-0g-BGW"/>
                         <viewControllerLayoutGuide type="bottom" id="JKN-bx-OLL"/>
@@ -1112,7 +1112,7 @@
                                     <segue destination="TB8-Gm-8bQ" kind="push" identifier="toLocationsManagerSegue" id="Zrn-kK-Bu3"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Feed Id:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8P6-8m-SJa">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Dev Id:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8P6-8m-SJa">
                                 <rect key="frame" x="13" y="78" width="53" height="17"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -1139,7 +1139,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="lblCreated" destination="l1U-25-0Uv" id="r9i-Ib-Iek"/>
-                        <outlet property="lblFeedId" destination="Qaq-8Z-HWM" id="Ht5-aY-ely"/>
+                        <outlet property="lblDeviceId" destination="51s-Hy-NRD" id="xFZ-G2-6jE"/>
                         <outlet property="tableViewStreams" destination="MGh-wZ-EcY" id="nfw-YT-9Vb"/>
                     </connections>
                 </viewController>
