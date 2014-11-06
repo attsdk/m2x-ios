@@ -33,7 +33,7 @@
     
     [self getDistributionDescription];
     
-    [self getDataSourcesForDistribution];
+    [self getDevicesForDistribution];
     
 }
 
@@ -48,7 +48,6 @@
 -(void)getDistributionDescription{
     
     [_dataSourceClient viewDetailsForDistributionId:_distribution_id completionHandler:^(id object, NSURLResponse *response, NSError *error) {
-        
         if (error) {
             [self showError:error WithMessage:error.userInfo];
         } else {
@@ -73,13 +72,13 @@
     
 }
 
--(void)getDataSourcesForDistribution{
+-(void)getDevicesForDistribution{
     
     [_dataSourceClient listDevicesfromDistribution:_distribution_id completionHandler:^(id object, NSURLResponse *response, NSError *error) {
         if (error) {
             [self showError:error WithMessage:error.userInfo];
         } else {
-            [self didGetDistributionDescription:object];
+            [self didGetDevicesForDistribution:object];
         }
     }];
     

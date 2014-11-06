@@ -28,23 +28,23 @@
 -(void)listDevicesWithParameters:(NSDictionary*)parameters completionHandler:(M2XAPICallback)completionHandler;
 
 ///------------------------------------
-/// @List Data Sources
+/// @List Devices
 ///------------------------------------
 
 /**
- Retrieve list of data sources accessible by the authenticated API key.
+ Retrieve list of devices accessible by the authenticated API key.
  */
 -(void)listDevicesWithCompletionHandler:(M2XAPICallback)completionHandler;
 
 
 ///------------------------------------
-/// @Create Data Source
+/// @Create Device
 ///------------------------------------
 
 /**
- Create a new data source. Accepts the following parameters:
+ Create a new devices. Accepts the following parameters:
  
- "name" the name of the new data source (required).
+ "name" the name of the new devices (required).
  "description" containing a longer description (optional).
  "visibility" either "public" or "private".
  "tags" a comma separated list of tags (optional).
@@ -53,21 +53,21 @@
 
 
 ///------------------------------------
-/// @View Data Source Details
+/// @View Device Details
 ///------------------------------------
 
 /**
- Retrieve information about an existing data source.
+ Retrieve information about an existing device.
  */
 -(void)viewDetailsForDeviceId:(NSString*)device_id completionHandler:(M2XAPICallback)completionHandler;
 
 
 ///------------------------------------
-/// @View Data Source Details
+/// @View Device Details
 ///------------------------------------
 
 /**
- Update an existing data source's information. Accepts the following parameters:
+ Update an existing device's information. Accepts the following parameters:
  
  "name" (required)
  "description" (optional)
@@ -78,11 +78,11 @@
 
 
 ///------------------------------------
-/// @Delete Data Source
+/// @Delete Device
 ///------------------------------------
 
 /**
- Delete an existing data source.
+ Delete an existing device.
  */
 -(void)deleteDevice:(NSString*)device_id completionHandler:(M2XAPICallback)completionHandler;
 

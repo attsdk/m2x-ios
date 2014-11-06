@@ -16,7 +16,7 @@
 ///------------------------------------
 
 /**
- Retrieve list of data source distributions accessible by the authenticated API key.
+ Retrieve list of device distributions accessible by the authenticated API key.
  */
 -(void)listDistributionsWithCompletionHandler:(M2XAPICallback)completionHandler;
 
@@ -25,7 +25,7 @@
 ///------------------------------------
 
 /**
- Create a new data source batch.
+ Create a new device batch.
  
  i.e.:
  NSDictionary *key = @{ @"name": @"newDistribution",
@@ -42,7 +42,7 @@
 ///------------------------------------
 
 /**
- Retrieve information about an existing data source batch.
+ Retrieve information about an existing device batch.
  */
 -(void)viewDetailsForDistributionId:(NSString*)batch_id completionHandler:(M2XAPICallback)completionHandler;
 
@@ -52,7 +52,7 @@
 ///------------------------------------
 
 /**
- Update an existing data source batch's information. Accepts the following parameters:
+ Update an existing device batch's information. Accepts the following parameters:
  "name" (required)
  "description" (optional)
  "visibility" either "public" or "private".
@@ -62,23 +62,23 @@
 
 
 ///------------------------------------
-/// @List Data Sources from a Distribution
+/// @List Devices from a Distribution
 ///------------------------------------
 
 /**
- Retrieve list of data sources added to the specified batch
+ Retrieve list of devices added to the specified batch
  */
 -(void)listDevicesfromDistribution:(NSString*)batch_id completionHandler:(M2XAPICallback)completionHandler;
 
 
 ///------------------------------------
-/// @Add Data Source to an existing Distribution
+/// @Add Device to an existing Distribution
 ///------------------------------------
 
 /**
- Add a new data source to an existing batch. Accepts the following parameter:
+ Add a new device to an existing batch. Accepts the following parameter:
  
- "serial" data source serial number (required).
+ "serial" device serial number (required).
  
  NSDictionary *parameters = @{ @"serial": @"ABC1234" };
  */
@@ -90,7 +90,7 @@
 ///------------------------------------
 
 /**
- Delete an existing data source batch.
+ Delete an existing device batch.
  */
 -(void)deleteDistribution:(NSString*)batch_id completionHandler:(M2XAPICallback)completionHandler;
 

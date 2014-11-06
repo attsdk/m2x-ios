@@ -36,7 +36,7 @@
     //Create the Dictionary
     NSDictionary *serial = @{ @"serial": [_tfSerial text] };
     
-    //Add Data Source to the Distribution
+    //Add Device to the Distribution
     __weak typeof(self) weakSelf = self;
     
     [_dataSourceClient addDeviceToDistribution:_distribution_id

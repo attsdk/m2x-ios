@@ -204,7 +204,7 @@
                                     <constraint firstAttribute="width" constant="280" id="Ui6-Fj-vbX"/>
                                     <constraint firstAttribute="height" constant="30" id="g9m-OV-RRO"/>
                                 </constraints>
-                                <state key="normal" title="Add Data Source">
+                                <state key="normal" title="Add Device">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -276,7 +276,7 @@
             </objects>
             <point key="canvasLocation" x="1191" y="658"/>
         </scene>
-        <!--Add Data Source Serial-->
+        <!--Add Device Serial-->
         <scene sceneID="XML-wd-xgT">
             <objects>
                 <viewController id="hHg-az-VaT" customClass="AddDeviceViewController" sceneMemberID="viewController">
@@ -288,7 +288,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Data Source Serial:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xk7-b3-Xp4">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Device Serial:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xk7-b3-Xp4">
                                 <rect key="frame" x="20" y="80" width="125" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.32060971469999999" green="0.32060971469999999" blue="0.32060971469999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -310,14 +310,14 @@
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="hk8-NF-n7M">
                                 <rect key="frame" x="20" y="147" width="280" height="49"/>
-                                <string key="text">Each Data Source Serial is a permanent, unique identifier for a single Data Source. It could be a serial number, asset ID, or any other unique alphanumeric value that you or the device manufacturer has assigned.</string>
+                                <string key="text">Each Device Serial is a permanent, unique identifier for a single Device. It could be a serial number, asset ID, or any other unique alphanumeric value that you or the device manufacturer has assigned.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Add Data Source Serial" id="YNf-Qf-1FI"/>
+                    <navigationItem key="navigationItem" title="Add Device Serial" id="YNf-Qf-1FI"/>
                     <connections>
                         <outlet property="tfSerial" destination="38o-GB-G6V" id="huO-NE-kMq"/>
                     </connections>
@@ -1002,7 +1002,7 @@
                                         <color key="textColor" red="0.32060971469999999" green="0.32060971469999999" blue="0.32060971469999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Record a value now to add a value to your Data Stream. This is not a Data Source generated value." lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="ok4-EI-F20">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Record a value now to add a value to your Data Stream. This is not a Device generated value." lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="ok4-EI-F20">
                                         <rect key="frame" x="20" y="325" width="280" height="29"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                         <color key="textColor" red="0.32060971469999999" green="0.32060971469999999" blue="0.32060971469999999" alpha="1" colorSpace="calibratedRGB"/>
