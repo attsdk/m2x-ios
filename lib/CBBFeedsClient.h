@@ -70,12 +70,12 @@
  
  Accepted attributes for each element in the array:
  
- "at" (optional)
+ "timestamp" (optional)
  "value" (required)
  i.e.:
  NSDictionary *values = @{ @"values": @[
-    @{ @"at": @"2013-09-09T19:15:00Z", @"value": @"32" },
-    @{ @"at": @"2013-09-09T20:15:00Z", @"value": @"30" },
+    @{ @"timestamp": @"2013-09-09T19:15:00Z", @"value": @"32" },
+    @{ @"timestamp": @"2013-09-09T20:15:00Z", @"value": @"30" },
     @{ "value": "15" } ] };
  */
 -(void)postDataValues:(NSDictionary*)values forStream:(NSString*)stream inFeed:(NSString*)feed_id completionHandler:(M2XAPICallback)completionHandler;
@@ -90,17 +90,17 @@
  
  Accepted attributes for each element in the array:
  
- "at" (optional)
+ "timestamp" (optional)
  "value" (required)
  i.e.:
  NSDictionary *values = @{ @"values": 
     @{ @"temperature": @[
-        @{ @"at": @"2013-09-09T19:15:00Z", @"value": @"32" },
-        @{ @"at": @"2013-09-09T20:15:00Z", @"value": @"30" },
+        @{ @"timestamp": @"2013-09-09T19:15:00Z", @"value": @"32" },
+        @{ @"timestamp": @"2013-09-09T20:15:00Z", @"value": @"30" },
         @{ @"value": @"15" } ],
        @"humidity": @[
-    @{ @"at": @"2013-09-09T19:15:00Z", @"value": @"88" },
-    @{ @"at": @"2013-09-09T20:15:00Z", @"value": @"60" },
+    @{ @"timestamp": @"2013-09-09T19:15:00Z", @"value": @"88" },
+    @{ @"timestamp": @"2013-09-09T20:15:00Z", @"value": @"60" },
     @{ @"value": @"75" } ]
     }
  }
