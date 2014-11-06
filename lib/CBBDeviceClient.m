@@ -68,5 +68,60 @@
     
 }
 
+-(void)listTriggersinDevice:(NSString*)device_id completionHandler:(M2XAPICallback)completionHandler{
+    
+    NSString *path = [NSString stringWithFormat:@"/devices/%@/triggers",device_id];
+    
+    [[CBBM2x shared] getWithPath:path andParameters:nil apiKey:[self apiKey] completionHandler:completionHandler];
+    
+}
+
+-(void)createTrigger:(NSDictionary*)trigger inDevice:(NSString*)device_id completionHandler:(M2XAPICallback)completionHandler{
+    
+    NSString *path = [NSString stringWithFormat:@"/devices/%@/triggers",device_id];
+    
+    [[CBBM2x shared] postWithPath:path andParameters:trigger apiKey:[self apiKey] completionHandler:completionHandler];
+    
+}
+
+-(void)viewTrigger:(NSString*)trigger_id inDevice:(NSString*)device_id completionHandler:(M2XAPICallback)completionHandler{
+    
+    NSString *path = [NSString stringWithFormat:@"/devices/%@/triggers/%@",device_id,trigger_id];
+    
+    [[CBBM2x shared] getWithPath:path andParameters:nil apiKey:[self apiKey] completionHandler:completionHandler];
+    
+}
+
+-(void)UpdateTrigger:(NSString*)trigger_id inDevice:(NSString*)device_id completionHandler:(M2XAPICallback)completionHandler{
+    
+    NSString *path = [NSString stringWithFormat:@"/devices/%@/triggers/%@",device_id,trigger_id];
+    
+    [[CBBM2x shared] putWithPath:path andParameters:nil apiKey:[self apiKey] completionHandler:completionHandler];
+    
+}
+
+-(void)testTrigger:(NSString*)trigger_id inDevice:(NSString*)device_id completionHandler:(M2XAPICallback)completionHandler{
+    
+    NSString *path = [NSString stringWithFormat:@"/devices/%@/triggers/%@/test",device_id,trigger_id];
+    
+    [[CBBM2x shared] postWithPath:path andParameters:nil apiKey:[self apiKey] completionHandler:completionHandler];
+    
+}
+
+-(void)deleteTrigger:(NSString*)trigger_id inDevice:(NSString*)device_id completionHandler:(M2XAPICallback)completionHandler{
+    
+    NSString *path = [NSString stringWithFormat:@"/devices/%@/triggers/%@/test",device_id,trigger_id];
+    
+    [[CBBM2x shared] postWithPath:path andParameters:nil apiKey:[self apiKey] completionHandler:completionHandler];
+    
+}
+
+-(void)viewRequestLogForDevice:(NSString*)device_id completionHandler:(M2XAPICallback)completionHandler{
+    
+    NSString *path = [NSString stringWithFormat:@"/devices/%@/log",device_id];
+    
+    [[CBBM2x shared] getWithPath:path andParameters:nil apiKey:[self apiKey] completionHandler:completionHandler];
+    
+}
 
 @end

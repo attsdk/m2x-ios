@@ -57,7 +57,7 @@
     XCTAssertEqualObjects(request.allHTTPHeaderFields[@"X-M2X-KEY"], client.apiKey);
     XCTAssertTrue([request.allHTTPHeaderFields[@"User-Agent"] rangeOfString:@"M2X/"].location != NSNotFound);
     
-    XCTAssertEqualObjects(@"/v1/mypath", request.URL.path);
+    XCTAssertEqualObjects(@"/v2/mypath", request.URL.path);
     XCTAssertTrue([request.URL.query rangeOfString:@"param1=1"].location != NSNotFound);
     XCTAssertTrue([request.URL.query rangeOfString:@"param2=2"].location != NSNotFound);
 }
@@ -75,7 +75,7 @@
     XCTAssertEqualObjects(request.allHTTPHeaderFields[@"X-M2X-KEY"], client.apiKey);
     XCTAssertTrue([request.allHTTPHeaderFields[@"User-Agent"] rangeOfString:@"M2X/"].location != NSNotFound);
     
-    XCTAssertEqualObjects(@"/v1/mypath", request.URL.path);
+    XCTAssertEqualObjects(@"/v2/mypath", request.URL.path);
     XCTAssertTrue([request.URL.query rangeOfString:@"param1=1"].location != NSNotFound);
     XCTAssertTrue([request.URL.query rangeOfString:@"param2=2"].location != NSNotFound);
 }
@@ -95,7 +95,7 @@
 
     XCTAssertEqualObjects(request.allHTTPHeaderFields[@"Content-Type"], @"application/json");
 
-    XCTAssertEqualObjects(@"/v1/mypath", request.URL.path);
+    XCTAssertEqualObjects(@"/v2/mypath", request.URL.path);
     NSString *body = [[NSString alloc] initWithData:request.HTTPBody encoding:NSUTF8StringEncoding];
     XCTAssertTrue([body rangeOfString:@"\"param1\":\"1\""].location != NSNotFound);
     XCTAssertTrue([body rangeOfString:@"\"param2\":\"2\""].location != NSNotFound);
@@ -116,7 +116,7 @@
     
     XCTAssertEqualObjects(request.allHTTPHeaderFields[@"Content-Type"], @"application/json");
     
-    XCTAssertEqualObjects(@"/v1/mypath", request.URL.path);
+    XCTAssertEqualObjects(@"/v2/mypath", request.URL.path);
     NSString *body = [[NSString alloc] initWithData:request.HTTPBody encoding:NSUTF8StringEncoding];
     XCTAssertTrue([body rangeOfString:@"\"param1\":\"1\""].location != NSNotFound);
     XCTAssertTrue([body rangeOfString:@"\"param2\":\"2\""].location != NSNotFound);

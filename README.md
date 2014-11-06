@@ -6,14 +6,14 @@ The AT&T [M2X API](https://m2x.att.com/developer/documentation/overview) provide
 
 - Signup for an M2X Account: [https://m2x.att.com/signup](https://m2x.att.com/signup)
 - Obtain your Master Key from the Master Keys tab of your Account Settings: [https://m2x.att.com/account](https://m2x.att.com/account)
-- Create your first Data Source Blueprint and copy its Feed ID: [https://m2x.att.com/blueprints](https://m2x.att.com/blueprints)
+- Create your first Device and copy its Device ID: [https://m2x.att.com/blueprints](https://m2x.att.com/devices)
 - Review the M2X API Documentation: [https://m2x.att.com/developer/documentation/overview](https://m2x.att.com/developer/documentation/overview)
 
 If you have questions about any M2X specific terms, please consult the M2X glossary: https://m2x.att.com/developer/documentation/glossary
 
 ##Installation
 
-Copy the content from the `lib` folder to your project.
+Copy the content from the `lib` folder to your project or add `M2XLib/M2XLib.xcodeproj` as a subproject.
 
 ## Requirements and Dependencies
 
@@ -27,8 +27,8 @@ The HomeKit Demo App is capable of monitoring a thermostat's current temperature
 
 After running the Demo App for the first time, you will have to:
 
-* Provide a feed ID for testing purposes
-* Provide a valid stream name belonging to the previously defined Feed
+* Provide a Device ID for testing purposes
+* Provide a valid stream name belonging to the previously defined Device
 * Finally, enter a valid M2X key with enough POST permissions. Using the Master Key is possible but not required.
 
 If you haven't done it before you will have setup your home and accessories.
@@ -45,17 +45,19 @@ Finally, in order to view and post data you simply need to:
 
 ## Architecture
 
-Currently, the client supports M2X API v1. All M2X API specifications can be found in the [M2X API Documentation](https://m2x.att.com/developer/documentation/overview).
+Currently, the client supports M2X API v2. All M2X API specifications can be found in the [M2X API Documentation](https://m2x.att.com/developer/documentation/overview).
+
+For API v1, check branch 'v1.0' (deprecated)
 
 ### M2X Class
 
-M2X is the main class that provides the methods to set the API URL ("http://api-m2x.att.com/v1" as default) and the Master Key.
+M2X is the main class that provides the methods to set the API URL ("http://api-m2x.att.com/v2" as default) and the Master Key.
 
 **Example:**
 
 ```objc
 //get singleton instance of M2x Class
-M2x* m2x = [M2x shared];
+CBBM2x* m2x = [CBBM2x shared];
 //set the Master Api Key
 m2x.api_key = @"your_api_key";
 ```
@@ -74,42 +76,42 @@ These methods can be used to convert to and from a NSDate or NSString object.
 **Example:**
 
 ```objc
-NSDate *batchCreationDate = [NSDate fromISO8601:batch[@"created"]];
+NSDate *distributionCreationDate = [NSDate fromISO8601:distribution[@"created"]];
 ```
 
 ### API Clients
 ---
-The clients (`FeedsClient`, `DataSourceClient` and `KeysClient`) provide an interface to make all the requests on the respectives API.
+The clients (`CBBDeviceClient`, `CBBStreamClient`, `CBBDistributionClient` and `CBBKeysClient`) provide an interface to make all the requests on the respectives API.
 
 If the call requires parameters, it must be encapsulated in a `NSDictionary` following the respective estructure from the [API Documentation](https://m2x.att.com/developer/documentation/overview).
 As well as the parameters, the response is returned in a `NSDictionary` object.
 
-If required, a [Feed API key](https://m2x.att.com/developer/documentation/overview#API-Keys) can be set in these classes.
+If required, a [Device API key](https://m2x.att.com/developer/documentation/overview#API-Keys) can be set in these classes.
 
-#### [FeedsClient](/lib/FeedsClient.h) ([Spec](https://m2x.att.com/developer/documentation/feed))
+#### [CBBDeviceClient](/lib/CBBDeviceClient.h) ([Spec](https://m2x.att.com/developer/documentation/device))
 
 ```objc
-FeedsClient *feedClient = [[FeedsClient alloc] init];
-[feedClient setFeed_key:@"YOUR_FEED_API_KEY"];
+CBBDeviceClient *client = [[CBBDeviceClient alloc] init];
+[client setDeviceKey:@"YOUR_DEVICE_API_KEY"];
 ```
 
-**List Feeds in a `NSMutableArray`:**
+**List Devices in a `NSMutableArray`:**
 
 ```objc
 
 // Note that for this call you need your Master API Key,
 // otherwise you'll get a 401 Unauthorized error.
-[feedClient setFeed_key:@"YOUR_MASTER_API_KEY"];
+[client setDeviceKey:@"YOUR_MASTER_API_KEY"];
 
-//retrieve a list of feeds without parameters
-[feedClient listWithParameters:nil success:^(id object) {
+//retrieve a list of devices without parameters
+[client listDevicesWithParameters:nil success:^(id object) {
 
-  NSDictionary *response = [value objectForKey:@"feeds"];
-  feedList = [NSMutableArray array];
-  for (NSDictionary *feed in response) {
-      //show only active feeds
-      if([[feed valueForKey:@"status"] isEqualToString:@"enabled"])
-          [feedList addObject:feed];
+  NSDictionary *response = [value objectForKey:@"devices"];
+  deviceList = [NSMutableArray array];
+  for (NSDictionary *device in response) {
+      //show only active devices
+      if([[device valueForKey:@"status"] isEqualToString:@"enabled"])
+          [deviceList addObject:device];
   }
 
 } failure:^(NSError *error, NSDictionary *message) {
@@ -134,7 +136,7 @@ NSDictionary *locationDict = @{ @"name": _currentLocality,
                            @"longitude": [NSString stringWithFormat:@"%f",location.coordinate.longitude],
                            @"elevation": [NSString stringWithFormat:@"%f",location.altitude] };
 
-[feedClient updateDatasourceWithLocation:locationDict inFeed:@"your_feed_id" success:^(id object) {
+[client updateDeviceWithLocation:locationDict inDevice:@"your_device_id" success:^(id object) {
 	//Callback function
     [self didSetLocation];
 } failure:^(NSError *error, NSDictionary *message) {
@@ -147,11 +149,11 @@ NSDictionary *locationDict = @{ @"name": _currentLocality,
 
 ```objc
 NSString *now = [NSDate date].toISO8601;
-NSDictionary *newValue = @{ @"values": @[ @{ @"value": @"20", @"at": now } ] };
+NSDictionary *newValue = @{ @"values": @[ @{ @"value": @"20", @"timestamp": now } ] };
 
-[feedClient postDataValues:newValue
+[client postDataValues:newValue
                   forStream:@"stream_name"
-                     inFeed:@"your_feed_id"
+                     inDevice:@"your_device_id"
                      success:^(id object) { /*success block*/ }
                      failure:^(NSError *error, NSDictionary *message)
 {
@@ -170,7 +172,7 @@ NSDictionary *trigger = @{ @"name": @"trigger1",
                            @"callback_url": @"http://example.com",
                            @"status": @"enabled" };
 
-[feedClient createTrigger:trigger inFeed:@"ee9501931bcb3f9b0d25fde5eaf4abd8" success:^(id object) {
+[client createTrigger:trigger inDevice:@"ee9501931bcb3f9b0d25fde5eaf4abd8" success:^(id object) {
     /*success block*/
 } failure:^(NSError *error, NSDictionary *message) {
     NSLog(@"error: %@",[error localizedDescription]);
@@ -181,7 +183,7 @@ NSDictionary *trigger = @{ @"name": @"trigger1",
 **View Request Log**
 
 ```objc
-[feedClient viewRequestLogForFeed:@"YOUR_FEED_ID" success:^(id object) {
+[client viewRequestLogForDevice:@"YOUR_DEVICE_ID" success:^(id object) {
   NSArray *requests = [object objectForKey:@"requests"];
 } failure:^(NSError *error, NSDictionary *message) {
   NSLog(@"error: %@",[error localizedDescription]);
@@ -189,77 +191,61 @@ NSDictionary *trigger = @{ @"name": @"trigger1",
 }];
 ```
 
-#### [DataSourceClient](/lib/DataSourceClient.h) ([Spec](https://m2x.att.com/developer/documentation/datasource))
+#### [CBBDeviceClient](/lib/CBBDeviceClient.h) ([Spec](https://m2x.att.com/developer/documentation/device))
 
 
 ```objc
-DataSourceClient dataSourceClient = [[DataSourceClient alloc] init];
-[dataSourceClient setFeed_key:@"YOUR_FEED_API_KEY"];
+CBBDeviceClient deviceClient = [[CBBDeviceClient alloc] init];
+[deviceClient setDevice_key:@"YOUR_DEVICE_API_KEY"];
 ```
 
-**Create Blueprint:**
+**List Devices from a Distribution:**
 
 ```objc
-NSDictionary *blueprint = @{ @"name": @"Sample Blueprint",
-                      @"description": @"Longer description for Sample Blueprint",
-                       @"visibility": @"public" };
-
-[dataSourceClient createBlueprint:bp success:^(id object) {
-    /*blueprint created*/
-    NSDictionary *blueprintCreated = object;
-} failure:^(NSError *error, NSDictionary *message) {
-    NSLog(@"%@",message);
-    NSLog(@"%@",error);
-}];
-```
-
-**List Data Sources from a Batch:**
-
-```objc
-[dataSourceClient listDataSourcesfromBatch:@"batch_id" success:^(id object) {
-    [dataSources removeAllObjects];
-    [dataSources addObjectsFromArray:[dataSourcesList objectForKey:@"datasources"]];
-    [tableViewDataSources reloadData];
+[client listDevicesfromDistribution:@"distribution_id" success:^(id object) {
+    [devices removeAllObjects];
+    [devices addObjectsFromArray:[devicesList objectForKey:@"devices"]];
+    [tableViewDevices reloadData];
 } failure:^(NSError *error, NSDictionary *message) {
     NSLog(@"Error: %@",[error localizedDescription]);
     NSLog(@"Message: %@",message);
 }];
 ```
 
-**Add Data Source to an existing Batch:**
+**Add Device to an existing Distribution:**
 
 ```objc
 NSDictionary *serial = @{ @"serial": @"your_new_serial" };
-//Add Data Source to the Batch
-[dataSourceClient addDataSourceToBatch:@"batch_id" withParameters:serial success:^(id object) {
-    //data source successfully added.
+//Add Device to the Distribution
+[client addDeviceToDistribution:@"distribution_id" withParameters:serial success:^(id object) {
+    //Device successfully added.
 } failure:^(NSError *error, NSDictionary *message) {
     NSLog(@"Error: %@",[error localizedDescription]);
     NSLog(@"Message: %@",message);
 }];
 ```
 
-**Create Batch:**
+**Create Distribution:**
 
 ```objc
-NSDictionary *batch = @{ @"name": @"your_batch_name" ,
+NSDictionary *distribution = @{ @"name": @"your_distribution_name" ,
                   @"description": @"a_description",
                    @"visibility": @"private" };
 
-[dataSourceClient createBatch:batch success:^(id object) {
-    //batch successfully created.
-    NSDictionary *batchCreated = object;
+[client createDistribution:distribution success:^(id object) {
+    //distribution successfully created.
+    NSDictionary *distributionCreated = object;
 } failure:^(NSError *error, NSDictionary *message) {
     NSLog(@"Error: %@",[error localizedDescription]);
     NSLog(@"Message: %@",message);
 }];
 ```
 
-**View Data Source Details:**
+**View Device Details:**
 
 ```objc
-[dataSourceClient viewDetailsForDataSourceId:@"datasource_id" success:^(id object) {
-    //set label with data source info.
+[client viewDetailsForDeviceId:@"device_id" success:^(id object) {
+    //set label with device info.
     [lblDSName setText:[object valueForKey:@"name"]];
     [lblDSDescription setText:[object valueForKey:@"name"]];
     [lblDSSerial setText:[object valueForKey:@"serial"]];
@@ -269,33 +255,33 @@ NSDictionary *batch = @{ @"name": @"your_batch_name" ,
 }];
 ```
 
-**Create Data Source:**
+**Create Device:**
 
 ```objc
-NSDictionary *datasource = @{ @"name": @"Sample Data Source",
-                       @"description": @"Longer description for Sample Data Source",
+NSDictionary *device = @{ @"name": @"Sample Device",
+                       @"description": @"Longer description for Sample Device",
                         @"visibility": @"public" };
 
-[dataSourceClient createDataSource:datasource success:^(id object) {
-    /*Data Source created*/
-    NSDictionary *dataSourceCreated = object;
+[client createDevice:device success:^(id object) {
+    /*Device created*/
+    NSDictionary *deviceCreated = object;
 } failure:^(NSError *error, NSDictionary *message) {
     NSLog(@"Error: %@",[error localizedDescription]);
     NSLog(@"Message: %@",message);
 }];
 ```
 
-#### [KeysClient](/lib/DataSourceClient.h) ([Spec](https://m2x.att.com/developer/documentation/keys))
+#### [CBBKeysClient](/lib/CBBKeysClient.h) ([Spec](https://m2x.att.com/developer/documentation/keys))
 
 ```objc
-KeysClient keyClient = [[KeysClient alloc] init];
-[keyClient setFeed_key:@"YOUR_FEED_API_KEY"];
+CBBKeysClient *client = [[CBBKeysClient alloc] init];
+[client setDeviceKey:@"YOUR_DEVICE_API_KEY"];
 ```
 
 **List Keys:**
 
 ```objc
-[keysClient listKeysWithParameters:nil success:^(id object) {
+[client listKeysWithParameters:nil success:^(id object) {
     [keysArray removeAllObjects];
     [keysArray addObjectsFromArray:[object objectForKey:@"keys"]];
     [self.tableView reloadData];
@@ -308,7 +294,7 @@ KeysClient keyClient = [[KeysClient alloc] init];
 **View Key Details:**
 
 ```objc
-[keysClient viewDetailsForKey:_key success:^(id object) {
+[client viewDetailsForKey:_key success:^(id object) {
     NSString *name = [object valueForKey:@"name"];
     NSString *key = [object valueForKey:@"key"];
     NSString *expiresAt = [object valueForKey:@"expires_at"];
@@ -330,7 +316,7 @@ KeysClient keyClient = [[KeysClient alloc] init];
 **Regenerate Key:**
 
 ```objc
-[keysClient regenerateKey:_key success:^(id object) {
+[client regenerateKey:_key success:^(id object) {
     //Update key label
     [lblKey setText:[object valueForKey:@"key"]];
 } failure:^(NSError *error, NSDictionary *message) {

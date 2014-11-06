@@ -111,4 +111,75 @@
 -(void)updateDeviceWithLocation:(NSDictionary*)location inDevice:(NSString*)device_id completionHandler:(M2XAPICallback)completionHandler;
 
 
+///------------------------------------
+/// @List Triggers
+///------------------------------------
+
+/**
+ Retrieve list of triggers associated with the specified device.
+ */
+-(void)listTriggersinDevice:(NSString*)device_id completionHandler:(M2XAPICallback)completionHandler;
+
+///------------------------------------
+/// @Create Trigger
+///------------------------------------
+
+/**
+ Create a new trigger associated with the specified device.
+ 
+ i.e.:
+ NSDictionary *trigger = @{ @"name": @"trigger1",
+ @"stream": @"temperature",
+ @"condition": @">",
+ @"value": @"30",
+ @"callback_url": @"http://example.com",
+ @"status": @"enabled" };
+ */
+-(void)createTrigger:(NSDictionary*)trigger inDevice:(NSString*)device_id completionHandler:(M2XAPICallback)completionHandler;
+
+///------------------------------------
+/// @View Trigger
+///------------------------------------
+
+/**
+ Get details of a specific trigger associated with an existing device.
+ */
+-(void)viewTrigger:(NSString*)trigger_id inDevice:(NSString*)device_id completionHandler:(M2XAPICallback)completionHandler;
+
+///------------------------------------
+/// @Update Trigger
+///------------------------------------
+
+/**
+ Update an existing trigger associated with the specified device.
+ */
+-(void)UpdateTrigger:(NSString*)trigger_id inDevice:(NSString*)device_id completionHandler:(M2XAPICallback)completionHandler;
+
+///------------------------------------
+/// @Test Trigger
+///------------------------------------
+
+/**
+ Test the specified trigger by firing it with a fake value. This method can be used by developers of client applications to test the way their apps receive and handle M2X notifications.
+ */
+-(void)testTrigger:(NSString*)trigger_id inDevice:(NSString*)device_id completionHandler:(M2XAPICallback)completionHandler;
+
+///------------------------------------
+/// @Delete Trigger
+///------------------------------------
+
+/**
+ Delete an existing trigger associated with a specific device.
+ */
+-(void)deleteTrigger:(NSString*)trigger_id inDevice:(NSString*)device_id completionHandler:(M2XAPICallback)completionHandler;
+
+///------------------------------------
+/// @View Request Log
+///------------------------------------
+
+/**
+ Retrieve list of HTTP requests received lately by the specified device (up to 100 entries).
+ */
+-(void)viewRequestLogForDevice:(NSString*)device_id completionHandler:(M2XAPICallback)completionHandler;
+
 @end

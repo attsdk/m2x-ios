@@ -54,7 +54,7 @@
     
     NSURLRequest *req = [client listKeysWithParameters:@{@"limit": @"10", @"q": @"bla"} completionHandler:nil];
     
-    XCTAssertEqualObjects(req.URL.path, @"/v1/keys");
+    XCTAssertEqualObjects(req.URL.path, @"/v2/keys");
     XCTAssertTrue([req.URL.query rangeOfString:@"limit=10"].location != NSNotFound);
     XCTAssertTrue([req.URL.query rangeOfString:@"q=bla"].location != NSNotFound);
 }

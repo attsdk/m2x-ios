@@ -6,7 +6,7 @@
 typedef void (^configureRequestBlock)(NSMutableURLRequest *request);
 
 // API URL must not have the last slash.
-static NSString * const m2xApiURL = @"https://api-m2x.att.com/v1";
+static NSString * const m2xApiURL = @"https://api-m2x.att.com/v2";
 static NSString * const m2xLibVersion = @"1.0";
 
 NSString * const CBBM2xErrorDomain = @"CBBM2xErrorDomain";
