@@ -120,6 +120,36 @@ CBBDeviceClient *client = [[CBBDeviceClient alloc] init];
 }];
 ```
 
+**View Device Details:**
+
+```objc
+[client viewDetailsForDeviceId:@"device_id" success:^(id object) {
+    //set label with device info.
+    [lblDSName setText:[object valueForKey:@"name"]];
+    [lblDSDescription setText:[object valueForKey:@"name"]];
+    [lblDSSerial setText:[object valueForKey:@"serial"]];
+} failure:^(NSError *error, NSDictionary *message) {
+    NSLog(@"Error: %@",[error localizedDescription]);
+    NSLog(@"Message: %@",message);
+}];
+```
+
+**Create Device:**
+
+```objc
+NSDictionary *device = @{ @"name": @"Sample Device",
+                       @"description": @"Longer description for Sample Device",
+                        @"visibility": @"public" };
+
+[client createDevice:device success:^(id object) {
+    /*Device created*/
+    NSDictionary *deviceCreated = object;
+} failure:^(NSError *error, NSDictionary *message) {
+    NSLog(@"Error: %@",[error localizedDescription]);
+    NSLog(@"Message: %@",message);
+}];
+```
+
 **Update the current location:**
 
 ```objc
@@ -140,23 +170,6 @@ NSDictionary *locationDict = @{ @"name": _currentLocality,
 	//Callback function
     [self didSetLocation];
 } failure:^(NSError *error, NSDictionary *message) {
-    NSLog(@"Error: %@",[error localizedDescription]);
-    NSLog(@"Message: %@",message);
-}];
-```
-
-**Post Data Stream Values:**
-
-```objc
-NSString *now = [NSDate date].toISO8601;
-NSDictionary *newValue = @{ @"values": @[ @{ @"value": @"20", @"timestamp": now } ] };
-
-[client postDataValues:newValue
-                  forStream:@"stream_name"
-                     inDevice:@"your_device_id"
-                     success:^(id object) { /*success block*/ }
-                     failure:^(NSError *error, NSDictionary *message)
-{
     NSLog(@"Error: %@",[error localizedDescription]);
     NSLog(@"Message: %@",message);
 }];
@@ -191,12 +204,37 @@ NSDictionary *trigger = @{ @"name": @"trigger1",
 }];
 ```
 
-#### [CBBDeviceClient](/lib/CBBDeviceClient.h) ([Spec](https://m2x.att.com/developer/documentation/device))
+#### [CBBStreamClient](/lib/CBBStreamClient.h) ([Spec](https://m2x.att.com/developer/documentation/stream))
 
 
 ```objc
-CBBDeviceClient deviceClient = [[CBBDeviceClient alloc] init];
-[deviceClient setDevice_key:@"YOUR_DEVICE_API_KEY"];
+CBBStreamClient *client = [[CBBStreamClient alloc] init];
+[deviceClient setDeviceKey:@"YOUR_DEVICE_API_KEY"];
+```
+
+**Post Data Stream Values:**
+
+```objc
+NSString *now = [NSDate date].toISO8601;
+NSDictionary *newValue = @{ @"values": @[ @{ @"value": @"20", @"timestamp": now } ] };
+
+[client postDataValues:newValue
+                  forStream:@"stream_name"
+                     inDevice:@"your_device_id"
+                     success:^(id object) { /*success block*/ }
+                     failure:^(NSError *error, NSDictionary *message)
+{
+    NSLog(@"Error: %@",[error localizedDescription]);
+    NSLog(@"Message: %@",message);
+}];
+```
+
+#### [CBBDistributionClient](/lib/CBBDistributionClient.h) ([Spec](https://m2x.att.com/developer/documentation/device))
+
+
+```objc
+CBBDistributionClient *client = [[CBBDistributionClient alloc] init];
+[deviceClient setDeviceKey:@"YOUR_DEVICE_API_KEY"];
 ```
 
 **List Devices from a Distribution:**
@@ -235,36 +273,6 @@ NSDictionary *distribution = @{ @"name": @"your_distribution_name" ,
 [client createDistribution:distribution success:^(id object) {
     //distribution successfully created.
     NSDictionary *distributionCreated = object;
-} failure:^(NSError *error, NSDictionary *message) {
-    NSLog(@"Error: %@",[error localizedDescription]);
-    NSLog(@"Message: %@",message);
-}];
-```
-
-**View Device Details:**
-
-```objc
-[client viewDetailsForDeviceId:@"device_id" success:^(id object) {
-    //set label with device info.
-    [lblDSName setText:[object valueForKey:@"name"]];
-    [lblDSDescription setText:[object valueForKey:@"name"]];
-    [lblDSSerial setText:[object valueForKey:@"serial"]];
-} failure:^(NSError *error, NSDictionary *message) {
-    NSLog(@"Error: %@",[error localizedDescription]);
-    NSLog(@"Message: %@",message);
-}];
-```
-
-**Create Device:**
-
-```objc
-NSDictionary *device = @{ @"name": @"Sample Device",
-                       @"description": @"Longer description for Sample Device",
-                        @"visibility": @"public" };
-
-[client createDevice:device success:^(id object) {
-    /*Device created*/
-    NSDictionary *deviceCreated = object;
 } failure:^(NSError *error, NSDictionary *message) {
     NSLog(@"Error: %@",[error localizedDescription]);
     NSLog(@"Message: %@",message);
