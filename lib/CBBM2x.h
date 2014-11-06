@@ -2,13 +2,13 @@
 #import <UIKit/UIKit.h>
 #import "NSDate+M2X.h"
 
-//typedef void (^M2XAPIClientSuccessObject)(id object);
-//typedef void (^M2XAPIClientFailureError)(NSError *error,NSDictionary *message);
 typedef void (^M2XAPICallback)(id object, NSURLResponse *response, NSError *error);
 
-enum {
+typedef enum : NSInteger {
     CBBM2xNoApiKey = 1,
-};
+} CBBM2xAPIErrors;
+
+extern NSString * const CBBM2xErrorDomain;
 
 @interface CBBM2x : NSObject
 

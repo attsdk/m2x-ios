@@ -1,12 +1,12 @@
 
 #import <UIKit/UIKit.h>
-#import "CBBDataSourceClient.h"
+#import "CBBDistributionClient.h"
 
 @interface DistributionListViewController : UITableViewController{
     
 }
 
-@property (strong, nonatomic) CBBDataSourceClient *dataSourceClient;
+@property (strong, nonatomic) CBBDistributionClient *dataSourceClient;
 
 @property (nonatomic, strong) NSMutableArray *data;
 

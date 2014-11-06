@@ -12,13 +12,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.dataSourceClient = [CBBDataSourceClient new];
+    self.dataSourceClient = [CBBDistributionClient new];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     //get list of feeds without parameters
-    [_dataSourceClient listDistributionWithCompletionHandler:^(id object, NSURLResponse *response, NSError *error)
+    [_dataSourceClient listDistributionsWithCompletionHandler:^(id object, NSURLResponse *response, NSError *error)
     {
         if (error) {
             [self showError:error WithMessage:error.userInfo];

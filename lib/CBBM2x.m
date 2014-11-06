@@ -7,7 +7,7 @@
 static NSString * const m2xApiURL = @"https://api-m2x.att.com/v1";
 static NSString * const m2xLibVersion = @"1.0";
 
-static NSString * const CBBM2xErrorDomain = @"CBBM2xErrorDomain";
+NSString * const CBBM2xErrorDomain = @"CBBM2xErrorDomain";
 
 @interface CBBM2x()
 @property (strong, nonatomic) NSURLSession *session;
