@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
 #import "CBBM2x.h"
+#import "CBBKeysClient.h"
 
 @interface M2xTests : XCTestCase
 
@@ -120,6 +121,28 @@
     NSString *body = [[NSString alloc] initWithData:request.HTTPBody encoding:NSUTF8StringEncoding];
     XCTAssertTrue([body rangeOfString:@"\"param1\":\"1\""].location != NSNotFound);
     XCTAssertTrue([body rangeOfString:@"\"param2\":\"2\""].location != NSNotFound);
+}
+
+- (void)testUseApiKeyWhenFeedKeyIsUnavailable {
+    [CBBM2x shared].apiKey = @"apiKey";
+    
+    CBBKeysClient *client = [CBBKeysClient new];
+    client.deviceKey = nil;
+    
+    NSURLRequest *request = [client listKeysWithParameters:nil completionHandler:nil];
+    
+    XCTAssertEqualObjects(request.allHTTPHeaderFields[@"X-M2X-KEY"], @"apiKey");
+}
+
+- (void)testUseFeedKeyWhenAvailable {
+    [CBBM2x shared].apiKey = @"apiKey";
+    
+    CBBKeysClient *client = [CBBKeysClient new];
+    client.deviceKey = @"deviceKey";
+    
+    NSURLRequest *request = [client listKeysWithParameters:nil completionHandler:nil];
+    
+    XCTAssertEqualObjects(request.allHTTPHeaderFields[@"X-M2X-KEY"], @"deviceKey");
 }
 
 @end
