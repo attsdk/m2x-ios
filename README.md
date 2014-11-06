@@ -59,7 +59,7 @@ M2X is the main class that provides the methods to set the API URL ("http://api-
 //get singleton instance of M2x Class
 CBBM2x* m2x = [CBBM2x shared];
 //set the Master Api Key
-m2x.api_key = @"your_api_key";
+m2x.apiKey = @"your_api_key";
 ```
 
 ### M2X Categories
