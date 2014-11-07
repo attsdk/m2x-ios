@@ -7,12 +7,11 @@ typedef void (^configureRequestBlock)(NSMutableURLRequest *request);
 
 // API URL must not have the last slash.
 static NSString * const m2xApiURL = @"https://api-m2x.att.com/v2";
-static NSString * const m2xLibVersion = @"1.0";
+static NSString * const m2xLibVersion = @"2.0";
 
 NSString * const CBBM2xErrorDomain = @"CBBM2xErrorDomain";
 
 @interface CBBM2x()
-@property (strong, nonatomic) NSURLSession *session;
 @end
 
 @implementation CBBM2x
@@ -84,6 +83,12 @@ NSString * const CBBM2xErrorDomain = @"CBBM2xErrorDomain";
             obj = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&jsonError];
         }
         if (completionHandler) {
+            if (!error) {
+                NSHTTPURLResponse *r = (NSHTTPURLResponse *)response;
+                if (r.statusCode >= 400) {
+                    error = [NSError errorWithDomain:CBBM2xErrorDomain code:CBBM2xRequestError userInfo:@{NSLocalizedFailureReasonErrorKey:[NSString stringWithFormat:@"HTTP error code: %d", (int)r.statusCode]}];
+                }
+            }
             completionHandler(obj, (NSHTTPURLResponse *)response, error ? error : jsonError);
         }
     }];

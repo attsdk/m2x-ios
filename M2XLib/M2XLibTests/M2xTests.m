@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
+#import "OCMock.h"
 #import "CBBM2x.h"
 #import "CBBKeysClient.h"
 
@@ -121,6 +122,48 @@
     NSString *body = [[NSString alloc] initWithData:request.HTTPBody encoding:NSUTF8StringEncoding];
     XCTAssertTrue([body rangeOfString:@"\"param1\":\"1\""].location != NSNotFound);
     XCTAssertTrue([body rangeOfString:@"\"param2\":\"2\""].location != NSNotFound);
+}
+
+- (void)testErrorOn400 {
+    id sessionMock = OCMClassMock([NSURLSession class]);
+    [[[sessionMock stub] andDo:^(NSInvocation *invocation) {
+        void (^callback)(NSData *data, NSURLResponse *response, NSError *error);
+        [invocation getArgument:&callback atIndex:3];
+        
+        NSData *data = [NSData dataWithContentsOfFile:@"{\"a\":\"b\"}"];
+        NSHTTPURLResponse *response = [[NSHTTPURLResponse alloc] initWithURL:nil statusCode:404 HTTPVersion:@"1.1" headerFields:nil];
+        
+        callback(data, response, nil);
+    }] dataTaskWithRequest:[OCMArg any] completionHandler:[OCMArg any]];
+    
+    CBBM2x *client = [CBBM2x shared];
+    client.session = sessionMock;
+    client.apiKey = @"1234";
+    [client putWithPath:@"/mypath" andParameters:@{@"param1": @"1", @"param2": @"2"} apiKey:client.apiKey completionHandler:^(id object, NSHTTPURLResponse *response, NSError *error) {
+        XCTAssertNotNil(error);
+        XCTAssertEqual(error.code, CBBM2xRequestError);
+    }];
+}
+
+- (void)testErrorOn500 {
+    id sessionMock = OCMClassMock([NSURLSession class]);
+    [[[sessionMock stub] andDo:^(NSInvocation *invocation) {
+        void (^callback)(NSData *data, NSURLResponse *response, NSError *error);
+        [invocation getArgument:&callback atIndex:3];
+        
+        NSData *data = [NSData dataWithContentsOfFile:@"{\"a\":\"b\"}"];
+        NSHTTPURLResponse *response = [[NSHTTPURLResponse alloc] initWithURL:nil statusCode:500 HTTPVersion:@"1.1" headerFields:nil];
+        
+        callback(data, response, nil);
+    }] dataTaskWithRequest:[OCMArg any] completionHandler:[OCMArg any]];
+    
+    CBBM2x *client = [CBBM2x shared];
+    client.session = sessionMock;
+    client.apiKey = @"1234";
+    [client putWithPath:@"/mypath" andParameters:@{@"param1": @"1", @"param2": @"2"} apiKey:client.apiKey completionHandler:^(id object, NSHTTPURLResponse *response, NSError *error) {
+        XCTAssertNotNil(error);
+        XCTAssertEqual(error.code, CBBM2xRequestError);
+    }];
 }
 
 - (void)testUseApiKeyWhenFeedKeyIsUnavailable {

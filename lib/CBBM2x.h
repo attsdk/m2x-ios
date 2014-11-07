@@ -6,6 +6,7 @@ typedef void (^M2XAPICallback)(id object, NSHTTPURLResponse *response, NSError *
 
 typedef enum : NSInteger {
     CBBM2xNoApiKey = 1,
+    CBBM2xRequestError
 } CBBM2xAPIErrors;
 
 extern NSString * const CBBM2xErrorDomain;
@@ -19,6 +20,7 @@ extern NSString * const CBBM2xErrorDomain;
 -(NSURLRequest *)putWithPath:(NSString*)path andParameters:(NSDictionary*)parameters apiKey:(NSString*)apiKey completionHandler:(M2XAPICallback)completionHandler;
 -(NSURLRequest *)deleteWithPath:(NSString*)path andParameters:(NSDictionary*)parameters apiKey:(NSString*)apiKey completionHandler:(M2XAPICallback)completionHandler;
 
+@property (nonatomic, strong) NSURLSession *session;
 @property (nonatomic, copy) NSString *apiUrl;
 @property (nonatomic, copy) NSString *apiKey;
 
