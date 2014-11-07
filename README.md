@@ -104,33 +104,32 @@ CBBDeviceClient *client = [[CBBDeviceClient alloc] init];
 [client setDeviceKey:@"YOUR_MASTER_API_KEY"];
 
 //retrieve a list of devices without parameters
-[client listDevicesWithParameters:nil success:^(id object) {
-
-  NSDictionary *response = [value objectForKey:@"devices"];
-  deviceList = [NSMutableArray array];
-  for (NSDictionary *device in response) {
-      //show only active devices
-      if([[device valueForKey:@"status"] isEqualToString:@"enabled"])
-          [deviceList addObject:device];
-  }
-
-} failure:^(NSError *error, NSDictionary *message) {
-    NSLog(@"Error: %@",[error description]);
-    NSLog(@"Message: %@",message);
+[client listDevicesWithParameters:nil completionHandler:^(id object, NSURLResponse *response, NSError *error) {
+    if (!error) {
+        NSDictionary *response = object[@"devices"];
+        NSMutableArray *deviceList = [NSMutableArray array];
+        for (NSDictionary *device in response) {
+            //show only active devices
+            if([[device valueForKey:@"status"] isEqualToString:@"enabled"])
+                [deviceList addObject:device];
+        }
+    } else {
+        NSLog(@"Error: %@",[error description]);
+    }
 }];
 ```
 
 **View Device Details:**
 
 ```objc
-[client viewDetailsForDeviceId:@"device_id" success:^(id object) {
-    //set label with device info.
-    [lblDSName setText:[object valueForKey:@"name"]];
-    [lblDSDescription setText:[object valueForKey:@"name"]];
-    [lblDSSerial setText:[object valueForKey:@"serial"]];
-} failure:^(NSError *error, NSDictionary *message) {
-    NSLog(@"Error: %@",[error localizedDescription]);
-    NSLog(@"Message: %@",message);
+[client viewDetailsForDeviceId:@"device_id" completionHandler:^(id object, NSURLResponse *response, NSError *error) {
+    if (!error) {
+        [lblDSName setText:[object valueForKey:@"name"]];
+        [lblDSDescription setText:[object valueForKey:@"name"]];
+        [lblDSSerial setText:[object valueForKey:@"serial"]];
+    } else {
+        NSLog(@"Error: %@",[error localizedDescription]);
+    }
 }];
 ```
 
@@ -141,13 +140,14 @@ NSDictionary *device = @{ @"name": @"Sample Device",
                        @"description": @"Longer description for Sample Device",
                         @"visibility": @"public" };
 
-[client createDevice:device success:^(id object) {
-    /*Device created*/
-    NSDictionary *deviceCreated = object;
-} failure:^(NSError *error, NSDictionary *message) {
-    NSLog(@"Error: %@",[error localizedDescription]);
-    NSLog(@"Message: %@",message);
+[client createDevice:device completionHandler:^(id object, NSURLResponse *response, NSError *error) {
+    if (!error) {
+        NSDictionary *deviceCreated = object;
+    } else {
+        NSLog(@"Error: %@",[error localizedDescription]);
+    }
 }];
+
 ```
 
 **Update the current location:**
@@ -166,12 +166,12 @@ NSDictionary *locationDict = @{ @"name": _currentLocality,
                            @"longitude": [NSString stringWithFormat:@"%f",location.coordinate.longitude],
                            @"elevation": [NSString stringWithFormat:@"%f",location.altitude] };
 
-[client updateDeviceWithLocation:locationDict inDevice:@"your_device_id" success:^(id object) {
-	//Callback function
-    [self didSetLocation];
-} failure:^(NSError *error, NSDictionary *message) {
-    NSLog(@"Error: %@",[error localizedDescription]);
-    NSLog(@"Message: %@",message);
+[client updateDeviceWithLocation:locationDict inDevice:@"your_device_id" completionHandler:^(id object, NSURLResponse *response, NSError *error) {
+    if (!error) {
+        [self didSetLocation];
+    } else {
+        NSLog(@"Error: %@",[error localizedDescription]);
+    }
 }];
 ```
 
@@ -185,22 +185,16 @@ NSDictionary *trigger = @{ @"name": @"trigger1",
                            @"callback_url": @"http://example.com",
                            @"status": @"enabled" };
 
-[client createTrigger:trigger inDevice:@"ee9501931bcb3f9b0d25fde5eaf4abd8" success:^(id object) {
-    /*success block*/
-} failure:^(NSError *error, NSDictionary *message) {
-    NSLog(@"error: %@",[error localizedDescription]);
-    NSLog(@"Message: %@",message);
+[client createTrigger:trigger inDevice:@"ee9501931bcb3f9b0d25fde5eaf4abd8" completionHandler:^(id object, NSURLResponse *response, NSError *error) {
+    ...
 }];
 ```
 
 **View Request Log**
 
 ```objc
-[client viewRequestLogForDevice:@"YOUR_DEVICE_ID" success:^(id object) {
-  NSArray *requests = [object objectForKey:@"requests"];
-} failure:^(NSError *error, NSDictionary *message) {
-  NSLog(@"error: %@",[error localizedDescription]);
-  NSLog(@"Message: %@",message);
+[client viewRequestLogForDevice:@"YOUR_DEVICE_ID" completionHandler:^(id object, NSURLResponse *response, NSError *error) {
+...
 }];
 ```
 
@@ -221,12 +215,10 @@ NSDictionary *newValue = @{ @"values": @[ @{ @"value": @"20", @"timestamp": now 
 [client postDataValues:newValue
                   forStream:@"stream_name"
                      inDevice:@"your_device_id"
-                     success:^(id object) { /*success block*/ }
-                     failure:^(NSError *error, NSDictionary *message)
-{
-    NSLog(@"Error: %@",[error localizedDescription]);
-    NSLog(@"Message: %@",message);
-}];
+                     completionHandler:^(id object, NSURLResponse *response, NSError *error) {
+                     ... 
+                     }
+];
 ```
 
 #### [CBBDistributionClient](/lib/CBBDistributionClient.h) ([Spec](https://m2x.att.com/developer/documentation/device))
@@ -240,13 +232,8 @@ CBBDistributionClient *client = [[CBBDistributionClient alloc] init];
 **List Devices from a Distribution:**
 
 ```objc
-[client listDevicesfromDistribution:@"distribution_id" success:^(id object) {
-    [devices removeAllObjects];
-    [devices addObjectsFromArray:[devicesList objectForKey:@"devices"]];
-    [tableViewDevices reloadData];
-} failure:^(NSError *error, NSDictionary *message) {
-    NSLog(@"Error: %@",[error localizedDescription]);
-    NSLog(@"Message: %@",message);
+[client listDevicesfromDistribution:@"distribution_id" completionHandler:^(id object, NSURLResponse *response, NSError *error) {
+...
 }];
 ```
 
@@ -255,11 +242,8 @@ CBBDistributionClient *client = [[CBBDistributionClient alloc] init];
 ```objc
 NSDictionary *serial = @{ @"serial": @"your_new_serial" };
 //Add Device to the Distribution
-[client addDeviceToDistribution:@"distribution_id" withParameters:serial success:^(id object) {
-    //Device successfully added.
-} failure:^(NSError *error, NSDictionary *message) {
-    NSLog(@"Error: %@",[error localizedDescription]);
-    NSLog(@"Message: %@",message);
+[client addDeviceToDistribution:@"distribution_id" withParameters:serial completionHandler:^(id object, NSURLResponse *response, NSError *error) {
+...
 }];
 ```
 
@@ -270,12 +254,8 @@ NSDictionary *distribution = @{ @"name": @"your_distribution_name" ,
                   @"description": @"a_description",
                    @"visibility": @"private" };
 
-[client createDistribution:distribution success:^(id object) {
-    //distribution successfully created.
-    NSDictionary *distributionCreated = object;
-} failure:^(NSError *error, NSDictionary *message) {
-    NSLog(@"Error: %@",[error localizedDescription]);
-    NSLog(@"Message: %@",message);
+[client createDistribution:distribution completionHandler:^(id object, NSURLResponse *response, NSError *error) {
+...
 }];
 ```
 
@@ -289,24 +269,21 @@ CBBKeysClient *client = [[CBBKeysClient alloc] init];
 **List Keys:**
 
 ```objc
-[client listKeysWithParameters:nil success:^(id object) {
-    [keysArray removeAllObjects];
-    [keysArray addObjectsFromArray:[object objectForKey:@"keys"]];
-    [self.tableView reloadData];
-} failure:^(NSError *error, NSDictionary *message) {
-    NSLog(@"Error: %@",[error localizedDescription]);
-    NSLog(@"Message: %@",message);
+[client listKeysWithParameters:nil completionHandler:^(id object, NSURLResponse *response, NSError *error) {
+    if (!error) {
+      NSArray *keys = object[@"keys"];
+    }
 }];
 ```
 
 **View Key Details:**
 
 ```objc
-[client viewDetailsForKey:_key success:^(id object) {
+[client viewDetailsForKey:_key completionHandler:^(id object, NSURLResponse *response, NSError *error) {
     NSString *name = [object valueForKey:@"name"];
     NSString *key = [object valueForKey:@"key"];
     NSString *expiresAt = [object valueForKey:@"expires_at"];
-    NSString *permissions = [[object objectForKey:@"permissions"] componentsJoinedByString:@", "];
+    NSString *permissions = [object[@"permissions"] componentsJoinedByString:@", "];
 
     [lblName setText:name];
     [lblKey setText:key];
@@ -315,34 +292,27 @@ CBBKeysClient *client = [[CBBKeysClient alloc] init];
     if(![expiresAt isEqual:[NSNull null]]){
         [lblExpiresAt setText:expiresAt];
     }
-} failure:^(NSError *error, NSDictionary *message) {
-    NSLog(@"Error: %@",[error localizedDescription]);
-    NSLog(@"Message: %@",message);
 }];
 ```
 
 **Regenerate Key:**
 
 ```objc
-[client regenerateKey:_key success:^(id object) {
+[client regenerateKey:_key completionHandler:^(id object, NSURLResponse *response, NSError *error) {
     //Update key label
     [lblKey setText:[object valueForKey:@"key"]];
-} failure:^(NSError *error, NSDictionary *message) {
-    NSLog(@"Error: %@",[error localizedDescription]);
-    NSLog(@"Message: %@",message);
 }];
 ```
 
 #### Errors and Messages
 
-The errors and messages are handled in the failure block. The *error* parameter is a `NSError` object that encapsulate the error information, for example the HTTP status code. And the *message* parameter is a `NSDictionary` and contains the response message from the API.
+The *error* parameter is a `NSError` object that encapsulate the error information, for example the HTTP status code.
 
-To get the HTTP status code from *error* use the method `- localizedDescription`.
+To get the HTTP status code use the `response` object
 
 ## Demo App
 
 This repository comes with a simple app that implements some of the API methods. It can be found in the following folder: `M2X_iOS`.
-
 
 
 ## License
