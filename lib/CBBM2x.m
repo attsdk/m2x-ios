@@ -9,6 +9,8 @@ typedef void (^configureRequestBlock)(NSMutableURLRequest *request);
 static NSString * const m2xApiURL = @"https://api-m2x.att.com/v2";
 static NSString * const m2xLibVersion = @"2.0";
 
+static BOOL VERBOSE_MODE = YES;
+
 NSString * const CBBM2xErrorDomain = @"CBBM2xErrorDomain";
 
 @interface CBBM2x()
@@ -74,6 +76,10 @@ NSString * const CBBM2xErrorDomain = @"CBBM2xErrorDomain";
     
     if (!completionHandler) {
         return request;
+    }
+    
+    if (VERBOSE_MODE) {
+        NSLog(@"M2X: %@", request.URL);
     }
     
     NSURLSessionDataTask *task = [self.session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
