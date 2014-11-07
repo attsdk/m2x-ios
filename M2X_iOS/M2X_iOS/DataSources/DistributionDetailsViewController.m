@@ -74,7 +74,7 @@
 
 -(void)getDevicesForDistribution{
     
-    [_dataSourceClient listDevicesfromDistribution:_distribution_id completionHandler:^(id object, NSURLResponse *response, NSError *error) {
+    [_dataSourceClient listDevicesFromDistribution:_distribution_id completionHandler:^(id object, NSURLResponse *response, NSError *error) {
         if (error) {
             [self showError:error WithMessage:error.userInfo];
         } else {

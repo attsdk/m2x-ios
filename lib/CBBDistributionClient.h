@@ -68,7 +68,7 @@
 /**
  Retrieve list of devices added to the specified batch
  */
--(void)listDevicesfromDistribution:(NSString*)batch_id completionHandler:(M2XAPICallback)completionHandler;
+-(void)listDevicesFromDistribution:(NSString*)batch_id completionHandler:(M2XAPICallback)completionHandler;
 
 
 ///------------------------------------

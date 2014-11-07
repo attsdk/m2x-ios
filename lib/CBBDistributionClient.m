@@ -43,7 +43,7 @@
 }
 
 
--(void)listDevicesfromDistribution:(NSString *)distribution_id completionHandler:(M2XAPICallback)completionHandler{
+-(void)listDevicesFromDistribution:(NSString *)distribution_id completionHandler:(M2XAPICallback)completionHandler{
     
     NSString *path = [NSString stringWithFormat:@"/distributions/%@/devices",distribution_id];
     

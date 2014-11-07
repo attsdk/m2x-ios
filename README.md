@@ -232,7 +232,7 @@ CBBDistributionClient *client = [[CBBDistributionClient alloc] init];
 **List Devices from a Distribution:**
 
 ```objc
-[client listDevicesfromDistribution:@"distribution_id" completionHandler:^(id object, NSURLResponse *response, NSError *error) {
+[client listDevicesFromDistribution:@"distribution_id" completionHandler:^(id object, NSURLResponse *response, NSError *error) {
 ...
 }];
 ```
@@ -306,7 +306,7 @@ CBBKeysClient *client = [[CBBKeysClient alloc] init];
 
 #### Errors and Messages
 
-The *error* parameter is a `NSError` object that encapsulate the error information, for example the HTTP status code.
+The *error* parameter is a `NSError` object that encapsulate the error information, check for its domain and code.
 
 To get the HTTP status code use the `response` object
 
