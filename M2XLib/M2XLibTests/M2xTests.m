@@ -51,7 +51,7 @@
     client.apiKey = @"1234";
     
     XCTAssertTrue(client.apiUrl);
-    NSURLRequest *request = [client getWithPath:@"/mypath" andParameters:@{@"param1": @"1", @"param2": @"2"} apiKey:client.apiKey completionHandler:nil];
+    NSURLRequest *request = [client getWithPath:@"/mypath" andParameters:@{@"param1": @"1", @"param2": @"2", @"param3": @3} apiKey:client.apiKey completionHandler:nil];
     
     XCTAssertNotNil(request.URL.host);
     XCTAssertEqualObjects(request.HTTPMethod, @"GET");
@@ -62,6 +62,7 @@
     XCTAssertEqualObjects(@"/v2/mypath", request.URL.path);
     XCTAssertTrue([request.URL.query rangeOfString:@"param1=1"].location != NSNotFound);
     XCTAssertTrue([request.URL.query rangeOfString:@"param2=2"].location != NSNotFound);
+    XCTAssertTrue([request.URL.query rangeOfString:@"param3=3"].location != NSNotFound);
 }
 
 - (void)testDelete {
