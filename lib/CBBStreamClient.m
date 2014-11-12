@@ -30,7 +30,7 @@
 
 -(void)postMultipleValues:(NSDictionary*)values inDevice:(NSString*)device_id completionHandler:(M2XAPICallback)completionHandler{
     
-    NSString *path = [NSString stringWithFormat:@"/devices/%@",device_id];
+    NSString *path = [NSString stringWithFormat:@"/devices/%@/updates",device_id];
     
     [[CBBM2x shared] postWithPath:path andParameters:values apiKey:[self apiKey] completionHandler:completionHandler];
     
