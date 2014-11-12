@@ -57,7 +57,12 @@ NSString * const CBBM2xErrorDomain = @"CBBM2xErrorDomain";
     NSArray *keys = [parameters allKeys];
     for (NSString *key in keys) {
         NSString *encodedKey = [key stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-        NSString *encodedValue = [parameters[key] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        NSString *encodedValue = nil;
+        if ([parameters[key] respondsToSelector:@selector(stringByAddingPercentEscapesUsingEncoding:)])
+            encodedValue = [parameters[key] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        else
+            encodedValue = parameters[key];
+        
         if (key == [keys firstObject]) {
             request.URL = [NSURL URLWithString:[NSString stringWithFormat:@"%@?%@=%@", request.URL, encodedKey, encodedValue]];
         } else {
