@@ -11,5 +11,7 @@
 
 - (NSString *) toISO8601;
 + (NSDate *) fromISO8601:(NSString *)dateString;
+- (NSString *) toISO8601WithTimeZone:(NSTimeZone *)timeZone locale:(NSLocale *)locale;
++ (NSDate *) fromISO8601:(NSString *)dateString timeZone:(NSTimeZone *)timeZone locale:(NSLocale *)locale;
 
 @end
