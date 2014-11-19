@@ -106,6 +106,13 @@
 
 /**
  Create a data stream associated with the specified device.
+ 
+ Accepted attributes in the parameters dictionary:
+ 
+ "type" (optional, can be 'numeric' or 'alphanumeric')
+ "unit" (required)
+ i.e.:
+ NSDictionary *parameters = @{ @"unit": @{"label": "celcius", "symbol": "C"}, @"type": @"numeric" };
  */
 -(void)createDataForStream:(NSString*)stream inDevice:(NSString*)device_id withParameters:(NSDictionary*)parameters completionHandler:(M2XAPICallback)completionHandler;
 
