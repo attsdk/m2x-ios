@@ -77,6 +77,20 @@
  */
 -(void)postMultipleValues:(NSDictionary*)values inDevice:(NSString*)device_id completionHandler:(M2XAPICallback)completionHandler;
 
+
+/**
+ Update the current stream value associated with a specific device.
+ Value is passed in a value dictionary and can be optionally timestamped. If no timestamp is specified, the current time of the API server is used.
+ 
+ Accepted attributes in the dictionary:
+ 
+ "timestamp" (optional)
+ "value" (required)
+ i.e.:
+ NSDictionary *value = @{ @"timestamp": @"2013-09-09T19:15:00Z", @"value": @"32" };
+ */
+-(void)updateDataValue:(NSDictionary*)value forStream:(NSString*)stream inDevice:(NSString*)device_id completionHandler:(M2XAPICallback)completionHandler;
+
 ///------------------------------------
 /// @Update Data Stream
 ///------------------------------------

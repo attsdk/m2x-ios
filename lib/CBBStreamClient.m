@@ -36,6 +36,14 @@
     
 }
 
+-(void)updateDataValue:(NSDictionary*)value forStream:(NSString*)stream inDevice:(NSString*)device_id completionHandler:(M2XAPICallback)completionHandler{
+    
+    NSString *path = [NSString stringWithFormat:@"/devices/%@/streams/%@/value",device_id,stream];
+    
+    [[CBBM2x shared] putWithPath:path andParameters:value apiKey:[self apiKey] completionHandler:completionHandler];
+    
+}
+
 -(void)updateDataForStream:(NSString*)stream inDevice:(NSString*)device_id withParameters:(NSDictionary*)parameters completionHandler:(M2XAPICallback)completionHandler{
     
     NSString *path = [NSString stringWithFormat:@"/devices/%@/streams/%@",device_id,stream];
