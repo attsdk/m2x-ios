@@ -101,6 +101,8 @@
 ///------------------------------------
 
 /**
+ --Async method--: should return a 202, which means it was accepted but not yet created.
+
  Update the current location of the device associated with the specified device. Accepts the following parameters:
  
  "name" a name identifying this location (optional).

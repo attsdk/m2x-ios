@@ -35,6 +35,8 @@
 ///------------------------------------
 
 /**
+ --Async method--: should return a 202, which means it was accepted but not yet created.
+
  Post values to an existing data stream associated with a specific device.
  Values are passed in a values array and can be optionally timestamped. If no timestamp is specified, the current time of the API server is used.
  
@@ -55,6 +57,8 @@
 ///------------------------------------
 
 /**
+ --Async method--: should return a 202, which means it was accepted but not yet created.
+
  Post values to an existing data stream associated with a specific device.
  Values are passed in a values array and can be optionally timestamped. If no timestamp is specified, the current time of the API server is used.
  
@@ -79,6 +83,8 @@
 
 
 /**
+ --Async method--: should return a 202, which means it was accepted but not yet created.
+
  Update the current stream value associated with a specific device.
  Value is passed in a value dictionary and can be optionally timestamped. If no timestamp is specified, the current time of the API server is used.
  
