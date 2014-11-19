@@ -82,6 +82,9 @@
 -(void)postMultipleValues:(NSDictionary*)values inDevice:(NSString*)device_id completionHandler:(M2XAPICallback)completionHandler;
 
 
+///------------------------------------
+/// @Update Data Value
+///------------------------------------
 /**
  --Async method--: should return a 202, which means it was accepted but not yet created.
 
@@ -96,6 +99,19 @@
  NSDictionary *value = @{ @"timestamp": @"2013-09-09T19:15:00Z", @"value": @"32" };
  */
 -(void)updateDataValue:(NSDictionary*)value forStream:(NSString*)stream inDevice:(NSString*)device_id completionHandler:(M2XAPICallback)completionHandler;
+
+///------------------------------------
+/// @Delete Data Values
+///------------------------------------
+/**
+ Accepted attributes in the parameters:
+ 
+ "from" (required)
+ "end" (required)
+ i.e.:
+ NSDictionary *parameters = @{ @"from": @"2013-09-09T19:15:00Z", @"end": @"2013-09-10T19:15:00Z" };
+ */
+-(void)deleteDataValuesFromTheStream:(NSString*)stream inDevice:(NSString*)device_id withParameters:(NSDictionary*)parameters completionHandler:(M2XAPICallback)completionHandler;
 
 ///------------------------------------
 /// @Update Data Stream

@@ -44,6 +44,12 @@
     
 }
 
+-(void)deleteDataValuesFromTheStream:(NSString*)stream inDevice:(NSString*)device_id withParameters:(NSDictionary*)parameters completionHandler:(M2XAPICallback)completionHandler{
+    NSString *path = [NSString stringWithFormat:@"/devices/%@/streams/%@/values",device_id,stream];
+    
+    [[CBBM2x shared] deleteWithPath:path andParameters:parameters apiKey:[self apiKey] completionHandler:completionHandler];
+}
+
 -(void)updateDataForStream:(NSString*)stream inDevice:(NSString*)device_id withParameters:(NSDictionary*)parameters completionHandler:(M2XAPICallback)completionHandler{
     
     NSString *path = [NSString stringWithFormat:@"/devices/%@/streams/%@",device_id,stream];
@@ -59,8 +65,6 @@
     [[CBBM2x shared] putWithPath:path andParameters:parameters apiKey:[self apiKey] completionHandler:completionHandler];
     
 }
-
-
 
 -(void)viewDataForStream:(NSString*)stream inDevice:(NSString*)device_id completionHandler:(M2XAPICallback)completionHandler{
     
