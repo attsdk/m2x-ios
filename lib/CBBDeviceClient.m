@@ -92,11 +92,11 @@
     
 }
 
--(void)UpdateTrigger:(NSString*)trigger_id inDevice:(NSString*)device_id completionHandler:(M2XAPICallback)completionHandler{
+-(void)updateTrigger:(NSString*)trigger_id withParameters:(NSDictionary*)parameters inDevice:(NSString*)device_id completionHandler:(M2XAPICallback)completionHandler{
     
     NSString *path = [NSString stringWithFormat:@"/devices/%@/triggers/%@",device_id,trigger_id];
     
-    [[CBBM2x shared] putWithPath:path andParameters:nil apiKey:[self apiKey] completionHandler:completionHandler];
+    [[CBBM2x shared] putWithPath:path andParameters:parameters apiKey:[self apiKey] completionHandler:completionHandler];
     
 }
 

@@ -155,7 +155,7 @@
 /**
  Update an existing trigger associated with the specified device.
  */
--(void)UpdateTrigger:(NSString*)trigger_id inDevice:(NSString*)device_id completionHandler:(M2XAPICallback)completionHandler;
+-(void)updateTrigger:(NSString*)trigger_id withParameters:(NSDictionary*)parameters inDevice:(NSString*)device_id completionHandler:(M2XAPICallback)completionHandler;
 
 ///------------------------------------
 /// @Test Trigger
