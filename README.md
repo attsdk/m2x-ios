@@ -16,43 +16,11 @@ Getting Started
 
 Copy the content from the `lib` folder to your project or add `M2XLib/M2XLib.xcodeproj` as a subproject.
 
-## Requirements and Dependencies
-
 The M2X iOS Client is compatible with the **iOS 7 SDK** (or above). The HomeKit demo app will only work with Xcode 6, the **iOS 8.0 SDK**, and a compatible HomeKit device or with the HomeKit Accessory Simulator.
 
-## HomeKit Demo App
+## Usage
 
-The SDK includes a demo app demonstrating integration possibilities between the iOS 8 HomeKit framework and M2X. To build the demo app you'll need Xcode 6 and a HomeKit-compatible thermostat. You could also simulate the thermostat using the HomeKit Accessory Simulator, available in the Hardware IO Tools.
-
-The HomeKit Demo App is capable of monitoring a thermostat's current temperature characteristic, capture temperature values and post them to M2X simply by tapping a button.
-
-After running the Demo App for the first time, you will have to:
-
-* Provide a Device ID for testing purposes
-* Provide a valid stream name belonging to the previously defined Device
-* Finally, enter a valid M2X key with enough POST permissions. Using the Master Key is possible but not required.
-
-If you haven't done it before you will have setup your home and accessories.
-
-* Create a Home by tapping the + button and assign a name for it.
-* Select the Home, tap the + button and select "Create New Room". Enter a name for the new room, then tap OK.
-* Find a new accessory: tap the + button and select "Find New Accessory". This will display the Accessory Browser. At this point you should turn on your HomeKit-compatible device or open the HomeKit Accessory Simulator. Your accessory should appear on the list. When it does, select it and follow the indications on screen.
-* Tap on the accessory name and assign it to the newly created room.
-
-Finally, in order to view and post data you simply need to:
-
-* Tap on the room name, then the accessory name and finally on the service name. This should start displaying a new current temperature value every 1 second.
-* Tap the Save button to post all currently available data points to M2X. Old data will be automatically removed from the table.
-
-## Architecture
-
-Currently, the client supports M2X API v2. All M2X API specifications can be found in the [M2X API Documentation](https://m2x.att.com/developer/documentation/overview).
-
-For API v1, check branch 'v1.0' (deprecated)
-
-### M2X Class
-
-M2X is the main class that provides the methods to set the API URL ("http://api-m2x.att.com/v2" as default) and the Master Key.
+CBBM2X is the main class that provides the methods to set the API URL ("http://api-m2x.att.com/v2" as default) and the Master Key.
 
 **Example:**
 
@@ -311,11 +279,48 @@ The *error* parameter is a `NSError` object that encapsulate the error informati
 
 To get the HTTP status code use the `response` object
 
-## Demo App
+## Demos
+
+### HomeKit Demo App
+
+The SDK includes a demo app demonstrating integration possibilities between the iOS 8 HomeKit framework and M2X. To build the demo app you'll need Xcode 6 and a HomeKit-compatible thermostat. You could also simulate the thermostat using the HomeKit Accessory Simulator, available in the Hardware IO Tools.
+
+The HomeKit Demo App is capable of monitoring a thermostat's current temperature characteristic, capture temperature values and post them to M2X simply by tapping a button.
+
+After running the Demo App for the first time, you will have to:
+
+* Provide a Device ID for testing purposes
+* Provide a valid stream name belonging to the previously defined Device
+* Finally, enter a valid M2X key with enough POST permissions. Using the Master Key is possible but not required.
+
+If you haven't done it before you will have setup your home and accessories.
+
+* Create a Home by tapping the + button and assign a name for it.
+* Select the Home, tap the + button and select "Create New Room". Enter a name for the new room, then tap OK.
+* Find a new accessory: tap the + button and select "Find New Accessory". This will display the Accessory Browser. At this point you should turn on your HomeKit-compatible device or open the HomeKit Accessory Simulator. Your accessory should appear on the list. When it does, select it and follow the indications on screen.
+* Tap on the accessory name and assign it to the newly created room.
+
+Finally, in order to view and post data you simply need to:
+
+* Tap on the room name, then the accessory name and finally on the service name. This should start displaying a new current temperature value every 1 second.
+* Tap the Save button to post all currently available data points to M2X. Old data will be automatically removed from the table.
+
+### Demo App
 
 This repository comes with a simple app that implements some of the API methods. It can be found in the following folder: `M2X_iOS`.
 
+## Versioning
+
+This library aims to adhere to [Semantic Versioning 2.0.0](http://semver.org/). As a summary, given a version number `MAJOR.MINOR.PATCH`:
+
+1. `MAJOR` will increment when backwards-incompatible changes are introduced to the client.
+2. `MINOR` will increment when backwards-compatible functionality is added.
+3. `PATCH` will increment with backwards-compatible bug fixes.
+
+Additional labels for pre-release and build metadata are available as extensions to the `MAJOR.MINOR.PATCH` format.
+
+**Note**: the client version does not necessarily reflect the version used in the AT&T M2X API.
 
 ## License
 
-The iOS M2X API Client is available under the MIT license. See the [LICENSE](LICENSE) file for more information.
+This library is provided under the MIT license. See [LICENSE](LICENSE) for applicable terms.
