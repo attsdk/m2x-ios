@@ -256,6 +256,12 @@ CBBKeysClient *client = [[CBBKeysClient alloc] init];
 }];
 ```
 
+#### Errors and Messages
+
+The *error* parameter is a `NSError` object that encapsulate the error information, check for its domain and code.
+
+To get the HTTP status code use the `response` object
+
 ### M2X Categories
 
 M2X includes the NSDate+M2X category to make it easier to send and receive dates using the ISO8601 standard.
@@ -272,12 +278,6 @@ These methods can be used to convert to and from a NSDate or NSString object.
 ```objc
 NSDate *distributionCreationDate = [NSDate fromISO8601:distribution[@"created"]];
 ```
-
-#### Errors and Messages
-
-The *error* parameter is a `NSError` object that encapsulate the error information, check for its domain and code.
-
-To get the HTTP status code use the `response` object
 
 ## Demos
 
