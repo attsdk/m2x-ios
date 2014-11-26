@@ -20,7 +20,7 @@ The M2X iOS Client is compatible with the **iOS 7 SDK** (or above). The HomeKit 
 
 ## Usage
 
-CBBM2X is the main class that provides the methods to set the API URL ("http://api-m2x.att.com/v2" as default) and the Master Key.
+CBBM2x is the main class that provides the methods to set the API URL ("http://api-m2x.att.com/v2" as default) and the Master Key.
 
 **Example:**
 
@@ -29,23 +29,6 @@ CBBM2X is the main class that provides the methods to set the API URL ("http://a
 CBBM2x* m2x = [CBBM2x shared];
 //set the Master Api Key
 m2x.apiKey = @"your_api_key";
-```
-
-### M2X Categories
-
-M2X includes the NSDate+M2X category to make it easier to send and receive dates using the ISO8601 standard.
-
-```objc
-- (NSString *) toISO8601;
-+ (NSDate *) fromISO8601:(NSString *)dateString;
-```
-
-These methods can be used to convert to and from a NSDate or NSString object.
-
-**Example:**
-
-```objc
-NSDate *distributionCreationDate = [NSDate fromISO8601:distribution[@"created"]];
 ```
 
 ### API Clients
@@ -271,6 +254,23 @@ CBBKeysClient *client = [[CBBKeysClient alloc] init];
     //Update key label
     [lblKey setText:[object valueForKey:@"key"]];
 }];
+```
+
+### M2X Categories
+
+M2X includes the NSDate+M2X category to make it easier to send and receive dates using the ISO8601 standard.
+
+```objc
+- (NSString *) toISO8601;
++ (NSDate *) fromISO8601:(NSString *)dateString;
+```
+
+These methods can be used to convert to and from a NSDate or NSString object.
+
+**Example:**
+
+```objc
+NSDate *distributionCreationDate = [NSDate fromISO8601:distribution[@"created"]];
 ```
 
 #### Errors and Messages
