@@ -110,9 +110,9 @@
 
 -(void)deleteTrigger:(NSString*)trigger_id inDevice:(NSString*)device_id completionHandler:(M2XAPICallback)completionHandler{
     
-    NSString *path = [NSString stringWithFormat:@"/devices/%@/triggers/%@/test",device_id,trigger_id];
+    NSString *path = [NSString stringWithFormat:@"/devices/%@/triggers/%@",device_id,trigger_id];
     
-    [[CBBM2x shared] postWithPath:path andParameters:nil apiKey:[self apiKey] completionHandler:completionHandler];
+    [[CBBM2x shared] deleteWithPath:path andParameters:nil apiKey:[self apiKey] completionHandler:completionHandler];
     
 }
 
