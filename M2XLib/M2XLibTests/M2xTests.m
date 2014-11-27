@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
 #import "OCMock.h"
-#import "CBBM2x.h"
+#import "CBBM2xClient.h"
 #import "CBBKeysClient.h"
 
 @interface M2xTests : XCTestCase
@@ -29,8 +29,7 @@
 }
 
 - (void)testMissingKey {
-    CBBM2x *client = [CBBM2x shared];
-    client.apiKey = nil;
+    CBBM2xClient *client = [[CBBM2xClient alloc] initWithApiKey:nil];
     
     __block BOOL failed = NO;
     [client getWithPath:@"/mypath" andParameters:@{@"param1": @"1", @"param2": @"2"} apiKey:client.apiKey completionHandler:^(CBBResponse *response) {
@@ -47,8 +46,7 @@
 }
 
 - (void)testGet {
-    CBBM2x *client = [CBBM2x shared];
-    client.apiKey = @"1234";
+    CBBM2xClient *client = [[CBBM2xClient alloc] initWithApiKey:@"1234"];
     
     XCTAssertTrue(client.apiUrl);
     NSURLRequest *request = [client getWithPath:@"/mypath" andParameters:@{@"param1": @"1", @"param2": @"2", @"param3": @3} apiKey:client.apiKey completionHandler:nil];
@@ -66,8 +64,7 @@
 }
 
 - (void)testDelete {
-    CBBM2x *client = [CBBM2x shared];
-    client.apiKey = @"1234";
+    CBBM2xClient *client = [[CBBM2xClient alloc] initWithApiKey:@"1234"];
     
     XCTAssertTrue(client.apiUrl);
     NSURLRequest *request = [client deleteWithPath:@"/mypath" andParameters:@{@"param1": @"1", @"param2": @"2"} apiKey:client.apiKey completionHandler:nil];
@@ -84,7 +81,7 @@
 }
 
 - (void)testPost {
-    CBBM2x *client = [CBBM2x shared];
+    CBBM2xClient *client = [[CBBM2xClient alloc] initWithApiKey:@"1234"];
     client.apiKey = @"1234";
     
     XCTAssertTrue(client.apiUrl);
@@ -105,7 +102,7 @@
 }
 
 - (void)testPut {
-    CBBM2x *client = [CBBM2x shared];
+    CBBM2xClient *client = [[CBBM2xClient alloc] initWithApiKey:@"1234"];
     client.apiKey = @"1234";
     
     XCTAssertTrue(client.apiUrl);
@@ -137,7 +134,7 @@
         callback(data, response, nil);
     }] dataTaskWithRequest:[OCMArg any] completionHandler:[OCMArg any]];
     
-    CBBM2x *client = [CBBM2x shared];
+    CBBM2xClient *client = [[CBBM2xClient alloc] initWithApiKey:@"1234"];
     client.session = sessionMock;
     client.apiKey = @"1234";
     [client putWithPath:@"/mypath" andParameters:@{@"param1": @"1", @"param2": @"2"} apiKey:client.apiKey completionHandler:^(CBBResponse *response) {
@@ -158,35 +155,13 @@
         callback(data, response, nil);
     }] dataTaskWithRequest:[OCMArg any] completionHandler:[OCMArg any]];
     
-    CBBM2x *client = [CBBM2x shared];
+    CBBM2xClient *client = [[CBBM2xClient alloc] initWithApiKey:@"1234"];
     client.session = sessionMock;
     client.apiKey = @"1234";
     [client putWithPath:@"/mypath" andParameters:@{@"param1": @"1", @"param2": @"2"} apiKey:client.apiKey completionHandler:^(CBBResponse *response) {
         XCTAssertNotNil(response.error);
         XCTAssertEqual(response.error.code, CBBM2xRequestError);
     }];
-}
-
-- (void)testUseApiKeyWhenFeedKeyIsUnavailable {
-    [CBBM2x shared].apiKey = @"apiKey";
-    
-    CBBKeysClient *client = [CBBKeysClient new];
-    client.deviceKey = nil;
-    
-    NSURLRequest *request = [client listKeysWithParameters:nil completionHandler:nil];
-    
-    XCTAssertEqualObjects(request.allHTTPHeaderFields[@"X-M2X-KEY"], @"apiKey");
-}
-
-- (void)testUseFeedKeyWhenAvailable {
-    [CBBM2x shared].apiKey = @"apiKey";
-    
-    CBBKeysClient *client = [CBBKeysClient new];
-    client.deviceKey = @"deviceKey";
-    
-    NSURLRequest *request = [client listKeysWithParameters:nil completionHandler:nil];
-    
-    XCTAssertEqualObjects(request.allHTTPHeaderFields[@"X-M2X-KEY"], @"deviceKey");
 }
 
 @end

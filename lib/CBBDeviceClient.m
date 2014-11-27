@@ -1,6 +1,6 @@
 
 #import "CBBDeviceClient.h"
-#import "CBBM2x.h"
+#import "CBBM2xClient.h"
 
 @implementation CBBDeviceClient
 
@@ -8,7 +8,7 @@
     
     NSString *path = @"/devices";
     
-    [[CBBM2x shared] getWithPath:path andParameters:parameters apiKey:[self apiKey] completionHandler:completionHandler];
+    [self.client getWithPath:path andParameters:parameters apiKey:self.client.apiKey completionHandler:completionHandler];
     
 }
 
@@ -16,7 +16,7 @@
     
     NSString *path = @"/devices";
     
-    [[CBBM2x shared] getWithPath:path andParameters:nil apiKey:[self apiKey] completionHandler:completionHandler];
+    [self.client getWithPath:path andParameters:nil apiKey:self.client.apiKey completionHandler:completionHandler];
     
 }
 
@@ -24,7 +24,7 @@
     
     NSString *path = @"/devices";
     
-    [[CBBM2x shared] postWithPath:path andParameters:device apiKey:[self apiKey] completionHandler:completionHandler];
+    [self.client postWithPath:path andParameters:device apiKey:self.client.apiKey completionHandler:completionHandler];
     
 }
 
@@ -32,7 +32,7 @@
     
     NSString *path = [NSString stringWithFormat:@"/devices/%@",device_id];
     
-    [[CBBM2x shared] getWithPath:path andParameters:nil apiKey:[self apiKey] completionHandler:completionHandler];
+    [self.client getWithPath:path andParameters:nil apiKey:self.client.apiKey completionHandler:completionHandler];
     
 }
 
@@ -40,7 +40,7 @@
     
     NSString *path = [NSString stringWithFormat:@"/devices/%@",device_id];
     
-    [[CBBM2x shared] putWithPath:path andParameters:parameters apiKey:[self apiKey] completionHandler:completionHandler];
+    [self.client putWithPath:path andParameters:parameters apiKey:self.client.apiKey completionHandler:completionHandler];
     
 }
 
@@ -48,7 +48,7 @@
     
     NSString *path = [NSString stringWithFormat:@"/devices/%@",device_id];
     
-    [[CBBM2x shared] deleteWithPath:path andParameters:nil apiKey:[self apiKey] completionHandler:completionHandler];
+    [self.client deleteWithPath:path andParameters:nil apiKey:self.client.apiKey completionHandler:completionHandler];
     
 }
 
@@ -56,7 +56,7 @@
     
     NSString *path = [NSString stringWithFormat:@"/devices/%@/location",device_id];
     
-    [[CBBM2x shared] getWithPath:path andParameters:nil apiKey:[self apiKey] completionHandler:completionHandler];
+    [self.client getWithPath:path andParameters:nil apiKey:self.client.apiKey completionHandler:completionHandler];
     
 }
 
@@ -64,7 +64,7 @@
     
     NSString *path = [NSString stringWithFormat:@"/devices/%@/location",device_id];
     
-    [[CBBM2x shared] putWithPath:path andParameters:location apiKey:[self apiKey] completionHandler:completionHandler];
+    [self.client putWithPath:path andParameters:location apiKey:self.client.apiKey completionHandler:completionHandler];
     
 }
 
@@ -72,7 +72,7 @@
     
     NSString *path = [NSString stringWithFormat:@"/devices/%@/triggers",device_id];
     
-    [[CBBM2x shared] getWithPath:path andParameters:nil apiKey:[self apiKey] completionHandler:completionHandler];
+    [self.client getWithPath:path andParameters:nil apiKey:self.client.apiKey completionHandler:completionHandler];
     
 }
 
@@ -80,7 +80,7 @@
     
     NSString *path = [NSString stringWithFormat:@"/devices/%@/triggers",device_id];
     
-    [[CBBM2x shared] postWithPath:path andParameters:trigger apiKey:[self apiKey] completionHandler:completionHandler];
+    [self.client postWithPath:path andParameters:trigger apiKey:self.client.apiKey completionHandler:completionHandler];
     
 }
 
@@ -88,7 +88,7 @@
     
     NSString *path = [NSString stringWithFormat:@"/devices/%@/triggers/%@",device_id,trigger_id];
     
-    [[CBBM2x shared] getWithPath:path andParameters:nil apiKey:[self apiKey] completionHandler:completionHandler];
+    [self.client getWithPath:path andParameters:nil apiKey:self.client.apiKey completionHandler:completionHandler];
     
 }
 
@@ -96,7 +96,7 @@
     
     NSString *path = [NSString stringWithFormat:@"/devices/%@/triggers/%@",device_id,trigger_id];
     
-    [[CBBM2x shared] putWithPath:path andParameters:parameters apiKey:[self apiKey] completionHandler:completionHandler];
+    [self.client putWithPath:path andParameters:parameters apiKey:self.client.apiKey completionHandler:completionHandler];
     
 }
 
@@ -104,7 +104,7 @@
     
     NSString *path = [NSString stringWithFormat:@"/devices/%@/triggers/%@/test",device_id,trigger_id];
     
-    [[CBBM2x shared] postWithPath:path andParameters:nil apiKey:[self apiKey] completionHandler:completionHandler];
+    [self.client postWithPath:path andParameters:nil apiKey:self.client.apiKey completionHandler:completionHandler];
     
 }
 
@@ -112,7 +112,7 @@
     
     NSString *path = [NSString stringWithFormat:@"/devices/%@/triggers/%@",device_id,trigger_id];
     
-    [[CBBM2x shared] deleteWithPath:path andParameters:nil apiKey:[self apiKey] completionHandler:completionHandler];
+    [self.client deleteWithPath:path andParameters:nil apiKey:self.client.apiKey completionHandler:completionHandler];
     
 }
 
@@ -120,7 +120,7 @@
     
     NSString *path = [NSString stringWithFormat:@"/devices/%@/log",device_id];
     
-    [[CBBM2x shared] getWithPath:path andParameters:nil apiKey:[self apiKey] completionHandler:completionHandler];
+    [self.client getWithPath:path andParameters:nil apiKey:self.client.apiKey completionHandler:completionHandler];
     
 }
 

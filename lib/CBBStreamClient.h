@@ -1,6 +1,6 @@
 
 #import <Foundation/Foundation.h>
-#import "CBBM2x.h"
+#import "CBBM2xClient.h"
 #import "CBBBaseClient.h"
 
 @interface CBBStreamClient : CBBBaseClient

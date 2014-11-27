@@ -7,11 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "CBBM2xClient.h"
 
 @interface CBBBaseClient : NSObject
 
-@property (nonatomic, copy) NSString *deviceKey;
+-(instancetype)initWithClient:(CBBM2xClient *)client;
 
-- (NSString *)apiKey;
+@property (readonly) CBBM2xClient *client;
 
 @end

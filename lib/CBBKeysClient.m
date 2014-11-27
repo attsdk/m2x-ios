@@ -1,6 +1,6 @@
 
 #import "CBBKeysClient.h"
-#import "CBBM2x.h"
+#import "CBBM2xClient.h"
 
 @implementation CBBKeysClient
 
@@ -8,21 +8,21 @@
     
     NSString *path = @"/keys";
     
-    return [[CBBM2x shared] getWithPath:path andParameters:parameters apiKey:[self apiKey] completionHandler:completionHandler];
+    return [self.client getWithPath:path andParameters:parameters apiKey:self.client.apiKey completionHandler:completionHandler];
 }
 
 -(NSURLRequest *)createKey:(NSDictionary *)key completionHandler:(M2XAPICallback)completionHandler{
     
     NSString *path = @"/keys";
     
-    return [[CBBM2x shared] postWithPath:path andParameters:key apiKey:[self apiKey] completionHandler:completionHandler];
+    return [self.client postWithPath:path andParameters:key apiKey:self.client.apiKey completionHandler:completionHandler];
 }
 
 -(NSURLRequest *)viewDetailsForKey:(NSString *)key completionHandler:(M2XAPICallback)completionHandler{
     
     NSString *path = [NSString stringWithFormat:@"/keys/%@",key];
     
-    return [[CBBM2x shared] getWithPath:path andParameters:nil apiKey:[self apiKey] completionHandler:completionHandler];
+    return [self.client getWithPath:path andParameters:nil apiKey:self.client.apiKey completionHandler:completionHandler];
     
 }
 
@@ -30,7 +30,7 @@
     
     NSString *path = [NSString stringWithFormat:@"/keys/%@",key];
     
-    return [[CBBM2x shared] putWithPath:path andParameters:parameters apiKey:[self apiKey] completionHandler:completionHandler];
+    return [self.client putWithPath:path andParameters:parameters apiKey:self.client.apiKey completionHandler:completionHandler];
     
 }
 
@@ -38,14 +38,14 @@
     
     NSString *path = [NSString stringWithFormat:@"/keys/%@/regenerate",key];
     
-    return [[CBBM2x shared] postWithPath:path andParameters:nil apiKey:[self apiKey] completionHandler:completionHandler];
+    return [self.client postWithPath:path andParameters:nil apiKey:self.client.apiKey completionHandler:completionHandler];
 }
 
 -(NSURLRequest *)deleteKey:(NSString *)key completionHandler:(M2XAPICallback)completionHandler{
     
     NSString *path = [NSString stringWithFormat:@"/keys/%@",key];
     
-    return [[CBBM2x shared] deleteWithPath:path andParameters:nil apiKey:[self apiKey] completionHandler:completionHandler];
+    return [self.client deleteWithPath:path andParameters:nil apiKey:self.client.apiKey completionHandler:completionHandler];
     
 }
 

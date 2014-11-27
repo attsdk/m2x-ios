@@ -1,5 +1,5 @@
 
-#import "CBBM2x.h"
+#import "CBBM2xClient.h"
 #include <sys/types.h>
 #include <sys/sysctl.h>
 
@@ -13,28 +13,22 @@ static BOOL VERBOSE_MODE = YES;
 
 NSString * const CBBM2xErrorDomain = @"CBBM2xErrorDomain";
 
-@interface CBBM2x()
+@interface CBBM2xClient()
 @end
 
-@implementation CBBM2x
+@implementation CBBM2xClient
 
-+ (CBBM2x *)shared
-{
-    static CBBM2x *shared = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        shared = [[CBBM2x alloc] init];
-    });
-    return shared;
-}
-
-
--(id)init {
+-(instancetype)initWithApiKey:(NSString *)apiKey {
     if (self = [super init]) {
+        self.apiKey = apiKey;
         self.apiUrl = m2xApiURL;
         self.session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
     }
     return self;
+}
+
+-(id)init {
+    @throw [NSException exceptionWithName:@"InvalidInitializer" reason:@"Can't use the default initializer" userInfo:nil];
 }
 
 -(NSString *)platform{
@@ -73,7 +67,7 @@ NSString * const CBBM2xErrorDomain = @"CBBM2xErrorDomain";
 }
 
 -(NSURLRequest *)performRequestOnPath:(NSString*)path andParameters:(NSDictionary*)parameters apiKey:(NSString*)apiKey configureRequestBlock:(configureRequestBlock)configureRequestBlock completionHandler:(M2XAPICallback)completionHandler {
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", [CBBM2x shared].apiUrl, path]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", self.apiUrl, path]];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [self prepareUrlRequest:request apiKey:apiKey];
     if (configureRequestBlock) {

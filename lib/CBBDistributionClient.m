@@ -14,7 +14,7 @@
     
     NSString *path = @"/distributions";
     
-    [[CBBM2x shared] getWithPath:path andParameters:nil apiKey:[self apiKey] completionHandler:completionHandler];
+    [self.client getWithPath:path andParameters:nil apiKey:self.client.apiKey completionHandler:completionHandler];
     
 }
 
@@ -22,7 +22,7 @@
     
     NSString *path = @"/distributions";
     
-    [[CBBM2x shared] postWithPath:path andParameters:distribution apiKey:[self apiKey] completionHandler:completionHandler];
+    [self.client postWithPath:path andParameters:distribution apiKey:self.client.apiKey completionHandler:completionHandler];
     
 }
 
@@ -30,7 +30,7 @@
     
     NSString *path = [NSString stringWithFormat:@"/distributions/%@",distribution_id];
     
-    [[CBBM2x shared] getWithPath:path andParameters:nil apiKey:[self apiKey] completionHandler:completionHandler];
+    [self.client getWithPath:path andParameters:nil apiKey:self.client.apiKey completionHandler:completionHandler];
     
 }
 
@@ -38,7 +38,7 @@
     
     NSString *path = [NSString stringWithFormat:@"/distributions/%@",distribution_id];
     
-    [[CBBM2x shared] putWithPath:path andParameters:nil apiKey:[self apiKey] completionHandler:completionHandler];
+    [self.client putWithPath:path andParameters:nil apiKey:self.client.apiKey completionHandler:completionHandler];
     
 }
 
@@ -47,7 +47,7 @@
     
     NSString *path = [NSString stringWithFormat:@"/distributions/%@/devices",distribution_id];
     
-    [[CBBM2x shared] getWithPath:path andParameters:nil apiKey:[self apiKey] completionHandler:completionHandler];
+    [self.client getWithPath:path andParameters:nil apiKey:self.client.apiKey completionHandler:completionHandler];
     
 }
 
@@ -55,7 +55,7 @@
     
     NSString *path = [NSString stringWithFormat:@"/distributions/%@/devices",distribution_id];
     
-    [[CBBM2x shared] postWithPath:path andParameters:parameters apiKey:[self apiKey] completionHandler:completionHandler];
+    [self.client postWithPath:path andParameters:parameters apiKey:self.client.apiKey completionHandler:completionHandler];
     
 }
 
@@ -63,7 +63,7 @@
     
     NSString *path = [NSString stringWithFormat:@"/distributions/%@",distribution_id];
     
-    [[CBBM2x shared] deleteWithPath:path andParameters:nil apiKey:[self apiKey] completionHandler:completionHandler];
+    [self.client deleteWithPath:path andParameters:nil apiKey:self.client.apiKey completionHandler:completionHandler];
     
 }
 

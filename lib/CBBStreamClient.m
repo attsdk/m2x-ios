@@ -1,6 +1,6 @@
 
 #import "CBBStreamClient.h"
-#import "CBBM2x.h"
+#import "CBBM2xClient.h"
 
 @implementation CBBStreamClient
 
@@ -8,7 +8,7 @@
     
     NSString *path = [NSString stringWithFormat:@"/devices/%@/streams", device_id];
     
-    [[CBBM2x shared] getWithPath:path andParameters:nil apiKey:[self apiKey] completionHandler:completionHandler];
+    [self.client getWithPath:path andParameters:nil apiKey:self.client.apiKey completionHandler:completionHandler];
     
 }
 
@@ -16,7 +16,7 @@
     
     NSString *path = [NSString stringWithFormat:@"/devices/%@/streams/%@/values",device_id,stream];
     
-    [[CBBM2x shared] getWithPath:path andParameters:parameters apiKey:[self apiKey] completionHandler:completionHandler];
+    [self.client getWithPath:path andParameters:parameters apiKey:self.client.apiKey completionHandler:completionHandler];
     
 }
 
@@ -24,7 +24,7 @@
     
     NSString *path = [NSString stringWithFormat:@"/devices/%@/streams/%@/values",device_id,stream];
     
-    [[CBBM2x shared] postWithPath:path andParameters:values apiKey:[self apiKey] completionHandler:completionHandler];
+    [self.client postWithPath:path andParameters:values apiKey:self.client.apiKey completionHandler:completionHandler];
     
 }
 
@@ -32,7 +32,7 @@
     
     NSString *path = [NSString stringWithFormat:@"/devices/%@/updates",device_id];
     
-    [[CBBM2x shared] postWithPath:path andParameters:values apiKey:[self apiKey] completionHandler:completionHandler];
+    [self.client postWithPath:path andParameters:values apiKey:self.client.apiKey completionHandler:completionHandler];
     
 }
 
@@ -40,21 +40,21 @@
     
     NSString *path = [NSString stringWithFormat:@"/devices/%@/streams/%@/value",device_id,stream];
     
-    [[CBBM2x shared] putWithPath:path andParameters:value apiKey:[self apiKey] completionHandler:completionHandler];
+    [self.client putWithPath:path andParameters:value apiKey:self.client.apiKey completionHandler:completionHandler];
     
 }
 
 -(void)deleteDataValuesFromTheStream:(NSString*)stream inDevice:(NSString*)device_id withParameters:(NSDictionary*)parameters completionHandler:(M2XAPICallback)completionHandler{
     NSString *path = [NSString stringWithFormat:@"/devices/%@/streams/%@/values",device_id,stream];
     
-    [[CBBM2x shared] deleteWithPath:path andParameters:parameters apiKey:[self apiKey] completionHandler:completionHandler];
+    [self.client deleteWithPath:path andParameters:parameters apiKey:self.client.apiKey completionHandler:completionHandler];
 }
 
 -(void)updateDataForStream:(NSString*)stream inDevice:(NSString*)device_id withParameters:(NSDictionary*)parameters completionHandler:(M2XAPICallback)completionHandler{
     
     NSString *path = [NSString stringWithFormat:@"/devices/%@/streams/%@",device_id,stream];
     
-    [[CBBM2x shared] putWithPath:path andParameters:parameters apiKey:[self apiKey] completionHandler:completionHandler];
+    [self.client putWithPath:path andParameters:parameters apiKey:self.client.apiKey completionHandler:completionHandler];
     
 }
 
@@ -62,7 +62,7 @@
     
     NSString *path = [NSString stringWithFormat:@"/devices/%@/streams/%@",device_id,stream];
     
-    [[CBBM2x shared] putWithPath:path andParameters:parameters apiKey:[self apiKey] completionHandler:completionHandler];
+    [self.client putWithPath:path andParameters:parameters apiKey:self.client.apiKey completionHandler:completionHandler];
     
 }
 
@@ -70,7 +70,7 @@
     
     NSString *path = [NSString stringWithFormat:@"/devices/%@/streams/%@",device_id,stream];
     
-    [[CBBM2x shared] getWithPath:path andParameters:nil apiKey:[self apiKey] completionHandler:completionHandler];
+    [self.client getWithPath:path andParameters:nil apiKey:self.client.apiKey completionHandler:completionHandler];
     
 }
 
@@ -78,7 +78,7 @@
     
     NSString *path = [NSString stringWithFormat:@"/devices/%@/streams/%@",device_id,stream];
     
-    [[CBBM2x shared] deleteWithPath:path andParameters:nil apiKey:[self apiKey] completionHandler:completionHandler];
+    [self.client deleteWithPath:path andParameters:nil apiKey:self.client.apiKey completionHandler:completionHandler];
     
 }
 

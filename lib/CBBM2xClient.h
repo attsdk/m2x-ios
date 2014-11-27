@@ -12,9 +12,9 @@ typedef enum : NSInteger {
 
 extern NSString * const CBBM2xErrorDomain;
 
-@interface CBBM2x : NSObject
+@interface CBBM2xClient : NSObject
 
-+(CBBM2x*) shared;
+-(instancetype)initWithApiKey:(NSString *)apiKey;
 
 -(NSURLRequest *)getWithPath:(NSString*)path andParameters:(NSDictionary*)parameters apiKey:(NSString*)apiKey completionHandler:(M2XAPICallback)completionHandler;
 -(NSURLRequest *)postWithPath:(NSString*)path andParameters:(NSDictionary*)parameters apiKey:(NSString*)apiKey completionHandler:(M2XAPICallback)completionHandler;

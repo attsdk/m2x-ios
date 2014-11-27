@@ -7,16 +7,28 @@
 //
 
 #import "CBBBaseClient.h"
-#import "CBBM2x.h"
+#import "CBBM2xClient.h"
+
+@interface CBBBaseClient()
+
+@property (strong) CBBM2xClient *client;
+
+@end
 
 @implementation CBBBaseClient
 
-- (NSString *)apiKey {
-    if(!_deviceKey || [_deviceKey isEqualToString:@""]){
-        return [CBBM2x shared].apiKey;
+-(instancetype)initWithClient:(CBBM2xClient *)client {
+    self = [super init];
+    
+    if (self) {
+        _client = client;
     }
     
-    return _deviceKey;
+    return self;
+}
+
+-(id)init {
+    @throw [NSException exceptionWithName:@"InvalidInitializer" reason:@"Can't use the default initializer" userInfo:nil];
 }
 
 @end
