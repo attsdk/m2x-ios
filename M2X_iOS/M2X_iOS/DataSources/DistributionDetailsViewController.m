@@ -49,7 +49,7 @@
     
     [_dataSourceClient viewDetailsForDistributionId:_distribution_id completionHandler:^(CBBResponse *response) {
         if (response.error) {
-            [self showError:response.error withMessage:response.error.userInfo];
+            [self showError:response.errorObject withMessage:response.errorObject.userInfo];
         } else {
             [self didGetDistributionDescription:response.json];
         }
@@ -76,7 +76,7 @@
     
     [_dataSourceClient listDevicesFromDistribution:_distribution_id completionHandler:^(CBBResponse *response) {
         if (response.error) {
-            [self showError:response.error withMessage:response.error.userInfo];
+            [self showError:response.errorObject withMessage:response.errorObject.userInfo];
         } else {
             [self didGetDevicesForDistribution:response.json];
         }

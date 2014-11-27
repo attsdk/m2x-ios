@@ -48,7 +48,7 @@
         if (response.error) {
             [self.refreshControl endRefreshing];
             [[[UIAlertView alloc] initWithTitle:@"Error"
-                                        message:[NSString stringWithFormat:@"%@", response.error.localizedDescription]
+                                        message:[NSString stringWithFormat:@"%@", response.errorObject.localizedDescription]
                                        delegate:nil
                               cancelButtonTitle:@"OK"
                               otherButtonTitles:nil] show];
@@ -85,7 +85,7 @@
                             completionHandler:^(CBBResponse *response)
         {
             if (response.error) {
-                [self showError:response.error WithMessage:response.error.userInfo];
+                [self showError:response.errorObject withMessage:response.errorObject.userInfo];
                 sender.enabled = YES;
             } else {
                 [self getStreamValues];
@@ -98,7 +98,7 @@
 
 #pragma mark - helper
 
--(void)showError:(NSError*)error WithMessage:(NSDictionary*)message
+-(void)showError:(NSError*)error withMessage:(NSDictionary*)message
 {
     [[[UIAlertView alloc] initWithTitle:[error localizedDescription]
                                 message:[NSString stringWithFormat:@"%@", message]

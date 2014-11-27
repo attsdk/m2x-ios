@@ -47,7 +47,7 @@
     
     [_deviceClient readDataLocationInDevice:_device_id completionHandler:^(CBBResponse *response) {
         if (response.error) {
-            [self showError:response.json withMessage:response.error.userInfo];
+            [self showError:response.errorObject withMessage:response.errorObject.userInfo];
         } else {
             [self didGetDeviceLocation:response.json];
         }
@@ -86,7 +86,7 @@
     
     [_deviceClient updateDeviceWithLocation:locationDict inDevice:_device_id completionHandler:^(CBBResponse *response) {
         if (response.error) {
-            [self showError:response.error withMessage:response.error.userInfo];
+            [self showError:response.errorObject withMessage:response.errorObject.userInfo];
         } else {
             [self getDeviceLocations];
         }

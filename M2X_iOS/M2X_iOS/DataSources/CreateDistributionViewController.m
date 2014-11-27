@@ -46,7 +46,7 @@
     
     [_dataSourceClient createDistribution:distribution completionHandler:^(CBBResponse *response) {
         if (response.error) {
-            [self showError:response.error WithMessage:response.error.userInfo];
+            [self showError:response.errorObject withMessage:response.errorObject.userInfo];
         } else {
             [self.navigationController popViewControllerAnimated:YES];
         }
@@ -57,7 +57,7 @@
 
 #pragma mark - helper
 
--(void)showError:(NSError*)error WithMessage:(NSDictionary*)message{
+-(void)showError:(NSError*)error withMessage:(NSDictionary*)message{
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[error localizedDescription]
                                                     message:[NSString stringWithFormat:@"%@", message]
                                                    delegate:nil cancelButtonTitle:@"OK"

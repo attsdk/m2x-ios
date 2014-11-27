@@ -36,7 +36,7 @@
     
     [_keysClient viewDetailsForKey:_key completionHandler:^(CBBResponse *response) {
         if (response.error) {
-            [self showError:response.error WithMessage:response.error.userInfo];
+            [self showError:response.errorObject withMessage:response.errorObject.userInfo];
         } else {
             NSString *name = [response.json valueForKey:@"name"];
             NSString *key = [response.json valueForKey:@"key"];
@@ -58,7 +58,7 @@
     
 }
 
--(void)showError:(NSError*)error WithMessage:(NSDictionary*)message{
+-(void)showError:(NSError*)error withMessage:(NSDictionary*)message{
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[error localizedDescription]
                                                     message:[NSString stringWithFormat:@"%@", message]
                                                    delegate:nil cancelButtonTitle:@"OK"
@@ -71,7 +71,7 @@
 - (IBAction)regenerateKey:(id)sender {
     [_keysClient regenerateKey:_key completionHandler:^(CBBResponse *response) {
         if (response.error) {
-            [self showError:response.error WithMessage:response.error.userInfo];
+            [self showError:response.errorObject withMessage:response.errorObject.userInfo];
         } else {
             _key = [response.json valueForKey:@"key"];
             //Update key label
@@ -99,7 +99,7 @@
         [_keysClient deleteKey:_key completionHandler:^(CBBResponse *response) {
             
             if (response.error) {
-                [self showError:response.error WithMessage:response.error.userInfo];
+                [self showError:response.errorObject withMessage:response.errorObject.userInfo];
             } else {
                 [self.navigationController popViewControllerAnimated:YES];
             }

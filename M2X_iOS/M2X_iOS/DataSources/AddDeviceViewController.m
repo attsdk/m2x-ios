@@ -44,7 +44,7 @@
                                     completionHandler:^(CBBResponse *response) {
                                         
                                         if (response.error) {
-                                            [weakSelf showError:response.error withMessage:response.error.userInfo];
+                                            [weakSelf showError:response.errorObject withMessage:response.errorObject.userInfo];
                                         } else {
                                             [weakSelf.navigationController popViewControllerAnimated:YES];
                                         }

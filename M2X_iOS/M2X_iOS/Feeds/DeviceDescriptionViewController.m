@@ -50,7 +50,11 @@
 #pragma mark - support
 
 -(void)getDeviceStreams {
-    CBBStreamClient *streamClient = [CBBStreamClient new];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    CBBM2xClient *client = [[CBBM2xClient alloc] initWithApiKey:[defaults objectForKey:@"api_key"]];
+    client.apiUrl = [defaults objectForKey:@"api_url"];
+
+    CBBStreamClient *streamClient = [[CBBStreamClient alloc] initWithClient:client];
     [streamClient listDataStreamsForDeviceId:_device_id completionHandler:^(CBBResponse *response) {
         [_streamList removeAllObjects];
         
@@ -65,7 +69,7 @@
 
     [_deviceClient viewDetailsForDeviceId:_device_id completionHandler:^(CBBResponse *response) {
         if (response.error) {
-            [self showError:response.error WithMessage:response.error.userInfo];
+            [self showError:response.errorObject withMessage:response.errorObject.userInfo];
         } else {
             [self didGetDeviceDescription:response.json];
         }
@@ -137,7 +141,11 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    CBBStreamClient *streamClient = [CBBStreamClient new];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    CBBM2xClient *client = [[CBBM2xClient alloc] initWithApiKey:[defaults objectForKey:@"api_key"]];
+    client.apiUrl = [defaults objectForKey:@"api_url"];
+
+    CBBStreamClient *streamClient = [[CBBStreamClient alloc] initWithClient:client];
     if ([segue.identifier isEqualToString:@"toStreamValuesSegue"])
     {
         UITableViewCell *stream_tableViewSelected = sender;
@@ -166,7 +174,7 @@
 
 #pragma mark - helper
 
--(void)showError:(NSError*)error WithMessage:(NSDictionary*)message{
+-(void)showError:(NSError*)error withMessage:(NSDictionary*)message{
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[error localizedDescription]
                                                     message:[NSString stringWithFormat:@"%@", message]
                                                    delegate:nil cancelButtonTitle:@"OK"

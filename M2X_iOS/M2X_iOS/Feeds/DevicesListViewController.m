@@ -1,6 +1,6 @@
 
 #import "DevicesListViewController.h"
-#import "CBBM2x.h"
+#import "CBBM2xClient.h"
 #import "DeviceDescriptionViewController.h"
 
 @interface DevicesListViewController ()
@@ -22,12 +22,16 @@
 {
     [super viewDidLoad];
     
-    _deviceClient = [[CBBDeviceClient alloc] init];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    CBBM2xClient *client = [[CBBM2xClient alloc] initWithApiKey:[defaults objectForKey:@"api_key"]];
+    client.apiUrl = [defaults objectForKey:@"api_url"];
+
+    _deviceClient = [[CBBDeviceClient alloc] initWithClient:client];
     
     //get list of devices without parameters
     [_deviceClient listDevicesWithCompletionHandler:^(CBBResponse *response) {
         if (response.error) {
-            [self showError:response.error WithMessage:response.error.userInfo];
+            [self showError:response.errorObject withMessage:response.errorObject.userInfo];
         } else {
             [self didGetDeviceList:response.json];
         }
@@ -127,7 +131,7 @@
 
 #pragma mark - helper
 
--(void)showError:(NSError*)error WithMessage:(NSDictionary*)message{
+-(void)showError:(NSError*)error withMessage:(NSDictionary*)message{
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[error localizedDescription]
                                                     message:[NSString stringWithFormat:@"%@", message]
                                                    delegate:nil cancelButtonTitle:@"OK"

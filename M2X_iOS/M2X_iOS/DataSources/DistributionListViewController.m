@@ -12,7 +12,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.dataSourceClient = [CBBDistributionClient new];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    CBBM2xClient *client = [[CBBM2xClient alloc] initWithApiKey:[defaults objectForKey:@"api_key"]];
+    client.apiUrl = [defaults objectForKey:@"api_url"];
+    self.dataSourceClient = [[CBBDistributionClient alloc] initWithClient:client];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -21,7 +25,7 @@
     [_dataSourceClient listDistributionsWithCompletionHandler:^(CBBResponse *response)
     {
         if (response.error) {
-            [self showError:response.error WithMessage:response.error.userInfo];
+            [self showError:response.errorObject withMessage:response.errorObject.userInfo];
         } else {
             [self didGetDistributions:response.json];
         }
@@ -87,7 +91,7 @@
 
 #pragma mark - helper
 
--(void)showError:(NSError*)error WithMessage:(NSDictionary*)message
+-(void)showError:(NSError*)error withMessage:(NSDictionary*)message
 {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[error localizedDescription]
                                                     message:[NSString stringWithFormat:@"%@", message]

@@ -42,7 +42,7 @@
                        completionHandler:^(CBBResponse *response) {
                            
                        if (response.error) {
-                           [self showError:response.error WithMessage:[response.error userInfo]];
+                           [self showError:response.errorObject withMessage:[response.errorObject userInfo]];
                        } else {
                            [self.navigationController popViewControllerAnimated:YES];
                        }
@@ -63,7 +63,7 @@
 }
 
 -(void)showError:(NSError*)error
-     WithMessage:(NSDictionary*)message
+     withMessage:(NSDictionary*)message
 {
     [[[UIAlertView alloc] initWithTitle:[error localizedDescription]
                                 message:message.description

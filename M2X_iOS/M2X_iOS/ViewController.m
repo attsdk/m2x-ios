@@ -2,7 +2,7 @@
 #import "ViewController.h"
 #import "DevicesListViewController.h"
 #import "CBBStreamClient.h"
-#import "CBBM2x.h"
+#import "CBBM2xClient.h"
 
 @interface ViewController ()
 
@@ -23,7 +23,7 @@
     self.tfMasterKey.text = [defaults stringForKey:@"api_key"];
     self.tfMasterKey.delegate = self;
 
-    self.tfURL.text = [[defaults stringForKey:@"api_url"] length] > 0 ? [defaults stringForKey:@"api_url"] : [[CBBM2x shared] apiUrl];
+    self.tfURL.text = [defaults stringForKey:@"api_url"];
     self.tfURL.delegate = self;
 
 }
@@ -34,11 +34,6 @@
     [defaults setObject:[_tfMasterKey text] forKey:@"api_key"];
     [defaults setObject:[_tfURL text] forKey:@"api_url"];
     [defaults synchronize];
-    
-    
-    CBBM2x* m2x = [CBBM2x shared];
-    m2x.apiKey = [_tfMasterKey text]; // Master API Key
-    m2x.apiUrl = [_tfURL text]; // M2X API endpoint URL
 }
 
 - (IBAction)doSave:(id)sender
