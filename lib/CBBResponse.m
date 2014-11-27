@@ -13,6 +13,7 @@
 @property (strong) NSHTTPURLResponse *response;
 @property (strong) NSData *data;
 @property (nonatomic, strong) NSError *errorObject;
+@property (strong) id jsonObject;
 
 @end
 
@@ -35,12 +36,11 @@
 }
 
 - (id)json {
-    id obj = nil;
-    if ([_data length] > 0) {
-        obj = [NSJSONSerialization JSONObjectWithData:_data options:NSJSONReadingAllowFragments error:nil];
+    if (_jsonObject == nil && [_data length] > 0) {
+        _jsonObject = [NSJSONSerialization JSONObjectWithData:_data options:NSJSONReadingAllowFragments error:nil];
     }
     
-    return obj;
+    return _jsonObject;
 }
 
 - (NSInteger)status {
