@@ -50,7 +50,8 @@ NSString * const CBBM2xErrorDomain = @"CBBM2xErrorDomain";
 -(void)prepareUrlRequest:(NSMutableURLRequest *)request apiKey:(NSString*)apiKey {
     [request setValue:apiKey forHTTPHeaderField:@"X-M2X-KEY"];
     
-    [request setValue:[NSString stringWithFormat:@"M2X/%@ (iOS %@; %@)", m2xLibVersion, [[UIDevice currentDevice] systemVersion], [self platform]] forHTTPHeaderField:@"User-Agent"];
+    NSString *agent = [NSString stringWithFormat:@"M2X-iOS/%@ (%@-%@)", m2xLibVersion, [self platform], [[UIDevice currentDevice] systemVersion]];
+    [request setValue:agent forHTTPHeaderField:@"User-Agent"];
 }
 
 -(void)prepareUrlRequest:(NSMutableURLRequest *)request parameters:(NSDictionary *)parameters {
