@@ -43,6 +43,7 @@
 		8328499419ABBB45005CA81E /* NSDate+M2X.m in Sources */ = {isa = PBXBuildFile; fileRef = 8328498619ABBB45005CA81E /* NSDate+M2X.m */; };
 		E24E2B181A0A63470019D3EB /* CBBBaseClient.m in Sources */ = {isa = PBXBuildFile; fileRef = E24E2B171A0A63470019D3EB /* CBBBaseClient.m */; };
 		E29A850C1A0BADA100F90735 /* CBBDistributionClient.m in Sources */ = {isa = PBXBuildFile; fileRef = E29A850B1A0BADA100F90735 /* CBBDistributionClient.m */; };
+		E2D53A5A1A279E65007EA361 /* CBBResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = E2D53A591A279E65007EA361 /* CBBResponse.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -117,6 +118,8 @@
 		E24E2B171A0A63470019D3EB /* CBBBaseClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBBBaseClient.m; sourceTree = "<group>"; };
 		E29A850A1A0BADA100F90735 /* CBBDistributionClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBBDistributionClient.h; sourceTree = "<group>"; };
 		E29A850B1A0BADA100F90735 /* CBBDistributionClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBBDistributionClient.m; sourceTree = "<group>"; };
+		E2D53A581A279E65007EA361 /* CBBResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBBResponse.h; sourceTree = "<group>"; };
+		E2D53A591A279E65007EA361 /* CBBResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBBResponse.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -289,6 +292,8 @@
 		8328496819ABBB45005CA81E /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				E2D53A581A279E65007EA361 /* CBBResponse.h */,
+				E2D53A591A279E65007EA361 /* CBBResponse.m */,
 				E29A850A1A0BADA100F90735 /* CBBDistributionClient.h */,
 				E29A850B1A0BADA100F90735 /* CBBDistributionClient.m */,
 				E24E2B161A0A63470019D3EB /* CBBBaseClient.h */,
@@ -421,6 +426,7 @@
 				8328499119ABBB45005CA81E /* CBBStreamClient.m in Sources */,
 				0B810E3F185F87F000D22F49 /* DistributionDetailsViewController.m in Sources */,
 				8328499219ABBB45005CA81E /* CBBKeysClient.m in Sources */,
+				E2D53A5A1A279E65007EA361 /* CBBResponse.m in Sources */,
 				0B65FBA6184E114700C88810 /* main.m in Sources */,
 				0B810E29185F4C7300D22F49 /* DeviceDescriptionViewController.m in Sources */,
 				0B810E2A185F4C7300D22F49 /* DeviceLocationViewController.m in Sources */,

@@ -1,8 +1,9 @@
 
 #import <UIKit/UIKit.h>
 #import "NSDate+M2X.h"
+#import "CBBResponse.h"
 
-typedef void (^M2XAPICallback)(id object, NSHTTPURLResponse *response, NSError *error);
+typedef void (^M2XAPICallback)(CBBResponse *response);
 
 typedef enum : NSInteger {
     CBBM2xNoApiKey = 1,

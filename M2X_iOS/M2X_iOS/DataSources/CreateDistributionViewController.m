@@ -44,9 +44,9 @@
                              @"description": [_tfDescription text],
                              @"visibility": [_smtVisibility titleForSegmentAtIndex:[_smtVisibility selectedSegmentIndex]]};
     
-    [_dataSourceClient createDistribution:distribution completionHandler:^(id object, NSURLResponse *response, NSError *error) {
-        if (error) {
-            [self showError:error WithMessage:error.userInfo];
+    [_dataSourceClient createDistribution:distribution completionHandler:^(CBBResponse *response) {
+        if (response.error) {
+            [self showError:response.error WithMessage:response.error.userInfo];
         } else {
             [self.navigationController popViewControllerAnimated:YES];
         }

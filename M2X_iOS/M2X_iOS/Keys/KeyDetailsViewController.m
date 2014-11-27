@@ -34,15 +34,15 @@
 
 - (void)getKeyDetails{
     
-    [_keysClient viewDetailsForKey:_key completionHandler:^(id object, NSURLResponse *response, NSError *error) {
-        if (error) {
-            [self showError:error WithMessage:error.userInfo];
+    [_keysClient viewDetailsForKey:_key completionHandler:^(CBBResponse *response) {
+        if (response.error) {
+            [self showError:response.error WithMessage:response.error.userInfo];
         } else {
-            NSString *name = [object valueForKey:@"name"];
-            NSString *key = [object valueForKey:@"key"];
-            NSString *expiresAt = [object valueForKey:@"expires_at"];
+            NSString *name = [response.json valueForKey:@"name"];
+            NSString *key = [response.json valueForKey:@"key"];
+            NSString *expiresAt = [response.json valueForKey:@"expires_at"];
             
-            NSString *permissions = [[object objectForKey:@"permissions"] componentsJoinedByString:@", "];
+            NSString *permissions = [[response.json objectForKey:@"permissions"] componentsJoinedByString:@", "];
             
             [_lblName setText:name];
             [_lblKey setText:key];
@@ -69,11 +69,11 @@
 #pragma mark - btn
 
 - (IBAction)regenerateKey:(id)sender {
-    [_keysClient regenerateKey:_key completionHandler:^(id object, NSURLResponse *response, NSError *error) {
-        if (error) {
-            [self showError:error WithMessage:error.userInfo];
+    [_keysClient regenerateKey:_key completionHandler:^(CBBResponse *response) {
+        if (response.error) {
+            [self showError:response.error WithMessage:response.error.userInfo];
         } else {
-            _key = [object valueForKey:@"key"];
+            _key = [response.json valueForKey:@"key"];
             //Update key label
             [_lblKey setText:_key];
         }
@@ -96,10 +96,10 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 1) {
-        [_keysClient deleteKey:_key completionHandler:^(id object, NSURLResponse *response, NSError *error) {
+        [_keysClient deleteKey:_key completionHandler:^(CBBResponse *response) {
             
-            if (error) {
-                [self showError:error WithMessage:error.userInfo];
+            if (response.error) {
+                [self showError:response.error WithMessage:response.error.userInfo];
             } else {
                 [self.navigationController popViewControllerAnimated:YES];
             }

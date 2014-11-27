@@ -89,19 +89,15 @@ NSString * const CBBM2xErrorDomain = @"CBBM2xErrorDomain";
     }
     
     NSURLSessionDataTask *task = [self.session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        NSError *jsonError = nil;
-        id obj = nil;
-        if ([data length] > 0) {
-            obj = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&jsonError];
-        }
         if (completionHandler) {
             if (!error) {
                 NSHTTPURLResponse *r = (NSHTTPURLResponse *)response;
-                if (r.statusCode >= 400) {
+                if (r.statusCode >= 299) {
                     error = [NSError errorWithDomain:CBBM2xErrorDomain code:CBBM2xRequestError userInfo:@{NSLocalizedFailureReasonErrorKey:[NSString stringWithFormat:@"HTTP error code: %d", (int)r.statusCode]}];
                 }
             }
-            completionHandler(obj, (NSHTTPURLResponse *)response, error ? error : jsonError);
+            CBBResponse *r = [[CBBResponse alloc] initWithResponse:(NSHTTPURLResponse *)response data:data error:error];
+            completionHandler(r);
         }
     }];
     [task resume];
@@ -115,7 +111,7 @@ NSString * const CBBM2xErrorDomain = @"CBBM2xErrorDomain";
     if (!apiKey) {
         NSError *error = [NSError errorWithDomain:CBBM2xErrorDomain code:CBBM2xNoApiKey userInfo:@{NSLocalizedFailureReasonErrorKey: @"Missing API key"}];
         if (completionHandler) {
-            completionHandler(nil, nil, error);
+            completionHandler([[CBBResponse alloc] initWithResponse:nil data:nil error:error]);
         }
         return nil;
     }
@@ -129,7 +125,7 @@ NSString * const CBBM2xErrorDomain = @"CBBM2xErrorDomain";
     if (!apiKey) {
         NSError *error = [NSError errorWithDomain:CBBM2xErrorDomain code:100 userInfo:@{NSLocalizedFailureReasonErrorKey: @"Missing API key"}];
         if (completionHandler) {
-            completionHandler(nil, nil, error);
+            completionHandler([[CBBResponse alloc] initWithResponse:nil data:nil error:error]);
         }
         return nil;
     }
@@ -137,7 +133,7 @@ NSString * const CBBM2xErrorDomain = @"CBBM2xErrorDomain";
     NSError *error = nil;
     NSData *postData = [NSJSONSerialization dataWithJSONObject:parameters options:0 error:&error];
     if (error) {
-        completionHandler(nil, nil, error);
+        completionHandler([[CBBResponse alloc] initWithResponse:nil data:nil error:error]);
         return nil;
     }
     
@@ -152,7 +148,7 @@ NSString * const CBBM2xErrorDomain = @"CBBM2xErrorDomain";
     if (!apiKey) {
         NSError *error = [NSError errorWithDomain:CBBM2xErrorDomain code:100 userInfo:@{NSLocalizedFailureReasonErrorKey: @"Missing API key"}];
         if (completionHandler) {
-            completionHandler(nil, nil, error);
+            completionHandler([[CBBResponse alloc] initWithResponse:nil data:nil error:error]);
         }
         return nil;
     }
@@ -160,7 +156,7 @@ NSString * const CBBM2xErrorDomain = @"CBBM2xErrorDomain";
     NSError *error = nil;
     NSData *postData = [NSJSONSerialization dataWithJSONObject:parameters options:0 error:&error];
     if (error) {
-        completionHandler(nil, nil, error);
+        completionHandler([[CBBResponse alloc] initWithResponse:nil data:nil error:error]);
         return nil;
     }
 
@@ -175,7 +171,7 @@ NSString * const CBBM2xErrorDomain = @"CBBM2xErrorDomain";
     if (!apiKey) {
         NSError *error = [NSError errorWithDomain:CBBM2xErrorDomain code:100 userInfo:@{NSLocalizedFailureReasonErrorKey: @"Missing API key"}];
         if (completionHandler) {
-            completionHandler(nil, nil, error);
+            completionHandler([[CBBResponse alloc] initWithResponse:nil data:nil error:error]);
         }
         return nil;
     }

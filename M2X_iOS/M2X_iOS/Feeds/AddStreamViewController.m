@@ -39,10 +39,10 @@
         [_deviceClient createDataForStream:streamID
                                   inDevice:_device_id
                           withParameters:args
-                       completionHandler:^(id object, NSURLResponse *response, NSError *error) {
+                       completionHandler:^(CBBResponse *response) {
                            
-                       if (error) {
-                           [self showError:error WithMessage:[error userInfo]];
+                       if (response.error) {
+                           [self showError:response.error WithMessage:[response.error userInfo]];
                        } else {
                            [self.navigationController popViewControllerAnimated:YES];
                        }

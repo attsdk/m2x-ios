@@ -43,20 +43,19 @@
     [_deviceClient listDataValuesFromTheStream:_streamName
                                       inDevice:_device_id
                               WithParameters:parameters
-                                     completionHandler:^(id object, NSURLResponse *response, NSError *error)
+                                     completionHandler:^(CBBResponse *response)
     {
-        if (error) {
+        if (response.error) {
             [self.refreshControl endRefreshing];
             [[[UIAlertView alloc] initWithTitle:@"Error"
-                                        message:[NSString stringWithFormat:@"%@", error.localizedDescription]
+                                        message:[NSString stringWithFormat:@"%@", response.error.localizedDescription]
                                        delegate:nil
                               cancelButtonTitle:@"OK"
                               otherButtonTitles:nil] show];
 
         } else {
-            self.valueList = object[@"values"];
+            self.valueList = response.json[@"values"];
             [self.tableViewStreamValues reloadData];
-            NSLog(@"%d stream values displayed.", self.valueList.count);
             [self.refreshControl endRefreshing];
         }
     }];
@@ -83,10 +82,10 @@
         [_deviceClient postDataValues:args
                           forStream:_streamName
                              inDevice:_device_id
-                            completionHandler:^(id object, NSURLResponse *response, NSError *error)
+                            completionHandler:^(CBBResponse *response)
         {
-            if (error) {
-                [self showError:error WithMessage:error.userInfo];
+            if (response.error) {
+                [self showError:response.error WithMessage:response.error.userInfo];
                 sender.enabled = YES;
             } else {
                 [self getStreamValues];

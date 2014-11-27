@@ -25,11 +25,11 @@
     _deviceClient = [[CBBDeviceClient alloc] init];
     
     //get list of devices without parameters
-    [_deviceClient listDevicesWithCompletionHandler:^(id object, NSURLResponse *response, NSError *error) {
-        if (error) {
-            [self showError:error WithMessage:error.userInfo];
+    [_deviceClient listDevicesWithCompletionHandler:^(CBBResponse *response) {
+        if (response.error) {
+            [self showError:response.error WithMessage:response.error.userInfo];
         } else {
-            [self didGetDeviceList:object];
+            [self didGetDeviceList:response.json];
         }
         
     }];

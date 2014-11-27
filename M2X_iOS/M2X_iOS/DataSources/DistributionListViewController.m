@@ -18,12 +18,12 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     //get list of devices without parameters
-    [_dataSourceClient listDistributionsWithCompletionHandler:^(id object, NSURLResponse *response, NSError *error)
+    [_dataSourceClient listDistributionsWithCompletionHandler:^(CBBResponse *response)
     {
-        if (error) {
-            [self showError:error WithMessage:error.userInfo];
+        if (response.error) {
+            [self showError:response.error WithMessage:response.error.userInfo];
         } else {
-            [self didGetDistributions:object];
+            [self didGetDistributions:response.json];
         }
 
     }];

@@ -41,10 +41,10 @@
     
     [_dataSourceClient addDeviceToDistribution:_distribution_id
                              withParameters:serial
-                                    completionHandler:^(id object, NSURLResponse *response, NSError *error) {
+                                    completionHandler:^(CBBResponse *response) {
                                         
-                                        if (error) {
-                                            [weakSelf showError:error WithMessage:error.userInfo];
+                                        if (response.error) {
+                                            [weakSelf showError:response.error withMessage:response.error.userInfo];
                                         } else {
                                             [weakSelf.navigationController popViewControllerAnimated:YES];
                                         }
@@ -54,7 +54,7 @@
 
 #pragma mark - helper
 
--(void)showError:(NSError*)error WithMessage:(NSDictionary*)message{
+-(void)showError:(NSError*)error withMessage:(NSDictionary*)message{
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[error localizedDescription]
                                                     message:[NSString stringWithFormat:@"%@", message]
                                                    delegate:nil cancelButtonTitle:@"OK"

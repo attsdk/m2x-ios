@@ -32,11 +32,11 @@
 
 - (void)viewDidAppear:(BOOL)animated{
     
-    [_keysClient listKeysWithParameters:nil completionHandler:^(id object, NSURLResponse *response, NSError *error) {
-        if (error) {
-            [self showError:error WithMessage:error.userInfo];
+    [_keysClient listKeysWithParameters:nil completionHandler:^(CBBResponse *response) {
+        if (response.error) {
+            [self showError:response.error withMessage:response.error.userInfo];
         } else {
-            [self didGetKeysList:object];
+            [self didGetKeysList:response.json];
         }
     }];
     
@@ -84,7 +84,7 @@
 
 #pragma mark - helper
 
--(void)showError:(NSError*)error WithMessage:(NSDictionary*)message{
+-(void)showError:(NSError*)error withMessage:(NSDictionary*)message{
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[error localizedDescription]
                                                     message:[NSString stringWithFormat:@"%@", message]
                                                    delegate:nil cancelButtonTitle:@"OK"

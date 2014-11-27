@@ -45,11 +45,11 @@
 
 - (void)getDeviceLocations{
     
-    [_deviceClient readDataLocationInDevice:_device_id completionHandler:^(id object, NSURLResponse *response, NSError *error) {
-        if (error) {
-            [self showError:error WithMessage:error.userInfo];
+    [_deviceClient readDataLocationInDevice:_device_id completionHandler:^(CBBResponse *response) {
+        if (response.error) {
+            [self showError:response.json withMessage:response.error.userInfo];
         } else {
-            [self didGetDeviceLocation:object];
+            [self didGetDeviceLocation:response.json];
         }
     }];
     
@@ -84,9 +84,9 @@
                                     @"longitude": [NSString stringWithFormat:@"%f",location.coordinate.longitude],
                                     @"elevation": [NSString stringWithFormat:@"%f",location.altitude]};
     
-    [_deviceClient updateDeviceWithLocation:locationDict inDevice:_device_id completionHandler:^(id object, NSURLResponse *response, NSError *error) {
-        if (error) {
-            [self showError:error WithMessage:error.userInfo];
+    [_deviceClient updateDeviceWithLocation:locationDict inDevice:_device_id completionHandler:^(CBBResponse *response) {
+        if (response.error) {
+            [self showError:response.error withMessage:response.error.userInfo];
         } else {
             [self getDeviceLocations];
         }
@@ -113,7 +113,7 @@
 
 #pragma mark - helper
 
--(void)showError:(NSError*)error WithMessage:(NSDictionary*)message{
+-(void)showError:(NSError*)error withMessage:(NSDictionary*)message{
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[error localizedDescription]
                                                     message:[NSString stringWithFormat:@"%@", message]
                                                    delegate:nil cancelButtonTitle:@"OK"

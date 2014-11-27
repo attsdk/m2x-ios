@@ -57,9 +57,9 @@
     if([_swExpiryDate isOn] && ![[_tfExpiryDate text] isEqualToString:@""])
         [key setValue:[_tfExpiryDate text] forKey:@"expires_at"];
     
-    [_keysClient createKey:key completionHandler:^(id object, NSURLResponse *response, NSError *error) {
-        if (error) {
-            [self showError:error WithMessage:error.userInfo];
+    [_keysClient createKey:key completionHandler:^(CBBResponse *response) {
+        if (response.error) {
+            [self showError:response.error WithMessage:response.error.userInfo];
         } else {
             [self.navigationController popViewControllerAnimated:YES];
         }

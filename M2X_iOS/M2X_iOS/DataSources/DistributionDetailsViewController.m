@@ -47,11 +47,11 @@
 
 -(void)getDistributionDescription{
     
-    [_dataSourceClient viewDetailsForDistributionId:_distribution_id completionHandler:^(id object, NSURLResponse *response, NSError *error) {
-        if (error) {
-            [self showError:error WithMessage:error.userInfo];
+    [_dataSourceClient viewDetailsForDistributionId:_distribution_id completionHandler:^(CBBResponse *response) {
+        if (response.error) {
+            [self showError:response.error withMessage:response.error.userInfo];
         } else {
-            [self didGetDistributionDescription:object];
+            [self didGetDistributionDescription:response.json];
         }
     }];
     
@@ -74,11 +74,11 @@
 
 -(void)getDevicesForDistribution{
     
-    [_dataSourceClient listDevicesFromDistribution:_distribution_id completionHandler:^(id object, NSURLResponse *response, NSError *error) {
-        if (error) {
-            [self showError:error WithMessage:error.userInfo];
+    [_dataSourceClient listDevicesFromDistribution:_distribution_id completionHandler:^(CBBResponse *response) {
+        if (response.error) {
+            [self showError:response.error withMessage:response.error.userInfo];
         } else {
-            [self didGetDevicesForDistribution:object];
+            [self didGetDevicesForDistribution:response.json];
         }
     }];
     
@@ -109,7 +109,7 @@
 
 #pragma mark - helper
 
--(void)showError:(NSError*)error WithMessage:(NSDictionary*)message{
+-(void)showError:(NSError*)error withMessage:(NSDictionary*)message{
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[error localizedDescription]
                                                     message:[NSString stringWithFormat:@"%@", message]
                                                    delegate:nil cancelButtonTitle:@"OK"

@@ -33,10 +33,10 @@
     client.apiKey = nil;
     
     __block BOOL failed = NO;
-    [client getWithPath:@"/mypath" andParameters:@{@"param1": @"1", @"param2": @"2"} apiKey:client.apiKey completionHandler:^(id object, NSURLResponse *response, NSError *error) {
-        if (error) {
-            XCTAssertTrue(error);
-            XCTAssertEqual(error.code, CBBM2xNoApiKey);
+    [client getWithPath:@"/mypath" andParameters:@{@"param1": @"1", @"param2": @"2"} apiKey:client.apiKey completionHandler:^(CBBResponse *response) {
+        if (response.error) {
+            XCTAssertTrue(response.error);
+            XCTAssertEqual(response.error.code, CBBM2xNoApiKey);
             failed = YES;
         } else {
             XCTFail(@"can't be here");
@@ -140,9 +140,9 @@
     CBBM2x *client = [CBBM2x shared];
     client.session = sessionMock;
     client.apiKey = @"1234";
-    [client putWithPath:@"/mypath" andParameters:@{@"param1": @"1", @"param2": @"2"} apiKey:client.apiKey completionHandler:^(id object, NSHTTPURLResponse *response, NSError *error) {
-        XCTAssertNotNil(error);
-        XCTAssertEqual(error.code, CBBM2xRequestError);
+    [client putWithPath:@"/mypath" andParameters:@{@"param1": @"1", @"param2": @"2"} apiKey:client.apiKey completionHandler:^(CBBResponse *response) {
+        XCTAssertNotNil(response.error);
+        XCTAssertEqual(response.error.code, CBBM2xRequestError);
     }];
 }
 
@@ -161,9 +161,9 @@
     CBBM2x *client = [CBBM2x shared];
     client.session = sessionMock;
     client.apiKey = @"1234";
-    [client putWithPath:@"/mypath" andParameters:@{@"param1": @"1", @"param2": @"2"} apiKey:client.apiKey completionHandler:^(id object, NSHTTPURLResponse *response, NSError *error) {
-        XCTAssertNotNil(error);
-        XCTAssertEqual(error.code, CBBM2xRequestError);
+    [client putWithPath:@"/mypath" andParameters:@{@"param1": @"1", @"param2": @"2"} apiKey:client.apiKey completionHandler:^(CBBResponse *response) {
+        XCTAssertNotNil(response.error);
+        XCTAssertEqual(response.error.code, CBBM2xRequestError);
     }];
 }
 

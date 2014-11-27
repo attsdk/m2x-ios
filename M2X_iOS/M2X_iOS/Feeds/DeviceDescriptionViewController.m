@@ -51,10 +51,10 @@
 
 -(void)getDeviceStreams {
     CBBStreamClient *streamClient = [CBBStreamClient new];
-    [streamClient listDataStreamsForDeviceId:_device_id completionHandler:^(id object, NSURLResponse *response, NSError *error) {
+    [streamClient listDataStreamsForDeviceId:_device_id completionHandler:^(CBBResponse *response) {
         [_streamList removeAllObjects];
         
-        [_streamList addObjectsFromArray:[object objectForKey:@"streams"]];
+        [_streamList addObjectsFromArray:[response.json objectForKey:@"streams"]];
         
         [_tableViewStreams reloadData];
     }];
@@ -63,11 +63,11 @@
 
 -(void)getDeviceDescription{
 
-    [_deviceClient viewDetailsForDeviceId:_device_id completionHandler:^(id object, NSURLResponse *response, NSError *error) {
-        if (error) {
-            [self showError:error WithMessage:error.userInfo];
+    [_deviceClient viewDetailsForDeviceId:_device_id completionHandler:^(CBBResponse *response) {
+        if (response.error) {
+            [self showError:response.error WithMessage:response.error.userInfo];
         } else {
-            [self didGetDeviceDescription:object];
+            [self didGetDeviceDescription:response.json];
         }
     }];
     

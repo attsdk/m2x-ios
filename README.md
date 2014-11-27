@@ -56,9 +56,9 @@ CBBDeviceClient *client = [[CBBDeviceClient alloc] init];
 [client setDeviceKey:@"YOUR_MASTER_API_KEY"];
 
 //retrieve a list of devices without parameters
-[client listDevicesWithParameters:nil completionHandler:^(id object, NSURLResponse *response, NSError *error) {
-    if (!error) {
-        NSDictionary *response = object[@"devices"];
+[client listDevicesWithParameters:nil completionHandler:^(CBBResponse *response) {
+    if (!response.error) {
+        NSDictionary *response = response.json[@"devices"];
         NSMutableArray *deviceList = [NSMutableArray array];
         for (NSDictionary *device in response) {
             //show only active devices
@@ -66,7 +66,7 @@ CBBDeviceClient *client = [[CBBDeviceClient alloc] init];
                 [deviceList addObject:device];
         }
     } else {
-        NSLog(@"Error: %@",[error description]);
+        NSLog(@"Error: %@",[response.error description]);
     }
 }];
 ```
@@ -74,13 +74,13 @@ CBBDeviceClient *client = [[CBBDeviceClient alloc] init];
 **View Device Details:**
 
 ```objc
-[client viewDetailsForDeviceId:@"device_id" completionHandler:^(id object, NSURLResponse *response, NSError *error) {
-    if (!error) {
-        [lblDSName setText:[object valueForKey:@"name"]];
-        [lblDSDescription setText:[object valueForKey:@"name"]];
-        [lblDSSerial setText:[object valueForKey:@"serial"]];
+[client viewDetailsForDeviceId:@"device_id" completionHandler:^(CBBResponse *response) {
+    if (!response.error) {
+        [lblDSName setText:[response.json valueForKey:@"name"]];
+        [lblDSDescription setText:[response.json valueForKey:@"name"]];
+        [lblDSSerial setText:[response.json valueForKey:@"serial"]];
     } else {
-        NSLog(@"Error: %@",[error localizedDescription]);
+        NSLog(@"Error: %@",[response.error localizedDescription]);
     }
 }];
 ```
@@ -92,11 +92,11 @@ NSDictionary *device = @{ @"name": @"Sample Device",
                        @"description": @"Longer description for Sample Device",
                         @"visibility": @"public" };
 
-[client createDevice:device completionHandler:^(id object, NSURLResponse *response, NSError *error) {
-    if (!error) {
-        NSDictionary *deviceCreated = object;
+[client createDevice:device completionHandler:^(CBBResponse *response) {
+    if (!response.error) {
+        NSDictionary *deviceCreated = response.json;
     } else {
-        NSLog(@"Error: %@",[error localizedDescription]);
+        NSLog(@"Error: %@",[response.error localizedDescription]);
     }
 }];
 
@@ -118,11 +118,11 @@ NSDictionary *locationDict = @{ @"name": _currentLocality,
                            @"longitude": [NSString stringWithFormat:@"%f",location.coordinate.longitude],
                            @"elevation": [NSString stringWithFormat:@"%f",location.altitude] };
 
-[client updateDeviceWithLocation:locationDict inDevice:@"your_device_id" completionHandler:^(id object, NSURLResponse *response, NSError *error) {
-    if (!error) {
+[client updateDeviceWithLocation:locationDict inDevice:@"your_device_id" completionHandler:^(CBBResponse *response) {
+    if (!response.error) {
         [self didSetLocation];
     } else {
-        NSLog(@"Error: %@",[error localizedDescription]);
+        NSLog(@"Error: %@",[response.error localizedDescription]);
     }
 }];
 ```
@@ -137,7 +137,7 @@ NSDictionary *trigger = @{ @"name": @"trigger1",
                            @"callback_url": @"http://example.com",
                            @"status": @"enabled" };
 
-[client createTrigger:trigger inDevice:@"ee9501931bcb3f9b0d25fde5eaf4abd8" completionHandler:^(id object, NSURLResponse *response, NSError *error) {
+[client createTrigger:trigger inDevice:@"ee9501931bcb3f9b0d25fde5eaf4abd8" completionHandler:^(CBBResponse *response) {
     ...
 }];
 ```
@@ -145,7 +145,7 @@ NSDictionary *trigger = @{ @"name": @"trigger1",
 **View Request Log**
 
 ```objc
-[client viewRequestLogForDevice:@"YOUR_DEVICE_ID" completionHandler:^(id object, NSURLResponse *response, NSError *error) {
+[client viewRequestLogForDevice:@"YOUR_DEVICE_ID" completionHandler:^(CBBResponse *response) {
 ...
 }];
 ```
@@ -167,7 +167,7 @@ NSDictionary *newValue = @{ @"values": @[ @{ @"value": @"20", @"timestamp": now 
 [client postDataValues:newValue
                   forStream:@"stream_name"
                      inDevice:@"your_device_id"
-                     completionHandler:^(id object, NSURLResponse *response, NSError *error) {
+                     completionHandler:^(CBBResponse *response) {
                      ... 
                      }
 ];
@@ -184,7 +184,7 @@ CBBDistributionClient *client = [[CBBDistributionClient alloc] init];
 **List Devices from a Distribution:**
 
 ```objc
-[client listDevicesFromDistribution:@"distribution_id" completionHandler:^(id object, NSURLResponse *response, NSError *error) {
+[client listDevicesFromDistribution:@"distribution_id" completionHandler:^(CBBResponse *response) {
 ...
 }];
 ```
@@ -194,7 +194,7 @@ CBBDistributionClient *client = [[CBBDistributionClient alloc] init];
 ```objc
 NSDictionary *serial = @{ @"serial": @"your_new_serial" };
 //Add Device to the Distribution
-[client addDeviceToDistribution:@"distribution_id" withParameters:serial completionHandler:^(id object, NSURLResponse *response, NSError *error) {
+[client addDeviceToDistribution:@"distribution_id" withParameters:serial completionHandler:^(CBBResponse *response) {
 ...
 }];
 ```
@@ -206,7 +206,7 @@ NSDictionary *distribution = @{ @"name": @"your_distribution_name" ,
                   @"description": @"a_description",
                    @"visibility": @"private" };
 
-[client createDistribution:distribution completionHandler:^(id object, NSURLResponse *response, NSError *error) {
+[client createDistribution:distribution completionHandler:^(CBBResponse *response) {
 ...
 }];
 ```
@@ -221,7 +221,7 @@ CBBKeysClient *client = [[CBBKeysClient alloc] init];
 **List Keys:**
 
 ```objc
-[client listKeysWithParameters:nil completionHandler:^(id object, NSURLResponse *response, NSError *error) {
+[client listKeysWithParameters:nil completionHandler:^(CBBResponse *response) {
     if (!error) {
       NSArray *keys = object[@"keys"];
     }
@@ -231,11 +231,11 @@ CBBKeysClient *client = [[CBBKeysClient alloc] init];
 **View Key Details:**
 
 ```objc
-[client viewDetailsForKey:_key completionHandler:^(id object, NSURLResponse *response, NSError *error) {
-    NSString *name = [object valueForKey:@"name"];
-    NSString *key = [object valueForKey:@"key"];
-    NSString *expiresAt = [object valueForKey:@"expires_at"];
-    NSString *permissions = [object[@"permissions"] componentsJoinedByString:@", "];
+[client viewDetailsForKey:_key completionHandler:^(CBBResponse *response) {
+    NSString *name = [response.json valueForKey:@"name"];
+    NSString *key = [response.json valueForKey:@"key"];
+    NSString *expiresAt = [response.json valueForKey:@"expires_at"];
+    NSString *permissions = [response.json[@"permissions"] componentsJoinedByString:@", "];
 
     [lblName setText:name];
     [lblKey setText:key];
@@ -250,9 +250,9 @@ CBBKeysClient *client = [[CBBKeysClient alloc] init];
 **Regenerate Key:**
 
 ```objc
-[client regenerateKey:_key completionHandler:^(id object, NSURLResponse *response, NSError *error) {
+[client regenerateKey:_key completionHandler:^(CBBResponse *response) {
     //Update key label
-    [lblKey setText:[object valueForKey:@"key"]];
+    [lblKey setText:[response.json valueForKey:@"key"]];
 }];
 ```
 
