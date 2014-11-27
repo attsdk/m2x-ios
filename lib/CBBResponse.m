@@ -52,7 +52,7 @@
 }
 
 - (BOOL)success {
-    return _response.statusCode >= 200 && _response.statusCode <= 299;
+    return !_errorObject && _response.statusCode >= 200 && _response.statusCode <= 299;
 }
 
 - (BOOL)clientError {

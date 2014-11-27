@@ -10,14 +10,26 @@
 
 @interface CBBResponse : NSObject
 
-@property (readonly) id json;
 @property (readonly) NSData *raw;
+
+// result after raw data parsed as json
+@property (readonly) id json;
+
+// HTTP status code
 @property (readonly) NSInteger status;
+
+// HTTP headers
 @property (readonly) NSDictionary *headers;
-@property (readonly) BOOL success;
+
 @property (readonly) BOOL clientError;
 @property (readonly) BOOL serverError;
+
+@property (readonly) BOOL success;
+
+// if clientError and serverError is false
 @property (readonly) BOOL error;
+
+// in case url session returns an error
 @property (readonly) NSError *errorObject;
 
 - (instancetype)initWithResponse:(NSHTTPURLResponse *)response data:(NSData *)data error:(NSError *)error;
