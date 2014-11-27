@@ -57,7 +57,7 @@
     XCTAssertEqualObjects(request.HTTPMethod, @"GET");
     XCTAssertEqualObjects([[NSURL URLWithString:client.apiUrl] host], request.URL.host);
     XCTAssertEqualObjects(request.allHTTPHeaderFields[@"X-M2X-KEY"], client.apiKey);
-    XCTAssertTrue([request.allHTTPHeaderFields[@"User-Agent"] rangeOfString:@"M2X/"].location != NSNotFound);
+    XCTAssertTrue([request.allHTTPHeaderFields[@"User-Agent"] rangeOfString:@"M2X-iOS"].location != NSNotFound);
     
     XCTAssertEqualObjects(@"/v2/mypath", request.URL.path);
     XCTAssertTrue([request.URL.query rangeOfString:@"param1=1"].location != NSNotFound);
@@ -76,7 +76,7 @@
     XCTAssertEqualObjects(request.HTTPMethod, @"DELETE");
     XCTAssertEqualObjects([[NSURL URLWithString:client.apiUrl] host], request.URL.host);
     XCTAssertEqualObjects(request.allHTTPHeaderFields[@"X-M2X-KEY"], client.apiKey);
-    XCTAssertTrue([request.allHTTPHeaderFields[@"User-Agent"] rangeOfString:@"M2X/"].location != NSNotFound);
+    XCTAssertTrue([request.allHTTPHeaderFields[@"User-Agent"] rangeOfString:@"M2X-iOS"].location != NSNotFound);
     
     XCTAssertEqualObjects(@"/v2/mypath", request.URL.path);
     XCTAssertTrue([request.URL.query rangeOfString:@"param1=1"].location != NSNotFound);
@@ -94,7 +94,7 @@
     XCTAssertEqualObjects(request.HTTPMethod, @"POST");
     XCTAssertEqualObjects([[NSURL URLWithString:client.apiUrl] host], request.URL.host);
     XCTAssertEqualObjects(request.allHTTPHeaderFields[@"X-M2X-KEY"], client.apiKey);
-    XCTAssertTrue([request.allHTTPHeaderFields[@"User-Agent"] rangeOfString:@"M2X/"].location != NSNotFound);
+    XCTAssertTrue([request.allHTTPHeaderFields[@"User-Agent"] rangeOfString:@"M2X-iOS"].location != NSNotFound);
 
     XCTAssertEqualObjects(request.allHTTPHeaderFields[@"Content-Type"], @"application/json");
 
@@ -115,7 +115,7 @@
     XCTAssertEqualObjects(request.HTTPMethod, @"PUT");
     XCTAssertEqualObjects([[NSURL URLWithString:client.apiUrl] host], request.URL.host);
     XCTAssertEqualObjects(request.allHTTPHeaderFields[@"X-M2X-KEY"], client.apiKey);
-    XCTAssertTrue([request.allHTTPHeaderFields[@"User-Agent"] rangeOfString:@"M2X/"].location != NSNotFound);
+    XCTAssertTrue([request.allHTTPHeaderFields[@"User-Agent"] rangeOfString:@"M2X-iOS"].location != NSNotFound);
     
     XCTAssertEqualObjects(request.allHTTPHeaderFields[@"Content-Type"], @"application/json");
     
