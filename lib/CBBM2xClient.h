@@ -7,7 +7,6 @@ typedef void (^M2XAPICallback)(CBBResponse *response);
 
 typedef enum : NSInteger {
     CBBM2xNoApiKey = 1,
-    CBBM2xRequestError
 } CBBM2xAPIErrors;
 
 extern NSString * const CBBM2xErrorDomain;

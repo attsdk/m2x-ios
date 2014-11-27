@@ -17,7 +17,8 @@
 @property (readonly) BOOL success;
 @property (readonly) BOOL clientError;
 @property (readonly) BOOL serverError;
-@property (readonly) NSError *error;
+@property (readonly) BOOL error;
+@property (readonly) NSError *errorObject;
 
 - (instancetype)initWithResponse:(NSHTTPURLResponse *)response data:(NSData *)data error:(NSError *)error;
 

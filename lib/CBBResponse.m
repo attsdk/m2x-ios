@@ -12,7 +12,7 @@
 
 @property (strong) NSHTTPURLResponse *response;
 @property (strong) NSData *data;
-@property (nonatomic, strong) NSError *error;
+@property (nonatomic, strong) NSError *errorObject;
 
 @end
 
@@ -24,7 +24,7 @@
     if (self) {
         _response = response;
         _data = data;
-        _error = error;
+        _errorObject = error;
     }
     
     return self;
@@ -56,11 +56,15 @@
 }
 
 - (BOOL)clientError {
-    return _response.statusCode >= 400 && _response.statusCode <= 499;
+    return _errorObject || (_response.statusCode >= 400 && _response.statusCode <= 499);
 }
 
 - (BOOL)serverError {
-    return _response.statusCode >= 500 && _response.statusCode <= 599;
+    return _errorObject || (_response.statusCode >= 500 && _response.statusCode <= 599);
+}
+
+- (BOOL)error {
+    return self.clientError || self.serverError;
 }
 
 @end

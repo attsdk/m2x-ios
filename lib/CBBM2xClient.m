@@ -84,12 +84,6 @@ NSString * const CBBM2xErrorDomain = @"CBBM2xErrorDomain";
     
     NSURLSessionDataTask *task = [self.session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         if (completionHandler) {
-            if (!error) {
-                NSHTTPURLResponse *r = (NSHTTPURLResponse *)response;
-                if (r.statusCode >= 299) {
-                    error = [NSError errorWithDomain:CBBM2xErrorDomain code:CBBM2xRequestError userInfo:@{NSLocalizedFailureReasonErrorKey:[NSString stringWithFormat:@"HTTP error code: %d", (int)r.statusCode]}];
-                }
-            }
             CBBResponse *r = [[CBBResponse alloc] initWithResponse:(NSHTTPURLResponse *)response data:data error:error];
             completionHandler(r);
         }

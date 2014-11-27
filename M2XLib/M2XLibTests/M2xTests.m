@@ -35,7 +35,7 @@
     [client getWithPath:@"/mypath" andParameters:@{@"param1": @"1", @"param2": @"2"} apiKey:client.apiKey completionHandler:^(CBBResponse *response) {
         if (response.error) {
             XCTAssertTrue(response.error);
-            XCTAssertEqual(response.error.code, CBBM2xNoApiKey);
+            XCTAssertEqual(response.errorObject.code, CBBM2xNoApiKey);
             failed = YES;
         } else {
             XCTFail(@"can't be here");
@@ -138,8 +138,8 @@
     client.session = sessionMock;
     client.apiKey = @"1234";
     [client putWithPath:@"/mypath" andParameters:@{@"param1": @"1", @"param2": @"2"} apiKey:client.apiKey completionHandler:^(CBBResponse *response) {
-        XCTAssertNotNil(response.error);
-        XCTAssertEqual(response.error.code, CBBM2xRequestError);
+        XCTAssertTrue(response.error);
+        XCTAssertTrue(response.clientError);
     }];
 }
 
@@ -159,8 +159,8 @@
     client.session = sessionMock;
     client.apiKey = @"1234";
     [client putWithPath:@"/mypath" andParameters:@{@"param1": @"1", @"param2": @"2"} apiKey:client.apiKey completionHandler:^(CBBResponse *response) {
-        XCTAssertNotNil(response.error);
-        XCTAssertEqual(response.error.code, CBBM2xRequestError);
+        XCTAssertTrue(response.error);
+        XCTAssertTrue(response.serverError);
     }];
 }
 
