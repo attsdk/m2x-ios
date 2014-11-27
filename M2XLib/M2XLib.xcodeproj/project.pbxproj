@@ -18,6 +18,7 @@
 		E2D2B3E41A095F2700E8A733 /* NSDate+M2X.m in Sources */ = {isa = PBXBuildFile; fileRef = E2D2B3DF1A095F2700E8A733 /* NSDate+M2X.m */; };
 		E2D2B3EB1A0A43DD00E8A733 /* M2xTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E2D2B3EA1A0A43DD00E8A733 /* M2xTests.m */; };
 		E2D53A511A278F8F007EA361 /* CBBResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = E2D53A501A278F8F007EA361 /* CBBResponse.m */; };
+		E2D53A611A27D76A007EA361 /* CBBM2xClient+HTTP.m in Sources */ = {isa = PBXBuildFile; fileRef = E2D53A601A27D76A007EA361 /* CBBM2xClient+HTTP.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +100,8 @@
 		E2D2B3EA1A0A43DD00E8A733 /* M2xTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M2xTests.m; sourceTree = "<group>"; };
 		E2D53A4F1A278F8F007EA361 /* CBBResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBBResponse.h; sourceTree = "<group>"; };
 		E2D53A501A278F8F007EA361 /* CBBResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBBResponse.m; sourceTree = "<group>"; };
+		E2D53A5F1A27D76A007EA361 /* CBBM2xClient+HTTP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CBBM2xClient+HTTP.h"; sourceTree = "<group>"; };
+		E2D53A601A27D76A007EA361 /* CBBM2xClient+HTTP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CBBM2xClient+HTTP.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,6 +182,8 @@
 		E2D2B3D51A095F2700E8A733 /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				E2D53A5F1A27D76A007EA361 /* CBBM2xClient+HTTP.h */,
+				E2D53A601A27D76A007EA361 /* CBBM2xClient+HTTP.m */,
 				E29A85071A0BAD0E00F90735 /* CBBDistributionClient.h */,
 				E29A85081A0BAD0E00F90735 /* CBBDistributionClient.m */,
 				E2D2B3D61A095F2700E8A733 /* CBBDeviceClient.h */,
@@ -328,6 +333,7 @@
 			files = (
 				E2D2B3E11A095F2700E8A733 /* CBBStreamClient.m in Sources */,
 				E29A85091A0BAD0E00F90735 /* CBBDistributionClient.m in Sources */,
+				E2D53A611A27D76A007EA361 /* CBBM2xClient+HTTP.m in Sources */,
 				E24E2B151A0A61670019D3EB /* CBBBaseClient.m in Sources */,
 				E2D2B3E41A095F2700E8A733 /* NSDate+M2X.m in Sources */,
 				E24E2B1A1A0A63DD0019D3EB /* CBBM2xClient.m in Sources */,

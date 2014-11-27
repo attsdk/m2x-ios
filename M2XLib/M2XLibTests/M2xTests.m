@@ -10,6 +10,7 @@
 #import <XCTest/XCTest.h>
 #import "OCMock.h"
 #import "CBBM2xClient.h"
+#import "CBBM2xClient+HTTP.h"
 #import "CBBKeysClient.h"
 
 @interface M2xTests : XCTestCase

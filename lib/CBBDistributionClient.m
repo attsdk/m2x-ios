@@ -7,6 +7,7 @@
 //
 
 #import "CBBDistributionClient.h"
+#import "CBBM2xClient+HTTP.h"
 
 @implementation CBBDistributionClient
 

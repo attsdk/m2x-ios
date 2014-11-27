@@ -15,11 +15,6 @@ extern NSString * const CBBM2xErrorDomain;
 
 -(instancetype)initWithApiKey:(NSString *)apiKey;
 
--(NSURLRequest *)getWithPath:(NSString*)path andParameters:(NSDictionary*)parameters apiKey:(NSString*)apiKey completionHandler:(M2XAPICallback)completionHandler;
--(NSURLRequest *)postWithPath:(NSString*)path andParameters:(NSDictionary*)parameters apiKey:(NSString*)apiKey completionHandler:(M2XAPICallback)completionHandler;
--(NSURLRequest *)putWithPath:(NSString*)path andParameters:(NSDictionary*)parameters apiKey:(NSString*)apiKey completionHandler:(M2XAPICallback)completionHandler;
--(NSURLRequest *)deleteWithPath:(NSString*)path andParameters:(NSDictionary*)parameters apiKey:(NSString*)apiKey completionHandler:(M2XAPICallback)completionHandler;
-
 @property (nonatomic, strong) NSURLSession *session;
 @property (nonatomic, copy) NSString *apiUrl;
 @property (nonatomic, copy) NSString *apiKey;

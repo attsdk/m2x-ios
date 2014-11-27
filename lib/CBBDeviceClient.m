@@ -1,6 +1,7 @@
 
 #import "CBBDeviceClient.h"
 #import "CBBM2xClient.h"
+#import "CBBM2xClient+HTTP.h"
 
 @implementation CBBDeviceClient
 

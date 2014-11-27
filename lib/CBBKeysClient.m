@@ -1,6 +1,7 @@
 
 #import "CBBKeysClient.h"
 #import "CBBM2xClient.h"
+#import "CBBM2xClient+HTTP.h"
 
 @implementation CBBKeysClient
 
