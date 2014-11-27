@@ -42,7 +42,7 @@
     NSDictionary *parameters = @{ @"limit": @"100" };
     [_deviceClient listDataValuesFromTheStream:_streamName
                                       inDevice:_device_id
-                              WithParameters:parameters
+                              withParameters:parameters
                                      completionHandler:^(CBBResponse *response)
     {
         if (response.error) {

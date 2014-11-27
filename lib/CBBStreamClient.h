@@ -28,7 +28,7 @@
  "end" (optional)
  "limit" (optional)
  */
--(void)listDataValuesFromTheStream:(NSString*)stream inDevice:(NSString*)device_id WithParameters:(NSDictionary*)parameters completionHandler:(M2XAPICallback)completionHandler;
+-(void)listDataValuesFromTheStream:(NSString*)stream inDevice:(NSString*)device_id withParameters:(NSDictionary*)parameters completionHandler:(M2XAPICallback)completionHandler;
 
 ///------------------------------------
 /// @Post Data Stream Values
