@@ -35,6 +35,27 @@
     @throw [NSException exceptionWithName:@"InvalidInitializer" reason:@"Can't use the default initializer" userInfo:nil];
 }
 
+- (void)viewWithCompletionHandler:(M2XResourceCallback)completionHandler {
+    [self.client getWithPath:[self path] parameters:nil completionHandler:^(M2XResponse *response) {
+        self.attributes = response.json;
+        completionHandler(self, response);
+    }];
+}
+
+- (void)updateWithCompletionHandler:(M2XResourceCallback)completionHandler {
+    [self.client putWithPath:[self path] parameters:nil completionHandler:^(M2XResponse *response) {
+        self.attributes = response.json;
+        completionHandler(self, response);
+    }];
+}
+
+- (void)deleteWithCompletionHandler:(M2XBaseCallback)completionHandler {
+    [self.client deleteWithPath:[self path] parameters:nil completionHandler:^(M2XResponse *response) {
+        completionHandler(response);
+    }];
+}
+
+
 - (NSString *)path {
     @throw [NSException exceptionWithName:@"InvalidMethod" reason:@"You must override this" userInfo:nil];
 }

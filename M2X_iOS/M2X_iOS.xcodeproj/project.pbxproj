@@ -49,6 +49,7 @@
 		E2C45B9C1A28AC4000DDFA29 /* M2XResource.m in Sources */ = {isa = PBXBuildFile; fileRef = E2C45B961A28AC4000DDFA29 /* M2XResource.m */; };
 		E2C45B9D1A28AC4000DDFA29 /* M2XResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = E2C45B981A28AC4000DDFA29 /* M2XResponse.m */; };
 		E2C45BA21A28BCEE00DDFA29 /* M2XStream.m in Sources */ = {isa = PBXBuildFile; fileRef = E2C45BA11A28BCEE00DDFA29 /* M2XStream.m */; };
+		E2C45BB21A292E5300DDFA29 /* M2XKey.m in Sources */ = {isa = PBXBuildFile; fileRef = E2C45BB11A292E5300DDFA29 /* M2XKey.m */; };
 		E2D53A5A1A279E65007EA361 /* CBBResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = E2D53A591A279E65007EA361 /* CBBResponse.m */; };
 		E2D53A5E1A27D66C007EA361 /* CBBM2xClient+HTTP.m in Sources */ = {isa = PBXBuildFile; fileRef = E2D53A5D1A27D66C007EA361 /* CBBM2xClient+HTTP.m */; };
 /* End PBXBuildFile section */
@@ -138,6 +139,8 @@
 		E2C45B9F1A28ACBB00DDFA29 /* M2X.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M2X.h; sourceTree = "<group>"; };
 		E2C45BA01A28BCEE00DDFA29 /* M2XStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M2XStream.h; sourceTree = "<group>"; };
 		E2C45BA11A28BCEE00DDFA29 /* M2XStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M2XStream.m; sourceTree = "<group>"; };
+		E2C45BB01A292E5300DDFA29 /* M2XKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M2XKey.h; sourceTree = "<group>"; };
+		E2C45BB11A292E5300DDFA29 /* M2XKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M2XKey.m; sourceTree = "<group>"; };
 		E2D53A581A279E65007EA361 /* CBBResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBBResponse.h; sourceTree = "<group>"; };
 		E2D53A591A279E65007EA361 /* CBBResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBBResponse.m; sourceTree = "<group>"; };
 		E2D53A5C1A27D66C007EA361 /* CBBM2xClient+HTTP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CBBM2xClient+HTTP.h"; sourceTree = "<group>"; };
@@ -315,6 +318,8 @@
 			isa = PBXGroup;
 			children = (
 				E2C45B9F1A28ACBB00DDFA29 /* M2X.h */,
+				E2C45BB01A292E5300DDFA29 /* M2XKey.h */,
+				E2C45BB11A292E5300DDFA29 /* M2XKey.m */,
 				E2C45B8F1A28AC4000DDFA29 /* M2XClient.h */,
 				E2C45B901A28AC4000DDFA29 /* M2XClient.m */,
 				E2C45B911A28AC4000DDFA29 /* M2XClient+HTTP.h */,
@@ -452,6 +457,7 @@
 				0BAD9DF41864C4210070487E /* AddStreamViewController.m in Sources */,
 				E2C45B9B1A28AC4000DDFA29 /* M2XDevice.m in Sources */,
 				0B65FBB3184E114700C88810 /* ViewController.m in Sources */,
+				E2C45BB21A292E5300DDFA29 /* M2XKey.m in Sources */,
 				0B810E2C185F4C7300D22F49 /* StreamValuesViewController.m in Sources */,
 				0B7471F61860A1C2006F48B4 /* CreateDistributionViewController.m in Sources */,
 				0B65FBAA184E114700C88810 /* AppDelegate.m in Sources */,

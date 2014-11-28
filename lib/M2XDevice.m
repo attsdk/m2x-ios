@@ -9,7 +9,7 @@
 #import "M2XDevice.h"
 #import "M2XStream.h"
 
-NSString * const kPath = @"/devices";
+static NSString * const kPath = @"/devices";
 
 @implementation M2XDevice
 
@@ -50,13 +50,6 @@ NSString * const kPath = @"/devices";
 
 - (void)updateLocation:(NSDictionary *)parameters completionHandler:(M2XDeviceCallback)completionHandler {
     [self.client putWithPath:[NSString stringWithFormat:@"%@/location", [self path]] parameters:parameters completionHandler:^(M2XResponse *response) {
-        completionHandler(self, response);
-    }];
-}
-
-- (void)viewWithCompletionHandler:(M2XDeviceCallback)completionHandler {
-    [self.client getWithPath:[self path] parameters:nil completionHandler:^(M2XResponse *response) {
-        self.attributes = response.json;
         completionHandler(self, response);
     }];
 }

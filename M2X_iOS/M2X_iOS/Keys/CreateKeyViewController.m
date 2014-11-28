@@ -50,14 +50,14 @@
     if([_swDelete isOn]) [permissions addObject:@"DELETE"];
     
     //create key object
-    NSMutableDictionary *key = [NSMutableDictionary dictionaryWithObjects:[NSArray arrayWithObjects:[_tfMasterKeyLabel text],permissions,[NSNull null],[NSNull null],nil]
+    NSMutableDictionary *details = [NSMutableDictionary dictionaryWithObjects:[NSArray arrayWithObjects:[_tfMasterKeyLabel text],permissions,[NSNull null],[NSNull null],nil]
                                                                   forKeys:[NSArray arrayWithObjects:@"name",@"permissions",@"device",@"stream",nil]];
     
     //Set the expiry date:
     if([_swExpiryDate isOn] && ![[_tfExpiryDate text] isEqualToString:@""])
-        [key setValue:[_tfExpiryDate text] forKey:@"expires_at"];
+        [details setValue:[_tfExpiryDate text] forKey:@"expires_at"];
     
-    [_keysClient createKey:key completionHandler:^(CBBResponse *response) {
+    [_client createKeyWithParameters:details completionHandler:^(M2XKey *key, M2XResponse *response) {
         if (response.error) {
             [self showError:response.errorObject withMessage:response.errorObject.userInfo];
         } else {

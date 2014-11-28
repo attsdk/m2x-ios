@@ -15,7 +15,6 @@
 + (void)createWithClient:(M2XClient *)client parameters:(NSDictionary *)parameters completionHandler:(M2XDeviceCallback)completionHandler;
 
 - (void)streamsWithCompletionHandler:(M2XArrayCallback)completionHandler;
-- (void)viewWithCompletionHandler:(M2XDeviceCallback)completionHandler;
 - (void)locationWithCompletionHandler:(M2XBaseCallback)completionHandler;
 - (void)updateLocation:(NSDictionary *)parameters completionHandler:(M2XDeviceCallback)completionHandler;
 - (void)updateStreamWithName:(NSString *)name parameters:(NSDictionary *)parameters completionHandler:(M2XStreamCallback)completionHandler;

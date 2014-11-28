@@ -60,11 +60,11 @@
 }
 
 -(void)getDeviceDescription{
-    [_device viewWithCompletionHandler:^(M2XDevice *device, M2XResponse *response) {
+    [_device viewWithCompletionHandler:^(M2XResource *device, M2XResponse *response) {
         if (response.error) {
             [self showError:response.errorObject withMessage:response.errorObject.userInfo];
         } else {
-            [self didGetDeviceDescription:device];
+            [self didGetDeviceDescription:(M2XDevice *)device];
         }
     }];
 }

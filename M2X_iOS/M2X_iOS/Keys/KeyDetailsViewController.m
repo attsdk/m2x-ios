@@ -33,16 +33,15 @@
 #pragma mark - self
 
 - (void)getKeyDetails{
-    
-    [_keysClient viewDetailsForKey:_key completionHandler:^(CBBResponse *response) {
+    [_key viewWithCompletionHandler:^(M2XResource *resource, M2XResponse *response) {
         if (response.error) {
             [self showError:response.errorObject withMessage:response.errorObject.userInfo];
         } else {
-            NSString *name = [response.json valueForKey:@"name"];
-            NSString *key = [response.json valueForKey:@"key"];
-            NSString *expiresAt = [response.json valueForKey:@"expires_at"];
+            NSString *name = resource[@"name"];
+            NSString *key = resource[@"key"];
+            NSString *expiresAt = resource[@"expires_at"];
             
-            NSString *permissions = [[response.json objectForKey:@"permissions"] componentsJoinedByString:@", "];
+            NSString *permissions = [resource[@"permissions"] componentsJoinedByString:@", "];
             
             [_lblName setText:name];
             [_lblKey setText:key];
@@ -53,9 +52,7 @@
                 [_lblExpiresAt setText:expiresAt];
             }
         }
-        
     }];
-    
 }
 
 -(void)showError:(NSError*)error withMessage:(NSDictionary*)message{
@@ -69,15 +66,13 @@
 #pragma mark - btn
 
 - (IBAction)regenerateKey:(id)sender {
-    [_keysClient regenerateKey:_key completionHandler:^(CBBResponse *response) {
+    [_key regenerateWithCompletionHandler:^(M2XKey *key, M2XResponse *response) {
         if (response.error) {
             [self showError:response.errorObject withMessage:response.errorObject.userInfo];
         } else {
-            _key = [response.json valueForKey:@"key"];
-            //Update key label
-            [_lblKey setText:_key];
+            _key = key;
+            [_lblKey setText:_key[@"key"]];
         }
-        
     }];
 }
 
@@ -96,8 +91,7 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 1) {
-        [_keysClient deleteKey:_key completionHandler:^(CBBResponse *response) {
-            
+        [_key deleteWithCompletionHandler:^(M2XResponse *response) {
             if (response.error) {
                 [self showError:response.errorObject withMessage:response.errorObject.userInfo];
             } else {

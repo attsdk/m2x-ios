@@ -94,7 +94,11 @@ static BOOL VERBOSE_MODE = YES;
     }
     
     NSError *error = nil;
-    NSData *postData = [NSJSONSerialization dataWithJSONObject:parameters options:0 error:&error];
+    NSData *postData = nil;
+    if (parameters) {
+        postData = [NSJSONSerialization dataWithJSONObject:parameters options:0 error:&error];
+    }
+    
     if (error) {
         completionHandler([[M2XResponse alloc] initWithResponse:nil data:nil error:error]);
         return nil;
@@ -103,7 +107,10 @@ static BOOL VERBOSE_MODE = YES;
     return [self performRequestOnPath:path parameters:parameters configureRequestBlock:^(NSMutableURLRequest *request) {
         [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
         [request setHTTPMethod:@"POST"];
-        [request setHTTPBody:postData];
+        
+        if (postData) {
+            [request setHTTPBody:postData];            
+        }
     } completionHandler:completionHandler];
 }
 

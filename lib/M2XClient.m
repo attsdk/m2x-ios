@@ -11,6 +11,7 @@
 #import <UIKit/UIKit.h>
 #include <sys/types.h>
 #include <sys/sysctl.h>
+#import "M2XKey.h"
 
 static NSString * const kDefaultApiBase = @"https://api-m2x.att.com";
 static NSString * const kDefaultApiVersion = @"v2";
@@ -42,6 +43,14 @@ static NSString * const kLibVersion = @"2.0.0";
 
 - (void)deviceWithId:(NSString *)identifier completionHandler:(M2XDeviceCallback)completionHandler {
     [M2XDevice createWithClient:self parameters:@{@"id": identifier} completionHandler:completionHandler];
+}
+
+- (void)keysWithCompletionHandler:(M2XArrayCallback)completionHandler {
+    [M2XKey listWithClient:self parameters:nil completionHandler:completionHandler];
+}
+
+- (void)createKeyWithParameters:(NSDictionary *)parameters completionHandler:(M2XKeyCallback)completionHandler {
+    [M2XKey createWithClient:self parameters:parameters completionHandler:completionHandler];
 }
 
 - (NSString *)apiUrl {

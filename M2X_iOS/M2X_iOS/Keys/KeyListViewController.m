@@ -2,7 +2,8 @@
 #import "KeyListViewController.h"
 #import "CreateKeyViewController.h"
 #import "KeyDetailsViewController.h"
-#import "CBBKeysClient.h"
+#import "M2XClient.h"
+#import "M2XKey.h"
 
 @interface KeyListViewController ()
 
@@ -23,26 +24,19 @@
 {
     [super viewDidLoad];
     
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    CBBM2xClient *client = [[CBBM2xClient alloc] initWithApiKey:[defaults objectForKey:@"api_key"]];
-    client.apiUrl = [defaults objectForKey:@"api_base"];
-    
-    _keysClient = [[CBBKeysClient alloc] initWithClient:client];
-    
     _keysArray = [NSMutableArray array];
     
-}
-
-- (void)viewDidAppear:(BOOL)animated{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    M2XClient *client = [[M2XClient alloc] initWithApiKey:[defaults objectForKey:@"api_key"]];
+    client.apiBaseUrl = [defaults objectForKey:@"api_base"];
     
-    [_keysClient listKeysWithParameters:nil completionHandler:^(CBBResponse *response) {
+    [client keysWithCompletionHandler:^(NSArray *objects, M2XResponse *response) {
         if (response.error) {
             [self showError:response.errorObject withMessage:response.errorObject.userInfo];
         } else {
-            [self didGetKeysList:response.json];
+            [self didGetKeysList:objects];
         }
     }];
-    
 }
 
 - (void)didReceiveMemoryWarning
@@ -53,11 +47,11 @@
 
 #pragma mark - self
 
-- (void)didGetKeysList:(NSDictionary*)keysList{
+- (void)didGetKeysList:(NSArray*)keysList{
     
     [_keysArray removeAllObjects];
     
-    [_keysArray addObjectsFromArray:[keysList objectForKey:@"keys"]];
+    [_keysArray addObjectsFromArray:keysList];
     
     [self.tableView reloadData];
     
@@ -77,10 +71,10 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    NSDictionary *keyData = [_keysArray objectAtIndex:indexPath.row];
+    M2XKey *key = [_keysArray objectAtIndex:indexPath.row];
     
-    [[cell textLabel] setText:[keyData valueForKey:@"name"]];
-    [[cell detailTextLabel] setText:[keyData valueForKey:@"key"]];
+    [[cell textLabel] setText:key[@"name"]];
+    [[cell detailTextLabel] setText:key[@"key"]];
     
     return cell;
 }
@@ -98,27 +92,23 @@
 #pragma mark - segue
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    UITableViewCell *key_tableViewSelected = sender;
+
+    NSIndexPath *keyIndexPath = [[self tableView] indexPathForCell:key_tableViewSelected];
     
+    M2XKey *key = [_keysArray objectAtIndex:[keyIndexPath row]];
+
     if ([[segue identifier] isEqualToString:@"goCreateKeyViewController"]){
         
         CreateKeyViewController *createKeyVC = segue.destinationViewController;
         
-        createKeyVC.keysClient = _keysClient;
+        createKeyVC.client = key.client;
         
     }else if ([[segue identifier] isEqualToString:@"goKeyDescription"]){
         
-        UITableViewCell *key_tableViewSelected = sender;
-        
-        NSIndexPath *keyIndexPath = [[self tableView] indexPathForCell:key_tableViewSelected];
-        
-        NSDictionary *keyDict = [_keysArray objectAtIndex:[keyIndexPath row]];
-        
         KeyDetailsViewController *keyDescriptionVC = segue.destinationViewController;
         
-        keyDescriptionVC.keysClient = _keysClient;
-        
-        keyDescriptionVC.key = [keyDict valueForKey:@"key"];
-        
+        keyDescriptionVC.key = key;
     }
     
 }
