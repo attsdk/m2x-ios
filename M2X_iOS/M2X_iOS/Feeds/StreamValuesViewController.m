@@ -40,24 +40,24 @@
 {
     NSLog(@"Getting stream values");
     NSDictionary *parameters = @{ @"limit": @"100" };
-    [_feedClient listDataValuesFromTheStream:_streamName
-                                      inFeed:_feed_id
-                              WithParameters:parameters
-                                     success:^(NSDictionary *object)
+    [_deviceClient listDataValuesFromTheStream:_streamName
+                                      inDevice:_device_id
+                              withParameters:parameters
+                                     completionHandler:^(CBBResponse *response)
     {
-        self.valueList = object[@"values"];
-        [self.tableViewStreamValues reloadData];
-        NSLog(@"%d stream values displayed.", self.valueList.count);
-        [self.refreshControl endRefreshing];
-    }
-                                     failure:^(NSError *error, NSDictionary *message)
-    {
-        [self.refreshControl endRefreshing];
-        [[[UIAlertView alloc] initWithTitle:@"Error"
-                                    message:[NSString stringWithFormat:@"%@", message]
-                                   delegate:nil
-                          cancelButtonTitle:@"OK"
-                          otherButtonTitles:nil] show];
+        if (response.error) {
+            [self.refreshControl endRefreshing];
+            [[[UIAlertView alloc] initWithTitle:@"Error"
+                                        message:[NSString stringWithFormat:@"%@", response.errorObject.localizedDescription]
+                                       delegate:nil
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil] show];
+
+        } else {
+            self.valueList = response.json[@"values"];
+            [self.tableViewStreamValues reloadData];
+            [self.refreshControl endRefreshing];
+        }
     }];
     
 }
@@ -75,30 +75,30 @@
         
         NSString *now = [NSDate date].toISO8601;
         NSDictionary *args = @{ @"values": @[
-                                        @{ @"value": value, @"at": now }
+                                        @{ @"value": value, @"timestamp": now }
                                         ]
                                 };
         
-        [_feedClient postDataValues:args
+        [_deviceClient postDataValues:args
                           forStream:_streamName
-                             inFeed:_feed_id
-                            success:^(id object)
+                             inDevice:_device_id
+                            completionHandler:^(CBBResponse *response)
         {
-            [self getStreamValues];
-            self.tfNewValue.text = @"";
-            sender.enabled = YES;
-        }
-                            failure:^(NSError *error, NSDictionary *message)
-        {
-            [self showError:error WithMessage:message];
-            sender.enabled = YES;
+            if (response.error) {
+                [self showError:response.errorObject withMessage:response.errorObject.userInfo];
+                sender.enabled = YES;
+            } else {
+                [self getStreamValues];
+                self.tfNewValue.text = @"";
+                sender.enabled = YES;
+            }
         }];
     }
 }
 
 #pragma mark - helper
 
--(void)showError:(NSError*)error WithMessage:(NSDictionary*)message
+-(void)showError:(NSError*)error withMessage:(NSDictionary*)message
 {
     [[[UIAlertView alloc] initWithTitle:[error localizedDescription]
                                 message:[NSString stringWithFormat:@"%@", message]
@@ -128,7 +128,7 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     NSDictionary *valueData = self.valueList[indexPath.row];
-    NSDate *createdDate = [NSDate fromISO8601:valueData[@"at"]];
+    NSDate *createdDate = [NSDate fromISO8601:valueData[@"timestamp"]];
     NSString *dateString = [NSDateFormatter localizedStringFromDate:createdDate
                                                           dateStyle:NSDateFormatterShortStyle
                                                           timeStyle:NSDateFormatterShortStyle];

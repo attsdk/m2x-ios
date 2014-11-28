@@ -11,18 +11,28 @@
 
 - (NSString *) toISO8601
 {
+    return [self toISO8601WithTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"GMT"] locale:[NSLocale localeWithLocaleIdentifier:@"en-US"]];
+}
+
+- (NSString *) toISO8601WithTimeZone:(NSTimeZone *)timeZone locale:(NSLocale *)locale
+{
     NSDateFormatter *df = [NSDateFormatter new];
-    df.locale = [NSLocale localeWithLocaleIdentifier:@"en-US"];
-    df.timeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
+    df.locale = locale;
+    df.timeZone = timeZone;
     df.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
     return [df stringFromDate:self];
 }
 
 + (NSDate *) fromISO8601:(NSString *)dateString
 {
+    return [self fromISO8601:dateString timeZone:[NSTimeZone timeZoneWithAbbreviation:@"GMT"] locale:[NSLocale localeWithLocaleIdentifier:@"en-US"]];
+}
+
++ (NSDate *) fromISO8601:(NSString *)dateString timeZone:(NSTimeZone *)timeZone locale:(NSLocale *)locale
+{
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
-    df.locale = [NSLocale localeWithLocaleIdentifier:@"en-US"];
-    df.timeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
+    df.locale = locale;
+    df.timeZone = timeZone;
     [df setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"];
     return [df dateFromString:dateString];
 }

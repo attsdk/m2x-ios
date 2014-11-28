@@ -1,0 +1,142 @@
+
+#import "DevicesListViewController.h"
+#import "CBBM2xClient.h"
+#import "DeviceDescriptionViewController.h"
+
+@interface DevicesListViewController ()
+
+@end
+
+@implementation DevicesListViewController
+
+- (id)initWithStyle:(UITableViewStyle)style
+{
+    self = [super initWithStyle:style];
+    if (self) {
+        // Custom initialization
+    }
+    return self;
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    CBBM2xClient *client = [[CBBM2xClient alloc] initWithApiKey:[defaults objectForKey:@"api_key"]];
+    client.apiUrl = [defaults objectForKey:@"api_url"];
+
+    _deviceClient = [[CBBDeviceClient alloc] initWithClient:client];
+    
+    //get list of devices without parameters
+    [_deviceClient listDevicesWithCompletionHandler:^(CBBResponse *response) {
+        if (response.error) {
+            [self showError:response.errorObject withMessage:response.errorObject.userInfo];
+        } else {
+            [self didGetDeviceList:response.json];
+        }
+        
+    }];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - helpers methods
+
+-(void)setMasterKey:(NSString *)masterkey andDeviceKey:(NSString *)deviceKey{
+    _masterKey =  masterkey;
+    _deviceKey = deviceKey;
+}
+
+-(void)didGetDeviceList: (id) value
+{
+    NSDictionary *response = [value objectForKey:@"devices"];
+    
+    _data = [NSMutableArray array];
+    
+    for (NSDictionary *device in response) {
+        //show only active devices
+        if([[device valueForKey:@"status"] isEqualToString:@"enabled"])
+            [_data addObject:device];
+    }
+    
+    [self.tableView reloadData];
+}
+
+#pragma mark - Table view data source
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    // Return the number of rows in the section.
+    return [_data count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"Cell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    
+    NSDictionary *deviceData = [_data objectAtIndex:indexPath.row];
+    
+    [[cell textLabel] setText:[deviceData valueForKey:@"name"]];
+    
+    NSString *description = [deviceData valueForKey:@"description"];
+
+    //check if the description is not null
+    if([description isEqual:[NSNull null]])
+        [[cell detailTextLabel] setText:@""];
+    else
+        [[cell detailTextLabel] setText:description];
+    
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    return;
+}
+
+#pragma mark - segue
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+        
+    DeviceDescriptionViewController *deviceDetailsVC = segue.destinationViewController;
+    
+    UITableViewCell *device_tableViewSelected = sender;
+    
+    NSIndexPath *deviceIndexPath = [[self tableView] indexPathForCell:device_tableViewSelected];
+    
+    NSDictionary *deviceDict = [_data objectAtIndex:[deviceIndexPath row]];
+    
+    deviceDetailsVC.device_id = [deviceDict valueForKey:@"id"];
+    
+    deviceDetailsVC.deviceClient = _deviceClient;
+    
+    deviceDetailsVC.title = [deviceDict valueForKey:@"name"];
+    
+}
+
+#pragma mark - helper
+
+-(void)showError:(NSError*)error withMessage:(NSDictionary*)message{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[error localizedDescription]
+                                                    message:[NSString stringWithFormat:@"%@", message]
+                                                   delegate:nil cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];
+}
+
+@end

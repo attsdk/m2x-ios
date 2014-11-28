@@ -1,11 +1,11 @@
 
 #import <UIKit/UIKit.h>
-#import "KeysClient.h"
+#import "CBBKeysClient.h"
 
 @interface KeyListViewController : UITableViewController
 
 
-@property (nonatomic, strong) KeysClient *keysClient;
+@property (nonatomic, strong) CBBKeysClient *keysClient;
 @property (nonatomic, strong) NSMutableArray *keysArray;
 
 

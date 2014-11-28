@@ -1,11 +1,11 @@
 
 #import <UIKit/UIKit.h>
-#import "FeedsClient.h"
+#import "CBBStreamClient.h"
 
 @interface AddStreamViewController : UIViewController <UITextFieldDelegate>
 
-@property (strong, nonatomic) NSString *feed_id;
-@property (strong, nonatomic) FeedsClient *feedClient;
+@property (strong, nonatomic) NSString *device_id;
+@property (strong, nonatomic) CBBStreamClient *deviceClient;
 @property (weak, nonatomic) IBOutlet UITextField *tfStreamId;
 @property (weak, nonatomic) IBOutlet UITextField *tfUnit;
 @property (weak, nonatomic) IBOutlet UITextField *tfSymbol;

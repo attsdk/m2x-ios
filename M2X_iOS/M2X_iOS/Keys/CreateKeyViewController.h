@@ -1,10 +1,10 @@
 
 #import <UIKit/UIKit.h>
-#import "KeysClient.h"
+#import "CBBKeysClient.h"
 
 @interface CreateKeyViewController : UIViewController <UITextFieldDelegate>
 
-@property (strong, nonatomic) KeysClient *keysClient;
+@property (strong, nonatomic) CBBKeysClient *keysClient;
 
 @property (weak, nonatomic) IBOutlet UISwitch *swGet;
 @property (weak, nonatomic) IBOutlet UISwitch *swPost;

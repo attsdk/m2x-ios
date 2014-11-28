@@ -1,6 +1,6 @@
 
 #import "AddStreamViewController.h"
-#import "FeedsClient.h"
+#import "CBBStreamClient.h"
 
 @interface AddStreamViewController ()
 
@@ -36,15 +36,17 @@
             args[@"value"] = self.tfLogAValue.text;
         }
         
-        [_feedClient createDataForStream:streamID
-                                  inFeed:_feed_id
+        [_deviceClient createDataForStream:streamID
+                                  inDevice:_device_id
                           withParameters:args
-                                 success:^(id object) {
-            //stream successfully added, go back.
-            [self.navigationController popViewControllerAnimated:YES];
+                       completionHandler:^(CBBResponse *response) {
+                           
+                       if (response.error) {
+                           [self showError:response.errorObject withMessage:[response.errorObject userInfo]];
+                       } else {
+                           [self.navigationController popViewControllerAnimated:YES];
+                       }
             
-        } failure:^(NSError *error, NSDictionary *message) {
-            [self showError:error WithMessage:message];
         }];
         
     } else {
@@ -61,7 +63,7 @@
 }
 
 -(void)showError:(NSError*)error
-     WithMessage:(NSDictionary*)message
+     withMessage:(NSDictionary*)message
 {
     [[[UIAlertView alloc] initWithTitle:[error localizedDescription]
                                 message:message.description

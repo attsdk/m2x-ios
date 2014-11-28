@@ -1,8 +1,8 @@
 
 #import "ViewController.h"
-#import "FeedsListViewController.h"
-#import "FeedsClient.h"
-#import "M2x.h"
+#import "DevicesListViewController.h"
+#import "CBBStreamClient.h"
+#import "CBBM2xClient.h"
 
 @interface ViewController ()
 
@@ -34,11 +34,6 @@
     [defaults setObject:[_tfMasterKey text] forKey:@"api_key"];
     [defaults setObject:[_tfURL text] forKey:@"api_url"];
     [defaults synchronize];
-    
-    
-    M2x* m2x = [M2x shared];
-    m2x.api_key = [_tfMasterKey text]; // Master API Key
-    m2x.api_url = [_tfURL text]; // M2X API endpoint URL
 }
 
 - (IBAction)doSave:(id)sender

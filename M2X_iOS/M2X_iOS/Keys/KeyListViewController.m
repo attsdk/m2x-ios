@@ -2,7 +2,7 @@
 #import "KeyListViewController.h"
 #import "CreateKeyViewController.h"
 #import "KeyDetailsViewController.h"
-#import "KeysClient.h"
+#import "CBBKeysClient.h"
 
 @interface KeyListViewController ()
 
@@ -21,10 +21,13 @@
 
 - (void)viewDidLoad
 {
-    
     [super viewDidLoad];
     
-    _keysClient = [[KeysClient alloc] init];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    CBBM2xClient *client = [[CBBM2xClient alloc] initWithApiKey:[defaults objectForKey:@"api_key"]];
+    client.apiUrl = [defaults objectForKey:@"api_url"];
+    
+    _keysClient = [[CBBKeysClient alloc] initWithClient:client];
     
     _keysArray = [NSMutableArray array];
     
@@ -32,14 +35,12 @@
 
 - (void)viewDidAppear:(BOOL)animated{
     
-    [_keysClient listKeysWithParameters:nil success:^(id object) {
-        
-        [self didGetKeysList:object];
-        
-    } failure:^(NSError *error, NSDictionary *message) {
-        
-        [self showError:error WithMessage:message];
-        
+    [_keysClient listKeysWithParameters:nil completionHandler:^(CBBResponse *response) {
+        if (response.error) {
+            [self showError:response.errorObject withMessage:response.errorObject.userInfo];
+        } else {
+            [self didGetKeysList:response.json];
+        }
     }];
     
 }
@@ -86,7 +87,7 @@
 
 #pragma mark - helper
 
--(void)showError:(NSError*)error WithMessage:(NSDictionary*)message{
+-(void)showError:(NSError*)error withMessage:(NSDictionary*)message{
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[error localizedDescription]
                                                     message:[NSString stringWithFormat:@"%@", message]
                                                    delegate:nil cancelButtonTitle:@"OK"
