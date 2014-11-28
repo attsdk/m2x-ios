@@ -14,7 +14,7 @@ NSString * const kPath = @"/devices";
 @implementation M2XDevice
 
 + (void)listWithClient:(M2XClient *)client parameters:(NSDictionary *)parameters completionHandler:(M2XArrayCallback)completionHandler {
-    [client getWithPath:kPath parameters:parameters apiKey:client.apiKey completionHandler:^(M2XResponse *response) {
+    [client getWithPath:kPath parameters:parameters completionHandler:^(M2XResponse *response) {
         NSMutableArray *array = [NSMutableArray array];
         
         for (NSDictionary *dict in response.json[@"devices"]) {
@@ -27,7 +27,7 @@ NSString * const kPath = @"/devices";
 }
 
 + (void)createWithClient:(M2XClient *)client parameters:(NSDictionary *)parameters completionHandler:(M2XDeviceCallback)completionHandler {
-    [client postWithPath:kPath parameters:parameters apiKey:client.apiKey completionHandler:^(M2XResponse *response) {
+    [client postWithPath:kPath parameters:parameters completionHandler:^(M2XResponse *response) {
         M2XDevice *device = [[M2XDevice alloc] initWithClient:client attributes:response.json];
         completionHandler(device, response);
     }];
@@ -37,8 +37,25 @@ NSString * const kPath = @"/devices";
     [M2XStream listWithClient:self.client device:self completionHandler:completionHandler];
 }
 
+- (void)updateStreamWithName:(NSString *)name parameters:(NSDictionary *)parameters completionHandler:(M2XStreamCallback)completionHandler {
+    M2XStream *stream = [[M2XStream alloc] initWithClient:self.client device:self attributes:@{@"name": name}];
+    [stream updateWithParameters:parameters completionHandler:completionHandler];
+}
+
+- (void)locationWithCompletionHandler:(M2XBaseCallback)completionHandler {
+    [self.client getWithPath:[NSString stringWithFormat:@"%@/location", [self path]] parameters:nil completionHandler:^(M2XResponse *response) {
+        completionHandler(response);
+    }];
+}
+
+- (void)updateLocation:(NSDictionary *)parameters completionHandler:(M2XDeviceCallback)completionHandler {
+    [self.client putWithPath:[NSString stringWithFormat:@"%@/location", [self path]] parameters:parameters completionHandler:^(M2XResponse *response) {
+        completionHandler(self, response);
+    }];
+}
+
 - (void)viewWithCompletionHandler:(M2XDeviceCallback)completionHandler {
-    [self.client getWithPath:[self path] parameters:nil apiKey:self.client.apiKey completionHandler:^(M2XResponse *response) {
+    [self.client getWithPath:[self path] parameters:nil completionHandler:^(M2XResponse *response) {
         self.attributes = response.json;
         completionHandler(self, response);
     }];

@@ -36,17 +36,12 @@
             args[@"value"] = self.tfLogAValue.text;
         }
         
-        [_deviceClient createDataForStream:streamID
-                                  inDevice:_device_id
-                          withParameters:args
-                       completionHandler:^(CBBResponse *response) {
-                           
-                       if (response.error) {
-                           [self showError:response.errorObject withMessage:[response.errorObject userInfo]];
-                       } else {
-                           [self.navigationController popViewControllerAnimated:YES];
-                       }
-            
+        [_device updateStreamWithName:streamID parameters:args completionHandler:^(M2XStream *stream, M2XResponse *response) {
+            if (response.error) {
+                [self showError:response.errorObject withMessage:[response.errorObject userInfo]];
+            } else {
+                [self.navigationController popViewControllerAnimated:YES];
+            }
         }];
         
     } else {

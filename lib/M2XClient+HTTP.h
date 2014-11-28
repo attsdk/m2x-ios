@@ -10,9 +10,9 @@
 
 @interface M2XClient (HTTP)
 
--(NSURLRequest *)getWithPath:(NSString*)path parameters:(NSDictionary*)parameters apiKey:(NSString*)apiKey completionHandler:(M2XBaseCallback)completionHandler;
--(NSURLRequest *)postWithPath:(NSString*)path parameters:(NSDictionary*)parameters apiKey:(NSString*)apiKey completionHandler:(M2XBaseCallback)completionHandler;
--(NSURLRequest *)putWithPath:(NSString*)path parameters:(NSDictionary*)parameters apiKey:(NSString*)apiKey completionHandler:(M2XBaseCallback)completionHandler;
--(NSURLRequest *)deleteWithPath:(NSString*)path parameters:(NSDictionary*)parameters apiKey:(NSString*)apiKey completionHandler:(M2XBaseCallback)completionHandler;
+-(NSURLRequest *)getWithPath:(NSString*)path parameters:(NSDictionary*)parameters completionHandler:(M2XBaseCallback)completionHandler;
+-(NSURLRequest *)postWithPath:(NSString*)path parameters:(NSDictionary*)parameters completionHandler:(M2XBaseCallback)completionHandler;
+-(NSURLRequest *)putWithPath:(NSString*)path parameters:(NSDictionary*)parameters completionHandler:(M2XBaseCallback)completionHandler;
+-(NSURLRequest *)deleteWithPath:(NSString*)path parameters:(NSDictionary*)parameters completionHandler:(M2XBaseCallback)completionHandler;
 
 @end

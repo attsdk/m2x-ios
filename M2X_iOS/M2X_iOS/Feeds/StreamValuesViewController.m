@@ -64,31 +64,24 @@
 {
     if (![self.tfNewValue.text isEqualToString:@""])
     {
-//        NSNumber *value = @([self.tfNewValue.text floatValue]);
-//        NSLog(@"Posting value %@", value);
-//        sender.enabled = NO;
-//        [_tfNewValue resignFirstResponder];
-//        
-//        NSString *now = [NSDate date].toISO8601;
-//        NSDictionary *args = @{ @"values": @[
-//                                        @{ @"value": value, @"timestamp": now }
-//                                        ]
-//                                };
+        NSNumber *value = @([self.tfNewValue.text floatValue]);
+        NSLog(@"Posting value %@", value);
+        sender.enabled = NO;
+        [_tfNewValue resignFirstResponder];
         
-//        [_deviceClient postDataValues:args
-//                          forStream:_streamName
-//                             inDevice:_device_id
-//                            completionHandler:^(CBBResponse *response)
-//        {
-//            if (response.error) {
-//                [self showError:response.errorObject withMessage:response.errorObject.userInfo];
-//                sender.enabled = YES;
-//            } else {
-//                [self getStreamValues];
-//                self.tfNewValue.text = @"";
-//                sender.enabled = YES;
-//            }
-//        }];
+        NSString *now = [NSDate date].toISO8601;
+        NSArray *args = @[@{ @"value": value, @"timestamp": now }];
+
+        [_stream postValues:args completionHandler:^(M2XResponse *response) {
+            if (response.error) {
+                [self showError:response.errorObject withMessage:response.errorObject.userInfo];
+                sender.enabled = YES;
+            } else {
+                [self getStreamValues];
+                self.tfNewValue.text = @"";
+                sender.enabled = YES;
+            }
+        }];
     }
 }
 

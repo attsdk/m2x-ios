@@ -10,9 +10,11 @@
 #import "M2XResponse.h"
 
 @class M2XDevice;
+@class M2XStream;
 
 typedef void (^M2XBaseCallback)(M2XResponse *response);
 typedef void (^M2XDeviceCallback)(M2XDevice *device, M2XResponse *response);
+typedef void (^M2XStreamCallback)(M2XStream *stream, M2XResponse *response);
 typedef void (^M2XArrayCallback)(NSArray *objects, M2XResponse *response);
 
 @interface M2XClient : NSObject

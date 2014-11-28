@@ -133,29 +133,26 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    UITableViewCell *stream_tableViewSelected = sender;
+    NSIndexPath *valueIndex = [self.tableViewStreams indexPathForCell:stream_tableViewSelected];
+    M2XStream *stream = self.streamList[valueIndex.row];
     if ([segue.identifier isEqualToString:@"toStreamValuesSegue"])
     {
-        UITableViewCell *stream_tableViewSelected = sender;
-        NSIndexPath *valueIndex = [self.tableViewStreams indexPathForCell:stream_tableViewSelected];
-        M2XStream *stream = self.streamList[valueIndex.row];
         StreamValuesViewController *StreamValuesVC = segue.destinationViewController;
         StreamValuesVC.stream = stream;
         StreamValuesVC.streamName = stream[@"name"];
         StreamValuesVC.streamUnit = stream[@"unit"];
         StreamValuesVC.title = stream[@"name"];
         
+    } else if([segue.identifier isEqualToString:@"toAddStream"]) {
+        AddStreamViewController *addStreamVC = segue.destinationViewController;
+        addStreamVC.device = _device;
+        
+    } else if([segue.identifier isEqualToString:@"toLocationsManagerSegue"]) {
+
+        DeviceLocationViewController *locationVC = segue.destinationViewController;
+        locationVC.device = _device;
     }
-//    else if([segue.identifier isEqualToString:@"toAddStream"]) {
-//        
-//        AddStreamViewController *addStreamVC = segue.destinationViewController;
-//        addStreamVC.deviceClient = streamClient;
-//        
-//    } else if([segue.identifier isEqualToString:@"toLocationsManagerSegue"]) {
-//        
-//        DeviceLocationViewController *locationVC = segue.destinationViewController;
-//        locationVC.deviceClient = _deviceClient;
-//        locationVC.device_id = _device_id;
-//    }
 }
 
 #pragma mark - helper

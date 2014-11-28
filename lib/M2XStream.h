@@ -12,6 +12,10 @@
 
 + (void)listWithClient:(M2XClient *)client device:(M2XDevice *)device completionHandler:(M2XArrayCallback)completionHandler;
 
+- (instancetype)initWithClient:(M2XClient *)client device:(M2XDevice *)device attributes:(NSDictionary *)attributes;
+
 - (void)valuesWithParameters:(NSDictionary *)parameters completionHandler:(M2XArrayCallback)completionHandler;
+- (void)updateWithParameters:(NSDictionary *)parameters completionHandler:(M2XStreamCallback)completionHandler;
+- (void)postValues:(NSArray *)values completionHandler:(M2XBaseCallback)completionHandler;
 
 @end

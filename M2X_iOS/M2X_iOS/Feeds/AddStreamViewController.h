@@ -1,11 +1,9 @@
 
 #import <UIKit/UIKit.h>
-#import "CBBStreamClient.h"
 
 @interface AddStreamViewController : UIViewController <UITextFieldDelegate>
 
-@property (strong, nonatomic) NSString *device_id;
-@property (strong, nonatomic) CBBStreamClient *deviceClient;
+@property (strong, nonatomic) M2XDevice *device;
 @property (weak, nonatomic) IBOutlet UITextField *tfStreamId;
 @property (weak, nonatomic) IBOutlet UITextField *tfUnit;
 @property (weak, nonatomic) IBOutlet UITextField *tfSymbol;

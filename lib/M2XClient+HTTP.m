@@ -16,8 +16,8 @@ static BOOL VERBOSE_MODE = YES;
 
 @implementation M2XClient (HTTP)
 
--(void)prepareUrlRequest:(NSMutableURLRequest *)request apiKey:(NSString*)apiKey {
-    [request setValue:apiKey forHTTPHeaderField:@"X-M2X-KEY"];
+-(void)prepareUrlRequest:(NSMutableURLRequest *)request {
+    [request setValue:self.apiKey forHTTPHeaderField:@"X-M2X-KEY"];
     
     NSString *agent = [self userAgent];
     [request setValue:agent forHTTPHeaderField:@"User-Agent"];
@@ -41,10 +41,10 @@ static BOOL VERBOSE_MODE = YES;
     }
 }
 
--(NSURLRequest *)performRequestOnPath:(NSString*)path parameters:(NSDictionary*)parameters apiKey:(NSString*)apiKey configureRequestBlock:(configureRequestBlock)configureRequestBlock completionHandler:(M2XBaseCallback)completionHandler {
+-(NSURLRequest *)performRequestOnPath:(NSString*)path parameters:(NSDictionary*)parameters configureRequestBlock:(configureRequestBlock)configureRequestBlock completionHandler:(M2XBaseCallback)completionHandler {
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", self.apiUrl, path]];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    [self prepareUrlRequest:request apiKey:apiKey];
+    [self prepareUrlRequest:request];
     if (configureRequestBlock) {
         configureRequestBlock(request);
     }
@@ -70,8 +70,8 @@ static BOOL VERBOSE_MODE = YES;
 
 #pragma mark - Http methods
 
--(NSURLRequest *)getWithPath:(NSString*)path parameters:(NSDictionary*)parameters apiKey:(NSString*)apiKey completionHandler:(M2XBaseCallback)completionHandler {
-    if (!apiKey) {
+-(NSURLRequest *)getWithPath:(NSString*)path parameters:(NSDictionary*)parameters completionHandler:(M2XBaseCallback)completionHandler {
+    if (!self.apiKey) {
         NSError *error = [NSError errorWithDomain:M2XErrorDomain code:M2XApiErrorNoApiKey userInfo:@{NSLocalizedFailureReasonErrorKey: @"Missing API key"}];
         if (completionHandler) {
             completionHandler([[M2XResponse alloc] initWithResponse:nil data:nil error:error]);
@@ -79,13 +79,13 @@ static BOOL VERBOSE_MODE = YES;
         return nil;
     }
     
-    return [self performRequestOnPath:path parameters:parameters apiKey:apiKey configureRequestBlock:^(NSMutableURLRequest *request) {
+    return [self performRequestOnPath:path parameters:parameters configureRequestBlock:^(NSMutableURLRequest *request) {
         [self prepareUrlRequest:request parameters:parameters];
     } completionHandler:completionHandler];
 }
 
--(NSURLRequest *)postWithPath:(NSString*)path parameters:(NSDictionary*)parameters apiKey:(NSString*)apiKey completionHandler:(M2XBaseCallback)completionHandler {
-    if (!apiKey) {
+-(NSURLRequest *)postWithPath:(NSString*)path parameters:(NSDictionary*)parameters completionHandler:(M2XBaseCallback)completionHandler {
+    if (!self.apiKey) {
         NSError *error = [NSError errorWithDomain:M2XErrorDomain code:100 userInfo:@{NSLocalizedFailureReasonErrorKey: @"Missing API key"}];
         if (completionHandler) {
             completionHandler([[M2XResponse alloc] initWithResponse:nil data:nil error:error]);
@@ -100,15 +100,15 @@ static BOOL VERBOSE_MODE = YES;
         return nil;
     }
     
-    return [self performRequestOnPath:path parameters:parameters apiKey:apiKey configureRequestBlock:^(NSMutableURLRequest *request) {
+    return [self performRequestOnPath:path parameters:parameters configureRequestBlock:^(NSMutableURLRequest *request) {
         [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
         [request setHTTPMethod:@"POST"];
         [request setHTTPBody:postData];
     } completionHandler:completionHandler];
 }
 
--(NSURLRequest *)putWithPath:(NSString*)path parameters:(NSDictionary*)parameters apiKey:(NSString*)apiKey completionHandler:(M2XBaseCallback)completionHandler {
-    if (!apiKey) {
+-(NSURLRequest *)putWithPath:(NSString*)path parameters:(NSDictionary*)parameters completionHandler:(M2XBaseCallback)completionHandler {
+    if (!self.apiKey) {
         NSError *error = [NSError errorWithDomain:M2XErrorDomain code:100 userInfo:@{NSLocalizedFailureReasonErrorKey: @"Missing API key"}];
         if (completionHandler) {
             completionHandler([[M2XResponse alloc] initWithResponse:nil data:nil error:error]);
@@ -123,15 +123,15 @@ static BOOL VERBOSE_MODE = YES;
         return nil;
     }
     
-    return [self performRequestOnPath:path parameters:parameters apiKey:apiKey configureRequestBlock:^(NSMutableURLRequest *request) {
+    return [self performRequestOnPath:path parameters:parameters configureRequestBlock:^(NSMutableURLRequest *request) {
         [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
         [request setHTTPMethod:@"PUT"];
         [request setHTTPBody:postData];
     } completionHandler:completionHandler];
 }
 
--(NSURLRequest *)deleteWithPath:(NSString*)path parameters:(NSDictionary*)parameters apiKey:(NSString*)apiKey completionHandler:(M2XBaseCallback)completionHandler {
-    if (!apiKey) {
+-(NSURLRequest *)deleteWithPath:(NSString*)path parameters:(NSDictionary*)parameters completionHandler:(M2XBaseCallback)completionHandler {
+    if (!self.apiKey) {
         NSError *error = [NSError errorWithDomain:M2XErrorDomain code:100 userInfo:@{NSLocalizedFailureReasonErrorKey: @"Missing API key"}];
         if (completionHandler) {
             completionHandler([[M2XResponse alloc] initWithResponse:nil data:nil error:error]);
@@ -139,7 +139,7 @@ static BOOL VERBOSE_MODE = YES;
         return nil;
     }
     
-    return [self performRequestOnPath:path parameters:parameters apiKey:apiKey configureRequestBlock:^(NSMutableURLRequest *request) {
+    return [self performRequestOnPath:path parameters:parameters configureRequestBlock:^(NSMutableURLRequest *request) {
         [request setHTTPMethod:@"DELETE"];
         [self prepareUrlRequest:request parameters:parameters];
     } completionHandler:completionHandler];

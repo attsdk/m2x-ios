@@ -45,7 +45,7 @@
 
 - (void)getDeviceLocations{
     
-    [_deviceClient readDataLocationInDevice:_device_id completionHandler:^(CBBResponse *response) {
+    [_device locationWithCompletionHandler:^(M2XResponse *response) {
         if (response.error) {
             [self showError:response.errorObject withMessage:response.errorObject.userInfo];
         } else {
@@ -84,14 +84,13 @@
                                     @"longitude": [NSString stringWithFormat:@"%f",location.coordinate.longitude],
                                     @"elevation": [NSString stringWithFormat:@"%f",location.altitude]};
     
-    [_deviceClient updateDeviceWithLocation:locationDict inDevice:_device_id completionHandler:^(CBBResponse *response) {
+    [_device updateLocation:locationDict completionHandler:^(M2XDevice *device, M2XResponse *response) {
         if (response.error) {
             [self showError:response.errorObject withMessage:response.errorObject.userInfo];
         } else {
             [self getDeviceLocations];
         }
     }];
-    
 }
 
 - (IBAction)didBtnPressed:(id)sender {

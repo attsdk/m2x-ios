@@ -32,7 +32,7 @@
     M2XClient *client = [[M2XClient alloc] initWithApiKey:nil];
     
     __block BOOL failed = NO;
-    [client getWithPath:@"/mypath" parameters:@{@"param1": @"1", @"param2": @"2"} apiKey:client.apiKey completionHandler:^(M2XResponse *response) {
+    [client getWithPath:@"/mypath" parameters:@{@"param1": @"1", @"param2": @"2"} completionHandler:^(M2XResponse *response) {
         if (response.error) {
             XCTAssertTrue(response.error);
             XCTAssertEqual(response.errorObject.code, M2XApiErrorNoApiKey);
@@ -49,7 +49,7 @@
     M2XClient *client = [[M2XClient alloc] initWithApiKey:@"1234"];
     
     XCTAssertTrue(client.apiUrl);
-    NSURLRequest *request = [client getWithPath:@"/mypath" parameters:@{@"param1": @"1", @"param2": @"2", @"param3": @3} apiKey:client.apiKey completionHandler:nil];
+    NSURLRequest *request = [client getWithPath:@"/mypath" parameters:@{@"param1": @"1", @"param2": @"2", @"param3": @3} completionHandler:nil];
     
     XCTAssertNotNil(request.URL.host);
     XCTAssertEqualObjects(request.HTTPMethod, @"GET");
@@ -67,7 +67,7 @@
     M2XClient *client = [[M2XClient alloc] initWithApiKey:@"1234"];
     
     XCTAssertTrue(client.apiUrl);
-    NSURLRequest *request = [client deleteWithPath:@"/mypath" parameters:@{@"param1": @"1", @"param2": @"2"} apiKey:client.apiKey completionHandler:nil];
+    NSURLRequest *request = [client deleteWithPath:@"/mypath" parameters:@{@"param1": @"1", @"param2": @"2"} completionHandler:nil];
     
     XCTAssertNotNil(request.URL.host);
     XCTAssertEqualObjects(request.HTTPMethod, @"DELETE");
@@ -85,7 +85,7 @@
     client.apiKey = @"1234";
     
     XCTAssertTrue(client.apiUrl);
-    NSURLRequest *request = [client postWithPath:@"/mypath" parameters:@{@"param1": @"1", @"param2": @"2"} apiKey:client.apiKey completionHandler:nil];
+    NSURLRequest *request = [client postWithPath:@"/mypath" parameters:@{@"param1": @"1", @"param2": @"2"} completionHandler:nil];
     
     XCTAssertNotNil(request.URL.host);
     XCTAssertEqualObjects(request.HTTPMethod, @"POST");
@@ -106,7 +106,7 @@
     client.apiKey = @"1234";
     
     XCTAssertTrue(client.apiUrl);
-    NSURLRequest *request = [client putWithPath:@"/mypath" parameters:@{@"param1": @"1", @"param2": @"2"} apiKey:client.apiKey completionHandler:nil];
+    NSURLRequest *request = [client putWithPath:@"/mypath" parameters:@{@"param1": @"1", @"param2": @"2"} completionHandler:nil];
     
     XCTAssertNotNil(request.URL.host);
     XCTAssertEqualObjects(request.HTTPMethod, @"PUT");
@@ -137,7 +137,7 @@
     M2XClient *client = [[M2XClient alloc] initWithApiKey:@"1234"];
     client.session = sessionMock;
     client.apiKey = @"1234";
-    [client putWithPath:@"/mypath" parameters:@{@"param1": @"1", @"param2": @"2"} apiKey:client.apiKey completionHandler:^(M2XResponse *response) {
+    [client putWithPath:@"/mypath" parameters:@{@"param1": @"1", @"param2": @"2"} completionHandler:^(M2XResponse *response) {
         XCTAssertTrue(response.error);
         XCTAssertTrue(response.clientError);
     }];
@@ -158,7 +158,7 @@
     M2XClient *client = [[M2XClient alloc] initWithApiKey:@"1234"];
     client.session = sessionMock;
     client.apiKey = @"1234";
-    [client putWithPath:@"/mypath" parameters:@{@"param1": @"1", @"param2": @"2"} apiKey:client.apiKey completionHandler:^(M2XResponse *response) {
+    [client putWithPath:@"/mypath" parameters:@{@"param1": @"1", @"param2": @"2"} completionHandler:^(M2XResponse *response) {
         XCTAssertTrue(response.error);
         XCTAssertTrue(response.serverError);
     }];
