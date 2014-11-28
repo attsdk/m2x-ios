@@ -18,7 +18,7 @@ NSString * const kPath = @"/devices";
         NSMutableArray *array = [NSMutableArray array];
         
         for (NSDictionary *dict in response.json[@"devices"]) {
-            M2XDevice *device = [[M2XDevice alloc] initWithClient:client parameters:dict];
+            M2XDevice *device = [[M2XDevice alloc] initWithClient:client attributes:dict];
             [array addObject:device];
         }
         
@@ -28,7 +28,7 @@ NSString * const kPath = @"/devices";
 
 + (void)createWithClient:(M2XClient *)client parameters:(NSDictionary *)parameters completionHandler:(M2XDeviceCallback)completionHandler {
     [client postWithPath:kPath parameters:parameters apiKey:client.apiKey completionHandler:^(M2XResponse *response) {
-        M2XDevice *device = [[M2XDevice alloc] initWithClient:client parameters:response.json];
+        M2XDevice *device = [[M2XDevice alloc] initWithClient:client attributes:response.json];
         completionHandler(device, response);
     }];
 }

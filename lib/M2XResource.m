@@ -10,19 +10,19 @@
 
 @interface M2XResource()
 
-@property (nonatomic, strong) NSDictionary *parameters;
+@property (nonatomic, strong) NSDictionary *attributes;
 @property (nonatomic, strong) M2XClient *client;
 
 @end
 
 @implementation M2XResource
 
-- (instancetype)initWithClient:(M2XClient *)client parameters:(NSDictionary *)parameters {
+- (instancetype)initWithClient:(M2XClient *)client attributes:(NSDictionary *)attributes {
     self = [super init];
     
     if (self) {
         _client = client;
-        _parameters = parameters;
+        _attributes = attributes;
     }
     
     return self;

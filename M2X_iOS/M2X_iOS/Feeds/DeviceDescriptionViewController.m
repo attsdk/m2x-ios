@@ -52,7 +52,7 @@
 -(void)getDeviceStreams {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     CBBM2xClient *client = [[CBBM2xClient alloc] initWithApiKey:[defaults objectForKey:@"api_key"]];
-    client.apiUrl = [defaults objectForKey:@"api_url"];
+    client.apiUrl = [defaults objectForKey:@"api_base"];
 
     CBBStreamClient *streamClient = [[CBBStreamClient alloc] initWithClient:client];
     [streamClient listDataStreamsForDeviceId:_device_id completionHandler:^(CBBResponse *response) {
@@ -143,7 +143,7 @@
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     CBBM2xClient *client = [[CBBM2xClient alloc] initWithApiKey:[defaults objectForKey:@"api_key"]];
-    client.apiUrl = [defaults objectForKey:@"api_url"];
+    client.apiUrl = [defaults objectForKey:@"api_base"];
 
     CBBStreamClient *streamClient = [[CBBStreamClient alloc] initWithClient:client];
     if ([segue.identifier isEqualToString:@"toStreamValuesSegue"])

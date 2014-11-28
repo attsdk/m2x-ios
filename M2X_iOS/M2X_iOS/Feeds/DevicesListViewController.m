@@ -1,6 +1,5 @@
 
 #import "DevicesListViewController.h"
-#import "CBBM2xClient.h"
 #import "DeviceDescriptionViewController.h"
 
 @interface DevicesListViewController ()
@@ -23,19 +22,15 @@
     [super viewDidLoad];
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    CBBM2xClient *client = [[CBBM2xClient alloc] initWithApiKey:[defaults objectForKey:@"api_key"]];
-    client.apiUrl = [defaults objectForKey:@"api_url"];
+    M2XClient *client = [[M2XClient alloc] initWithApiKey:[defaults objectForKey:@"api_key"]];
+    client.apiBaseUrl = [defaults objectForKey:@"api_base"];
 
-    _deviceClient = [[CBBDeviceClient alloc] initWithClient:client];
-    
-    //get list of devices without parameters
-    [_deviceClient listDevicesWithCompletionHandler:^(CBBResponse *response) {
+    [client devicesWithParameters:nil completionHandler:^(NSArray *objects, M2XResponse *response) {
         if (response.error) {
             [self showError:response.errorObject withMessage:response.errorObject.userInfo];
         } else {
-            [self didGetDeviceList:response.json];
+            [self didGetDeviceList:objects];
         }
-        
     }];
 }
 
@@ -57,15 +52,13 @@
     _deviceKey = deviceKey;
 }
 
--(void)didGetDeviceList: (id) value
+-(void)didGetDeviceList:(NSArray *)devices
 {
-    NSDictionary *response = [value objectForKey:@"devices"];
-    
     _data = [NSMutableArray array];
     
-    for (NSDictionary *device in response) {
+    for (M2XDevice *device in devices) {
         //show only active devices
-        if([[device valueForKey:@"status"] isEqualToString:@"enabled"])
+        if([[device.attributes valueForKey:@"status"] isEqualToString:@"enabled"])
             [_data addObject:device];
     }
     
@@ -74,9 +67,7 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    // Return the number of rows in the section.
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [_data count];
 }
 
@@ -86,11 +77,11 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    NSDictionary *deviceData = [_data objectAtIndex:indexPath.row];
+    M2XDevice *device = [_data objectAtIndex:indexPath.row];
     
-    [[cell textLabel] setText:[deviceData valueForKey:@"name"]];
+    [[cell textLabel] setText:[device.attributes valueForKey:@"name"]];
     
-    NSString *description = [deviceData valueForKey:@"description"];
+    NSString *description = [device.attributes valueForKey:@"description"];
 
     //check if the description is not null
     if([description isEqual:[NSNull null]])
@@ -123,7 +114,7 @@
     
     deviceDetailsVC.device_id = [deviceDict valueForKey:@"id"];
     
-    deviceDetailsVC.deviceClient = _deviceClient;
+//    deviceDetailsVC.deviceClient = _deviceClient;
     
     deviceDetailsVC.title = [deviceDict valueForKey:@"name"];
     

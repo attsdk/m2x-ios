@@ -25,7 +25,7 @@
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     CBBM2xClient *client = [[CBBM2xClient alloc] initWithApiKey:[defaults objectForKey:@"api_key"]];
-    client.apiUrl = [defaults objectForKey:@"api_url"];
+    client.apiUrl = [defaults objectForKey:@"api_base"];
     
     _keysClient = [[CBBKeysClient alloc] initWithClient:client];
     

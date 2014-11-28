@@ -10,7 +10,8 @@
 #import "M2XResponse.h"
 
 typedef NS_ENUM(NSUInteger, M2XApiError) {
-    M2XApiErrorNoApiKey = 1
+    M2XApiErrorNoApiKey = 1,
+    M2XApiErrorResponseErrorKey,
 };
 
 extern NSString * const M2XErrorDomain;
@@ -30,6 +31,8 @@ typedef void (^M2XArrayCallback)(NSArray *objects, M2XResponse *response);
 
 - (instancetype)initWithApiKey:(NSString *)apiKey;
 
+// devices
+- (void)devicesWithParameters:(NSDictionary *)parameters completionHandler:(M2XArrayCallback)completionHandler;
 - (void)deviceWithId:(NSString *)identifier completionHandler:(M2XDeviceCallback)callback;
 
 - (NSString *)userAgent;

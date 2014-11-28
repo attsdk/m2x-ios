@@ -12,12 +12,13 @@
 
 @property (strong) NSHTTPURLResponse *response;
 @property (strong) NSData *data;
-@property (nonatomic, strong) NSError *errorObject;
 @property (strong) id jsonObject;
 
 @end
 
 @implementation M2XResponse
+
+NSError *_errorObject;
 
 - (instancetype)initWithResponse:(NSHTTPURLResponse *)response data:(NSData *)data error:(NSError *)error {
     self = [super init];
@@ -65,6 +66,16 @@
 
 - (BOOL)error {
     return self.clientError || self.serverError;
+}
+
+- (NSError *)errorObject {
+    if (_errorObject) {
+        return _errorObject;
+    }
+    
+    NSError *error = [NSError errorWithDomain:M2XErrorDomain code:M2XApiErrorResponseErrorKey userInfo:@{@"statusCode": [NSNumber numberWithInt:(int)_response.statusCode]}];
+    
+    return error;
 }
 
 @end

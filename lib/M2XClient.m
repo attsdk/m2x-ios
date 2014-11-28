@@ -27,6 +27,8 @@ static NSString * const kLibVersion = @"2.0.0";
         _apiKey = apiKey;
         _apiBaseUrl = kDefaultApiBase;
         _apiVersion = kDefaultApiVersion;
+        
+        _session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
     }
     
     return self;
@@ -36,8 +38,12 @@ static NSString * const kLibVersion = @"2.0.0";
     @throw [NSException exceptionWithName:@"InvalidInitializer" reason:@"Can't use the default initializer" userInfo:nil];
 }
 
-- (void)deviceWithId:(NSString *)identifier completionHandler:(M2XDeviceCallback)callback {
-    [M2XDevice createWithClient:self parameters:@{@"id": identifier} completionHandler:callback];
+- (void)devicesWithParameters:(NSDictionary *)parameters completionHandler:(M2XArrayCallback)completionHandler {
+    [M2XDevice listWithClient:self parameters:parameters completionHandler:completionHandler];
+}
+
+- (void)deviceWithId:(NSString *)identifier completionHandler:(M2XDeviceCallback)completionHandler {
+    [M2XDevice createWithClient:self parameters:@{@"id": identifier} completionHandler:completionHandler];
 }
 
 - (NSString *)apiUrl {

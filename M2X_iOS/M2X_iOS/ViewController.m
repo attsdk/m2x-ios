@@ -23,7 +23,7 @@
     self.tfMasterKey.text = [defaults stringForKey:@"api_key"];
     self.tfMasterKey.delegate = self;
 
-    self.tfURL.text = [defaults stringForKey:@"api_url"];
+    self.tfURL.text = [defaults stringForKey:@"api_base"];
     self.tfURL.delegate = self;
 
 }
@@ -32,7 +32,9 @@
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:[_tfMasterKey text] forKey:@"api_key"];
-    [defaults setObject:[_tfURL text] forKey:@"api_url"];
+    
+    NSString *url = [_tfURL text].length > 0 ? [_tfURL text] : [_tfURL placeholder];
+    [defaults setObject:url forKey:@"api_base"];
     [defaults synchronize];
 }
 

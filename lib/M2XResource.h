@@ -11,8 +11,8 @@
 
 @interface M2XResource : NSObject
 
-@property (readonly) NSDictionary *parameters;
+@property (readonly) NSDictionary *attributes;
 
-- (instancetype)initWithClient:(M2XClient *)client parameters:(NSDictionary *)parameters;
+- (instancetype)initWithClient:(M2XClient *)client attributes:(NSDictionary *)attributes;
 
 @end

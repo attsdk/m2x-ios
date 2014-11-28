@@ -103,6 +103,7 @@
 		E2C45B8A1A28A0EA00DDFA29 /* M2XResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = M2XResource.m; path = ../../lib/M2XResource.m; sourceTree = "<group>"; };
 		E2C45B8C1A28A3A200DDFA29 /* M2XClient+HTTP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "M2XClient+HTTP.h"; path = "../../lib/M2XClient+HTTP.h"; sourceTree = "<group>"; };
 		E2C45B8D1A28A3A200DDFA29 /* M2XClient+HTTP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "M2XClient+HTTP.m"; path = "../../lib/M2XClient+HTTP.m"; sourceTree = "<group>"; };
+		E2C45B9E1A28AC5C00DDFA29 /* M2X.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = M2X.h; path = ../../lib/M2X.h; sourceTree = "<group>"; };
 		E2D2B3D61A095F2700E8A733 /* CBBDeviceClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBBDeviceClient.h; sourceTree = "<group>"; };
 		E2D2B3D71A095F2700E8A733 /* CBBDeviceClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBBDeviceClient.m; sourceTree = "<group>"; };
 		E2D2B3D81A095F2700E8A733 /* CBBStreamClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBBStreamClient.h; sourceTree = "<group>"; };
@@ -208,6 +209,7 @@
 				E2C45B8A1A28A0EA00DDFA29 /* M2XResource.m */,
 				E2C45B8C1A28A3A200DDFA29 /* M2XClient+HTTP.h */,
 				E2C45B8D1A28A3A200DDFA29 /* M2XClient+HTTP.m */,
+				E2C45B9E1A28AC5C00DDFA29 /* M2X.h */,
 			);
 			name = lib;
 			sourceTree = "<group>";
