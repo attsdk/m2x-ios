@@ -50,39 +50,31 @@
 #pragma mark - support
 
 -(void)getDeviceStreams {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    CBBM2xClient *client = [[CBBM2xClient alloc] initWithApiKey:[defaults objectForKey:@"api_key"]];
-    client.apiUrl = [defaults objectForKey:@"api_base"];
-
-    CBBStreamClient *streamClient = [[CBBStreamClient alloc] initWithClient:client];
-    [streamClient listDataStreamsForDeviceId:_device_id completionHandler:^(CBBResponse *response) {
+    [_device streamsWithCompletionHandler:^(NSArray *objects, M2XResponse *response) {
         [_streamList removeAllObjects];
         
-        [_streamList addObjectsFromArray:[response.json objectForKey:@"streams"]];
+        [_streamList addObjectsFromArray:objects];
         
         [_tableViewStreams reloadData];
     }];
-    
 }
 
 -(void)getDeviceDescription{
-
-    [_deviceClient viewDetailsForDeviceId:_device_id completionHandler:^(CBBResponse *response) {
+    [_device viewWithCompletionHandler:^(M2XDevice *device, M2XResponse *response) {
         if (response.error) {
             [self showError:response.errorObject withMessage:response.errorObject.userInfo];
         } else {
-            [self didGetDeviceDescription:response.json];
+            [self didGetDeviceDescription:device];
         }
     }];
-    
 }
 
-- (void)didGetDeviceDescription:(NSDictionary*)device_description{
+- (void)didGetDeviceDescription:(M2XDevice*)device{
     
-    [_lblDeviceId setText:[device_description valueForKey:@"id"]];
+    [_lblDeviceId setText:device[@"id"]];
     
     //format date
-    NSDate *createdDate = [NSDate fromISO8601:[device_description valueForKey:@"created"]];
+    NSDate *createdDate = [NSDate fromISO8601:device[@"created"]];
     
     NSString *dateString = [NSDateFormatter localizedStringFromDate:createdDate
                                                           dateStyle:NSDateFormatterShortStyle
@@ -117,13 +109,13 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    NSDictionary *deviceData = [_streamList objectAtIndex:indexPath.row];
+    M2XStream *stream = [_streamList objectAtIndex:indexPath.row];
     
-    NSDictionary *valueUnitDic = [deviceData objectForKey:@"unit"];
+    NSDictionary *valueUnitDic = stream[@"unit"];
     
-    [[cell textLabel] setText:[deviceData valueForKey:@"name"]];
+    [[cell textLabel] setText:stream[@"name"]];
     
-    NSString *value = [deviceData valueForKey:@"value"];
+    NSString *value = stream[@"value"];
     
     if([value  isEqual: [NSNull null]]){
         [[cell detailTextLabel] setText:@"No Stream Data Available."];
@@ -141,35 +133,29 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    CBBM2xClient *client = [[CBBM2xClient alloc] initWithApiKey:[defaults objectForKey:@"api_key"]];
-    client.apiUrl = [defaults objectForKey:@"api_base"];
-
-    CBBStreamClient *streamClient = [[CBBStreamClient alloc] initWithClient:client];
     if ([segue.identifier isEqualToString:@"toStreamValuesSegue"])
     {
         UITableViewCell *stream_tableViewSelected = sender;
         NSIndexPath *valueIndex = [self.tableViewStreams indexPathForCell:stream_tableViewSelected];
-        NSDictionary *streamDict = self.streamList[valueIndex.row];
+        M2XStream *stream = self.streamList[valueIndex.row];
         StreamValuesViewController *StreamValuesVC = segue.destinationViewController;
-        StreamValuesVC.deviceClient = streamClient;
-        StreamValuesVC.device_id = _device_id;
-        StreamValuesVC.streamName = streamDict[@"name"];
-        StreamValuesVC.streamUnit = streamDict[@"unit"];
-        StreamValuesVC.title = streamDict[@"name"];
+        StreamValuesVC.stream = stream;
+        StreamValuesVC.streamName = stream[@"name"];
+        StreamValuesVC.streamUnit = stream[@"unit"];
+        StreamValuesVC.title = stream[@"name"];
         
-    } else if([segue.identifier isEqualToString:@"toAddStream"]) {
-        
-        AddStreamViewController *addStreamVC = segue.destinationViewController;
-        addStreamVC.deviceClient = streamClient;
-        addStreamVC.device_id = _device_id;
-        
-    } else if([segue.identifier isEqualToString:@"toLocationsManagerSegue"]) {
-        
-        DeviceLocationViewController *locationVC = segue.destinationViewController;
-        locationVC.deviceClient = _deviceClient;
-        locationVC.device_id = _device_id;
     }
+//    else if([segue.identifier isEqualToString:@"toAddStream"]) {
+//        
+//        AddStreamViewController *addStreamVC = segue.destinationViewController;
+//        addStreamVC.deviceClient = streamClient;
+//        
+//    } else if([segue.identifier isEqualToString:@"toLocationsManagerSegue"]) {
+//        
+//        DeviceLocationViewController *locationVC = segue.destinationViewController;
+//        locationVC.deviceClient = _deviceClient;
+//        locationVC.device_id = _device_id;
+//    }
 }
 
 #pragma mark - helper

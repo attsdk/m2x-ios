@@ -40,11 +40,8 @@
 {
     NSLog(@"Getting stream values");
     NSDictionary *parameters = @{ @"limit": @"100" };
-    [_deviceClient listDataValuesFromTheStream:_streamName
-                                      inDevice:_device_id
-                              withParameters:parameters
-                                     completionHandler:^(CBBResponse *response)
-    {
+    
+    [_stream valuesWithParameters:parameters completionHandler:^(NSArray *objects, M2XResponse *response) {
         if (response.error) {
             [self.refreshControl endRefreshing];
             [[[UIAlertView alloc] initWithTitle:@"Error"
@@ -52,14 +49,13 @@
                                        delegate:nil
                               cancelButtonTitle:@"OK"
                               otherButtonTitles:nil] show];
-
+            
         } else {
-            self.valueList = response.json[@"values"];
+            self.valueList = [NSMutableArray arrayWithArray:objects];
             [self.tableViewStreamValues reloadData];
             [self.refreshControl endRefreshing];
         }
     }];
-    
 }
 
 #pragma mark - IBAction
@@ -68,31 +64,31 @@
 {
     if (![self.tfNewValue.text isEqualToString:@""])
     {
-        NSNumber *value = @([self.tfNewValue.text floatValue]);
-        NSLog(@"Posting value %@", value);
-        sender.enabled = NO;
-        [_tfNewValue resignFirstResponder];
+//        NSNumber *value = @([self.tfNewValue.text floatValue]);
+//        NSLog(@"Posting value %@", value);
+//        sender.enabled = NO;
+//        [_tfNewValue resignFirstResponder];
+//        
+//        NSString *now = [NSDate date].toISO8601;
+//        NSDictionary *args = @{ @"values": @[
+//                                        @{ @"value": value, @"timestamp": now }
+//                                        ]
+//                                };
         
-        NSString *now = [NSDate date].toISO8601;
-        NSDictionary *args = @{ @"values": @[
-                                        @{ @"value": value, @"timestamp": now }
-                                        ]
-                                };
-        
-        [_deviceClient postDataValues:args
-                          forStream:_streamName
-                             inDevice:_device_id
-                            completionHandler:^(CBBResponse *response)
-        {
-            if (response.error) {
-                [self showError:response.errorObject withMessage:response.errorObject.userInfo];
-                sender.enabled = YES;
-            } else {
-                [self getStreamValues];
-                self.tfNewValue.text = @"";
-                sender.enabled = YES;
-            }
-        }];
+//        [_deviceClient postDataValues:args
+//                          forStream:_streamName
+//                             inDevice:_device_id
+//                            completionHandler:^(CBBResponse *response)
+//        {
+//            if (response.error) {
+//                [self showError:response.errorObject withMessage:response.errorObject.userInfo];
+//                sender.enabled = YES;
+//            } else {
+//                [self getStreamValues];
+//                self.tfNewValue.text = @"";
+//                sender.enabled = YES;
+//            }
+//        }];
     }
 }
 

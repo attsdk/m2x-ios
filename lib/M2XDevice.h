@@ -14,4 +14,7 @@
 + (void)listWithClient:(M2XClient *)client parameters:(NSDictionary *)parameters completionHandler:(M2XArrayCallback)completionHandler;
 + (void)createWithClient:(M2XClient *)client parameters:(NSDictionary *)parameters completionHandler:(M2XDeviceCallback)completionHandler;
 
+- (void)streamsWithCompletionHandler:(M2XArrayCallback)completionHandler;
+- (void)viewWithCompletionHandler:(M2XDeviceCallback)completionHandler;
+
 @end

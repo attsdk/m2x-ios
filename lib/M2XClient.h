@@ -9,13 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "M2XResponse.h"
 
-typedef NS_ENUM(NSUInteger, M2XApiError) {
-    M2XApiErrorNoApiKey = 1,
-    M2XApiErrorResponseErrorKey,
-};
-
-extern NSString * const M2XErrorDomain;
-
 @class M2XDevice;
 
 typedef void (^M2XBaseCallback)(M2XResponse *response);

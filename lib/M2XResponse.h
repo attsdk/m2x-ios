@@ -8,6 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
+typedef NS_ENUM(NSUInteger, M2XApiError) {
+    M2XApiErrorNoApiKey = 1,
+    M2XApiErrorResponseErrorKey,
+};
+
+extern NSString * const M2XErrorDomain;
+
 @interface M2XResponse : NSObject
 
 @property (readonly) NSData *raw;

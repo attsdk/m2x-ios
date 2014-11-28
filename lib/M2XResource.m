@@ -10,7 +10,6 @@
 
 @interface M2XResource()
 
-@property (nonatomic, strong) NSDictionary *attributes;
 @property (nonatomic, strong) M2XClient *client;
 
 @end
@@ -28,8 +27,16 @@
     return self;
 }
 
+- (id)objectForKeyedSubscript:(id <NSCopying>)key {
+    return _attributes[key];
+}
+
 - (instancetype)init {
     @throw [NSException exceptionWithName:@"InvalidInitializer" reason:@"Can't use the default initializer" userInfo:nil];
+}
+
+- (NSString *)path {
+    @throw [NSException exceptionWithName:@"InvalidMethod" reason:@"You must override this" userInfo:nil];
 }
 
 @end

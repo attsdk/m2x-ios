@@ -12,8 +12,6 @@
 #include <sys/types.h>
 #include <sys/sysctl.h>
 
-NSString * const M2XErrorDomain = @"M2XErrorDomain";
-
 static NSString * const kDefaultApiBase = @"https://api-m2x.att.com";
 static NSString * const kDefaultApiVersion = @"v2";
 static NSString * const kLibVersion = @"2.0.0";

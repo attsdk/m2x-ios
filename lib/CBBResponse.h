@@ -8,6 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+typedef enum : NSInteger {
+    CBBM2xNoApiKey = 1,
+} CBBM2xAPIErrors;
+
+extern NSString * const CBBM2xErrorDomain;
+
 @interface CBBResponse : NSObject
 
 @property (readonly) NSData *raw;

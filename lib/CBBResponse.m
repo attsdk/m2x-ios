@@ -8,6 +8,8 @@
 
 #import "CBBResponse.h"
 
+NSString * const CBBM2xErrorDomain = @"CBBM2xErrorDomain";
+
 @interface CBBResponse()
 
 @property (strong) NSHTTPURLResponse *response;
@@ -73,7 +75,7 @@ NSError *_errorObject;
         return _errorObject;
     }
     
-    NSError *error = [NSError errorWithDomain:M2XErrorDomain code:M2XApiErrorResponseErrorKey userInfo:@{@"statusCode": [NSNumber numberWithInt:(int)_response.statusCode]}];
+    NSError *error = [NSError errorWithDomain:CBBM2xErrorDomain code:CBBM2xNoApiKey userInfo:@{@"statusCode": [NSNumber numberWithInt:(int)_response.statusCode]}];
     
     return error;
 }

@@ -8,6 +8,8 @@
 
 #import "M2XResponse.h"
 
+NSString * const M2XErrorDomain = @"M2XErrorDomain";
+
 @interface M2XResponse()
 
 @property (strong) NSHTTPURLResponse *response;

@@ -7,7 +7,7 @@
 //
 
 #import "M2XDevice.h"
-#import "M2XClient+HTTP.h"
+#import "M2XStream.h"
 
 NSString * const kPath = @"/devices";
 
@@ -31,6 +31,21 @@ NSString * const kPath = @"/devices";
         M2XDevice *device = [[M2XDevice alloc] initWithClient:client attributes:response.json];
         completionHandler(device, response);
     }];
+}
+
+- (void)streamsWithCompletionHandler:(M2XArrayCallback)completionHandler {
+    [M2XStream listWithClient:self.client device:self completionHandler:completionHandler];
+}
+
+- (void)viewWithCompletionHandler:(M2XDeviceCallback)completionHandler {
+    [self.client getWithPath:[self path] parameters:nil apiKey:self.client.apiKey completionHandler:^(M2XResponse *response) {
+        self.attributes = response.json;
+        completionHandler(self, response);
+    }];
+}
+
+- (NSString *)path {
+    return [NSString stringWithFormat:@"%@/%@", kPath, self[@"id"]];
 }
 
 @end

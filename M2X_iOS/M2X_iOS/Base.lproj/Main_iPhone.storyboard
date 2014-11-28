@@ -350,7 +350,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="http://api-m2x.att.com" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LrJ-Hh-d57">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="https://api-m2x.att.com" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LrJ-Hh-d57">
                                 <rect key="frame" x="20" y="212" width="280" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>

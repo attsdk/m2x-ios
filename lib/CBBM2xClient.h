@@ -5,12 +5,6 @@
 
 typedef void (^M2XAPICallback)(CBBResponse *response);
 
-typedef enum : NSInteger {
-    CBBM2xNoApiKey = 1,
-} CBBM2xAPIErrors;
-
-extern NSString * const CBBM2xErrorDomain;
-
 @interface CBBM2xClient : NSObject
 
 -(instancetype)initWithApiKey:(NSString *)apiKey;

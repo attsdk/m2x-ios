@@ -10,3 +10,4 @@
 #import "M2XResponse.h"
 #import "M2XDevice.h"
 #import "M2XResource.h"
+#import "M2XStream.h"

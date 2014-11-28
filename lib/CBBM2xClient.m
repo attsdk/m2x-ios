@@ -1,8 +1,6 @@
 
 #import "CBBM2xClient.h"
 
-NSString * const CBBM2xErrorDomain = @"CBBM2xErrorDomain";
-
 // API URL must not have the last slash.
 static NSString * const m2xApiURL = @"https://api-m2x.att.com/v2";
 

@@ -58,7 +58,7 @@
     
     for (M2XDevice *device in devices) {
         //show only active devices
-        if([[device.attributes valueForKey:@"status"] isEqualToString:@"enabled"])
+        if([device[@"status"] isEqualToString:@"enabled"])
             [_data addObject:device];
     }
     
@@ -79,9 +79,9 @@
     
     M2XDevice *device = [_data objectAtIndex:indexPath.row];
     
-    [[cell textLabel] setText:[device.attributes valueForKey:@"name"]];
+    [[cell textLabel] setText:device[@"name"]];
     
-    NSString *description = [device.attributes valueForKey:@"description"];
+    NSString *description = device[@"description"];
 
     //check if the description is not null
     if([description isEqual:[NSNull null]])
@@ -110,13 +110,11 @@
     
     NSIndexPath *deviceIndexPath = [[self tableView] indexPathForCell:device_tableViewSelected];
     
-    NSDictionary *deviceDict = [_data objectAtIndex:[deviceIndexPath row]];
+    M2XDevice *device = [_data objectAtIndex:deviceIndexPath.row];
     
-    deviceDetailsVC.device_id = [deviceDict valueForKey:@"id"];
+    deviceDetailsVC.device = device;
     
-//    deviceDetailsVC.deviceClient = _deviceClient;
-    
-    deviceDetailsVC.title = [deviceDict valueForKey:@"name"];
+    deviceDetailsVC.title = device[@"name"];
     
 }
 
