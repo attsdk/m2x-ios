@@ -3,7 +3,7 @@
 //  M2X_iOS
 //
 //  Created by Luis Floreani on 11/28/14.
-//  Copyright (c) 2014 AT&T. All rights reserved.
+//  Copyright (c) 2014 citrusbyte.com. All rights reserved.
 //
 
 #import "M2XResource.h"
