@@ -1,0 +1,17 @@
+//
+//  M2XDevice.h
+//  M2XLib
+//
+//  Created by Luis Floreani on 11/28/14.
+//  Copyright (c) 2014 citrusbyte.com. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#import "M2XResource.h"
+
+@interface M2XDevice : M2XResource
+
++ (void)listWithClient:(M2XClient *)client parameters:(NSDictionary *)parameters completionHandler:(M2XArrayCallback)completionHandler;
++ (void)createWithClient:(M2XClient *)client parameters:(NSDictionary *)parameters completionHandler:(M2XDeviceCallback)completionHandler;
+
+@end
