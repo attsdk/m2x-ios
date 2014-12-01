@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		E25935B11A095F0000BE1B2D /* libM2XLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E25935A51A095F0000BE1B2D /* libM2XLib.a */; };
 		E25E6A3A1A2CDDEC00E1941F /* NSDate+M2X.m in Sources */ = {isa = PBXBuildFile; fileRef = E25E6A391A2CDDEC00E1941F /* NSDate+M2X.m */; };
+		E25E6A561A2CF98D00E1941F /* M2XTrigger.m in Sources */ = {isa = PBXBuildFile; fileRef = E25E6A551A2CF98D00E1941F /* M2XTrigger.m */; };
 		E29A37551A0CEB52007D60CA /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E29A37501A0CEAEA007D60CA /* libOCMock.a */; };
 		E2B575171A2C930C00E837FC /* M2XDistribution.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B575161A2C930C00E837FC /* M2XDistribution.m */; };
 		E2C45B821A289A3300DDFA29 /* M2XClient.m in Sources */ = {isa = PBXBuildFile; fileRef = E2C45B811A289A3300DDFA29 /* M2XClient.m */; };
@@ -84,6 +85,8 @@
 		E25935B61A095F0000BE1B2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E25E6A381A2CDDEC00E1941F /* NSDate+M2X.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+M2X.h"; sourceTree = "<group>"; };
 		E25E6A391A2CDDEC00E1941F /* NSDate+M2X.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+M2X.m"; sourceTree = "<group>"; };
+		E25E6A541A2CF98D00E1941F /* M2XTrigger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = M2XTrigger.h; path = ../../lib/M2XTrigger.h; sourceTree = "<group>"; };
+		E25E6A551A2CF98D00E1941F /* M2XTrigger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = M2XTrigger.m; path = ../../lib/M2XTrigger.m; sourceTree = "<group>"; };
 		E29A37441A0CEAEA007D60CA /* OCMock.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OCMock.xcodeproj; path = M2XLib/libs/ocmock/OCMock.xcodeproj; sourceTree = "<group>"; };
 		E2B575151A2C930C00E837FC /* M2XDistribution.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = M2XDistribution.h; path = ../../lib/M2XDistribution.h; sourceTree = "<group>"; };
 		E2B575161A2C930C00E837FC /* M2XDistribution.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = M2XDistribution.m; path = ../../lib/M2XDistribution.m; sourceTree = "<group>"; };
@@ -185,6 +188,8 @@
 			children = (
 				E25E6A381A2CDDEC00E1941F /* NSDate+M2X.h */,
 				E25E6A391A2CDDEC00E1941F /* NSDate+M2X.m */,
+				E25E6A541A2CF98D00E1941F /* M2XTrigger.h */,
+				E25E6A551A2CF98D00E1941F /* M2XTrigger.m */,
 				E2B575151A2C930C00E837FC /* M2XDistribution.h */,
 				E2B575161A2C930C00E837FC /* M2XDistribution.m */,
 				E2C45BA31A28C39B00DDFA29 /* M2XStream.h */,
@@ -340,6 +345,7 @@
 				E25E6A3A1A2CDDEC00E1941F /* NSDate+M2X.m in Sources */,
 				E2C45B8E1A28A3A200DDFA29 /* M2XClient+HTTP.m in Sources */,
 				E2C45BA51A28C39B00DDFA29 /* M2XStream.m in Sources */,
+				E25E6A561A2CF98D00E1941F /* M2XTrigger.m in Sources */,
 				E2B575171A2C930C00E837FC /* M2XDistribution.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

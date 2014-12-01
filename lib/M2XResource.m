@@ -42,8 +42,8 @@
     }];
 }
 
-- (void)updateWithCompletionHandler:(M2XResourceCallback)completionHandler {
-    [self.client putWithPath:[self path] parameters:nil completionHandler:^(M2XResponse *response) {
+- (void)updateWithParameters:(NSDictionary *)parameters completionHandler:(M2XResourceCallback)completionHandler {
+    [self.client putWithPath:[self path] parameters:parameters completionHandler:^(M2XResponse *response) {
         self.attributes = response.json;
         completionHandler(self, response);
     }];

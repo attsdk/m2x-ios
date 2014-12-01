@@ -16,7 +16,11 @@
 
 - (void)streamsWithCompletionHandler:(M2XArrayCallback)completionHandler;
 - (void)locationWithCompletionHandler:(M2XBaseCallback)completionHandler;
-- (void)updateLocation:(NSDictionary *)parameters completionHandler:(M2XDeviceCallback)completionHandler;
 - (void)updateStreamWithName:(NSString *)name parameters:(NSDictionary *)parameters completionHandler:(M2XStreamCallback)completionHandler;
+
+- (void)updateLocation:(NSDictionary *)parameters completionHandler:(M2XDeviceCallback)completionHandler;
+
+- (void)triggersWithCompletionHandler:(M2XArrayCallback)completionHandler;
+- (void)createTrigger:(NSDictionary *)parameters withCompletionHandler:(M2XTriggerCallback)completionHandler;
 
 @end

@@ -24,7 +24,7 @@
 
 - (void)viewWithCompletionHandler:(M2XResourceCallback)completionHandler;
 
-- (void)updateWithCompletionHandler:(M2XResourceCallback)completionHandler;
+- (void)updateWithParameters:(NSDictionary *)parameters completionHandler:(M2XResourceCallback)completionHandler;
 
 - (void)deleteWithCompletionHandler:(M2XBaseCallback)completionHandler;
 
