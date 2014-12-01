@@ -33,6 +33,10 @@ static NSString * const kLibVersion = @"2.0.0";
     return self;
 }
 
++ (NSString *)version {
+    return kLibVersion;
+}
+
 - (instancetype)init {
     @throw [NSException exceptionWithName:@"InvalidInitializer" reason:@"Can't use the default initializer" userInfo:nil];
 }

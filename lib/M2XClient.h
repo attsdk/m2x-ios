@@ -28,6 +28,8 @@ typedef void (^M2XArrayCallback)(NSArray *objects, M2XResponse *response);
 @property (nonatomic, copy) NSString *apiVersion;
 @property (nonatomic, strong) NSURLSession *session;
 
++ (NSString *)version;
+
 - (instancetype)initWithApiKey:(NSString *)apiKey;
 
 // devices
