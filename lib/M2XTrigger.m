@@ -7,6 +7,7 @@
 //
 
 #import "M2XTrigger.h"
+#import "M2XDevice.h"
 
 static NSString * const kPath = @"/triggers";
 
@@ -23,6 +24,10 @@ static NSString * const kPath = @"/triggers";
 
 - (instancetype)initWithClient:(M2XClient *)client attributes:(NSDictionary *)attributes {
     @throw [NSException exceptionWithName:@"InvalidInitializer" reason:@"Can't use the default initializer" userInfo:nil];
+}
+
+- (NSString *)path {
+    return [NSString stringWithFormat:@"%@/triggers/%@", _device.path, [self[@"id"] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
 }
 
 @end

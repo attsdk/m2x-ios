@@ -70,7 +70,7 @@ static NSString * const kPath = @"/devices";
 
 - (void)createTrigger:(NSDictionary *)parameters withCompletionHandler:(M2XTriggerCallback)completionHandler {
     [self.client postWithPath:[NSString stringWithFormat:@"%@/triggers", [self path]] parameters:parameters completionHandler:^(M2XResponse *response) {
-        M2XTrigger *trigger = [[M2XTrigger alloc] initWithClient:self.client attributes:response.json];
+        M2XTrigger *trigger = [[M2XTrigger alloc] initWithClient:self.client device:self attributes:response.json];
         completionHandler(trigger, response);
     }];
 }
