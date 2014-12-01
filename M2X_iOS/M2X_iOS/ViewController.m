@@ -1,8 +1,6 @@
 
 #import "ViewController.h"
 #import "DevicesListViewController.h"
-#import "CBBStreamClient.h"
-#import "CBBM2xClient.h"
 
 @interface ViewController ()
 

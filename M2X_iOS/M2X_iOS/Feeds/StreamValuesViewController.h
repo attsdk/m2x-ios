@@ -1,6 +1,5 @@
 
 #import <UIKit/UIKit.h>
-#import "CBBStreamClient.h"
 
 @interface StreamValuesViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 

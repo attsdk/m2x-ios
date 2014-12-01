@@ -1,6 +1,5 @@
 
 #import "DeviceLocationViewController.h"
-#import "CBBStreamClient.h"
 #import "NSDate+M2X.h"
 
 @interface DeviceLocationViewController ()

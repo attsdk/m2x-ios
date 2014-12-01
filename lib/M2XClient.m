@@ -8,10 +8,12 @@
 
 #import "M2XClient.h"
 #import "M2XDevice.h"
+#import "M2XStream.h"
+#import "M2XDistribution.h"
+#import "M2XKey.h"
 #import <UIKit/UIKit.h>
 #include <sys/types.h>
 #include <sys/sysctl.h>
-#import "M2XKey.h"
 
 static NSString * const kDefaultApiBase = @"https://api-m2x.att.com";
 static NSString * const kDefaultApiVersion = @"v2";

@@ -4,7 +4,6 @@
 #import "DeviceLocationViewController.h"
 #import "AddStreamViewController.h"
 #import "NSDate+M2X.h"
-#import "CBBStreamClient.h"
 
 @interface DeviceDescriptionViewController ()
 

@@ -1,6 +1,5 @@
 
 #import "AddStreamViewController.h"
-#import "CBBStreamClient.h"
 
 @interface AddStreamViewController ()
 

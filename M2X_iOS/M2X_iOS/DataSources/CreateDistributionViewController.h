@@ -1,6 +1,5 @@
 
 #import <UIKit/UIKit.h>
-#import "CBBDistributionClient.h"
 
 @interface CreateDistributionViewController : UIViewController <UITextFieldDelegate>
 
