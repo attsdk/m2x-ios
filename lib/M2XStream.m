@@ -59,7 +59,7 @@
 }
 
 - (NSString *)path {
-    return [NSString stringWithFormat:@"%@/streams/%@", _device.path, self[@"name"]];
+    return [NSString stringWithFormat:@"%@/streams/%@", _device.path, [self[@"name"] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
 }
 
 @end

@@ -40,7 +40,7 @@ static NSString * const kPath = @"/keys";
 }
 
 - (NSString *)path {
-    return [NSString stringWithFormat:@"%@/%@", kPath, self[@"key"]];
+    return [NSString stringWithFormat:@"%@/%@", kPath, [self[@"key"] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
 }
 
 @end

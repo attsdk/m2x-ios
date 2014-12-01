@@ -55,7 +55,7 @@ static NSString * const kPath = @"/devices";
 }
 
 - (NSString *)path {
-    return [NSString stringWithFormat:@"%@/%@", kPath, self[@"id"]];
+    return [NSString stringWithFormat:@"%@/%@", kPath, [self[@"id"] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
 }
 
 @end
