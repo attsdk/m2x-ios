@@ -55,9 +55,12 @@
     }];
 }
 
-
 - (NSString *)path {
     @throw [NSException exceptionWithName:@"InvalidMethod" reason:@"You must override this" userInfo:nil];
+}
+
+- (NSString *)description {
+    return [NSString stringWithFormat:@"%@: %@", [self class], self.attributes];
 }
 
 @end

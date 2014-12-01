@@ -13,12 +13,14 @@
 @class M2XStream;
 @class M2XKey;
 @class M2XResource;
+@class M2XDistribution;
 
 typedef void (^M2XBaseCallback)(M2XResponse *response);
 typedef void (^M2XResourceCallback)(M2XResource *resource, M2XResponse *response);
 typedef void (^M2XDeviceCallback)(M2XDevice *device, M2XResponse *response);
 typedef void (^M2XStreamCallback)(M2XStream *stream, M2XResponse *response);
 typedef void (^M2XKeyCallback)(M2XKey *key, M2XResponse *response);
+typedef void (^M2XDistributionCallback)(M2XDistribution *key, M2XResponse *response);
 typedef void (^M2XArrayCallback)(NSArray *objects, M2XResponse *response);
 
 @interface M2XClient : NSObject
@@ -39,6 +41,10 @@ typedef void (^M2XArrayCallback)(NSArray *objects, M2XResponse *response);
 // keys
 - (void)keysWithCompletionHandler:(M2XArrayCallback)completionHandler;
 - (void)createKeyWithParameters:(NSDictionary *)parameters completionHandler:(M2XKeyCallback)completionHandler;
+
+// distributions
+- (void)distributionsWithCompletionHandler:(M2XArrayCallback)completionHandler;
+- (void)createDistributionWithParameters:(NSDictionary *)parameters completionHandler:(M2XDistributionCallback)completionHandler;
 
 - (NSString *)userAgent;
 - (NSString *)apiUrl;

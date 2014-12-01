@@ -57,6 +57,14 @@ static NSString * const kLibVersion = @"2.0.0";
     [M2XKey createWithClient:self parameters:parameters completionHandler:completionHandler];
 }
 
+- (void)distributionsWithCompletionHandler:(M2XArrayCallback)completionHandler {
+    [M2XDistribution listWithClient:self parameters:nil completionHandler:completionHandler];
+}
+
+- (void)createDistributionWithParameters:(NSDictionary *)parameters completionHandler:(M2XDistributionCallback)completionHandler {
+    [M2XDistribution createWithClient:self parameters:parameters completionHandler:completionHandler];
+}
+
 - (NSString *)apiUrl {
     return [NSString stringWithFormat:@"%@/%@", _apiBaseUrl, _apiVersion];
 }

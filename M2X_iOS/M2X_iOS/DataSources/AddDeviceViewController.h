@@ -4,8 +4,7 @@
 
 @interface AddDeviceViewController : UIViewController
 
-@property (nonatomic, strong) CBBDistributionClient *dataSourceClient;
-@property (nonatomic, strong) NSString *distribution_id;
+@property (nonatomic, strong) M2XDistribution *distribution;
 
 @property (weak, nonatomic) IBOutlet UITextField *tfSerial;
 

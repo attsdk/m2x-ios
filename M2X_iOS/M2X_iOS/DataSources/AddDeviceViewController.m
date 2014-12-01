@@ -33,23 +33,16 @@
         return;
     }
     
-    //Create the Dictionary
-    NSDictionary *serial = @{ @"serial": [_tfSerial text] };
-    
     //Add Device to the Distribution
     __weak typeof(self) weakSelf = self;
     
-    [_dataSourceClient addDeviceToDistribution:_distribution_id
-                             withParameters:serial
-                                    completionHandler:^(CBBResponse *response) {
-                                        
-                                        if (response.error) {
-                                            [weakSelf showError:response.errorObject withMessage:response.errorObject.userInfo];
-                                        } else {
-                                            [weakSelf.navigationController popViewControllerAnimated:YES];
-                                        }
-                                    }];
-    
+    [_distribution addDevice:[_tfSerial text] completionHandler:^(M2XDevice *device, M2XResponse *response) {
+        if (response.error) {
+            [weakSelf showError:response.errorObject withMessage:response.errorObject.userInfo];
+        } else {
+            [weakSelf.navigationController popViewControllerAnimated:YES];
+        }
+    }];
 }
 
 #pragma mark - helper

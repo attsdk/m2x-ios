@@ -7,6 +7,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *tfName;
 @property (weak, nonatomic) IBOutlet UITextField *tfDescription;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *smtVisibility;
-@property (nonatomic, strong) CBBDistributionClient *dataSourceClient;
+@property (nonatomic, strong) M2XClient *client;
 
 @end

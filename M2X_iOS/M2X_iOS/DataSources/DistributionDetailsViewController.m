@@ -46,18 +46,17 @@
 #pragma mark - self
 
 -(void)getDistributionDescription{
-    
-    [_dataSourceClient viewDetailsForDistributionId:_distribution_id completionHandler:^(CBBResponse *response) {
+    [_distribution viewWithCompletionHandler:^(M2XResource *resource, M2XResponse *response) {
         if (response.error) {
             [self showError:response.errorObject withMessage:response.errorObject.userInfo];
         } else {
-            [self didGetDistributionDescription:response.json];
+            [self didGetDistributionDescription:(M2XDistribution *)resource];
         }
     }];
     
 }
 
--(void)didGetDistributionDescription:(NSDictionary*)distribution{
+-(void)didGetDistributionDescription:(M2XDistribution*)distribution{
     
     [_lblDistributionID setText:distribution[@"id"]];
     
@@ -73,22 +72,21 @@
 }
 
 -(void)getDevicesForDistribution{
-    
-    [_dataSourceClient listDevicesFromDistribution:_distribution_id completionHandler:^(CBBResponse *response) {
+    [_distribution devicesWithCompletionHandler:^(NSArray *objects, M2XResponse *response) {
         if (response.error) {
             [self showError:response.errorObject withMessage:response.errorObject.userInfo];
         } else {
-            [self didGetDevicesForDistribution:response.json];
+            [self didGetDevicesForDistribution:objects];
         }
     }];
     
 }
 
--(void)didGetDevicesForDistribution:(NSDictionary*)dataSourcesList{
+-(void)didGetDevicesForDistribution:(NSArray*)dataSourcesList{
     
     [_dataSources removeAllObjects];
     
-    [_dataSources addObjectsFromArray:[dataSourcesList objectForKey:@"devices"]];
+    [_dataSources addObjectsFromArray:dataSourcesList];
     
     [_tableViewDataSources reloadData];
     
@@ -100,11 +98,7 @@
 {
     
     AddDeviceViewController *addDataSourceVC = segue.destinationViewController;
-    
-    addDataSourceVC.distribution_id = _distribution_id;
-    
-    addDataSourceVC.dataSourceClient = _dataSourceClient;
-    
+    addDataSourceVC.distribution = _distribution;
 }
 
 #pragma mark - helper
@@ -138,19 +132,19 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    NSDictionary *dataSourceData = [_dataSources objectAtIndex:indexPath.row];
+    M2XDevice *device = [_dataSources objectAtIndex:indexPath.row];
     
     UIImage *status_img;
     
-    if([[dataSourceData valueForKey:@"status"]isEqualToString:@"enabled"])
+    if([device[@"status"] isEqualToString:@"enabled"])
         status_img = [UIImage imageNamed:@"green.png"];
     else
         status_img = [UIImage imageNamed:@"red.png"];
     
     cell.accessoryView = [[UIImageView alloc] initWithImage:status_img];
     
-    [[cell textLabel] setText:[dataSourceData valueForKey:@"name"]];
-    [[cell detailTextLabel] setText:[NSString stringWithFormat:@"serial: %@",[dataSourceData valueForKey:@"serial"]]];
+    [[cell textLabel] setText:device[@"name"]];
+    [[cell detailTextLabel] setText:[NSString stringWithFormat:@"serial: %@", device[@"serial"]]];
     
     return cell;
 }

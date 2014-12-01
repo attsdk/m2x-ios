@@ -11,3 +11,5 @@
 #import "M2XDevice.h"
 #import "M2XResource.h"
 #import "M2XStream.h"
+#import "M2XKey.h"
+#import "M2XDistribution.h"

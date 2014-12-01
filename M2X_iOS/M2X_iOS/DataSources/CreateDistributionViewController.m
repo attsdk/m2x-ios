@@ -44,13 +44,12 @@
                              @"description": [_tfDescription text],
                              @"visibility": [_smtVisibility titleForSegmentAtIndex:[_smtVisibility selectedSegmentIndex]]};
     
-    [_dataSourceClient createDistribution:distribution completionHandler:^(CBBResponse *response) {
+    [_client createDistributionWithParameters:distribution completionHandler:^(M2XDistribution *key, M2XResponse *response) {
         if (response.error) {
             [self showError:response.errorObject withMessage:response.errorObject.userInfo];
         } else {
             [self.navigationController popViewControllerAnimated:YES];
         }
-        
     }];
     
 }

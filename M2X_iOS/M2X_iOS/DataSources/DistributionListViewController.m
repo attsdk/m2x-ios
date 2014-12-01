@@ -14,29 +14,21 @@
     [super viewDidLoad];
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    CBBM2xClient *client = [[CBBM2xClient alloc] initWithApiKey:[defaults objectForKey:@"api_key"]];
-    client.apiUrl = [defaults objectForKey:@"api_base"];
-    self.dataSourceClient = [[CBBDistributionClient alloc] initWithClient:client];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    //get list of devices without parameters
-    [_dataSourceClient listDistributionsWithCompletionHandler:^(CBBResponse *response)
-    {
+    M2XClient *client = [[M2XClient alloc] initWithApiKey:[defaults objectForKey:@"api_key"]];
+    client.apiBaseUrl = [defaults objectForKey:@"api_base"];
+    
+    [client distributionsWithCompletionHandler:^(NSArray *objects, M2XResponse *response) {
         if (response.error) {
             [self showError:response.errorObject withMessage:response.errorObject.userInfo];
         } else {
-            [self didGetDistributions:response.json];
+            [self didGetDistributions:objects];
         }
-
     }];
 }
 
--(void)didGetDistributions:(NSDictionary*)distributions
+-(void)didGetDistributions:(NSArray*)distributions
 {
-    _data = [NSMutableArray array];
-    [_data addObjectsFromArray:[distributions objectForKey:@"distributions"]];
+    _distributions = [distributions mutableCopy];
     [self.tableView reloadData];
 }
 
@@ -44,7 +36,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.data.count;
+    return self.distributions.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -53,9 +45,9 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier
                                                             forIndexPath:indexPath];
-    NSDictionary *batchData = [_data objectAtIndex:indexPath.row];
-    cell.textLabel.text = [batchData valueForKey:@"name"];
-    NSString *description = [batchData valueForKey:@"description"];
+    M2XDistribution *dist = [_distributions objectAtIndex:indexPath.row];
+    cell.textLabel.text = dist[@"name"];
+    NSString *description = dist[@"description"];
     
     //check if the description is not null
     if([description isEqual:[NSNull null]]) {
@@ -71,20 +63,21 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    UITableViewCell *key_tableViewSelected = sender;
     
+    NSIndexPath *keyIndexPath = [[self tableView] indexPathForCell:key_tableViewSelected];
+    
+    M2XDistribution *dist = [_distributions objectAtIndex:[keyIndexPath row]];
+
     if ([segue.identifier isEqualToString:@"createDistribution"])
     {
         CreateDistributionViewController *createDistributionVC = segue.destinationViewController;
-        createDistributionVC.dataSourceClient = _dataSourceClient;
+        createDistributionVC.client = dist.client;
     } else
     {
         DistributionDetailsViewController *batchDetailsVC = segue.destinationViewController;
-        UITableViewCell *batch_tableViewSelected = sender;
-        NSIndexPath *batchIndexPath = [[self tableView] indexPathForCell:batch_tableViewSelected];
-        NSDictionary *batchDict = [_data objectAtIndex:[batchIndexPath row]];
-        batchDetailsVC.distribution_id = [batchDict valueForKey:@"id"];
-        batchDetailsVC.dataSourceClient = _dataSourceClient;
-        batchDetailsVC.title = [batchDict valueForKey:@"name"];
+        batchDetailsVC.distribution = dist;
+        batchDetailsVC.title = dist[@"name"];
     }
     
 }

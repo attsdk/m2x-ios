@@ -43,6 +43,7 @@
 		8328499419ABBB45005CA81E /* NSDate+M2X.m in Sources */ = {isa = PBXBuildFile; fileRef = 8328498619ABBB45005CA81E /* NSDate+M2X.m */; };
 		E24E2B181A0A63470019D3EB /* CBBBaseClient.m in Sources */ = {isa = PBXBuildFile; fileRef = E24E2B171A0A63470019D3EB /* CBBBaseClient.m */; };
 		E29A850C1A0BADA100F90735 /* CBBDistributionClient.m in Sources */ = {isa = PBXBuildFile; fileRef = E29A850B1A0BADA100F90735 /* CBBDistributionClient.m */; };
+		E2B5751D1A2C932000E837FC /* M2XDistribution.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B5751C1A2C932000E837FC /* M2XDistribution.m */; };
 		E2C45B991A28AC4000DDFA29 /* M2XClient.m in Sources */ = {isa = PBXBuildFile; fileRef = E2C45B901A28AC4000DDFA29 /* M2XClient.m */; };
 		E2C45B9A1A28AC4000DDFA29 /* M2XClient+HTTP.m in Sources */ = {isa = PBXBuildFile; fileRef = E2C45B921A28AC4000DDFA29 /* M2XClient+HTTP.m */; };
 		E2C45B9B1A28AC4000DDFA29 /* M2XDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = E2C45B941A28AC4000DDFA29 /* M2XDevice.m */; };
@@ -126,6 +127,8 @@
 		E24E2B171A0A63470019D3EB /* CBBBaseClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBBBaseClient.m; sourceTree = "<group>"; };
 		E29A850A1A0BADA100F90735 /* CBBDistributionClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBBDistributionClient.h; sourceTree = "<group>"; };
 		E29A850B1A0BADA100F90735 /* CBBDistributionClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBBDistributionClient.m; sourceTree = "<group>"; };
+		E2B5751B1A2C932000E837FC /* M2XDistribution.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M2XDistribution.h; sourceTree = "<group>"; };
+		E2B5751C1A2C932000E837FC /* M2XDistribution.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M2XDistribution.m; sourceTree = "<group>"; };
 		E2C45B8F1A28AC4000DDFA29 /* M2XClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M2XClient.h; sourceTree = "<group>"; };
 		E2C45B901A28AC4000DDFA29 /* M2XClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M2XClient.m; sourceTree = "<group>"; };
 		E2C45B911A28AC4000DDFA29 /* M2XClient+HTTP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "M2XClient+HTTP.h"; sourceTree = "<group>"; };
@@ -317,6 +320,8 @@
 		8328496819ABBB45005CA81E /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				E2B5751B1A2C932000E837FC /* M2XDistribution.h */,
+				E2B5751C1A2C932000E837FC /* M2XDistribution.m */,
 				E2C45B9F1A28ACBB00DDFA29 /* M2X.h */,
 				E2C45BB01A292E5300DDFA29 /* M2XKey.h */,
 				E2C45BB11A292E5300DDFA29 /* M2XKey.m */,
@@ -469,6 +474,7 @@
 				8328499019ABBB45005CA81E /* CBBDeviceClient.m in Sources */,
 				8328499119ABBB45005CA81E /* CBBStreamClient.m in Sources */,
 				E2C45B991A28AC4000DDFA29 /* M2XClient.m in Sources */,
+				E2B5751D1A2C932000E837FC /* M2XDistribution.m in Sources */,
 				0B810E3F185F87F000D22F49 /* DistributionDetailsViewController.m in Sources */,
 				8328499219ABBB45005CA81E /* CBBKeysClient.m in Sources */,
 				E2D53A5A1A279E65007EA361 /* CBBResponse.m in Sources */,
