@@ -48,7 +48,7 @@ This provides an interface to your data on M2X
     [m2x deviceWithId:@"<DEVICE-ID>" completionHandler:^(M2XDevice *device, M2XResponse *response) {
         ...
     }];
-  ```
+```
 
 - [Key](lib/M2XKey.rb)
   ```objc
@@ -58,7 +58,8 @@ This provides an interface to your data on M2X
 
     [m2x keyWithKey:@"<KEY-ID>" completionHandler:^(M2XKey *key, M2XResponse *response) {
         ...
-    }];  ```
+    }];  
+```
 
 Refer to the documentation on each class for further usage instructions.
 
