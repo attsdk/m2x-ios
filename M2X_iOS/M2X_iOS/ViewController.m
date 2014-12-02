@@ -1,8 +1,6 @@
 
 #import "ViewController.h"
-#import "FeedsListViewController.h"
-#import "FeedsClient.h"
-#import "M2x.h"
+#import "DevicesListViewController.h"
 
 @interface ViewController ()
 
@@ -23,7 +21,7 @@
     self.tfMasterKey.text = [defaults stringForKey:@"api_key"];
     self.tfMasterKey.delegate = self;
 
-    self.tfURL.text = [defaults stringForKey:@"api_url"];
+    self.tfURL.text = [defaults stringForKey:@"api_base"];
     self.tfURL.delegate = self;
 
 }
@@ -32,13 +30,10 @@
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:[_tfMasterKey text] forKey:@"api_key"];
-    [defaults setObject:[_tfURL text] forKey:@"api_url"];
+    
+    NSString *url = [_tfURL text].length > 0 ? [_tfURL text] : [_tfURL placeholder];
+    [defaults setObject:url forKey:@"api_base"];
     [defaults synchronize];
-    
-    
-    M2x* m2x = [M2x shared];
-    m2x.api_key = [_tfMasterKey text]; // Master API Key
-    m2x.api_url = [_tfURL text]; // M2X API endpoint URL
 }
 
 - (IBAction)doSave:(id)sender

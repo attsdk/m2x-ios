@@ -1,6 +1,6 @@
 
 #import <UIKit/UIKit.h>
-#import "KeysClient.h"
+#import "M2XKey.h"
 
 @interface KeyDetailsViewController : UIViewController <UIAlertViewDelegate>
 
@@ -10,7 +10,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblPermissions;
 @property (weak, nonatomic) IBOutlet UILabel *lblExpiresAtLabel;
 
-@property (nonatomic, strong) KeysClient *keysClient;
-@property (nonatomic, strong) NSString *key;
+@property (nonatomic, strong) M2XKey *key;
 
 @end

@@ -1,6 +1,5 @@
 
 #import "AddStreamViewController.h"
-#import "FeedsClient.h"
 
 @interface AddStreamViewController ()
 
@@ -36,15 +35,12 @@
             args[@"value"] = self.tfLogAValue.text;
         }
         
-        [_feedClient createDataForStream:streamID
-                                  inFeed:_feed_id
-                          withParameters:args
-                                 success:^(id object) {
-            //stream successfully added, go back.
-            [self.navigationController popViewControllerAnimated:YES];
-            
-        } failure:^(NSError *error, NSDictionary *message) {
-            [self showError:error WithMessage:message];
+        [_device updateStreamWithName:streamID parameters:args completionHandler:^(M2XStream *stream, M2XResponse *response) {
+            if (response.error) {
+                [self showError:response.errorObject withMessage:[response.errorObject userInfo]];
+            } else {
+                [self.navigationController popViewControllerAnimated:YES];
+            }
         }];
         
     } else {
@@ -61,7 +57,7 @@
 }
 
 -(void)showError:(NSError*)error
-     WithMessage:(NSDictionary*)message
+     withMessage:(NSDictionary*)message
 {
     [[[UIAlertView alloc] initWithTitle:[error localizedDescription]
                                 message:message.description

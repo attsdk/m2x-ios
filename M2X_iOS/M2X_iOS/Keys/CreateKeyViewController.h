@@ -1,10 +1,10 @@
 
 #import <UIKit/UIKit.h>
-#import "KeysClient.h"
+#import "M2XClient.h"
 
 @interface CreateKeyViewController : UIViewController <UITextFieldDelegate>
 
-@property (strong, nonatomic) KeysClient *keysClient;
+@property (strong, nonatomic) M2XClient *client;
 
 @property (weak, nonatomic) IBOutlet UISwitch *swGet;
 @property (weak, nonatomic) IBOutlet UISwitch *swPost;

@@ -1,40 +1,82 @@
-# iOS M2X API Client
+# AT&T's M2X iOS Client
 
-The AT&T [M2X API](https://m2x.att.com/developer/documentation/overview) provides all the needed operations to connect your devices to AT&T's M2X service. This client provides an easy to use interface for your favorite mobile platform, [iOS](https://developer.apple.com/programs/ios/).
+[AT&T’s M2X](https://m2x.att.com/) is a cloud-based fully managed data storage service for network connected machine-to-machine (M2M) devices. From trucks and turbines to vending machines and freight containers, M2X enables the devices that power your business to connect and share valuable data.
 
-## Getting Started
+This library aims to provide a simple wrapper to interact with the [AT&T M2X API](https://m2x.att.com/developer/documentation/overview). Refer to the [Glossary of Terms](https://m2x.att.com/developer/documentation/glossary) to understand the nomenclature used throughout this documentation.
 
-- Signup for an M2X Account: [https://m2x.att.com/signup](https://m2x.att.com/signup)
-- Obtain your Master Key from the Master Keys tab of your Account Settings: [https://m2x.att.com/account](https://m2x.att.com/account)
-- Create your first Data Source Blueprint and copy its Feed ID: [https://m2x.att.com/blueprints](https://m2x.att.com/blueprints)
-- Review the M2X API Documentation: [https://m2x.att.com/developer/documentation/overview](https://m2x.att.com/developer/documentation/overview)
 
-If you have questions about any M2X specific terms, please consult the M2X glossary: https://m2x.att.com/developer/documentation/glossary
+Getting Started
+==========================
+1. Signup for an [M2X Account](https://m2x.att.com/signup).
+2. Obtain your _Master Key_ from the Master Keys tab of your [Account Settings](https://m2x.att.com/account) screen.
+2. Create your first [Device](https://m2x.att.com/devices) and copy its _Device ID_.
+3. Review the [M2X API Documentation](https://m2x.att.com/developer/documentation/overview).
 
-##Installation
+## Installation
 
-Copy the content from the `lib` folder to your project.
-
-Note: The `lib` folder contains the AFNetworking library to make HTTP requests.
-
-## Requirements and Dependencies
+Copy the content from the `lib` folder to your project or add `M2XLib/M2XLib.xcodeproj` as a subproject. In the last case, make sure to set the `Other Linker Flags` build setting to **-ObjC**.
 
 The M2X iOS Client is compatible with the **iOS 7 SDK** (or above). The HomeKit demo app will only work with Xcode 6, the **iOS 8.0 SDK**, and a compatible HomeKit device or with the HomeKit Accessory Simulator.
 
-The client has the following library dependency:
+## Usage
 
-* AFNetworking, 2.0, [https://github.com/AFNetworking/AFNetworking](https://github.com/AFNetworking/AFNetworking)
+In order to communicate with the M2X API, you need an instance of [M2XClient](lib/M2XClient.m). You need to pass your API key in the initializer to access your data.
+
+```objc
+M2XClient *m2x = [[M2XClient alloc] initWithApiKey:@"<YOUR-API-KEY>"]
+```
+
+This provides an interface to your data on M2X
+
+- [Distribution](lib/M2XDistribution.m)
+  ```objc
+    [m2x distributionsWithCompletionHandler:^(NSArray *objects, M2XResponse *response) {
+        ...
+    }];
+
+    [m2x distributionWithId:@"<DISTRIBUTION-ID>" completionHandler:^(M2XDistribution *distribution, M2XResponse *response) {
+        ...
+    }];
+```
+
+- [Device](lib/M2XDevice.m)
+  ```objc
+    [m2x devicesWithCompletionHandler:^(NSArray *objects, M2XResponse *response) {
+        ...
+    }];
+
+    [m2x deviceWithId:@"<DEVICE-ID>" completionHandler:^(M2XDevice *device, M2XResponse *response) {
+        ...
+    }];
+```
+
+- [Key](lib/M2XKey.m)
+  ```objc
+    [m2x keysWithCompletionHandler:^(NSArray *objects, M2XResponse *response) {
+        ...
+    }];
+
+    [m2x keyWithKey:@"<KEY-ID>" completionHandler:^(M2XKey *key, M2XResponse *response) {
+        ...
+    }];  
+```
+
+Refer to the documentation on each class for further usage instructions.
+
+## Example
+
+Open [M2X_iOS project](M2X_iOS/M2X_iOS.xcodeproj) to see different scenarios on how to use the library.
 
 ## HomeKit Demo App
 
-The SDK includes a demo app demonstrating integration possibilities between the iOS 8 HomeKit framework and M2X. To build the demo app you'll need Xcode 6 and a HomeKit-compatible thermostat. You could also simulate the thermostat using the HomeKit Accessory Simulator, available in the Hardware IO Tools.
+The lib includes a [demo app](HomeKitDemo/HomeKitDemo.xcodeproj) demonstrating integration possibilities between the iOS 8 HomeKit framework and M2X. To build the demo app you'll need Xcode 6 and a HomeKit-compatible thermostat. You could also simulate the thermostat using the HomeKit Accessory Simulator, available in the Hardware IO Tools.
 
-The HomeKit Demo App is capable of monitoring a thermostat's current temperature characteristic, capture temperature values and post them to M2X simply by tapping a button. 
+The HomeKit Demo App is capable of monitoring a thermostat's current temperature characteristic, capture temperature values and post them to M2X simply by tapping a button.
 
 After running the Demo App for the first time, you will have to:
 
-* Provide a feed ID for testing purposes
-* Provide a valid stream name belonging to the previously defined Feed
+* Provide a Device ID for testing purposes
+* Provide a valid stream name belonging to the previously defined Device
 * Finally, enter a valid M2X key with enough POST permissions. Using the Master Key is possible but not required.
 
 If you haven't done it before you will have setup your home and accessories.
@@ -49,314 +91,18 @@ Finally, in order to view and post data you simply need to:
 * Tap on the room name, then the accessory name and finally on the service name. This should start displaying a new current temperature value every 1 second.
 * Tap the Save button to post all currently available data points to M2X. Old data will be automatically removed from the table.
 
-## Architecture
+## Versioning
 
-Currently, the client supports M2X API v1. All M2X API specifications can be found in the [M2X API Documentation](https://m2x.att.com/developer/documentation/overview).
+This lib aims to adhere to [Semantic Versioning 2.0.0](http://semver.org/). As a summary, given a version number `MAJOR.MINOR.PATCH`:
 
-### M2X Class
+1. `MAJOR` will increment when backwards-incompatible changes are introduced to the client.
+2. `MINOR` will increment when backwards-compatible functionality is added.
+3. `PATCH` will increment with backwards-compatible bug fixes.
 
-M2X is the main class that provides the methods to set the API URL ("http://api-m2x.att.com/v1" as default) and the Master Key.
+Additional labels for pre-release and build metadata are available as extensions to the `MAJOR.MINOR.PATCH` format.
 
-**Example:**
-
-```objc
-//get singleton instance of M2x Class
-M2x* m2x = [M2x shared];
-//set the Master Api Key
-m2x.api_key = @"your_api_key";
-```
-
-### M2X Categories
-
-M2X includes the NSDate+M2X category to make it easier to send and receive dates using the ISO8601 standard.
-
-```objc
-- (NSString *) toISO8601;
-+ (NSDate *) fromISO8601:(NSString *)dateString;
-```
-
-These methods can be used to convert to and from a NSDate or NSString object.
-
-**Example:**
-
-```objc
-NSDate *batchCreationDate = [NSDate fromISO8601:batch[@"created"]];
-```
-
-### API Clients
----
-The clients (`FeedsClient`, `DataSourceClient` and `KeysClient`) provide an interface to make all the requests on the respectives API.
-
-If the call requires parameters, it must be encapsulated in a `NSDictionary` following the respective estructure from the [API Documentation](https://m2x.att.com/developer/documentation/overview).
-As well as the parameters, the response is returned in a `NSDictionary` object.
-
-If required, a [Feed API key](https://m2x.att.com/developer/documentation/overview#API-Keys) can be set in these classes.
-
-#### [FeedsClient](/lib/FeedsClient.h) ([Spec](https://m2x.att.com/developer/documentation/feed))
-
-```objc
-FeedsClient *feedClient = [[FeedsClient alloc] init];
-[feedClient setFeed_key:@"YOUR_FEED_API_KEY"];
-```
-
-**List Feeds in a `NSMutableArray`:**
-
-```objc
-
-// Note that for this call you need your Master API Key,
-// otherwise you'll get a 401 Unauthorized error.
-[feedClient setFeed_key:@"YOUR_MASTER_API_KEY"];
-
-//retrieve a list of feeds without parameters
-[feedClient listWithParameters:nil success:^(id object) {
-
-  NSDictionary *response = [value objectForKey:@"feeds"];
-  feedList = [NSMutableArray array];
-  for (NSDictionary *feed in response) {
-      //show only active feeds
-      if([[feed valueForKey:@"status"] isEqualToString:@"enabled"])
-          [feedList addObject:feed];
-  }
-
-} failure:^(NSError *error, NSDictionary *message) {
-    NSLog(@"Error: %@",[error description]);
-    NSLog(@"Message: %@",message);
-}];
-```
-
-**Update the current location:**
-
-```objc
-//init locationManager
-CLLocationManager *locationManager = [[CLLocationManager alloc] init];
-locationManager.distanceFilter = kCLDistanceFilterNone;
-locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-[locationManager startUpdatingLocation];
-//...//
-//Set the current location
-CLLocation *location = [locationManager location];
-NSDictionary *locationDict = @{ @"name": _currentLocality,
-                            @"latitude": [NSString stringWithFormat:@"%f",location.coordinate.latitude],
-                           @"longitude": [NSString stringWithFormat:@"%f",location.coordinate.longitude],
-                           @"elevation": [NSString stringWithFormat:@"%f",location.altitude] };
-
-[feedClient updateDatasourceWithLocation:locationDict inFeed:@"your_feed_id" success:^(id object) {
-	//Callback function
-    [self didSetLocation];
-} failure:^(NSError *error, NSDictionary *message) {
-    NSLog(@"Error: %@",[error localizedDescription]);
-    NSLog(@"Message: %@",message);
-}];
-```
-
-**Post Data Stream Values:**
-
-```objc
-NSString *now = [NSDate date].toISO8601;
-NSDictionary *newValue = @{ @"values": @[ @{ @"value": @"20", @"at": now } ] };
-
-[feedClient postDataValues:newValue
-                  forStream:@"stream_name"
-                     inFeed:@"your_feed_id"
-                     success:^(id object) { /*success block*/ }
-                     failure:^(NSError *error, NSDictionary *message)
-{
-    NSLog(@"Error: %@",[error localizedDescription]);
-    NSLog(@"Message: %@",message);
-}];
-```
-
-**Create a Trigger**
-
-```objc
-NSDictionary *trigger = @{ @"name": @"trigger1",
-                           @"stream": @"temperature",
-                           @"condition": @">",
-                           @"value": @"30",
-                           @"callback_url": @"http://example.com",
-                           @"status": @"enabled" };
-
-[feedClient createTrigger:trigger inFeed:@"ee9501931bcb3f9b0d25fde5eaf4abd8" success:^(id object) {
-    /*success block*/
-} failure:^(NSError *error, NSDictionary *message) {
-    NSLog(@"error: %@",[error localizedDescription]);
-    NSLog(@"Message: %@",message);
-}];
-```
-
-**View Request Log**
-
-```objc
-[feedClient viewRequestLogForFeed:@"YOUR_FEED_ID" success:^(id object) {
-  NSArray *requests = [object objectForKey:@"requests"];
-} failure:^(NSError *error, NSDictionary *message) {
-  NSLog(@"error: %@",[error localizedDescription]);
-  NSLog(@"Message: %@",message);
-}];
-```
-
-#### [DataSourceClient](/lib/DataSourceClient.h) ([Spec](https://m2x.att.com/developer/documentation/datasource))
-
-
-```objc
-DataSourceClient dataSourceClient = [[DataSourceClient alloc] init];
-[dataSourceClient setFeed_key:@"YOUR_FEED_API_KEY"];
-```
-
-**Create Blueprint:**
-
-```objc
-NSDictionary *blueprint = @{ @"name": @"Sample Blueprint",
-                      @"description": @"Longer description for Sample Blueprint",
-                       @"visibility": @"public" };
-
-[dataSourceClient createBlueprint:bp success:^(id object) {
-    /*blueprint created*/
-    NSDictionary *blueprintCreated = object;
-} failure:^(NSError *error, NSDictionary *message) {
-    NSLog(@"%@",message);
-    NSLog(@"%@",error);
-}];
-```
-
-**List Data Sources from a Batch:**
-
-```objc
-[dataSourceClient listDataSourcesfromBatch:@"batch_id" success:^(id object) {
-    [dataSources removeAllObjects];
-    [dataSources addObjectsFromArray:[dataSourcesList objectForKey:@"datasources"]];
-    [tableViewDataSources reloadData];
-} failure:^(NSError *error, NSDictionary *message) {
-    NSLog(@"Error: %@",[error localizedDescription]);
-    NSLog(@"Message: %@",message);
-}];
-```
-
-**Add Data Source to an existing Batch:**
-
-```objc
-NSDictionary *serial = @{ @"serial": @"your_new_serial" };
-//Add Data Source to the Batch
-[dataSourceClient addDataSourceToBatch:@"batch_id" withParameters:serial success:^(id object) {
-    //data source successfully added.
-} failure:^(NSError *error, NSDictionary *message) {
-    NSLog(@"Error: %@",[error localizedDescription]);
-    NSLog(@"Message: %@",message);
-}];
-```
-
-**Create Batch:**
-
-```objc
-NSDictionary *batch = @{ @"name": @"your_batch_name" ,
-                  @"description": @"a_description",
-                   @"visibility": @"private" };
-
-[dataSourceClient createBatch:batch success:^(id object) {
-    //batch successfully created.
-    NSDictionary *batchCreated = object;
-} failure:^(NSError *error, NSDictionary *message) {
-    NSLog(@"Error: %@",[error localizedDescription]);
-    NSLog(@"Message: %@",message);
-}];
-```
-
-**View Data Source Details:**
-
-```objc
-[dataSourceClient viewDetailsForDataSourceId:@"datasource_id" success:^(id object) {
-    //set label with data source info.
-    [lblDSName setText:[object valueForKey:@"name"]];
-    [lblDSDescription setText:[object valueForKey:@"name"]];
-    [lblDSSerial setText:[object valueForKey:@"serial"]];
-} failure:^(NSError *error, NSDictionary *message) {
-    NSLog(@"Error: %@",[error localizedDescription]);
-    NSLog(@"Message: %@",message);
-}];
-```
-
-**Create Data Source:**
-
-```objc
-NSDictionary *datasource = @{ @"name": @"Sample Data Source",
-                       @"description": @"Longer description for Sample Data Source",
-                        @"visibility": @"public" };
-
-[dataSourceClient createDataSource:datasource success:^(id object) {
-    /*Data Source created*/
-    NSDictionary *dataSourceCreated = object;
-} failure:^(NSError *error, NSDictionary *message) {
-    NSLog(@"Error: %@",[error localizedDescription]);
-    NSLog(@"Message: %@",message);
-}];
-```
-
-#### [KeysClient](/lib/DataSourceClient.h) ([Spec](https://m2x.att.com/developer/documentation/keys))
-
-```objc
-KeysClient keyClient = [[KeysClient alloc] init];
-[keyClient setFeed_key:@"YOUR_FEED_API_KEY"];
-```
-
-**List Keys:**
-
-```objc
-[keysClient listKeysWithParameters:nil success:^(id object) {
-    [keysArray removeAllObjects];
-    [keysArray addObjectsFromArray:[object objectForKey:@"keys"]];
-    [self.tableView reloadData];
-} failure:^(NSError *error, NSDictionary *message) {
-    NSLog(@"Error: %@",[error localizedDescription]);
-    NSLog(@"Message: %@",message);
-}];
-```
-
-**View Key Details:**
-
-```objc
-[keysClient viewDetailsForKey:_key success:^(id object) {
-    NSString *name = [object valueForKey:@"name"];
-    NSString *key = [object valueForKey:@"key"];
-    NSString *expiresAt = [object valueForKey:@"expires_at"];
-    NSString *permissions = [[object objectForKey:@"permissions"] componentsJoinedByString:@", "];
-
-    [lblName setText:name];
-    [lblKey setText:key];
-    [lblPermissions setText:permissions];
-    //check if expires_at isn't set.
-    if(![expiresAt isEqual:[NSNull null]]){
-        [lblExpiresAt setText:expiresAt];
-    }
-} failure:^(NSError *error, NSDictionary *message) {
-    NSLog(@"Error: %@",[error localizedDescription]);
-    NSLog(@"Message: %@",message);
-}];
-```
-
-**Regenerate Key:**
-
-```objc
-[keysClient regenerateKey:_key success:^(id object) {
-    //Update key label
-    [lblKey setText:[object valueForKey:@"key"]];
-} failure:^(NSError *error, NSDictionary *message) {
-    NSLog(@"Error: %@",[error localizedDescription]);
-    NSLog(@"Message: %@",message);
-}];
-```
-
-#### Errors and Messages
-
-The errors and messages are handled in the failure block. The *error* parameter is a `NSError` object that encapsulate the error information, for example the HTTP status code. And the *message* parameter is a `NSDictionary` and contains the response message from the API.
-
-To get the HTTP status code from *error* use the method `- localizedDescription`.
-
-## Demo App
-
-This repository comes with a simple app that implements some of the API methods. It can be found in the following folder: `M2X_iOS`.
-
-
+**Note**: the client version does not necessarily reflect the version used in the AT&T M2X API.
 
 ## License
 
-The iOS M2X API Client is available under the MIT license. See the [LICENSE](LICENSE) file for more information.
+This lib is provided under the MIT license. See [LICENSE](LICENSE) for applicable terms.

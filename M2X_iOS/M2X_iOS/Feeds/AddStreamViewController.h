@@ -1,11 +1,9 @@
 
 #import <UIKit/UIKit.h>
-#import "FeedsClient.h"
 
 @interface AddStreamViewController : UIViewController <UITextFieldDelegate>
 
-@property (strong, nonatomic) NSString *feed_id;
-@property (strong, nonatomic) FeedsClient *feedClient;
+@property (strong, nonatomic) M2XDevice *device;
 @property (weak, nonatomic) IBOutlet UITextField *tfStreamId;
 @property (weak, nonatomic) IBOutlet UITextField *tfUnit;
 @property (weak, nonatomic) IBOutlet UITextField *tfSymbol;

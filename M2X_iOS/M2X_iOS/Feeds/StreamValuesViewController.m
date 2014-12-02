@@ -40,26 +40,22 @@
 {
     NSLog(@"Getting stream values");
     NSDictionary *parameters = @{ @"limit": @"100" };
-    [_feedClient listDataValuesFromTheStream:_streamName
-                                      inFeed:_feed_id
-                              WithParameters:parameters
-                                     success:^(NSDictionary *object)
-    {
-        self.valueList = object[@"values"];
-        [self.tableViewStreamValues reloadData];
-        NSLog(@"%d stream values displayed.", self.valueList.count);
-        [self.refreshControl endRefreshing];
-    }
-                                     failure:^(NSError *error, NSDictionary *message)
-    {
-        [self.refreshControl endRefreshing];
-        [[[UIAlertView alloc] initWithTitle:@"Error"
-                                    message:[NSString stringWithFormat:@"%@", message]
-                                   delegate:nil
-                          cancelButtonTitle:@"OK"
-                          otherButtonTitles:nil] show];
-    }];
     
+    [_stream valuesWithParameters:parameters completionHandler:^(NSArray *objects, M2XResponse *response) {
+        if (response.error) {
+            [self.refreshControl endRefreshing];
+            [[[UIAlertView alloc] initWithTitle:@"Error"
+                                        message:[NSString stringWithFormat:@"%@", response.errorObject.localizedDescription]
+                                       delegate:nil
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil] show];
+            
+        } else {
+            self.valueList = [NSMutableArray arrayWithArray:objects];
+            [self.tableViewStreamValues reloadData];
+            [self.refreshControl endRefreshing];
+        }
+    }];
 }
 
 #pragma mark - IBAction
@@ -74,31 +70,24 @@
         [_tfNewValue resignFirstResponder];
         
         NSString *now = [NSDate date].toISO8601;
-        NSDictionary *args = @{ @"values": @[
-                                        @{ @"value": value, @"at": now }
-                                        ]
-                                };
-        
-        [_feedClient postDataValues:args
-                          forStream:_streamName
-                             inFeed:_feed_id
-                            success:^(id object)
-        {
-            [self getStreamValues];
-            self.tfNewValue.text = @"";
-            sender.enabled = YES;
-        }
-                            failure:^(NSError *error, NSDictionary *message)
-        {
-            [self showError:error WithMessage:message];
-            sender.enabled = YES;
+        NSArray *args = @[@{ @"value": value, @"timestamp": now }];
+
+        [_stream postValues:args completionHandler:^(M2XResponse *response) {
+            if (response.error) {
+                [self showError:response.errorObject withMessage:response.errorObject.userInfo];
+                sender.enabled = YES;
+            } else {
+                [self getStreamValues];
+                self.tfNewValue.text = @"";
+                sender.enabled = YES;
+            }
         }];
     }
 }
 
 #pragma mark - helper
 
--(void)showError:(NSError*)error WithMessage:(NSDictionary*)message
+-(void)showError:(NSError*)error withMessage:(NSDictionary*)message
 {
     [[[UIAlertView alloc] initWithTitle:[error localizedDescription]
                                 message:[NSString stringWithFormat:@"%@", message]
@@ -128,7 +117,7 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     NSDictionary *valueData = self.valueList[indexPath.row];
-    NSDate *createdDate = [NSDate fromISO8601:valueData[@"at"]];
+    NSDate *createdDate = [NSDate fromISO8601:valueData[@"timestamp"]];
     NSString *dateString = [NSDateFormatter localizedStringFromDate:createdDate
                                                           dateStyle:NSDateFormatterShortStyle
                                                           timeStyle:NSDateFormatterShortStyle];

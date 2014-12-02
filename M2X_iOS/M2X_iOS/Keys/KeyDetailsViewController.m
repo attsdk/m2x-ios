@@ -33,34 +33,29 @@
 #pragma mark - self
 
 - (void)getKeyDetails{
-    
-    [_keysClient viewDetailsForKey:_key success:^(id object) {
-        
-        NSString *name = [object valueForKey:@"name"];
-        NSString *key = [object valueForKey:@"key"];
-        NSString *expiresAt = [object valueForKey:@"expires_at"];
-        
-        NSString *permissions = [[object objectForKey:@"permissions"] componentsJoinedByString:@", "];
-
-        [_lblName setText:name];
-        [_lblKey setText:key];
-        [_lblPermissions setText:permissions];
-        //check if expires_at isn't set.
-        if(![expiresAt isEqual:[NSNull null]]){
-            [_lblExpiresAtLabel setHidden:NO];
-            [_lblExpiresAt setText:expiresAt];
+    [_key viewWithCompletionHandler:^(M2XResource *resource, M2XResponse *response) {
+        if (response.error) {
+            [self showError:response.errorObject withMessage:response.errorObject.userInfo];
+        } else {
+            NSString *name = resource[@"name"];
+            NSString *key = resource[@"key"];
+            NSString *expiresAt = resource[@"expires_at"];
+            
+            NSString *permissions = [resource[@"permissions"] componentsJoinedByString:@", "];
+            
+            [_lblName setText:name];
+            [_lblKey setText:key];
+            [_lblPermissions setText:permissions];
+            //check if expires_at isn't set.
+            if(![expiresAt isEqual:[NSNull null]]){
+                [_lblExpiresAtLabel setHidden:NO];
+                [_lblExpiresAt setText:expiresAt];
+            }
         }
-        
-        
-    } failure:^(NSError *error, NSDictionary *message) {
-        
-        [self showError:error WithMessage:message];
-        
     }];
-    
 }
 
--(void)showError:(NSError*)error WithMessage:(NSDictionary*)message{
+-(void)showError:(NSError*)error withMessage:(NSDictionary*)message{
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[error localizedDescription]
                                                     message:[NSString stringWithFormat:@"%@", message]
                                                    delegate:nil cancelButtonTitle:@"OK"
@@ -71,17 +66,13 @@
 #pragma mark - btn
 
 - (IBAction)regenerateKey:(id)sender {
-    [_keysClient regenerateKey:_key success:^(id object) {
-        
-        _key = [object valueForKey:@"key"];
-        //Update key label
-        [_lblKey setText:_key];
-        
-        
-    } failure:^(NSError *error, NSDictionary *message) {
-        
-        [self showError:error WithMessage:message];
-        
+    [_key regenerateWithCompletionHandler:^(M2XKey *key, M2XResponse *response) {
+        if (response.error) {
+            [self showError:response.errorObject withMessage:response.errorObject.userInfo];
+        } else {
+            _key = key;
+            [_lblKey setText:_key[@"key"]];
+        }
     }];
 }
 
@@ -100,15 +91,12 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 1) {
-        [_keysClient deleteKey:_key success:^(id object) {
-            
-            //key deleted.
-            [self.navigationController popViewControllerAnimated:YES];
-            
-        } failure:^(NSError *error, NSDictionary *message) {
-            
-            [self showError:error WithMessage:message];
-            
+        [_key deleteWithCompletionHandler:^(M2XResponse *response) {
+            if (response.error) {
+                [self showError:response.errorObject withMessage:response.errorObject.userInfo];
+            } else {
+                [self.navigationController popViewControllerAnimated:YES];
+            }
         }];
     }
 }

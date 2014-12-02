@@ -22,7 +22,7 @@
     NSUserDefaults *defs = [NSUserDefaults standardUserDefaults];
     NSDictionary *config = [defs objectForKey:@"M2X_CONFIG"];
     self.key.text = config[@"key"];
-    self.feed.text = config[@"feed"];
+    self.feed.text = config[@"device"];
     self.stream.text = config[@"stream"];   
     [self.key becomeFirstResponder];
     
@@ -45,7 +45,7 @@
         [self.stream.text isEqualToString:@""] )
     {
         [[[UIAlertView alloc] initWithTitle:@"Error"
-                                   message:@"Please enter a valid M2X key, feed ID and stream name"
+                                   message:@"Please enter a valid M2X key, device ID and stream name"
                                   delegate:nil
                          cancelButtonTitle:@"Ok"
                          otherButtonTitles:nil] show];
@@ -54,7 +54,7 @@
         NSUserDefaults *defs = [NSUserDefaults standardUserDefaults];
         [defs setObject:@{
                           @"key": self.key.text,
-                          @"feed": self.feed.text,
+                          @"device": self.feed.text,
                           @"stream": self.stream.text
                           }
                  forKey:@"M2X_CONFIG"];
