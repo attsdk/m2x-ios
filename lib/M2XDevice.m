@@ -81,7 +81,7 @@ static NSString * const kPath = @"/devices";
 }
 
 - (void)postUpdates:(NSDictionary *)values completionHandler:(M2XBaseCallback)completionHandler {
-    [self.client postWithPath:[NSString stringWithFormat:@"%@/updates", [self path]] parameters:parameters completionHandler:completionHandler];
+    [self.client postWithPath:[NSString stringWithFormat:@"%@/updates", [self path]] parameters:values completionHandler:completionHandler];
 }
 
 - (void)triggersWithCompletionHandler:(M2XArrayCallback)completionHandler {
