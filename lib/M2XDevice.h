@@ -58,6 +58,31 @@
 // https://m2x.att.com/developer/documentation/v2/device#Update-Device-Location
 - (void)updateLocation:(NSDictionary *)parameters completionHandler:(M2XDeviceCallback)completionHandler;
 
+// Post Device Updates (Multiple Values to Multiple Streams)
+//
+// This method allows posting multiple values to multiple streams
+// belonging to a device and optionally, the device location.
+//
+// All the streams should be created before posting values using this method.
+//
+// The `values` parameter contains a dictionary with one attribute per each stream to be updated.
+// The value of each one of these attributes is an array of timestamped values.
+//
+//      @{
+//         @"temperature": [
+//                        @{ @"timestamp": <Time in ISO8601>, @"value": x },
+//                        @{ @"timestamp": <Time in ISO8601>, @"value": y },
+//                      ],
+//         @"humidity":    [
+//                        @{ @"timestamp": <Time in ISO8601>, @"value": x },
+//                        @{ @"timestamp": <Time in ISO8601>, @"value": y },
+//                      ]
+//
+//      }
+//
+// https://staging.m2x.sl.attcompute.com/developer/documentation/v2/device#Post-Device-Updates--Multiple-Values-to-Multiple-Streams-
+- (void)postUpdates:(NSDictionary *)values completionHandler:(M2XBaseCallback)completionHandler;
+
 // Retrieve list of data streams associated with the device.
 //
 // https://m2x.att.com/developer/documentation/v2/device#List-Data-Streams

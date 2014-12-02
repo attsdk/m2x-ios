@@ -80,6 +80,10 @@ static NSString * const kPath = @"/devices";
     }];
 }
 
+- (void)postUpdates:(NSDictionary *)values completionHandler:(M2XBaseCallback)completionHandler {
+    [self.client postWithPath:[NSString stringWithFormat:@"%@/updates", [self path]] parameters:parameters completionHandler:completionHandler];
+}
+
 - (void)triggersWithCompletionHandler:(M2XArrayCallback)completionHandler {
     [self.client getWithPath:[NSString stringWithFormat:@"%@/triggers", [self path]] parameters:nil completionHandler:^(M2XResponse *response) {
         NSMutableArray *array = [NSMutableArray array];
