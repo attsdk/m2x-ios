@@ -14,7 +14,7 @@ Getting Started
 
 ## Installation
 
-Copy the content from the `lib` folder to your project or add `M2XLib/M2XLib.xcodeproj` as a subproject.
+Copy the content from the `lib` folder to your project or add `M2XLib/M2XLib.xcodeproj` as a subproject. In the last case make sure set the `Other Linker Flags` build setting to **-ObjC**.
 
 The M2X iOS Client is compatible with the **iOS 7 SDK** (or above). The HomeKit demo app will only work with Xcode 6, the **iOS 8.0 SDK**, and a compatible HomeKit device or with the HomeKit Accessory Simulator.
 
@@ -28,7 +28,7 @@ M2XClient *m2x = [[M2XClient alloc] initWithApiKey:(<YOUR-API-KEY>)]
 
 This provides an interface to your data on M2X
 
-- [Distribution](lib/M2XDistribution.rb)
+- [Distribution](lib/M2XDistribution.m)
   ```objc
     [m2x distributionsWithCompletionHandler:^(NSArray *objects, M2XResponse *response) {
         ...
@@ -39,7 +39,7 @@ This provides an interface to your data on M2X
     }];
 ```
 
-- [Device](lib/M2XDevice.rb)
+- [Device](lib/M2XDevice.m)
   ```objc
     [m2x devicesWithCompletionHandler:^(NSArray *objects, M2XResponse *response) {
         ...
@@ -50,7 +50,7 @@ This provides an interface to your data on M2X
     }];
 ```
 
-- [Key](lib/M2XKey.rb)
+- [Key](lib/M2XKey.m)
   ```objc
     [m2x keysWithCompletionHandler:^(NSArray *objects, M2XResponse *response) {
         ...
@@ -67,9 +67,7 @@ Refer to the documentation on each class for further usage instructions.
 
 Open [M2X_iOS project](M2X_iOS/M2X_iOS.xcodeproj) to see different scenarios on how to use the library.
 
-## Demos
-
-### HomeKit Demo App
+## HomeKit Demo App
 
 The lib includes a [demo app](HomeKitDemo/HomeKitDemo.xcodeproj) demonstrating integration possibilities between the iOS 8 HomeKit framework and M2X. To build the demo app you'll need Xcode 6 and a HomeKit-compatible thermostat. You could also simulate the thermostat using the HomeKit Accessory Simulator, available in the Hardware IO Tools.
 

@@ -7,8 +7,7 @@
 //
 
 #import "ServiceViewController.h"
-#import "M2x.h"
-#import "FeedsClient.h"
+#import "M2X.h"
 
 @interface ServiceViewController ()
 
@@ -16,8 +15,8 @@
 @property (nonatomic, strong) HMCharacteristic *selectedCharacteristic;
 @property (nonatomic, strong) NSTimer *timer;
 
-@property (nonatomic, strong) FeedsClient *feedClient;
-@property (nonatomic, strong) NSString *M2XFeed;
+@property (nonatomic, strong) M2XStream *stream;
+@property (nonatomic, strong) NSString *M2XDevice;
 @property (nonatomic, strong) NSString *M2XStream;
 
 @end
@@ -43,11 +42,12 @@
     NSUserDefaults *defs = [NSUserDefaults standardUserDefaults];
     NSDictionary *config = [defs objectForKey:@"M2X_CONFIG"];
     NSString *M2XKey = config[@"key"];
-    self.M2XFeed = config[@"feed"];
+    self.M2XDevice = config[@"device"];
     self.M2XStream = config[@"stream"];
     
-    [M2x shared].api_key = M2XKey;
-    self.feedClient = [FeedsClient new];
+    M2XClient *client = [[M2XClient alloc] initWithApiKey:M2XKey];
+    M2XDevice *device = [[M2XDevice alloc] initWithClient:client attributes:@{@"id": self.M2XDevice}];
+    _stream = [[M2XStream alloc] initWithClient:client device:device attributes:@{@"name": self.M2XStream}];
 }
 
 - (void)validateService
@@ -94,22 +94,19 @@
     self.values = [NSMutableArray new];
     [self.tableView reloadData];
     
-    [self.feedClient postDataValues:@{ @"values": valuesToSave }
-                          forStream:self.M2XStream
-                             inFeed:self.M2XFeed
-                            success:^(id object)
-     {
-         NSString *text = [NSString stringWithFormat:@"M2X: Successfully posted %lu values to the M2X stream!", (unsigned long)valuesToSave.count];
-         [[[UIAlertView alloc] initWithTitle:@"Success!"
-                                     message:text
-                                    delegate:nil cancelButtonTitle:@"Ok"
-                           otherButtonTitles:nil] show];
-     }
-                            failure:^(NSError *error, NSDictionary *message)
-     {
-         NSLog(@"Warning! Failed to post values to M2X (%@)", error.localizedDescription);
-     }];
-    
+    [_stream postValues:valuesToSave completionHandler:^(M2XResponse *response) {
+        if (response.error) {
+            NSLog(@"Warning! Failed to post values to M2X (%@)", response.errorObject.localizedDescription);
+            return;
+        }
+        
+        NSString *text = [NSString stringWithFormat:@"M2X: Successfully posted %lu values to the M2X stream!", (unsigned long)valuesToSave.count];
+        [[[UIAlertView alloc] initWithTitle:@"Success!"
+                                    message:text
+                                   delegate:nil cancelButtonTitle:@"Ok"
+                          otherButtonTitles:nil] show];
+
+    }];
 }
 
 #pragma mark - UIAlertViewDelegate protocol
