@@ -25,6 +25,14 @@ typedef void (^M2XKeyCallback)(M2XKey *key, M2XResponse *response);
 typedef void (^M2XDistributionCallback)(M2XDistribution *distribution, M2XResponse *response);
 typedef void (^M2XArrayCallback)(NSArray *objects, M2XResponse *response);
 
+// Interface for connecting with M2X API service.
+//
+// This class provides convenience methods to access M2X most common resources.
+// It can also be used to access any endpoint directly like this:
+//
+//     M2XClient *m2x = [[M2XClient alloc] initWithApiKey:"<YOUR-API-KEY>"];
+//     [m2x getWithPath:@"/some_path" parameters:...];
+//
 @interface M2XClient : NSObject
 
 @property (nonatomic, copy) NSString *apiKey;
@@ -36,19 +44,70 @@ typedef void (^M2XArrayCallback)(NSArray *objects, M2XResponse *response);
 
 - (instancetype)initWithApiKey:(NSString *)apiKey;
 
-// devices
+// Returns the status of the M2X system.
+//
+// The response to this endpoint is an object in which each of its attributes
+// represents an M2X subsystem and its current status.
+- (void)statusWithCompletionHandler:(M2XBaseCallback)completionHandler;
+
+// Retrieve the list of devices accessible by the authenticated API key that
+// meet the search criteria.
+//
+// See M2XDevice.listWithClient:parameters:completionHandler: for more details
 - (void)devicesWithParameters:(NSDictionary *)parameters completionHandler:(M2XArrayCallback)completionHandler;
+
+// Obtain a Device from M2X
+//
+// This method instantiates an instance of Device and calls `M2XDevice.viewWithCompletionHandler:`
+// method, returning the device instance with all its attributes initialized
 - (void)deviceWithId:(NSString *)identifier completionHandler:(M2XDeviceCallback)completionHandler;
+
+// Creates a new device on M2X with the specified parameters
 - (void)createDeviceWithParameters:(NSDictionary *)parameters completionHandler:(M2XDeviceCallback)completionHandler;
 
-// keys
+// Search the catalog of public Devices.
+//
+// This allows unauthenticated users to search Devices from other users that
+// have been marked as public, allowing them to read public Device metadata,
+// locations, streams list, and view each Devices' stream metadata and its
+// values.
+//
+// See M2XDevice.catalogWithClient:parameters:completionHandler: for more details
+- (void)deviceCatalogWithParameters:(NSDictionary *)parameters completionHandler:(M2XArrayCallback)completionHandler;
+
+
+// Retrieve list of keys associated with the user account.
+//
+// See M2XKey.listWithClient:parameters:completionHandler: for more details
 - (void)keysWithCompletionHandler:(M2XArrayCallback)completionHandler;
+
+// Obtain an API Key from M2X
+//
+// This method instantiates an instance of Key and calls
+// `M2XKey.viewWithCompletionHandler:` method, returning the key instance with all
+// its attributes initialized
 - (void)keyWithKey:(NSString *)key completionHandler:(M2XKeyCallback)completionHandler;
+
+// Create a new API Key
+//
+// Note that, according to the parameters sent, you can create a
+// Master API Key or a Device/Stream API Key.
 - (void)createKeyWithParameters:(NSDictionary *)parameters completionHandler:(M2XKeyCallback)completionHandler;
 
-// distributions
+// Retrieve list of device distributions accessible by the authenticated
+// API key.
+//
+// See M2XDistribution.listWithClient:parameters:completionHandler: for more details
 - (void)distributionsWithCompletionHandler:(M2XArrayCallback)completionHandler;
+
+// Obtain a Distribution from M2X
+//
+// This method instantiates an instance of Distribution and calls
+// `M2XDistribution.viewWithCompletionHandler:` method, returning the device instance with all
+// its attributes initialized
 - (void)distributionWithId:(NSString *)identifier completionHandler:(M2XDistributionCallback)completionHandler;
+
+// Creates a new device distribution on M2X with the specified parameters
 - (void)createDistributionWithParameters:(NSDictionary *)parameters completionHandler:(M2XDistributionCallback)completionHandler;
 
 - (NSString *)userAgent;

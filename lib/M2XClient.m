@@ -43,6 +43,10 @@ static NSString * const kLibVersion = @"2.0.0";
     @throw [NSException exceptionWithName:@"InvalidInitializer" reason:@"Can't use the default initializer" userInfo:nil];
 }
 
+- (void)statusWithCompletionHandler:(M2XBaseCallback)completionHandler {
+    [self getWithPath:@"/status" parameters:nil completionHandler:completionHandler];
+}
+
 - (void)devicesWithParameters:(NSDictionary *)parameters completionHandler:(M2XArrayCallback)completionHandler {
     [M2XDevice listWithClient:self parameters:parameters completionHandler:completionHandler];
 }
@@ -56,6 +60,10 @@ static NSString * const kLibVersion = @"2.0.0";
 
 - (void)createDeviceWithParameters:(NSDictionary *)parameters completionHandler:(M2XDeviceCallback)completionHandler {
     [M2XDevice createWithClient:self parameters:parameters completionHandler:completionHandler];
+}
+
+- (void)deviceCatalogWithParameters:(NSDictionary *)parameters completionHandler:(M2XArrayCallback)completionHandler {
+    [M2XDevice catalogWithClient:self parameters:parameters completionHandler:completionHandler];
 }
 
 - (void)keysWithCompletionHandler:(M2XArrayCallback)completionHandler {

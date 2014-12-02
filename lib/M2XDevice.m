@@ -27,6 +27,19 @@ static NSString * const kPath = @"/devices";
     }];
 }
 
++ (void)catalogWithClient:(M2XClient *)client parameters:(NSDictionary *)parameters completionHandler:(M2XArrayCallback)completionHandler {
+    [client getWithPath:[NSString stringWithFormat:@"%@/catalog", kPath] parameters:parameters completionHandler:^(M2XResponse *response) {
+        NSMutableArray *array = [NSMutableArray array];
+        
+        for (NSDictionary *dict in response.json[@"devices"]) {
+            M2XDevice *device = [[M2XDevice alloc] initWithClient:client attributes:dict];
+            [array addObject:device];
+        }
+        
+        completionHandler(array, response);
+    }];
+}
+
 + (void)createWithClient:(M2XClient *)client parameters:(NSDictionary *)parameters completionHandler:(M2XDeviceCallback)completionHandler {
     [client postWithPath:kPath parameters:parameters completionHandler:^(M2XResponse *response) {
         M2XDevice *device = [[M2XDevice alloc] initWithClient:client attributes:response.json];
