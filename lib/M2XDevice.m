@@ -27,6 +27,10 @@ static NSString * const kPath = @"/devices";
     }];
 }
 
++ (void)groupsWithClient:(M2XClient *)client completionHandler:(M2XBaseCallback)completionHandler {
+    [client getWithPath:[NSString stringWithFormat:@"%@/groups", kPath] parameters:nil completionHandler:completionHandler];
+}
+
 + (void)catalogWithClient:(M2XClient *)client parameters:(NSDictionary *)parameters completionHandler:(M2XArrayCallback)completionHandler {
     [client getWithPath:[NSString stringWithFormat:@"%@/catalog", kPath] parameters:parameters completionHandler:^(M2XResponse *response) {
         NSMutableArray *array = [NSMutableArray array];
@@ -47,8 +51,16 @@ static NSString * const kPath = @"/devices";
     }];
 }
 
+- (void)logWithCompletionHandler:(M2XBaseCallback)completionHandler {
+    [self.client getWithPath:[NSString stringWithFormat:@"%@/log", kPath] parameters:nil completionHandler:completionHandler];
+}
+
 - (void)streamsWithCompletionHandler:(M2XArrayCallback)completionHandler {
     [M2XStream listWithClient:self.client device:self completionHandler:completionHandler];
+}
+
+- (void)streamsWithName:(NSString *)name completionHandler:(M2XStreamCallback)completionHandler {
+    [M2XStream fetchWithClient:self.client device:self name:name completionHandler:completionHandler];
 }
 
 - (void)updateStreamWithName:(NSString *)name parameters:(NSDictionary *)parameters completionHandler:(M2XStreamCallback)completionHandler {
