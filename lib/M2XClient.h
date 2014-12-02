@@ -39,13 +39,16 @@ typedef void (^M2XArrayCallback)(NSArray *objects, M2XResponse *response);
 // devices
 - (void)devicesWithParameters:(NSDictionary *)parameters completionHandler:(M2XArrayCallback)completionHandler;
 - (void)deviceWithId:(NSString *)identifier completionHandler:(M2XDeviceCallback)completionHandler;
+- (void)createDeviceWithParameters:(NSDictionary *)parameters completionHandler:(M2XDeviceCallback)completionHandler;
 
 // keys
 - (void)keysWithCompletionHandler:(M2XArrayCallback)completionHandler;
+- (void)keyWithKey:(NSString *)key completionHandler:(M2XKeyCallback)completionHandler;
 - (void)createKeyWithParameters:(NSDictionary *)parameters completionHandler:(M2XKeyCallback)completionHandler;
 
 // distributions
 - (void)distributionsWithCompletionHandler:(M2XArrayCallback)completionHandler;
+- (void)distributionWithId:(NSString *)identifier completionHandler:(M2XDistributionCallback)completionHandler;
 - (void)createDistributionWithParameters:(NSDictionary *)parameters completionHandler:(M2XDistributionCallback)completionHandler;
 
 - (NSString *)userAgent;

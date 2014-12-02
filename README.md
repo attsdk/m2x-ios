@@ -20,270 +20,57 @@ The M2X iOS Client is compatible with the **iOS 7 SDK** (or above). The HomeKit 
 
 ## Usage
 
-CBBM2x is the main class that provides the methods to set the API URL ("http://api-m2x.att.com/v2" as default) and the Master Key.
-
-**Example:**
+In order to communicate with the M2X API, you need an instance of [M2XClient](lib/M2XClient.m). You need to pass your API key in the initializer to access your data.
 
 ```objc
-//get singleton instance of M2x Class
-CBBM2x* m2x = [CBBM2x shared];
-//set the Master Api Key
-m2x.apiKey = @"your_api_key";
+M2XClient *m2x = [[M2XClient alloc] initWithApiKey:(<YOUR-API-KEY>)]
 ```
 
-### API Clients
----
-The clients (`CBBDeviceClient`, `CBBStreamClient`, `CBBDistributionClient` and `CBBKeysClient`) provide an interface to make all the requests on the respectives API.
+This provides an interface to your data on M2X
 
-If the call requires parameters, it must be encapsulated in a `NSDictionary` following the respective estructure from the [API Documentation](https://m2x.att.com/developer/documentation/overview).
-As well as the parameters, the response is returned in a `NSDictionary` object.
+- [Distribution](lib/M2XDistribution.rb)
+  ```objc
+    [m2x distributionsWithCompletionHandler:^(NSArray *objects, M2XResponse *response) {
+        ...
+    }];
 
-If required, a [Device API key](https://m2x.att.com/developer/documentation/overview#API-Keys) can be set in these classes.
-
-#### [CBBDeviceClient](/lib/CBBDeviceClient.h) ([Spec](https://m2x.att.com/developer/documentation/device))
-
-```objc
-CBBDeviceClient *client = [[CBBDeviceClient alloc] init];
-[client setDeviceKey:@"YOUR_DEVICE_API_KEY"];
+    [m2x distributionWithId:@"<DISTRIBUTION-ID>" completionHandler:^(M2XDistribution *distribution, M2XResponse *response) {
+        ...
+    }];
 ```
 
-**List Devices in a `NSMutableArray`:**
+- [Device](lib/M2XDevice.rb)
+  ```objc
+    [m2x devicesWithCompletionHandler:^(NSArray *objects, M2XResponse *response) {
+        ...
+    }];
 
-```objc
+    [m2x deviceWithId:@"<DEVICE-ID>" completionHandler:^(M2XDevice *device, M2XResponse *response) {
+        ...
+    }];
+  ```
 
-// Note that for this call you need your Master API Key,
-// otherwise you'll get a 401 Unauthorized error.
-[client setDeviceKey:@"YOUR_MASTER_API_KEY"];
+- [Key](lib/M2XKey.rb)
+  ```objc
+    [m2x keysWithCompletionHandler:^(NSArray *objects, M2XResponse *response) {
+        ...
+    }];
 
-//retrieve a list of devices without parameters
-[client listDevicesWithParameters:nil completionHandler:^(CBBResponse *response) {
-    if (!response.error) {
-        NSDictionary *response = response.json[@"devices"];
-        NSMutableArray *deviceList = [NSMutableArray array];
-        for (NSDictionary *device in response) {
-            //show only active devices
-            if([[device valueForKey:@"status"] isEqualToString:@"enabled"])
-                [deviceList addObject:device];
-        }
-    } else {
-        NSLog(@"Error: %@",[response.error description]);
-    }
-}];
-```
+    [m2x keyWithKey:@"<KEY-ID>" completionHandler:^(M2XKey *key, M2XResponse *response) {
+        ...
+    }];  ```
 
-**View Device Details:**
+Refer to the documentation on each class for further usage instructions.
 
-```objc
-[client viewDetailsForDeviceId:@"device_id" completionHandler:^(CBBResponse *response) {
-    if (!response.error) {
-        [lblDSName setText:[response.json valueForKey:@"name"]];
-        [lblDSDescription setText:[response.json valueForKey:@"name"]];
-        [lblDSSerial setText:[response.json valueForKey:@"serial"]];
-    } else {
-        NSLog(@"Error: %@",[response.error localizedDescription]);
-    }
-}];
-```
+## Example
 
-**Create Device:**
-
-```objc
-NSDictionary *device = @{ @"name": @"Sample Device",
-                       @"description": @"Longer description for Sample Device",
-                        @"visibility": @"public" };
-
-[client createDevice:device completionHandler:^(CBBResponse *response) {
-    if (!response.error) {
-        NSDictionary *deviceCreated = response.json;
-    } else {
-        NSLog(@"Error: %@",[response.error localizedDescription]);
-    }
-}];
-
-```
-
-**Update the current location:**
-
-```objc
-//init locationManager
-CLLocationManager *locationManager = [[CLLocationManager alloc] init];
-locationManager.distanceFilter = kCLDistanceFilterNone;
-locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-[locationManager startUpdatingLocation];
-//...//
-//Set the current location
-CLLocation *location = [locationManager location];
-NSDictionary *locationDict = @{ @"name": _currentLocality,
-                            @"latitude": [NSString stringWithFormat:@"%f",location.coordinate.latitude],
-                           @"longitude": [NSString stringWithFormat:@"%f",location.coordinate.longitude],
-                           @"elevation": [NSString stringWithFormat:@"%f",location.altitude] };
-
-[client updateDeviceWithLocation:locationDict inDevice:@"your_device_id" completionHandler:^(CBBResponse *response) {
-    if (!response.error) {
-        [self didSetLocation];
-    } else {
-        NSLog(@"Error: %@",[response.error localizedDescription]);
-    }
-}];
-```
-
-**Create a Trigger**
-
-```objc
-NSDictionary *trigger = @{ @"name": @"trigger1",
-                           @"stream": @"temperature",
-                           @"condition": @">",
-                           @"value": @"30",
-                           @"callback_url": @"http://example.com",
-                           @"status": @"enabled" };
-
-[client createTrigger:trigger inDevice:@"ee9501931bcb3f9b0d25fde5eaf4abd8" completionHandler:^(CBBResponse *response) {
-    ...
-}];
-```
-
-**View Request Log**
-
-```objc
-[client viewRequestLogForDevice:@"YOUR_DEVICE_ID" completionHandler:^(CBBResponse *response) {
-...
-}];
-```
-
-#### [CBBStreamClient](/lib/CBBStreamClient.h) ([Spec](https://m2x.att.com/developer/documentation/stream))
-
-
-```objc
-CBBStreamClient *client = [[CBBStreamClient alloc] init];
-[deviceClient setDeviceKey:@"YOUR_DEVICE_API_KEY"];
-```
-
-**Post Data Stream Values:**
-
-```objc
-NSString *now = [NSDate date].toISO8601;
-NSDictionary *newValue = @{ @"values": @[ @{ @"value": @"20", @"timestamp": now } ] };
-
-[client postDataValues:newValue
-                  forStream:@"stream_name"
-                     inDevice:@"your_device_id"
-                     completionHandler:^(CBBResponse *response) {
-                     ... 
-                     }
-];
-```
-
-#### [CBBDistributionClient](/lib/CBBDistributionClient.h) ([Spec](https://m2x.att.com/developer/documentation/device))
-
-
-```objc
-CBBDistributionClient *client = [[CBBDistributionClient alloc] init];
-[deviceClient setDeviceKey:@"YOUR_DEVICE_API_KEY"];
-```
-
-**List Devices from a Distribution:**
-
-```objc
-[client listDevicesFromDistribution:@"distribution_id" completionHandler:^(CBBResponse *response) {
-...
-}];
-```
-
-**Add Device to an existing Distribution:**
-
-```objc
-NSDictionary *serial = @{ @"serial": @"your_new_serial" };
-//Add Device to the Distribution
-[client addDeviceToDistribution:@"distribution_id" withParameters:serial completionHandler:^(CBBResponse *response) {
-...
-}];
-```
-
-**Create Distribution:**
-
-```objc
-NSDictionary *distribution = @{ @"name": @"your_distribution_name" ,
-                  @"description": @"a_description",
-                   @"visibility": @"private" };
-
-[client createDistribution:distribution completionHandler:^(CBBResponse *response) {
-...
-}];
-```
-
-#### [CBBKeysClient](/lib/CBBKeysClient.h) ([Spec](https://m2x.att.com/developer/documentation/keys))
-
-```objc
-CBBKeysClient *client = [[CBBKeysClient alloc] init];
-[client setDeviceKey:@"YOUR_DEVICE_API_KEY"];
-```
-
-**List Keys:**
-
-```objc
-[client listKeysWithParameters:nil completionHandler:^(CBBResponse *response) {
-    if (!error) {
-      NSArray *keys = object[@"keys"];
-    }
-}];
-```
-
-**View Key Details:**
-
-```objc
-[client viewDetailsForKey:_key completionHandler:^(CBBResponse *response) {
-    NSString *name = [response.json valueForKey:@"name"];
-    NSString *key = [response.json valueForKey:@"key"];
-    NSString *expiresAt = [response.json valueForKey:@"expires_at"];
-    NSString *permissions = [response.json[@"permissions"] componentsJoinedByString:@", "];
-
-    [lblName setText:name];
-    [lblKey setText:key];
-    [lblPermissions setText:permissions];
-    //check if expires_at isn't set.
-    if(![expiresAt isEqual:[NSNull null]]){
-        [lblExpiresAt setText:expiresAt];
-    }
-}];
-```
-
-**Regenerate Key:**
-
-```objc
-[client regenerateKey:_key completionHandler:^(CBBResponse *response) {
-    //Update key label
-    [lblKey setText:[response.json valueForKey:@"key"]];
-}];
-```
-
-#### Errors and Messages
-
-The *error* parameter is a `NSError` object that encapsulate the error information, check for its domain and code.
-
-To get the HTTP status code use the `response` object
-
-### M2X Categories
-
-M2X includes the NSDate+M2X category to make it easier to send and receive dates using the ISO8601 standard.
-
-```objc
-- (NSString *) toISO8601;
-+ (NSDate *) fromISO8601:(NSString *)dateString;
-```
-
-These methods can be used to convert to and from a NSDate or NSString object.
-
-**Example:**
-
-```objc
-NSDate *distributionCreationDate = [NSDate fromISO8601:distribution[@"created"]];
-```
+Open [M2X_iOS project](M2X_iOS/M2X_iOS.xcodeproj) to see different scenarios on how to use the library.
 
 ## Demos
 
 ### HomeKit Demo App
 
-The SDK includes a demo app demonstrating integration possibilities between the iOS 8 HomeKit framework and M2X. To build the demo app you'll need Xcode 6 and a HomeKit-compatible thermostat. You could also simulate the thermostat using the HomeKit Accessory Simulator, available in the Hardware IO Tools.
+The lib includes a [demo app](HomeKitDemo/HomeKitDemo.xcodeproj) demonstrating integration possibilities between the iOS 8 HomeKit framework and M2X. To build the demo app you'll need Xcode 6 and a HomeKit-compatible thermostat. You could also simulate the thermostat using the HomeKit Accessory Simulator, available in the Hardware IO Tools.
 
 The HomeKit Demo App is capable of monitoring a thermostat's current temperature characteristic, capture temperature values and post them to M2X simply by tapping a button.
 
@@ -305,13 +92,9 @@ Finally, in order to view and post data you simply need to:
 * Tap on the room name, then the accessory name and finally on the service name. This should start displaying a new current temperature value every 1 second.
 * Tap the Save button to post all currently available data points to M2X. Old data will be automatically removed from the table.
 
-### Demo App
-
-This repository comes with a simple app that implements some of the API methods. It can be found in the following folder: `M2X_iOS`.
-
 ## Versioning
 
-This library aims to adhere to [Semantic Versioning 2.0.0](http://semver.org/). As a summary, given a version number `MAJOR.MINOR.PATCH`:
+This lib aims to adhere to [Semantic Versioning 2.0.0](http://semver.org/). As a summary, given a version number `MAJOR.MINOR.PATCH`:
 
 1. `MAJOR` will increment when backwards-incompatible changes are introduced to the client.
 2. `MINOR` will increment when backwards-compatible functionality is added.
@@ -323,4 +106,4 @@ Additional labels for pre-release and build metadata are available as extensions
 
 ## License
 
-This library is provided under the MIT license. See [LICENSE](LICENSE) for applicable terms.
+This lib is provided under the MIT license. See [LICENSE](LICENSE) for applicable terms.
