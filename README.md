@@ -14,7 +14,7 @@ Getting Started
 
 ## Installation
 
-Copy the content from the `lib` folder to your project or add `M2XLib/M2XLib.xcodeproj` as a subproject. In the last case make sure set the `Other Linker Flags` build setting to **-ObjC**.
+Copy the content from the `lib` folder to your project or add `M2XLib/M2XLib.xcodeproj` as a subproject. In the last case, make sure to set the `Other Linker Flags` build setting to **-ObjC**.
 
 The M2X iOS Client is compatible with the **iOS 7 SDK** (or above). The HomeKit demo app will only work with Xcode 6, the **iOS 8.0 SDK**, and a compatible HomeKit device or with the HomeKit Accessory Simulator.
 
@@ -23,7 +23,7 @@ The M2X iOS Client is compatible with the **iOS 7 SDK** (or above). The HomeKit 
 In order to communicate with the M2X API, you need an instance of [M2XClient](lib/M2XClient.m). You need to pass your API key in the initializer to access your data.
 
 ```objc
-M2XClient *m2x = [[M2XClient alloc] initWithApiKey:(<YOUR-API-KEY>)]
+M2XClient *m2x = [[M2XClient alloc] initWithApiKey:@"<YOUR-API-KEY>"]
 ```
 
 This provides an interface to your data on M2X
