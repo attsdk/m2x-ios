@@ -122,6 +122,29 @@
     XCTAssertTrue([body rangeOfString:@"\"param2\":\"2\""].location != NSNotFound);
 }
 
+- (void)testAllGoodOn200 {
+    id sessionMock = OCMClassMock([NSURLSession class]);
+    [[[sessionMock stub] andDo:^(NSInvocation *invocation) {
+        void (^callback)(NSData *data, NSURLResponse *response, NSError *error);
+        [invocation getArgument:&callback atIndex:3];
+        
+        NSData *data = [NSData dataWithContentsOfFile:@"{\"a\":\"b\"}"];
+        NSHTTPURLResponse *response = [[NSHTTPURLResponse alloc] initWithURL:nil statusCode:200 HTTPVersion:@"HTTP/1.1" headerFields:nil];
+        
+        callback(data, response, nil);
+    }] dataTaskWithRequest:[OCMArg any] completionHandler:[OCMArg any]];
+    
+    M2XClient *client = [[M2XClient alloc] initWithApiKey:@"1234"];
+    client.session = sessionMock;
+    client.apiKey = @"1234";
+    [client putWithPath:@"/mypath" parameters:@{@"param1": @"1", @"param2": @"2"} completionHandler:^(M2XResponse *response) {
+        XCTAssertFalse(response.error);
+        XCTAssertFalse(response.clientError);
+        XCTAssertFalse(response.serverError);
+        XCTAssertNil(response.errorObject);
+    }];
+}
+
 - (void)testErrorOn400 {
     id sessionMock = OCMClassMock([NSURLSession class]);
     [[[sessionMock stub] andDo:^(NSInvocation *invocation) {
@@ -129,7 +152,7 @@
         [invocation getArgument:&callback atIndex:3];
         
         NSData *data = [NSData dataWithContentsOfFile:@"{\"a\":\"b\"}"];
-        NSHTTPURLResponse *response = [[NSHTTPURLResponse alloc] initWithURL:nil statusCode:404 HTTPVersion:@"1.1" headerFields:nil];
+        NSHTTPURLResponse *response = [[NSHTTPURLResponse alloc] initWithURL:nil statusCode:404 HTTPVersion:@"HTTP/1.1" headerFields:nil];
         
         callback(data, response, nil);
     }] dataTaskWithRequest:[OCMArg any] completionHandler:[OCMArg any]];
@@ -140,6 +163,7 @@
     [client putWithPath:@"/mypath" parameters:@{@"param1": @"1", @"param2": @"2"} completionHandler:^(M2XResponse *response) {
         XCTAssertTrue(response.error);
         XCTAssertTrue(response.clientError);
+        XCTAssertNotNil(response.errorObject);
     }];
 }
 
@@ -150,7 +174,7 @@
         [invocation getArgument:&callback atIndex:3];
         
         NSData *data = [NSData dataWithContentsOfFile:@"{\"a\":\"b\"}"];
-        NSHTTPURLResponse *response = [[NSHTTPURLResponse alloc] initWithURL:nil statusCode:500 HTTPVersion:@"1.1" headerFields:nil];
+        NSHTTPURLResponse *response = [[NSHTTPURLResponse alloc] initWithURL:nil statusCode:500 HTTPVersion:@"HTTP/1.1" headerFields:nil];
         
         callback(data, response, nil);
     }] dataTaskWithRequest:[OCMArg any] completionHandler:[OCMArg any]];
@@ -161,6 +185,7 @@
     [client putWithPath:@"/mypath" parameters:@{@"param1": @"1", @"param2": @"2"} completionHandler:^(M2XResponse *response) {
         XCTAssertTrue(response.error);
         XCTAssertTrue(response.serverError);
+        XCTAssertNotNil(response.errorObject);
     }];
 }
 

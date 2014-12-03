@@ -34,6 +34,15 @@ NSError *_errorObject;
     return self;
 }
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        _response = [[NSHTTPURLResponse alloc] initWithURL:nil statusCode:200 HTTPVersion:@"HTTP/1.1" headerFields:nil];
+    }
+    return self;
+}
+
 - (NSData *)raw {
     return _data;
 }
@@ -73,11 +82,11 @@ NSError *_errorObject;
 - (NSError *)errorObject {
     if (_errorObject) {
         return _errorObject;
+    } else if ([self error]) {
+        return [NSError errorWithDomain:M2XErrorDomain code:M2XApiErrorResponseErrorKey userInfo:@{@"statusCode": [NSNumber numberWithInt:(int)_response.statusCode]}];
+    } else {
+        return nil;
     }
-    
-    NSError *error = [NSError errorWithDomain:M2XErrorDomain code:M2XApiErrorResponseErrorKey userInfo:@{@"statusCode": [NSNumber numberWithInt:(int)_response.statusCode]}];
-    
-    return error;
 }
 
 @end
