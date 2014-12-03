@@ -59,8 +59,12 @@ static BOOL VERBOSE_MODE = YES;
     
     NSURLSessionDataTask *task = [self.session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         if (completionHandler) {
-            M2XResponse *r = [[M2XResponse alloc] initWithResponse:(NSHTTPURLResponse *)response data:data error:error];
-            completionHandler(r);
+            if (self.delegate) {
+                [self.delegate handleResponseWithData:data request:request response:(NSHTTPURLResponse *)response error:error completionHandler:completionHandler];
+            } else {
+                M2XResponse *r = [[M2XResponse alloc] initWithResponse:(NSHTTPURLResponse *)response data:data error:error];
+                completionHandler(r);
+            }
         }
     }];
     [task resume];

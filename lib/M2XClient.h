@@ -25,6 +25,13 @@ typedef void (^M2XKeyCallback)(M2XKey *key, M2XResponse *response);
 typedef void (^M2XDistributionCallback)(M2XDistribution *distribution, M2XResponse *response);
 typedef void (^M2XArrayCallback)(NSArray *objects, M2XResponse *response);
 
+@protocol M2XClientDelegate <NSObject>
+
+// Gives the opportunity to handle the response, which is now your responsability to create the proper M2XResponse object can call the completionHandler
+- (void)handleResponseWithData:(NSData *)data request:(NSURLRequest *)request response:(NSHTTPURLResponse *)response error:(NSError *)error completionHandler:(M2XBaseCallback)completionHandler;
+
+@end
+
 // Interface for connecting with M2X API service.
 //
 // This class provides convenience methods to access M2X most common resources.
@@ -39,6 +46,8 @@ typedef void (^M2XArrayCallback)(NSArray *objects, M2XResponse *response);
 @property (nonatomic, copy) NSString *apiBaseUrl;
 @property (nonatomic, copy) NSString *apiVersion;
 @property (nonatomic, strong) NSURLSession *session;
+
+@property (nonatomic, weak) id<M2XClientDelegate> delegate;
 
 + (NSString *)version;
 
