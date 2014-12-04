@@ -22,21 +22,22 @@
 		0B65FBBE184E114700C88810 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B65FB9D184E114700C88810 /* UIKit.framework */; };
 		0B65FBC6184E114800C88810 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0B65FBC4184E114800C88810 /* InfoPlist.strings */; };
 		0B65FBC8184E114800C88810 /* M2X_iOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B65FBC7184E114800C88810 /* M2X_iOSTests.m */; };
-		0B7471F61860A1C2006F48B4 /* CreateDistributionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B7471F51860A1C2006F48B4 /* CreateDistributionViewController.m */; };
 		0B7471FA1860BA01006F48B4 /* KeyListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B7471F91860BA01006F48B4 /* KeyListViewController.m */; };
 		0B7472001860C6C0006F48B4 /* CreateKeyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B7471FF1860C6C0006F48B4 /* CreateKeyViewController.m */; };
 		0B7472031860D16B006F48B4 /* DatePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B7472021860D16B006F48B4 /* DatePickerViewController.m */; };
-		0B810E29185F4C7300D22F49 /* DeviceDescriptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B810E22185F4C7300D22F49 /* DeviceDescriptionViewController.m */; };
-		0B810E2A185F4C7300D22F49 /* DeviceLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B810E24185F4C7300D22F49 /* DeviceLocationViewController.m */; };
-		0B810E2B185F4C7300D22F49 /* DevicesListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B810E26185F4C7300D22F49 /* DevicesListViewController.m */; };
-		0B810E2C185F4C7300D22F49 /* StreamValuesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B810E28185F4C7300D22F49 /* StreamValuesViewController.m */; };
-		0B810E39185F742100D22F49 /* DistributionListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B810E38185F742100D22F49 /* DistributionListViewController.m */; };
-		0B810E3F185F87F000D22F49 /* DistributionDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B810E3E185F87F000D22F49 /* DistributionDetailsViewController.m */; };
 		0B810E48185F919B00D22F49 /* green.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B810E46185F919B00D22F49 /* green.png */; };
 		0B810E49185F919B00D22F49 /* red.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B810E47185F919B00D22F49 /* red.png */; };
-		0B810E4C185F9ECD00D22F49 /* AddDeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B810E4B185F9ECD00D22F49 /* AddDeviceViewController.m */; };
-		0BAD9DF41864C4210070487E /* AddStreamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BAD9DF31864C4210070487E /* AddStreamViewController.m */; };
 		E25E6A371A2CDDDE00E1941F /* NSDate+M2X.m in Sources */ = {isa = PBXBuildFile; fileRef = E25E6A361A2CDDDE00E1941F /* NSDate+M2X.m */; };
+		E2931E011A30B24200038311 /* AddDeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2931DF01A30B24200038311 /* AddDeviceViewController.m */; };
+		E2931E021A30B24200038311 /* AddStreamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2931DF21A30B24200038311 /* AddStreamViewController.m */; };
+		E2931E031A30B24200038311 /* CreateDistributionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2931DF41A30B24200038311 /* CreateDistributionViewController.m */; };
+		E2931E041A30B24200038311 /* DeviceDescriptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2931DF61A30B24200038311 /* DeviceDescriptionViewController.m */; };
+		E2931E051A30B24200038311 /* DeviceLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2931DF81A30B24200038311 /* DeviceLocationViewController.m */; };
+		E2931E061A30B24200038311 /* DevicesListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2931DFA1A30B24200038311 /* DevicesListViewController.m */; };
+		E2931E071A30B24200038311 /* DistributionDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2931DFC1A30B24200038311 /* DistributionDetailsViewController.m */; };
+		E2931E081A30B24200038311 /* DistributionListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2931DFE1A30B24200038311 /* DistributionListViewController.m */; };
+		E2931E091A30B24200038311 /* StreamValuesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2931E001A30B24200038311 /* StreamValuesViewController.m */; };
+		E2931E0C1A30B2BA00038311 /* M2XTrigger.m in Sources */ = {isa = PBXBuildFile; fileRef = E2931E0B1A30B2BA00038311 /* M2XTrigger.m */; };
 		E2B5751D1A2C932000E837FC /* M2XDistribution.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B5751C1A2C932000E837FC /* M2XDistribution.m */; };
 		E2C45B991A28AC4000DDFA29 /* M2XClient.m in Sources */ = {isa = PBXBuildFile; fileRef = E2C45B901A28AC4000DDFA29 /* M2XClient.m */; };
 		E2C45B9A1A28AC4000DDFA29 /* M2XClient+HTTP.m in Sources */ = {isa = PBXBuildFile; fileRef = E2C45B921A28AC4000DDFA29 /* M2XClient+HTTP.m */; };
@@ -79,34 +80,36 @@
 		0B65FBC3184E114800C88810 /* M2X_iOSTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "M2X_iOSTests-Info.plist"; sourceTree = "<group>"; };
 		0B65FBC5184E114800C88810 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0B65FBC7184E114800C88810 /* M2X_iOSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = M2X_iOSTests.m; sourceTree = "<group>"; };
-		0B7471F41860A1C2006F48B4 /* CreateDistributionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateDistributionViewController.h; sourceTree = "<group>"; };
-		0B7471F51860A1C2006F48B4 /* CreateDistributionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateDistributionViewController.m; sourceTree = "<group>"; };
 		0B7471F81860BA01006F48B4 /* KeyListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyListViewController.h; sourceTree = "<group>"; };
 		0B7471F91860BA01006F48B4 /* KeyListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyListViewController.m; sourceTree = "<group>"; };
 		0B7471FE1860C6C0006F48B4 /* CreateKeyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateKeyViewController.h; sourceTree = "<group>"; };
 		0B7471FF1860C6C0006F48B4 /* CreateKeyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateKeyViewController.m; sourceTree = "<group>"; };
 		0B7472011860D16B006F48B4 /* DatePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatePickerViewController.h; sourceTree = "<group>"; };
 		0B7472021860D16B006F48B4 /* DatePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatePickerViewController.m; sourceTree = "<group>"; };
-		0B810E21185F4C7300D22F49 /* DeviceDescriptionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceDescriptionViewController.h; sourceTree = "<group>"; };
-		0B810E22185F4C7300D22F49 /* DeviceDescriptionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceDescriptionViewController.m; sourceTree = "<group>"; };
-		0B810E23185F4C7300D22F49 /* DeviceLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceLocationViewController.h; sourceTree = "<group>"; };
-		0B810E24185F4C7300D22F49 /* DeviceLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceLocationViewController.m; sourceTree = "<group>"; };
-		0B810E25185F4C7300D22F49 /* DevicesListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DevicesListViewController.h; sourceTree = "<group>"; };
-		0B810E26185F4C7300D22F49 /* DevicesListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DevicesListViewController.m; sourceTree = "<group>"; };
-		0B810E27185F4C7300D22F49 /* StreamValuesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreamValuesViewController.h; sourceTree = "<group>"; };
-		0B810E28185F4C7300D22F49 /* StreamValuesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StreamValuesViewController.m; sourceTree = "<group>"; };
-		0B810E37185F742100D22F49 /* DistributionListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DistributionListViewController.h; sourceTree = "<group>"; };
-		0B810E38185F742100D22F49 /* DistributionListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DistributionListViewController.m; sourceTree = "<group>"; };
-		0B810E3D185F87F000D22F49 /* DistributionDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DistributionDetailsViewController.h; sourceTree = "<group>"; };
-		0B810E3E185F87F000D22F49 /* DistributionDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DistributionDetailsViewController.m; sourceTree = "<group>"; };
 		0B810E46185F919B00D22F49 /* green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = green.png; sourceTree = "<group>"; };
 		0B810E47185F919B00D22F49 /* red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red.png; sourceTree = "<group>"; };
-		0B810E4A185F9ECD00D22F49 /* AddDeviceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddDeviceViewController.h; sourceTree = "<group>"; };
-		0B810E4B185F9ECD00D22F49 /* AddDeviceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddDeviceViewController.m; sourceTree = "<group>"; };
-		0BAD9DF21864C4210070487E /* AddStreamViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddStreamViewController.h; sourceTree = "<group>"; };
-		0BAD9DF31864C4210070487E /* AddStreamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddStreamViewController.m; sourceTree = "<group>"; };
 		E25E6A351A2CDDDE00E1941F /* NSDate+M2X.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+M2X.h"; sourceTree = "<group>"; };
 		E25E6A361A2CDDDE00E1941F /* NSDate+M2X.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+M2X.m"; sourceTree = "<group>"; };
+		E2931DEF1A30B24200038311 /* AddDeviceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddDeviceViewController.h; sourceTree = "<group>"; };
+		E2931DF01A30B24200038311 /* AddDeviceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddDeviceViewController.m; sourceTree = "<group>"; };
+		E2931DF11A30B24200038311 /* AddStreamViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddStreamViewController.h; sourceTree = "<group>"; };
+		E2931DF21A30B24200038311 /* AddStreamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddStreamViewController.m; sourceTree = "<group>"; };
+		E2931DF31A30B24200038311 /* CreateDistributionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateDistributionViewController.h; sourceTree = "<group>"; };
+		E2931DF41A30B24200038311 /* CreateDistributionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateDistributionViewController.m; sourceTree = "<group>"; };
+		E2931DF51A30B24200038311 /* DeviceDescriptionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceDescriptionViewController.h; sourceTree = "<group>"; };
+		E2931DF61A30B24200038311 /* DeviceDescriptionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceDescriptionViewController.m; sourceTree = "<group>"; };
+		E2931DF71A30B24200038311 /* DeviceLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceLocationViewController.h; sourceTree = "<group>"; };
+		E2931DF81A30B24200038311 /* DeviceLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceLocationViewController.m; sourceTree = "<group>"; };
+		E2931DF91A30B24200038311 /* DevicesListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DevicesListViewController.h; sourceTree = "<group>"; };
+		E2931DFA1A30B24200038311 /* DevicesListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DevicesListViewController.m; sourceTree = "<group>"; };
+		E2931DFB1A30B24200038311 /* DistributionDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DistributionDetailsViewController.h; sourceTree = "<group>"; };
+		E2931DFC1A30B24200038311 /* DistributionDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DistributionDetailsViewController.m; sourceTree = "<group>"; };
+		E2931DFD1A30B24200038311 /* DistributionListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DistributionListViewController.h; sourceTree = "<group>"; };
+		E2931DFE1A30B24200038311 /* DistributionListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DistributionListViewController.m; sourceTree = "<group>"; };
+		E2931DFF1A30B24200038311 /* StreamValuesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreamValuesViewController.h; sourceTree = "<group>"; };
+		E2931E001A30B24200038311 /* StreamValuesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StreamValuesViewController.m; sourceTree = "<group>"; };
+		E2931E0A1A30B2BA00038311 /* M2XTrigger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M2XTrigger.h; sourceTree = "<group>"; };
+		E2931E0B1A30B2BA00038311 /* M2XTrigger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M2XTrigger.m; sourceTree = "<group>"; };
 		E2B5751B1A2C932000E837FC /* M2XDistribution.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M2XDistribution.h; sourceTree = "<group>"; };
 		E2B5751C1A2C932000E837FC /* M2XDistribution.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M2XDistribution.m; sourceTree = "<group>"; };
 		E2C45B8F1A28AC4000DDFA29 /* M2XClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M2XClient.h; sourceTree = "<group>"; };
@@ -184,11 +187,10 @@
 		0B65FB9F184E114700C88810 /* M2X_iOS */ = {
 			isa = PBXGroup;
 			children = (
+				E2931DEE1A30B24200038311 /* Devices */,
 				0B65FBAB184E114700C88810 /* Main_iPhone.storyboard */,
 				0B810E40185F90CF00D22F49 /* Resources */,
 				0B7471F71860B949006F48B4 /* Keys */,
-				0B810E2D185F4F7B00D22F49 /* DataSources */,
-				0B810E20185F4C7300D22F49 /* Devices */,
 				0B65FBA8184E114700C88810 /* AppDelegate.h */,
 				0B65FBA9184E114700C88810 /* AppDelegate.m */,
 				0B65FBB1184E114700C88810 /* ViewController.h */,
@@ -243,39 +245,6 @@
 			path = Keys;
 			sourceTree = "<group>";
 		};
-		0B810E20185F4C7300D22F49 /* Devices */ = {
-			isa = PBXGroup;
-			children = (
-				0B810E21185F4C7300D22F49 /* DeviceDescriptionViewController.h */,
-				0B810E22185F4C7300D22F49 /* DeviceDescriptionViewController.m */,
-				0B810E23185F4C7300D22F49 /* DeviceLocationViewController.h */,
-				0B810E24185F4C7300D22F49 /* DeviceLocationViewController.m */,
-				0B810E25185F4C7300D22F49 /* DevicesListViewController.h */,
-				0B810E26185F4C7300D22F49 /* DevicesListViewController.m */,
-				0B810E27185F4C7300D22F49 /* StreamValuesViewController.h */,
-				0B810E28185F4C7300D22F49 /* StreamValuesViewController.m */,
-				0BAD9DF21864C4210070487E /* AddStreamViewController.h */,
-				0BAD9DF31864C4210070487E /* AddStreamViewController.m */,
-			);
-			name = Devices;
-			path = Feeds;
-			sourceTree = "<group>";
-		};
-		0B810E2D185F4F7B00D22F49 /* DataSources */ = {
-			isa = PBXGroup;
-			children = (
-				0B810E37185F742100D22F49 /* DistributionListViewController.h */,
-				0B810E38185F742100D22F49 /* DistributionListViewController.m */,
-				0B810E3D185F87F000D22F49 /* DistributionDetailsViewController.h */,
-				0B810E3E185F87F000D22F49 /* DistributionDetailsViewController.m */,
-				0B810E4A185F9ECD00D22F49 /* AddDeviceViewController.h */,
-				0B810E4B185F9ECD00D22F49 /* AddDeviceViewController.m */,
-				0B7471F41860A1C2006F48B4 /* CreateDistributionViewController.h */,
-				0B7471F51860A1C2006F48B4 /* CreateDistributionViewController.m */,
-			);
-			path = DataSources;
-			sourceTree = "<group>";
-		};
 		0B810E40185F90CF00D22F49 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -296,6 +265,8 @@
 		8328496819ABBB45005CA81E /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				E2931E0A1A30B2BA00038311 /* M2XTrigger.h */,
+				E2931E0B1A30B2BA00038311 /* M2XTrigger.m */,
 				E25E6A351A2CDDDE00E1941F /* NSDate+M2X.h */,
 				E25E6A361A2CDDDE00E1941F /* NSDate+M2X.m */,
 				E2B5751B1A2C932000E837FC /* M2XDistribution.h */,
@@ -318,6 +289,31 @@
 			);
 			name = lib;
 			path = ../lib;
+			sourceTree = "<group>";
+		};
+		E2931DEE1A30B24200038311 /* Devices */ = {
+			isa = PBXGroup;
+			children = (
+				E2931DEF1A30B24200038311 /* AddDeviceViewController.h */,
+				E2931DF01A30B24200038311 /* AddDeviceViewController.m */,
+				E2931DF11A30B24200038311 /* AddStreamViewController.h */,
+				E2931DF21A30B24200038311 /* AddStreamViewController.m */,
+				E2931DF31A30B24200038311 /* CreateDistributionViewController.h */,
+				E2931DF41A30B24200038311 /* CreateDistributionViewController.m */,
+				E2931DF51A30B24200038311 /* DeviceDescriptionViewController.h */,
+				E2931DF61A30B24200038311 /* DeviceDescriptionViewController.m */,
+				E2931DF71A30B24200038311 /* DeviceLocationViewController.h */,
+				E2931DF81A30B24200038311 /* DeviceLocationViewController.m */,
+				E2931DF91A30B24200038311 /* DevicesListViewController.h */,
+				E2931DFA1A30B24200038311 /* DevicesListViewController.m */,
+				E2931DFB1A30B24200038311 /* DistributionDetailsViewController.h */,
+				E2931DFC1A30B24200038311 /* DistributionDetailsViewController.m */,
+				E2931DFD1A30B24200038311 /* DistributionListViewController.h */,
+				E2931DFE1A30B24200038311 /* DistributionListViewController.m */,
+				E2931DFF1A30B24200038311 /* StreamValuesViewController.h */,
+				E2931E001A30B24200038311 /* StreamValuesViewController.m */,
+			);
+			path = Devices;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -419,31 +415,32 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0BAD9DF41864C4210070487E /* AddStreamViewController.m in Sources */,
+				E2931E031A30B24200038311 /* CreateDistributionViewController.m in Sources */,
+				E2931E021A30B24200038311 /* AddStreamViewController.m in Sources */,
 				E2C45B9B1A28AC4000DDFA29 /* M2XDevice.m in Sources */,
 				0B65FBB3184E114700C88810 /* ViewController.m in Sources */,
 				E2C45BB21A292E5300DDFA29 /* M2XKey.m in Sources */,
-				0B810E2C185F4C7300D22F49 /* StreamValuesViewController.m in Sources */,
-				0B7471F61860A1C2006F48B4 /* CreateDistributionViewController.m in Sources */,
 				0B65FBAA184E114700C88810 /* AppDelegate.m in Sources */,
 				0B7472031860D16B006F48B4 /* DatePickerViewController.m in Sources */,
-				0B810E2B185F4C7300D22F49 /* DevicesListViewController.m in Sources */,
 				0B53F9191861ECA700B7DB7D /* KeyDetailsViewController.m in Sources */,
 				0B7472001860C6C0006F48B4 /* CreateKeyViewController.m in Sources */,
 				E2C45B991A28AC4000DDFA29 /* M2XClient.m in Sources */,
+				E2931E051A30B24200038311 /* DeviceLocationViewController.m in Sources */,
 				E2B5751D1A2C932000E837FC /* M2XDistribution.m in Sources */,
-				0B810E3F185F87F000D22F49 /* DistributionDetailsViewController.m in Sources */,
+				E2931E081A30B24200038311 /* DistributionListViewController.m in Sources */,
 				0B65FBA6184E114700C88810 /* main.m in Sources */,
 				E2C45B9D1A28AC4000DDFA29 /* M2XResponse.m in Sources */,
-				0B810E29185F4C7300D22F49 /* DeviceDescriptionViewController.m in Sources */,
-				0B810E2A185F4C7300D22F49 /* DeviceLocationViewController.m in Sources */,
+				E2931E071A30B24200038311 /* DistributionDetailsViewController.m in Sources */,
+				E2931E041A30B24200038311 /* DeviceDescriptionViewController.m in Sources */,
 				0B7471FA1860BA01006F48B4 /* KeyListViewController.m in Sources */,
-				0B810E4C185F9ECD00D22F49 /* AddDeviceViewController.m in Sources */,
+				E2931E061A30B24200038311 /* DevicesListViewController.m in Sources */,
+				E2931E091A30B24200038311 /* StreamValuesViewController.m in Sources */,
 				E2C45B9A1A28AC4000DDFA29 /* M2XClient+HTTP.m in Sources */,
 				E25E6A371A2CDDDE00E1941F /* NSDate+M2X.m in Sources */,
+				E2931E0C1A30B2BA00038311 /* M2XTrigger.m in Sources */,
 				E2C45BA21A28BCEE00DDFA29 /* M2XStream.m in Sources */,
+				E2931E011A30B24200038311 /* AddDeviceViewController.m in Sources */,
 				E2C45B9C1A28AC4000DDFA29 /* M2XResource.m in Sources */,
-				0B810E39185F742100D22F49 /* DistributionListViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
