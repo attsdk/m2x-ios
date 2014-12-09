@@ -83,7 +83,13 @@ NSError *_errorObject;
     if (_errorObject) {
         return _errorObject;
     } else if ([self error]) {
-        return [NSError errorWithDomain:M2XErrorDomain code:M2XApiErrorResponseErrorKey userInfo:@{@"statusCode": [NSNumber numberWithInt:(int)_response.statusCode]}];
+        NSString *desc = [NSString stringWithFormat:@"HTTP Status Code: %@", [NSNumber numberWithInt:(int)_response.statusCode]];
+        NSMutableDictionary *userInfo = [@{NSLocalizedDescriptionKey: desc} mutableCopy];
+        NSString *message = [[self json] valueForKey:@"message"];
+        if (message) {
+            userInfo[NSLocalizedFailureReasonErrorKey] = [self json][@"message"];
+        }
+        return [NSError errorWithDomain:M2XErrorDomain code:M2XApiErrorResponseErrorKey userInfo:userInfo];
     } else {
         return nil;
     }
