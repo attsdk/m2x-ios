@@ -25,10 +25,20 @@ typedef void (^M2XKeyCallback)(M2XKey *key, M2XResponse *response);
 typedef void (^M2XDistributionCallback)(M2XDistribution *distribution, M2XResponse *response);
 typedef void (^M2XArrayCallback)(NSArray *objects, M2XResponse *response);
 
+typedef void (^M2XResponseCallback)(NSData *data, NSURLResponse *response, NSError *error);
+
 @protocol M2XClientDelegate <NSObject>
 
 // Gives the opportunity to handle the response, which is now your responsability to create the proper M2XResponse object can call the completionHandler
 - (void)handleResponseWithData:(NSData *)data request:(NSURLRequest *)request response:(NSHTTPURLResponse *)response error:(NSError *)error completionHandler:(M2XBaseCallback)completionHandler;
+
+@optional
+
+// Allow to decide on run time if the delegate can handle requests
+- (BOOL)canHandleRequest:(NSURLRequest *)request;
+
+// Gives the opportunity to handle the request, which is now your responsability to create the proper data, response and error
+- (void)handleRequest:(NSURLRequest *)request completionHandler:(M2XResponseCallback)completionHandler;
 
 @end
 

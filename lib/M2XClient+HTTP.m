@@ -57,7 +57,7 @@ static BOOL VERBOSE_MODE = YES;
         NSLog(@"M2X: %@", request.URL);
     }
     
-    NSURLSessionDataTask *task = [self.session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+    M2XResponseCallback callback = ^(NSData *data, NSURLResponse *response, NSError *error) {
         if (completionHandler) {
             if (self.delegate) {
                 [self.delegate handleResponseWithData:data request:request response:(NSHTTPURLResponse *)response error:error completionHandler:completionHandler];
@@ -66,8 +66,16 @@ static BOOL VERBOSE_MODE = YES;
                 completionHandler(r);
             }
         }
-    }];
-    [task resume];
+    };
+    
+    if ([self.delegate respondsToSelector:@selector(handleRequest:completionHandler:)]
+        && [self.delegate respondsToSelector:@selector(canHandleRequest:)]
+        && [self.delegate canHandleRequest:request]) {
+        [self.delegate handleRequest:request completionHandler:callback];
+    } else {
+        NSURLSessionDataTask *task = [self.session dataTaskWithRequest:request completionHandler:callback];
+        [task resume];
+    }
     
     return request;
 }
