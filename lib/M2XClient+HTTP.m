@@ -90,7 +90,7 @@ static BOOL VERBOSE_MODE = YES;
 
 -(NSURLRequest *)postWithPath:(NSString*)path parameters:(NSDictionary*)parameters completionHandler:(M2XBaseCallback)completionHandler {
     if (!self.apiKey) {
-        NSError *error = [NSError errorWithDomain:M2XErrorDomain code:100 userInfo:@{NSLocalizedFailureReasonErrorKey: @"Missing API key"}];
+        NSError *error = [NSError errorWithDomain:M2XErrorDomain code:M2XApiErrorNoApiKey userInfo:@{NSLocalizedFailureReasonErrorKey: @"Missing API key"}];
         if (completionHandler) {
             completionHandler([[M2XResponse alloc] initWithResponse:nil data:nil error:error]);
         }
@@ -120,7 +120,7 @@ static BOOL VERBOSE_MODE = YES;
 
 -(NSURLRequest *)putWithPath:(NSString*)path parameters:(NSDictionary*)parameters completionHandler:(M2XBaseCallback)completionHandler {
     if (!self.apiKey) {
-        NSError *error = [NSError errorWithDomain:M2XErrorDomain code:100 userInfo:@{NSLocalizedFailureReasonErrorKey: @"Missing API key"}];
+        NSError *error = [NSError errorWithDomain:M2XErrorDomain code:M2XApiErrorNoApiKey userInfo:@{NSLocalizedFailureReasonErrorKey: @"Missing API key"}];
         if (completionHandler) {
             completionHandler([[M2XResponse alloc] initWithResponse:nil data:nil error:error]);
         }
@@ -143,7 +143,7 @@ static BOOL VERBOSE_MODE = YES;
 
 -(NSURLRequest *)deleteWithPath:(NSString*)path parameters:(NSDictionary*)parameters completionHandler:(M2XBaseCallback)completionHandler {
     if (!self.apiKey) {
-        NSError *error = [NSError errorWithDomain:M2XErrorDomain code:100 userInfo:@{NSLocalizedFailureReasonErrorKey: @"Missing API key"}];
+        NSError *error = [NSError errorWithDomain:M2XErrorDomain code:M2XApiErrorNoApiKey userInfo:@{NSLocalizedFailureReasonErrorKey: @"Missing API key"}];
         if (completionHandler) {
             completionHandler([[M2XResponse alloc] initWithResponse:nil data:nil error:error]);
         }
