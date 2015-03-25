@@ -102,6 +102,15 @@ Additional labels for pre-release and build metadata are available as extensions
 
 **Note**: the client version does not necessarily reflect the version used in the AT&T M2X API.
 
+
+## Community Demo Applications
+Members of the community have also built open source sample applications that utilize the M2X iOS client that could prove useful:
+
+* Healthy Baby: https://github.com/citrusbyte/Healthy-Baby
+
+*<small>Please note that AT&T M2X provides links to the above unofficial Community Demos for your convenience. AT&T is not responsible for, and expressly disclaims all liability for, and damages of any kind arising out of use of or reliance on these Community Demos. Links from AT&T M2X to third-party sites do not constitute an endorsement by AT&T of the parties or their products and services.</small>*
+
+
 ## License
 
 This lib is provided under the MIT license. See [LICENSE](LICENSE) for applicable terms.
