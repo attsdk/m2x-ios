@@ -27,11 +27,11 @@
 // https://m2x.att.com/developer/documentation/v2/device#List-Search-Devices
 + (void)listWithClient:(M2XClient *)client parameters:(NSDictionary *)parameters completionHandler:(M2XArrayCallback)completionHandler;
 
-// List Device Groups
-// Retrieve the list of device groups for the authenticated user.
+// List Device Tags
+// Retrieve the list of device tags for the authenticated user.
 //
-// https://m2x.att.com/developer/documentation/v2/device#List-Device-Groups
-+ (void)groupsWithClient:(M2XClient *)client completionHandler:(M2XBaseCallback)completionHandler;
+// https://m2x.att.com/developer/documentation/v2/device#List-Device-Tags
++ (void)tagsWithClient:(M2XClient *)client completionHandler:(M2XBaseCallback)completionHandler;
 
 // Create a new device
 //

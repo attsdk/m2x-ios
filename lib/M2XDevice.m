@@ -27,8 +27,8 @@ static NSString * const kPath = @"/devices";
     }];
 }
 
-+ (void)groupsWithClient:(M2XClient *)client completionHandler:(M2XBaseCallback)completionHandler {
-    [client getWithPath:[NSString stringWithFormat:@"%@/groups", kPath] parameters:nil completionHandler:completionHandler];
++ (void)tagsWithClient:(M2XClient *)client completionHandler:(M2XBaseCallback)completionHandler {
+    [client getWithPath:[NSString stringWithFormat:@"%@/tags", kPath] parameters:nil completionHandler:completionHandler];
 }
 
 + (void)catalogWithClient:(M2XClient *)client parameters:(NSDictionary *)parameters completionHandler:(M2XArrayCallback)completionHandler {
