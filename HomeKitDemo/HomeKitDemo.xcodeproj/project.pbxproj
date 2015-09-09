@@ -31,7 +31,6 @@
 		E2FA60DB1A2E00ED000FA837 /* M2XResource.m in Sources */ = {isa = PBXBuildFile; fileRef = E2FA60CF1A2E00ED000FA837 /* M2XResource.m */; };
 		E2FA60DC1A2E00ED000FA837 /* M2XResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = E2FA60D11A2E00ED000FA837 /* M2XResponse.m */; };
 		E2FA60DD1A2E00ED000FA837 /* M2XStream.m in Sources */ = {isa = PBXBuildFile; fileRef = E2FA60D31A2E00ED000FA837 /* M2XStream.m */; };
-		E2FA60DE1A2E00ED000FA837 /* M2XTrigger.m in Sources */ = {isa = PBXBuildFile; fileRef = E2FA60D51A2E00ED000FA837 /* M2XTrigger.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,8 +92,6 @@
 		E2FA60D11A2E00ED000FA837 /* M2XResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M2XResponse.m; sourceTree = "<group>"; };
 		E2FA60D21A2E00ED000FA837 /* M2XStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M2XStream.h; sourceTree = "<group>"; };
 		E2FA60D31A2E00ED000FA837 /* M2XStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M2XStream.m; sourceTree = "<group>"; };
-		E2FA60D41A2E00ED000FA837 /* M2XTrigger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M2XTrigger.h; sourceTree = "<group>"; };
-		E2FA60D51A2E00ED000FA837 /* M2XTrigger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M2XTrigger.m; sourceTree = "<group>"; };
 		E2FA60DF1A2E0135000FA837 /* M2X.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M2X.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -214,8 +211,6 @@
 				E2FA60D11A2E00ED000FA837 /* M2XResponse.m */,
 				E2FA60D21A2E00ED000FA837 /* M2XStream.h */,
 				E2FA60D31A2E00ED000FA837 /* M2XStream.m */,
-				E2FA60D41A2E00ED000FA837 /* M2XTrigger.h */,
-				E2FA60D51A2E00ED000FA837 /* M2XTrigger.m */,
 				832849B219ABBB5B005CA81E /* NSDate+M2X.h */,
 				832849B319ABBB5B005CA81E /* NSDate+M2X.m */,
 			);
@@ -337,7 +332,6 @@
 				8394979719BA5451005FFD10 /* ServicesViewController.m in Sources */,
 				E2FA60D91A2E00ED000FA837 /* M2XDistribution.m in Sources */,
 				8394978E19BA002E005FFD10 /* AccessoriesViewController.m in Sources */,
-				E2FA60DE1A2E00ED000FA837 /* M2XTrigger.m in Sources */,
 				E2FA60DA1A2E00ED000FA837 /* M2XKey.m in Sources */,
 				E2FA60D81A2E00ED000FA837 /* M2XDevice.m in Sources */,
 				836D614219C9C9F100F21102 /* SetupViewController.m in Sources */,

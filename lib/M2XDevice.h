@@ -99,12 +99,4 @@
 // https://m2x.att.com/developer/documentation/v2/device#Create-Update-Data-Stream
 - (void)updateStreamWithName:(NSString *)name parameters:(NSDictionary *)parameters completionHandler:(M2XStreamCallback)completionHandler;
 
-// Retrieve list of triggers associated with the device.
-//
-- (void)triggersWithCompletionHandler:(M2XArrayCallback)completionHandler;
-
-// Create a new trigger
-//
-- (void)createTrigger:(NSDictionary *)parameters withCompletionHandler:(M2XTriggerCallback)completionHandler;
-
 @end

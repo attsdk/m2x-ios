@@ -37,7 +37,6 @@
 		E2931E071A30B24200038311 /* DistributionDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2931DFC1A30B24200038311 /* DistributionDetailsViewController.m */; };
 		E2931E081A30B24200038311 /* DistributionListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2931DFE1A30B24200038311 /* DistributionListViewController.m */; };
 		E2931E091A30B24200038311 /* StreamValuesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2931E001A30B24200038311 /* StreamValuesViewController.m */; };
-		E2931E0C1A30B2BA00038311 /* M2XTrigger.m in Sources */ = {isa = PBXBuildFile; fileRef = E2931E0B1A30B2BA00038311 /* M2XTrigger.m */; };
 		E2B5751D1A2C932000E837FC /* M2XDistribution.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B5751C1A2C932000E837FC /* M2XDistribution.m */; };
 		E2C45B991A28AC4000DDFA29 /* M2XClient.m in Sources */ = {isa = PBXBuildFile; fileRef = E2C45B901A28AC4000DDFA29 /* M2XClient.m */; };
 		E2C45B9A1A28AC4000DDFA29 /* M2XClient+HTTP.m in Sources */ = {isa = PBXBuildFile; fileRef = E2C45B921A28AC4000DDFA29 /* M2XClient+HTTP.m */; };
@@ -108,8 +107,6 @@
 		E2931DFE1A30B24200038311 /* DistributionListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DistributionListViewController.m; sourceTree = "<group>"; };
 		E2931DFF1A30B24200038311 /* StreamValuesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreamValuesViewController.h; sourceTree = "<group>"; };
 		E2931E001A30B24200038311 /* StreamValuesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StreamValuesViewController.m; sourceTree = "<group>"; };
-		E2931E0A1A30B2BA00038311 /* M2XTrigger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M2XTrigger.h; sourceTree = "<group>"; };
-		E2931E0B1A30B2BA00038311 /* M2XTrigger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M2XTrigger.m; sourceTree = "<group>"; };
 		E2B5751B1A2C932000E837FC /* M2XDistribution.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M2XDistribution.h; sourceTree = "<group>"; };
 		E2B5751C1A2C932000E837FC /* M2XDistribution.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M2XDistribution.m; sourceTree = "<group>"; };
 		E2C45B8F1A28AC4000DDFA29 /* M2XClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M2XClient.h; sourceTree = "<group>"; };
@@ -265,8 +262,6 @@
 		8328496819ABBB45005CA81E /* lib */ = {
 			isa = PBXGroup;
 			children = (
-				E2931E0A1A30B2BA00038311 /* M2XTrigger.h */,
-				E2931E0B1A30B2BA00038311 /* M2XTrigger.m */,
 				E25E6A351A2CDDDE00E1941F /* NSDate+M2X.h */,
 				E25E6A361A2CDDDE00E1941F /* NSDate+M2X.m */,
 				E2B5751B1A2C932000E837FC /* M2XDistribution.h */,
@@ -437,7 +432,6 @@
 				E2931E091A30B24200038311 /* StreamValuesViewController.m in Sources */,
 				E2C45B9A1A28AC4000DDFA29 /* M2XClient+HTTP.m in Sources */,
 				E25E6A371A2CDDDE00E1941F /* NSDate+M2X.m in Sources */,
-				E2931E0C1A30B2BA00038311 /* M2XTrigger.m in Sources */,
 				E2C45BA21A28BCEE00DDFA29 /* M2XStream.m in Sources */,
 				E2931E011A30B24200038311 /* AddDeviceViewController.m in Sources */,
 				E2C45B9C1A28AC4000DDFA29 /* M2XResource.m in Sources */,

@@ -8,7 +8,6 @@
 
 #import "M2XDevice.h"
 #import "M2XStream.h"
-#import "M2XTrigger.h"
 
 static NSString * const kPath = @"/devices";
 
@@ -82,26 +81,6 @@ static NSString * const kPath = @"/devices";
 
 - (void)postUpdates:(NSDictionary *)values completionHandler:(M2XBaseCallback)completionHandler {
     [self.client postWithPath:[NSString stringWithFormat:@"%@/updates", [self path]] parameters:values completionHandler:completionHandler];
-}
-
-- (void)triggersWithCompletionHandler:(M2XArrayCallback)completionHandler {
-    [self.client getWithPath:[NSString stringWithFormat:@"%@/triggers", [self path]] parameters:nil completionHandler:^(M2XResponse *response) {
-        NSMutableArray *array = [NSMutableArray array];
-        
-        for (NSDictionary *dict in response.json[@"triggers"]) {
-            M2XTrigger *trigger = [[M2XTrigger alloc] initWithClient:self.client device:self attributes:dict];
-            [array addObject:trigger];
-        }
-        
-        completionHandler(array, response);
-    }];
-}
-
-- (void)createTrigger:(NSDictionary *)parameters withCompletionHandler:(M2XTriggerCallback)completionHandler {
-    [self.client postWithPath:[NSString stringWithFormat:@"%@/triggers", [self path]] parameters:parameters completionHandler:^(M2XResponse *response) {
-        M2XTrigger *trigger = [[M2XTrigger alloc] initWithClient:self.client device:self attributes:response.json];
-        completionHandler(trigger, response);
-    }];
 }
 
 - (NSString *)path {

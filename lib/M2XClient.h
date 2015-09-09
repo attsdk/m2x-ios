@@ -10,7 +10,6 @@
 #import "M2XResponse.h"
 
 @class M2XDevice;
-@class M2XTrigger;
 @class M2XStream;
 @class M2XKey;
 @class M2XResource;
@@ -19,7 +18,6 @@
 typedef void (^M2XBaseCallback)(M2XResponse *response);
 typedef void (^M2XResourceCallback)(M2XResource *resource, M2XResponse *response);
 typedef void (^M2XDeviceCallback)(M2XDevice *device, M2XResponse *response);
-typedef void (^M2XTriggerCallback)(M2XTrigger *trigger, M2XResponse *response);
 typedef void (^M2XStreamCallback)(M2XStream *stream, M2XResponse *response);
 typedef void (^M2XKeyCallback)(M2XKey *key, M2XResponse *response);
 typedef void (^M2XDistributionCallback)(M2XDistribution *distribution, M2XResponse *response);

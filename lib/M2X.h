@@ -12,6 +12,5 @@
 #import "M2XResource.h"
 #import "M2XStream.h"
 #import "M2XKey.h"
-#import "M2XTrigger.h"
 #import "M2XDistribution.h"
 #import "NSDate+M2X.h"
