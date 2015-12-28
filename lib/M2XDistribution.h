@@ -7,8 +7,9 @@
 //
 
 #import "M2XResource.h"
+#import "M2XMetadata.h"
 
-@interface M2XDistribution : M2XResource
+@interface M2XDistribution : M2XResource <M2XMetadata>
 
 // Retrieve list of device distributions accessible by the authenticated
 // API key.

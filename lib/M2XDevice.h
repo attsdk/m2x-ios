@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "M2XResource.h"
+#import "M2XMetadata.h"
 
-@interface M2XDevice : M2XResource
+@interface M2XDevice : M2XResource <M2XMetadata>
 
 // Search the catalog of public Devices.
 //
