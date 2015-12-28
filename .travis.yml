@@ -1,0 +1,3 @@
+language: objective-c
+xcode_project: M2XLib/M2XLib.xcodeproj
+xcode_scheme: M2XLib
