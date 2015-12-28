@@ -51,6 +51,10 @@ static NSString * const kLibVersion = @"3.0.0";
     [M2XDevice listWithClient:self parameters:parameters completionHandler:completionHandler];
 }
 
+- (void)searchDevicesWithParameters:(NSDictionary *)parameters completionHandler:(M2XArrayCallback)completionHandler {
+    [M2XDevice searchWithClient:self parameters:parameters completionHandler:completionHandler];
+}
+
 - (void)deviceWithId:(NSString *)identifier completionHandler:(M2XDeviceCallback)completionHandler {
     M2XDevice *device = [[M2XDevice alloc] initWithClient:self attributes:@{@"id": identifier}];
     [device viewWithCompletionHandler:^(M2XResource *resource, M2XResponse *response) {

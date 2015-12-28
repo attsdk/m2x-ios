@@ -22,11 +22,16 @@
 // https://m2x.att.com/developer/documentation/v2/device#List-Search-Public-Devices-Catalog
 + (void)catalogWithClient:(M2XClient *)client parameters:(NSDictionary *)parameters completionHandler:(M2XArrayCallback)completionHandler;
 
+// Retrieve the list of devices accessible by the authenticated API key
+//
+// https://m2x.att.com/developer/documentation/v2/device#List-Devices
++ (void)listWithClient:(M2XClient *)client parameters:(NSDictionary *)parameters completionHandler:(M2XArrayCallback)completionHandler;
+
 // Retrieve the list of devices accessible by the authenticated API key that
 // meet the search criteria.
 //
-// https://m2x.att.com/developer/documentation/v2/device#List-Search-Devices
-+ (void)listWithClient:(M2XClient *)client parameters:(NSDictionary *)parameters completionHandler:(M2XArrayCallback)completionHandler;
+// https://m2x.att.com/developer/documentation/v2/device#Search-Devices
++ (void)searchWithClient:(M2XClient *)client parameters:(NSDictionary *)parameters completionHandler:(M2XArrayCallback)completionHandler;
 
 // List Device Tags
 // Retrieve the list of device tags for the authenticated user.

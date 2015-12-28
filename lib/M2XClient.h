@@ -67,11 +67,16 @@ typedef void (^M2XResponseCallback)(NSData *data, NSURLResponse *response, NSErr
 // represents an M2X subsystem and its current status.
 - (void)statusWithCompletionHandler:(M2XBaseCallback)completionHandler;
 
-// Retrieve the list of devices accessible by the authenticated API key that
-// meet the search criteria.
+// Retrieve the list of devices accessible by the authenticated API key
 //
 // See M2XDevice.listWithClient:parameters:completionHandler: for more details
 - (void)devicesWithParameters:(NSDictionary *)parameters completionHandler:(M2XArrayCallback)completionHandler;
+
+// Retrieve the list of devices accessible by the authenticated API key that
+// meet the search criteria.
+//
+// See M2XDevice.searchWithClient:parameters:completionHandler: for more details
+- (void)searchDevicesWithParameters:(NSDictionary *)parameters completionHandler:(M2XArrayCallback)completionHandler;
 
 // Obtain a Device from M2X
 //

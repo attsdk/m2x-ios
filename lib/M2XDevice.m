@@ -26,6 +26,19 @@ static NSString * const kPath = @"/devices";
     }];
 }
 
++ (void)searchWithClient:(M2XClient *)client parameters:(NSDictionary *)parameters completionHandler:(M2XArrayCallback)completionHandler {
+    [client getWithPath:[NSString stringWithFormat:@"%@/search", kPath] parameters:parameters completionHandler:^(M2XResponse *response) {
+        NSMutableArray *array = [NSMutableArray array];
+        
+        for (NSDictionary *dict in response.json[@"devices"]) {
+            M2XDevice *device = [[M2XDevice alloc] initWithClient:client attributes:dict];
+            [array addObject:device];
+        }
+        
+        completionHandler(array, response);
+    }];
+}
+
 + (void)tagsWithClient:(M2XClient *)client completionHandler:(M2XBaseCallback)completionHandler {
     [client getWithPath:[NSString stringWithFormat:@"%@/tags", kPath] parameters:nil completionHandler:completionHandler];
 }
