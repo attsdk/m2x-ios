@@ -38,7 +38,7 @@ NSError *_errorObject;
 {
     self = [super init];
     if (self) {
-        _response = [[NSHTTPURLResponse alloc] initWithURL:nil statusCode:200 HTTPVersion:@"HTTP/1.1" headerFields:nil];
+        _response = [[NSHTTPURLResponse alloc] initWithURL:[NSURL URLWithString:@""] statusCode:200 HTTPVersion:@"HTTP/1.1" headerFields:nil];
     }
     return self;
 }

@@ -57,4 +57,30 @@ static NSString * const kPath = @"/distributions";
     return [NSString stringWithFormat:@"%@/%@", kPath, [self[@"id"] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
 }
 
+#pragma mark - metadata
+
+- (void)metadataWithCompletionHandler:(M2XBaseCallback)completionHandler {
+    [self.client getWithPath:[NSString stringWithFormat:@"%@/metadata", [self path]] parameters:nil completionHandler:^(M2XResponse *response) {
+        completionHandler(response);
+    }];
+}
+
+- (void)updateMetadata:(NSDictionary *)data completionHandler:(M2XResourceCallback)completionHandler {
+    [self.client putWithPath:[NSString stringWithFormat:@"%@/metadata", [self path]] parameters:data completionHandler:^(M2XResponse *response) {
+        completionHandler(self, response);
+    }];
+}
+
+- (void)metadataField:(NSString *)field completionHandler:(M2XBaseCallback)completionHandler {
+    [self.client getWithPath:[NSString stringWithFormat:@"%@/metadata/%@", [self path], field] parameters:nil completionHandler:^(M2XResponse *response) {
+        completionHandler(response);
+    }];
+}
+
+- (void)updateMetadataField:(NSString *)field value:(id)value completionHandler:(M2XResourceCallback)completionHandler {
+    [self.client putWithPath:[NSString stringWithFormat:@"%@/metadata/%@", [self path], field] parameters:@{@"value": value} completionHandler:^(M2XResponse *response) {
+        completionHandler(self, response);
+    }];
+}
+
 @end
