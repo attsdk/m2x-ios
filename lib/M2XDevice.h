@@ -59,6 +59,13 @@
 // https://m2x.att.com/developer/documentation/v2/device#Read-Device-Location
 - (void)locationWithCompletionHandler:(M2XBaseCallback)completionHandler;
 
+// Read Device Location History
+//
+// Get location history details of an existing Device. Returns the 30 most
+// recently logged locations by default.
+// https://m2x.att.com/developer/documentation/v2/device#Read-Device-Location-History
+- (void)locationHistoryWithParameters:(NSDictionary *)parameters completionHandler:(M2XBaseCallback)completionHandler;
+
 // Update the current location of the specified device.
 //
 // https://m2x.att.com/developer/documentation/v2/device#Update-Device-Location

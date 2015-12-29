@@ -86,6 +86,12 @@ static NSString * const kPath = @"/devices";
     }];
 }
 
+- (void)locationHistoryWithParameters:(NSDictionary *)parameters completionHandler:(M2XBaseCallback)completionHandler {
+    [self.client getWithPath:[NSString stringWithFormat:@"%@/location/waypoints", [self path]] parameters:parameters completionHandler:^(M2XResponse *response) {
+        completionHandler(response);
+    }];
+}
+
 - (void)updateLocation:(NSDictionary *)parameters completionHandler:(M2XDeviceCallback)completionHandler {
     [self.client putWithPath:[NSString stringWithFormat:@"%@/location", [self path]] parameters:parameters completionHandler:^(M2XResponse *response) {
         completionHandler(self, response);
