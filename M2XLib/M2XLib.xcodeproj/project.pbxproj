@@ -20,6 +20,7 @@
 		E2C45BA51A28C39B00DDFA29 /* M2XStream.m in Sources */ = {isa = PBXBuildFile; fileRef = E2C45BA41A28C39B00DDFA29 /* M2XStream.m */; };
 		E2C45BAC1A292ABB00DDFA29 /* M2XKey.m in Sources */ = {isa = PBXBuildFile; fileRef = E2C45BAB1A292ABB00DDFA29 /* M2XKey.m */; };
 		E2D2B3EB1A0A43DD00E8A733 /* M2xTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E2D2B3EA1A0A43DD00E8A733 /* M2xTests.m */; };
+		E2DDFB5E1C330C3E00A6CAC5 /* M2XCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = E2DDFB5D1C330C3E00A6CAC5 /* M2XCollection.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,6 +105,8 @@
 		E2C45BAA1A292ABB00DDFA29 /* M2XKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = M2XKey.h; path = ../../lib/M2XKey.h; sourceTree = "<group>"; };
 		E2C45BAB1A292ABB00DDFA29 /* M2XKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = M2XKey.m; path = ../../lib/M2XKey.m; sourceTree = "<group>"; };
 		E2D2B3EA1A0A43DD00E8A733 /* M2xTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M2xTests.m; sourceTree = "<group>"; };
+		E2DDFB5C1C330C3E00A6CAC5 /* M2XCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = M2XCollection.h; path = ../../lib/M2XCollection.h; sourceTree = "<group>"; };
+		E2DDFB5D1C330C3E00A6CAC5 /* M2XCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = M2XCollection.m; path = ../../lib/M2XCollection.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,6 +187,8 @@
 		E2C45B7F1A28973A00DDFA29 /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				E2DDFB5C1C330C3E00A6CAC5 /* M2XCollection.h */,
+				E2DDFB5D1C330C3E00A6CAC5 /* M2XCollection.m */,
 				E25A4C981A67EB5100917B82 /* NSDate+M2X.h */,
 				E25A4C991A67EB5100917B82 /* NSDate+M2X.m */,
 				E2B575151A2C930C00E837FC /* M2XDistribution.h */,
@@ -340,6 +345,7 @@
 				E2C45B821A289A3300DDFA29 /* M2XClient.m in Sources */,
 				E2C45B8E1A28A3A200DDFA29 /* M2XClient+HTTP.m in Sources */,
 				E25A4C9A1A67EB5100917B82 /* NSDate+M2X.m in Sources */,
+				E2DDFB5E1C330C3E00A6CAC5 /* M2XCollection.m in Sources */,
 				E2C45BA51A28C39B00DDFA29 /* M2XStream.m in Sources */,
 				E2B575171A2C930C00E837FC /* M2XDistribution.m in Sources */,
 			);

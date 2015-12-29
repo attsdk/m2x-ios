@@ -14,3 +14,4 @@
 #import "M2XKey.h"
 #import "M2XDistribution.h"
 #import "NSDate+M2X.h"
+#import "M2XCollection.h"

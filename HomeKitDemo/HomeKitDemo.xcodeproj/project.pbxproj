@@ -23,6 +23,7 @@
 		8394979419BA133E005FFD10 /* AccessoryBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8394979319BA133E005FFD10 /* AccessoryBrowserViewController.m */; };
 		8394979719BA5451005FFD10 /* ServicesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8394979619BA5451005FFD10 /* ServicesViewController.m */; };
 		8394979D19BA5908005FFD10 /* ServiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8394979C19BA5908005FFD10 /* ServiceViewController.m */; };
+		E2DDFB641C330C5900A6CAC5 /* M2XCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = E2DDFB631C330C5900A6CAC5 /* M2XCollection.m */; };
 		E2FA60D61A2E00ED000FA837 /* M2XClient.m in Sources */ = {isa = PBXBuildFile; fileRef = E2FA60C51A2E00ED000FA837 /* M2XClient.m */; };
 		E2FA60D71A2E00ED000FA837 /* M2XClient+HTTP.m in Sources */ = {isa = PBXBuildFile; fileRef = E2FA60C71A2E00ED000FA837 /* M2XClient+HTTP.m */; };
 		E2FA60D81A2E00ED000FA837 /* M2XDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = E2FA60C91A2E00ED000FA837 /* M2XDevice.m */; };
@@ -76,6 +77,8 @@
 		8394979619BA5451005FFD10 /* ServicesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServicesViewController.m; sourceTree = "<group>"; };
 		8394979B19BA5908005FFD10 /* ServiceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceViewController.h; sourceTree = "<group>"; };
 		8394979C19BA5908005FFD10 /* ServiceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServiceViewController.m; sourceTree = "<group>"; };
+		E2DDFB621C330C5900A6CAC5 /* M2XCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M2XCollection.h; sourceTree = "<group>"; };
+		E2DDFB631C330C5900A6CAC5 /* M2XCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M2XCollection.m; sourceTree = "<group>"; };
 		E2FA60C41A2E00ED000FA837 /* M2XClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M2XClient.h; sourceTree = "<group>"; };
 		E2FA60C51A2E00ED000FA837 /* M2XClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M2XClient.m; sourceTree = "<group>"; };
 		E2FA60C61A2E00ED000FA837 /* M2XClient+HTTP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "M2XClient+HTTP.h"; sourceTree = "<group>"; };
@@ -194,6 +197,8 @@
 		8328499519ABBB5B005CA81E /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				E2DDFB621C330C5900A6CAC5 /* M2XCollection.h */,
+				E2DDFB631C330C5900A6CAC5 /* M2XCollection.m */,
 				E2FA60DF1A2E0135000FA837 /* M2X.h */,
 				E2FA60C41A2E00ED000FA837 /* M2XClient.h */,
 				E2FA60C51A2E00ED000FA837 /* M2XClient.m */,
@@ -333,6 +338,7 @@
 				E2FA60D91A2E00ED000FA837 /* M2XDistribution.m in Sources */,
 				8394978E19BA002E005FFD10 /* AccessoriesViewController.m in Sources */,
 				E2FA60DA1A2E00ED000FA837 /* M2XKey.m in Sources */,
+				E2DDFB641C330C5900A6CAC5 /* M2XCollection.m in Sources */,
 				E2FA60D81A2E00ED000FA837 /* M2XDevice.m in Sources */,
 				836D614219C9C9F100F21102 /* SetupViewController.m in Sources */,
 				8394979119BA00D4005FFD10 /* AccessoryViewController.m in Sources */,
