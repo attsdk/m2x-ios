@@ -105,4 +105,14 @@
 // https://m2x.att.com/developer/documentation/v2/device#Create-Update-Data-Stream
 - (void)updateStreamWithName:(NSString *)name parameters:(NSDictionary *)parameters completionHandler:(M2XStreamCallback)completionHandler;
 
+// List Values from all Data Streams of a Device
+//
+// https://m2x.att.com/developer/documentation/v2/device#List-Values-from-all-Data-Streams-of-a-Device
+- (void)valuesWithParameters:(NSDictionary *)parameters completionHandler:(M2XArrayCallback)completionHandler;
+
+// Search Values from all Data Streams of a Device
+//
+// https://m2x.att.com/developer/documentation/v2/device#Search-Values-from-all-Data-Streams-of-a-Device
+- (void)searchValuesWithParameters:(NSDictionary *)parameters completionHandler:(M2XArrayCallback)completionHandler;
+
 @end

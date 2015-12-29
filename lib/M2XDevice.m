@@ -96,6 +96,18 @@ static NSString * const kPath = @"/devices";
     [self.client postWithPath:[NSString stringWithFormat:@"%@/updates", [self path]] parameters:values completionHandler:completionHandler];
 }
 
+- (void)valuesWithParameters:(NSDictionary *)parameters completionHandler:(M2XArrayCallback)completionHandler {
+    [self.client getWithPath:[NSString stringWithFormat:@"%@/values", [self path]] parameters:parameters completionHandler:^(M2XResponse *response) {
+        completionHandler(response.json[@"values"], response);
+    }];
+}
+
+- (void)searchValuesWithParameters:(NSDictionary *)parameters completionHandler:(M2XArrayCallback)completionHandler {
+    [self.client getWithPath:[NSString stringWithFormat:@"%@/values/search", [self path]] parameters:parameters parametersAsJSONBody:YES completionHandler:^(M2XResponse *response) {
+        completionHandler(response.json[@"values"], response);
+    }];
+}
+
 - (NSString *)path {
     return [NSString stringWithFormat:@"%@/%@", kPath, [self[@"id"] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
 }

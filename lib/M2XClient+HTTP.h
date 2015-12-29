@@ -11,6 +11,7 @@
 @interface M2XClient (HTTP)
 
 -(NSURLRequest *)getWithPath:(NSString*)path parameters:(NSDictionary*)parameters completionHandler:(M2XBaseCallback)completionHandler;
+-(NSURLRequest *)getWithPath:(NSString*)path parameters:(NSDictionary*)parameters parametersAsJSONBody:(BOOL)parametersAsJSONBody completionHandler:(M2XBaseCallback)completionHandler;
 -(NSURLRequest *)postWithPath:(NSString*)path parameters:(NSDictionary*)parameters completionHandler:(M2XBaseCallback)completionHandler;
 -(NSURLRequest *)putWithPath:(NSString*)path parameters:(NSDictionary*)parameters completionHandler:(M2XBaseCallback)completionHandler;
 -(NSURLRequest *)deleteWithPath:(NSString*)path parameters:(NSDictionary*)parameters completionHandler:(M2XBaseCallback)completionHandler;

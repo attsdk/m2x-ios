@@ -82,7 +82,8 @@ static BOOL VERBOSE_MODE = YES;
 
 #pragma mark - Http methods
 
--(NSURLRequest *)getWithPath:(NSString*)path parameters:(NSDictionary*)parameters completionHandler:(M2XBaseCallback)completionHandler {
+-(NSURLRequest *)getWithPath:(NSString*)path parameters:(NSDictionary*)parameters parametersAsJSONBody:(BOOL)parametersAsJSONBody completionHandler:
+(M2XBaseCallback)completionHandler {
     if (!self.apiKey) {
         NSError *error = [NSError errorWithDomain:M2XErrorDomain code:M2XApiErrorNoApiKey userInfo:@{NSLocalizedDescriptionKey: @"Missing API key"}];
         if (completionHandler) {
@@ -91,9 +92,31 @@ static BOOL VERBOSE_MODE = YES;
         return nil;
     }
     
+    NSError *error = nil;
+    NSData *bodyData = nil;
+    if (parametersAsJSONBody) {
+        if (parameters) {
+            bodyData = [NSJSONSerialization dataWithJSONObject:parameters options:0 error:&error];
+        }
+        
+        if (error) {
+            completionHandler([[M2XResponse alloc] initWithResponse:nil data:nil error:error]);
+            return nil;
+        }
+    }
+    
     return [self performRequestOnPath:path parameters:parameters configureRequestBlock:^(NSMutableURLRequest *request) {
-        [self prepareUrlRequest:request parameters:parameters];
+        if (parametersAsJSONBody && bodyData) {
+            [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+            [request setHTTPBody:bodyData];
+        } else {
+            [self prepareUrlRequest:request parameters:parameters];
+        }
     } completionHandler:completionHandler];
+}
+
+-(NSURLRequest *)getWithPath:(NSString*)path parameters:(NSDictionary*)parameters completionHandler:(M2XBaseCallback)completionHandler {
+    return [self getWithPath:path parameters:parameters parametersAsJSONBody:NO completionHandler:completionHandler];
 }
 
 -(NSURLRequest *)postWithPath:(NSString*)path parameters:(NSDictionary*)parameters completionHandler:(M2XBaseCallback)completionHandler {
