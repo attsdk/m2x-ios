@@ -75,5 +75,9 @@
 // https://m2x.com/developer/documentation/v2/device#Delete-Data-Stream-Values
 - (void)deleteValuesFrom:(NSString *)start to:(NSString *)stop completionHandler:(M2XBaseCallback)completionHandler;
 
+//Add library functions for 'Post Device Update (Single Values to Multiple Streams)' Endpoint.
+//https://m2x.att.com/developer/documentation/v2/device#Post-Device-Update--Single-Values-to-Multiple-Streams-
+- (void)postDeviceUpdate:(NSDictionary *)parameters completionHandler:(M2XBaseCallback)completionHandler;
+
 
 @end

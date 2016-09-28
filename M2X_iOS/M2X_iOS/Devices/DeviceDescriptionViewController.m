@@ -134,14 +134,18 @@
 {
     UITableViewCell *stream_tableViewSelected = sender;
     NSIndexPath *valueIndex = [self.tableViewStreams indexPathForCell:stream_tableViewSelected];
-    M2XStream *stream = self.streamList[valueIndex.row];
-    if ([segue.identifier isEqualToString:@"toStreamValuesSegue"])
-    {
+    M2XStream *stream;
+    
+    if ([segue.identifier isEqualToString:@"toStreamValuesSegue"]){
+       
+           if(self.streamList.count)
+           {
+        stream= self.streamList[valueIndex.row];
         StreamValuesViewController *StreamValuesVC = segue.destinationViewController;
         StreamValuesVC.stream = stream;
         StreamValuesVC.streamName = stream[@"name"];
         StreamValuesVC.streamUnit = stream[@"unit"];
-        StreamValuesVC.title = stream[@"name"];
+               StreamValuesVC.title = stream[@"name"];}
         
     } else if([segue.identifier isEqualToString:@"toAddStream"]) {
         AddStreamViewController *addStreamVC = segue.destinationViewController;
