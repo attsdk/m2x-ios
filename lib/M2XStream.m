@@ -98,15 +98,6 @@
     return [NSString stringWithFormat:@"%@/streams/%@", _device.path, [self[@"name"] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
 }
 
-- (void)postDeviceUpdate:(NSDictionary *)parameters completionHandler:(M2XBaseCallback)completionHandler{
-    
-    [self.client postWithPath:[NSString stringWithFormat:@"%@/update", [self deviceUpdatepath]] parameters:parameters completionHandler:^(M2XResponse *response) {
-        completionHandler(response);
-    }];
-}
 
-- (NSString *)deviceUpdatepath {
-    return [NSString stringWithFormat:@"%@", _device.path];
-}
 
 @end
