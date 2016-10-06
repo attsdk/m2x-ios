@@ -126,4 +126,10 @@
 //https://m2x.att.com/developer/documentation/v2/device#Post-Device-Update--Single-Values-to-Multiple-Streams-
 - (void)postDeviceUpdate:(NSDictionary *)parameters completionHandler:(M2XBaseCallback)completionHandler;
 
+
+//Add library functions for 'Export values from all data streams of a device' Endpoint.
+//https://m2x.att.com/developer/documentation/v2/device#Export-Values-from-all-Data-Streams-of-a-Device-
+
+-(void)exportValuesFromDataStreamCompletionHandler:(M2XBaseCallback)completionHandler;
+
 @end
