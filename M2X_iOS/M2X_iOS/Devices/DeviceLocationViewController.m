@@ -58,9 +58,11 @@
     
     //Locations inputs
     [_tfLocationName setText:[device_location valueForKey:@"name"]];
-    [_tfLatitude setText:[device_location valueForKey:@"latitude"]];
-    [_tfLongitude setText:[device_location valueForKey:@"longitude"]];
-    [_tfElevation setText:[device_location valueForKey:@"elevation"]];
+    [_tfLatitude setText: [NSString stringWithFormat:@"%@",(([device_location valueForKey:@"latitude"] == nil || [device_location valueForKey:@"latitude"] == [NSNull null])? @"" : [device_location valueForKey:@"latitude"])]];
+    
+    [_tfLongitude setText: [NSString stringWithFormat:@"%@",(([device_location valueForKey:@"longitude"] == nil || [device_location valueForKey:@"longitude"] == [NSNull null] )? @"" : [device_location valueForKey:@"longitude"])]];
+    
+    [_tfElevation setText:[NSString stringWithFormat:@"%@",(([device_location valueForKey:@"elevation"] == nil || [device_location valueForKey:@"elevation"] == [NSNull null])? @"" : [device_location valueForKey:@"elevation"])]];
     
     [_locationsList removeAllObjects];
     
@@ -153,6 +155,8 @@
     NSNumber *longitude  = [NSNumber numberWithDouble:[[valueData valueForKey:@"longitude"] floatValue]];
     NSNumber *elevation  = [NSNumber numberWithDouble:[[valueData valueForKey:@"elevation"] floatValue]];
     
+
+
     NSString *timeString = [valueData valueForKey:@"timestamp"];
     
     NSDate *timestamp = [NSDate fromISO8601:timeString];

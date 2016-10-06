@@ -144,4 +144,13 @@ static NSString * const kPath = @"/devices";
     }];
 }
 
+- (void)postDeviceUpdate:(NSDictionary *)parameters completionHandler:(M2XBaseCallback)completionHandler{
+    [self.client postWithPath:[NSString stringWithFormat:@"%@/update", [self deviceUpdatepath]] parameters:parameters completionHandler:^(M2XResponse *response) {
+                completionHandler(response);
+           }];
+    }
+
+- (NSString *)deviceUpdatepath {
+        return [NSString stringWithFormat:@"%@", self.path];
+    }
 @end

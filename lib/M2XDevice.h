@@ -122,4 +122,8 @@
 // https://m2x.att.com/developer/documentation/v2/device#Search-Values-from-all-Data-Streams-of-a-Device
 - (void)searchValuesWithParameters:(NSDictionary *)parameters completionHandler:(M2XArrayCallback)completionHandler;
 
+//Add library functions for 'Post Device Update (Single Values to Multiple Streams)' Endpoint.
+//https://m2x.att.com/developer/documentation/v2/device#Post-Device-Update--Single-Values-to-Multiple-Streams-
+- (void)postDeviceUpdate:(NSDictionary *)parameters completionHandler:(M2XBaseCallback)completionHandler;
+
 @end
