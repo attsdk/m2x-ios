@@ -160,4 +160,10 @@ static NSString * const kPath = @"/devices";
     }];
 }
 
+-(void)deleteLocationHistory:(NSDictionary *)parameters completionHandler:(M2XBaseCallback)completionHandler {
+    [self.client deleteWithPath:[NSString stringWithFormat:@"%@/location/waypoints", [self path]] parameters:parameters completionHandler:^(M2XResponse *response) {
+        completionHandler(response);
+    }];
+}
+
 @end
