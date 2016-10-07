@@ -153,4 +153,11 @@ static NSString * const kPath = @"/devices";
 - (NSString *)deviceUpdatepath {
         return [NSString stringWithFormat:@"%@", self.path];
     }
+
+-(void)exportValuesFromDataStreamCompletionHandler:(M2XBaseCallback)completionHandler {
+    [self.client getWithPath:[NSString stringWithFormat:@"%@/values/%@", [self path],@"export.csv"] parameters:nil completionHandler:^(M2XResponse *response) {
+        completionHandler(response);
+    }];
+}
+
 @end
