@@ -132,4 +132,10 @@
 
 -(void)exportValuesFromDataStreamCompletionHandler:(M2XBaseCallback)completionHandler;
 
+// Delete location history by a date range
+// The `from` and `end` parameters should be ISO8601 timestamps
+//
+// https://m2x.att.com/developer/documentation/v2/device#Delete-Location-History
+- (void)deleteLocationHistory:(NSDictionary *)parameters completionHandler:(M2XBaseCallback)completionHandler;
+
 @end
