@@ -15,6 +15,7 @@
 @class M2XResource;
 @class M2XDistribution;
 @class M2XCollection;
+@class M2XJob;
 
 typedef void (^M2XBaseCallback)(M2XResponse *response);
 typedef void (^M2XResourceCallback)(M2XResource *resource, M2XResponse *response);
@@ -24,6 +25,7 @@ typedef void (^M2XStreamCallback)(M2XStream *stream, M2XResponse *response);
 typedef void (^M2XKeyCallback)(M2XKey *key, M2XResponse *response);
 typedef void (^M2XDistributionCallback)(M2XDistribution *distribution, M2XResponse *response);
 typedef void (^M2XArrayCallback)(NSArray *objects, M2XResponse *response);
+typedef void (^M2XJobCallback)(M2XJob *job, M2XResponse *response);
 
 typedef void (^M2XResponseCallback)(NSData *data, NSURLResponse *response, NSError *error);
 
@@ -136,5 +138,19 @@ typedef void (^M2XResponseCallback)(NSData *data, NSURLResponse *response, NSErr
 
 - (NSString *)userAgent;
 - (NSString *)apiUrl;
+
+// Obtain a Job from M2X
+//
+// This method instantiates an instance of Job and calls
+// `M2XJob.viewWithCompletionHandler:` method, returning the job instance with all
+// its attributes initialized
+- (void)jobWithId:(NSString *)identifier completionHandler:(M2XJobCallback)completionHandler;
+
+//Retrieve the list of the most recent jobs that belong to the authenticated
+// API key.
+//
+// See M2XJob.listWithClient:parameters:completionHandler: for more details
+- (void)jobsWithParameters:(NSDictionary *)parameters completionHandler:(M2XArrayCallback)completionHandler;
+
 
 @end

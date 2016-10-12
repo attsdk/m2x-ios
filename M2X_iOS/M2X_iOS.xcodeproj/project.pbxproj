@@ -27,6 +27,7 @@
 		0B7472031860D16B006F48B4 /* DatePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B7472021860D16B006F48B4 /* DatePickerViewController.m */; };
 		0B810E48185F919B00D22F49 /* green.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B810E46185F919B00D22F49 /* green.png */; };
 		0B810E49185F919B00D22F49 /* red.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B810E47185F919B00D22F49 /* red.png */; };
+		73D685D31DAE69ED00188D04 /* M2XJob.m in Sources */ = {isa = PBXBuildFile; fileRef = 73D685D21DAE69ED00188D04 /* M2XJob.m */; };
 		E25E6A371A2CDDDE00E1941F /* NSDate+M2X.m in Sources */ = {isa = PBXBuildFile; fileRef = E25E6A361A2CDDDE00E1941F /* NSDate+M2X.m */; };
 		E2931E011A30B24200038311 /* AddDeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2931DF01A30B24200038311 /* AddDeviceViewController.m */; };
 		E2931E021A30B24200038311 /* AddStreamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2931DF21A30B24200038311 /* AddStreamViewController.m */; };
@@ -88,6 +89,8 @@
 		0B7472021860D16B006F48B4 /* DatePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatePickerViewController.m; sourceTree = "<group>"; };
 		0B810E46185F919B00D22F49 /* green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = green.png; sourceTree = "<group>"; };
 		0B810E47185F919B00D22F49 /* red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red.png; sourceTree = "<group>"; };
+		73D685D11DAE69ED00188D04 /* M2XJob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M2XJob.h; sourceTree = "<group>"; };
+		73D685D21DAE69ED00188D04 /* M2XJob.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M2XJob.m; sourceTree = "<group>"; };
 		E25E6A351A2CDDDE00E1941F /* NSDate+M2X.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+M2X.h"; sourceTree = "<group>"; };
 		E25E6A361A2CDDDE00E1941F /* NSDate+M2X.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+M2X.m"; sourceTree = "<group>"; };
 		E2931DEF1A30B24200038311 /* AddDeviceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddDeviceViewController.h; sourceTree = "<group>"; };
@@ -286,6 +289,8 @@
 				E2C45B981A28AC4000DDFA29 /* M2XResponse.m */,
 				E2DDFB581C330B9000A6CAC5 /* M2XCollection.h */,
 				E2DDFB591C330B9000A6CAC5 /* M2XCollection.m */,
+				73D685D11DAE69ED00188D04 /* M2XJob.h */,
+				73D685D21DAE69ED00188D04 /* M2XJob.m */,
 			);
 			name = lib;
 			path = ../lib;
@@ -433,6 +438,7 @@
 				E2931E071A30B24200038311 /* DistributionDetailsViewController.m in Sources */,
 				E2931E041A30B24200038311 /* DeviceDescriptionViewController.m in Sources */,
 				0B7471FA1860BA01006F48B4 /* KeyListViewController.m in Sources */,
+				73D685D31DAE69ED00188D04 /* M2XJob.m in Sources */,
 				E2931E061A30B24200038311 /* DevicesListViewController.m in Sources */,
 				E2931E091A30B24200038311 /* StreamValuesViewController.m in Sources */,
 				E2C45B9A1A28AC4000DDFA29 /* M2XClient+HTTP.m in Sources */,

@@ -14,6 +14,7 @@
 #import <UIKit/UIKit.h>
 #include <sys/types.h>
 #include <sys/sysctl.h>
+#import "M2XJob.h"
 
 static NSString * const kDefaultApiBase = @"https://api-m2x.att.com";
 static NSString * const kDefaultApiVersion = @"v2";
@@ -116,6 +117,17 @@ static NSString * const kLibVersion = @"3.2.0";
     NSString *platform = [NSString stringWithUTF8String:machine];
     free(machine);
     return platform;
+}
+
+- (void)jobWithId:(NSString *)identifier completionHandler:(M2XJobCallback)completionHandler {
+    M2XJob *job = [[M2XJob alloc] initWithClient:self attributes:@{@"id": identifier}];
+    [job viewWithCompletionHandler:^(M2XResource *resource, M2XResponse *response) {
+        completionHandler((M2XJob *)resource, response);
+    }];
+}
+
+- (void)jobsWithParameters:(NSDictionary *)parameters completionHandler:(M2XArrayCallback)completionHandler {
+    [M2XJob listWithClient:self parameters:parameters completionHandler:completionHandler];
 }
 
 @end
