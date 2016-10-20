@@ -36,23 +36,6 @@ static NSString * const kPath = @"/collections";
     }];
 }
 
-+ (void)addDeviceToTheCollection:(M2XClient *)client withDeviceId:(NSString *)deviceid  completionHandler:(M2XCollectionCallback)completionHandler{
-    NSString *pathByAppendingDeviceID = [NSString stringWithFormat:@"%@/devices/%@", kPath,deviceid];
-    [client putWithPath:[NSString stringWithFormat:@"%@", pathByAppendingDeviceID] parameters:nil completionHandler:^(M2XResponse *response) {
-        M2XCollection *collection = [[M2XCollection alloc] initWithClient:client attributes:response.json];
-        completionHandler(collection, response);
-    }];
-}
-
-+ (void)removeDeviceFromTheCollection:(M2XClient *)client withDeviceId:(NSString *)deviceid  completionHandler:(M2XCollectionCallback)completionHandler{
-    NSString *pathByAppendingDeviceID = [NSString stringWithFormat:@"%@/devices/%@", kPath,deviceid];
-    [client deleteWithPath:[NSString stringWithFormat:@"%@", pathByAppendingDeviceID] parameters:nil completionHandler:^(M2XResponse *response) {
-        M2XCollection *collection = [[M2XCollection alloc] initWithClient:client attributes:response.json];
-        completionHandler(collection, response);
-    }];
-    
-}
-
 #pragma mark - metadata
 
 - (void)metadataWithCompletionHandler:(M2XBaseCallback)completionHandler {
@@ -79,6 +62,19 @@ static NSString * const kPath = @"/collections";
     }];
 }
 
+- (void)addDeviceToTheCollection:(M2XClient *)client withDeviceId:(NSString *)deviceid  completionHandler:(M2XCollectionCallback)completionHandler{
+    NSString *pathByAppendingDeviceID = [NSString stringWithFormat:@"%@/devices/%@", [self path],deviceid];
+    [self.client putWithPath:[NSString stringWithFormat:@"%@", pathByAppendingDeviceID] parameters:nil completionHandler:^(M2XResponse *response) {
+        completionHandler(self, response);
+    }];
+}
 
+- (void)removeDeviceFromTheCollection:(M2XClient *)client withDeviceId:(NSString *)deviceid  completionHandler:(M2XCollectionCallback)completionHandler{
+    NSString *pathByAppendingDeviceID = [NSString stringWithFormat:@"%@/devices/%@", [self path],deviceid];
+    [self.client deleteWithPath:[NSString stringWithFormat:@"%@", pathByAppendingDeviceID] parameters:nil completionHandler:^(M2XResponse *response) {
+        completionHandler(self, response);
+    }];
+    
+}
 
 @end
