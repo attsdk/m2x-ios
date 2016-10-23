@@ -25,11 +25,11 @@
 // Add device to collection
 //
 //https://m2x.att.com/developer/documentation/v2/collections#Add-device-to-collection
-+ (void)addDeviceToTheCollection:(M2XClient *)client withDeviceId:(NSString *)deviceid completionHandler:(M2XCollectionCallback)completionHandler;
+-(void)addDevice:(M2XClient *)client withDeviceId:(NSString *)deviceid completionHandler:(M2XCollectionCallback)completionHandler;
 
 // Remove device from collection
 //
 //https://m2x.att.com/developer/documentation/v2/collections#Remove-device-to-collection
-+ (void)removeDeviceFromTheCollection:(M2XClient *)client withDeviceId:(NSString *)deviceid  completionHandler:(M2XCollectionCallback)completionHandler;
+-(void)removeDevice:(M2XClient *)client withDeviceId:(NSString *)deviceid  completionHandler:(M2XCollectionCallback)completionHandler;
 
 @end

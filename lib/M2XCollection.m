@@ -36,7 +36,7 @@ static NSString * const kPath = @"/collections";
     }];
 }
 
-+ (void)addDeviceToTheCollection:(M2XClient *)client withDeviceId:(NSString *)deviceid  completionHandler:(M2XCollectionCallback)completionHandler{
+-(void)addDevice:(M2XClient *)client withDeviceId:(NSString *)deviceid completionHandler:(M2XCollectionCallback)completionHandler{
     NSString *pathByAppendingDeviceID = [NSString stringWithFormat:@"%@/devices/%@", kPath,deviceid];
     [client putWithPath:[NSString stringWithFormat:@"%@", pathByAppendingDeviceID] parameters:nil completionHandler:^(M2XResponse *response) {
         M2XCollection *collection = [[M2XCollection alloc] initWithClient:client attributes:response.json];
@@ -44,7 +44,7 @@ static NSString * const kPath = @"/collections";
     }];
 }
 
-+ (void)removeDeviceFromTheCollection:(M2XClient *)client withDeviceId:(NSString *)deviceid  completionHandler:(M2XCollectionCallback)completionHandler{
+-(void)removeDevice:(M2XClient *)client withDeviceId:(NSString *)deviceid  completionHandler:(M2XCollectionCallback)completionHandler{
     NSString *pathByAppendingDeviceID = [NSString stringWithFormat:@"%@/devices/%@", kPath,deviceid];
     [client deleteWithPath:[NSString stringWithFormat:@"%@", pathByAppendingDeviceID] parameters:nil completionHandler:^(M2XResponse *response) {
         M2XCollection *collection = [[M2XCollection alloc] initWithClient:client attributes:response.json];
