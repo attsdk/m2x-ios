@@ -2,7 +2,7 @@
 //  M2XJob.h
 //  M2X_iOS
 //
-//  Created by BABA on 10/28/16.
+//  Created by ATT SDK on 10/28/16.
 //  Copyright © 2016 AT&T. All rights reserved.
 //
 
