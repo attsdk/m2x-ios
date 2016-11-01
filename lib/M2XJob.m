@@ -22,8 +22,8 @@ static NSString * const kPath = @"/jobs";
         NSMutableArray *array = [NSMutableArray array];
         
         for (NSDictionary *dict in response.json[@"jobs"]) {
-            M2XJob *device = [[M2XJob alloc] initWithClient:self.client attributes:dict];
-            [array addObject:device];
+            M2XJob *job = [[M2XJob alloc] initWithClient:self.client attributes:dict];
+            [array addObject:job];
         }
         
         completionHandler(array, response);
@@ -35,8 +35,8 @@ static NSString * const kPath = @"/jobs";
         NSMutableArray *array = [NSMutableArray array];
         
         for (NSDictionary *dict in response.json[@"jobs"]) {
-            M2XJob *device = [[M2XJob alloc] initWithClient:self.client attributes:dict];
-            [array addObject:device];
+            M2XJob *job = [[M2XJob alloc] initWithClient:self.client attributes:dict];
+            [array addObject:job];
         }
         
         completionHandler(array, response);
