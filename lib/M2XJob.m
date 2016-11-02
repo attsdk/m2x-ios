@@ -31,11 +31,4 @@ static NSString * const kPath = @"/jobs";
     
 }
 
--(void)viewJob:(NSString*)jobID CompletionHandler:(M2XBaseCallback)completionHandler{
-    
-    [self.client getWithPath:[NSString stringWithFormat:@"%@/%@", kPath,jobID] parameters:nil completionHandler:^(M2XResponse *response) {
-        completionHandler(response);
-    }];
-}
-
 @end

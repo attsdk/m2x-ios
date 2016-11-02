@@ -16,9 +16,4 @@
 //https://m2x.att.com/developer/documentation/v2/jobs#List-Jobs
 +(void)listOfJobs:(M2XClient *)client CompletionHandler:(M2XArrayCallback)completionHandler;
 
-// View Jobs
-//
-// https://m2x.att.com/developer/documentation/v2/jobs#View-Job-Details
--(void)viewJob:(NSString*)jobID CompletionHandler:(M2XBaseCallback)completionHandler;
-
 @end

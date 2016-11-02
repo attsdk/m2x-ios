@@ -126,4 +126,12 @@ static NSString * const kLibVersion = @"3.1.0";
     }];
 }
 
+-(void)viewJob:(NSString*)identifier CompletionHandler:(M2XJobCallback)completionHandler{
+    
+    M2XJob *job = [[M2XJob alloc] initWithClient:self attributes:@{@"id": identifier}];
+    [job viewWithCompletionHandler:^(M2XResource *resource, M2XResponse *response) {
+        completionHandler((M2XJob *)resource, response);
+    }];
+}
+
 @end
