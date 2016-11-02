@@ -18,7 +18,7 @@
 
 static NSString * const kDefaultApiBase = @"https://api-m2x.att.com";
 static NSString * const kDefaultApiVersion = @"v2";
-static NSString * const kLibVersion = @"3.2.0";
+static NSString * const kLibVersion = @"3.3.0";
 
 @implementation M2XClient
 
