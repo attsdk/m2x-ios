@@ -16,32 +16,26 @@ static NSString * const kPath = @"/jobs";
     return [NSString stringWithFormat:@"%@/%@", kPath, [self[@"id"] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
 }
 
--(void)listOfJobs:(M2XArrayCallback)completionHandler{
++(void)listOfJobs:(M2XClient *)client CompletionHandler:(M2XArrayCallback)completionHandler{
     
-    [self.client getWithPath:[NSString stringWithFormat:@"%@/", kPath] parameters:nil completionHandler:^(M2XResponse *response) {
+    [client getWithPath:[NSString stringWithFormat:@"%@/", kPath] parameters:nil completionHandler:^(M2XResponse *response) {
         NSMutableArray *array = [NSMutableArray array];
         
         for (NSDictionary *dict in response.json[@"jobs"]) {
-            M2XJob *job = [[M2XJob alloc] initWithClient:self.client attributes:dict];
+            M2XJob *job = [[M2XJob alloc] initWithClient:client attributes:dict];
             [array addObject:job];
         }
         
         completionHandler(array, response);
     }];
+    
 }
 
--(void)viewJobs:(NSString*)jobID CompletionHandler:(M2XArrayCallback)completionHandler{
-    [self.client getWithPath:[NSString stringWithFormat:@"%@/%@", kPath,jobID] parameters:nil completionHandler:^(M2XResponse *response) {
-        NSMutableArray *array = [NSMutableArray array];
-        
-        for (NSDictionary *dict in response.json[@"jobs"]) {
-            M2XJob *job = [[M2XJob alloc] initWithClient:self.client attributes:dict];
-            [array addObject:job];
-        }
-        
-        completionHandler(array, response);
-    }];
+-(void)viewJob:(NSString*)jobID CompletionHandler:(M2XBaseCallback)completionHandler{
     
+    [self.client getWithPath:[NSString stringWithFormat:@"%@/%@", kPath,jobID] parameters:nil completionHandler:^(M2XResponse *response) {
+        completionHandler(response);
+    }];
 }
 
 @end

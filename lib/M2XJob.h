@@ -14,11 +14,11 @@
 // List of Jobs
 //
 //https://m2x.att.com/developer/documentation/v2/jobs#List-Jobs
--(void)listOfJobs:(M2XArrayCallback)completionHandler;
++(void)listOfJobs:(M2XClient *)client CompletionHandler:(M2XArrayCallback)completionHandler;
 
 // View Jobs
 //
 // https://m2x.att.com/developer/documentation/v2/jobs#View-Job-Details
--(void)viewJobs:(NSString*)jobID CompletionHandler:(M2XArrayCallback)completionHandler;
+-(void)viewJob:(NSString*)jobID CompletionHandler:(M2XBaseCallback)completionHandler;
 
 @end
