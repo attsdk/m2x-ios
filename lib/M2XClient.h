@@ -147,9 +147,4 @@ typedef void (^M2XResponseCallback)(NSData *data, NSURLResponse *response, NSErr
 // its attributes initialized
 - (void)jobWithId:(NSString *)identifier completionHandler:(M2XJobCallback)completionHandler;
 
-// View Job 
-//
-// https://m2x.att.com/developer/documentation/v2/jobs#View-Job-Details
--(void)viewJob:(NSString*)identifier CompletionHandler:(M2XJobCallback)completionHandler;
-
 @end

@@ -109,7 +109,7 @@ static NSString * const kLibVersion = @"3.2.0";
     return [NSString stringWithFormat:@"M2X-iOS/%@ (%@-%@)", kLibVersion, [self platform], [[UIDevice currentDevice] systemVersion]];
 }
 
--(NSString *)platform{
+- (NSString *)platform{
     size_t size;
     sysctlbyname("hw.machine", NULL, &size, NULL, 0);
     char *machine = malloc(size);
@@ -120,14 +120,6 @@ static NSString * const kLibVersion = @"3.2.0";
 }
 
 - (void)jobWithId:(NSString *)identifier completionHandler:(M2XJobCallback)completionHandler {
-    M2XJob *job = [[M2XJob alloc] initWithClient:self attributes:@{@"id": identifier}];
-    [job viewWithCompletionHandler:^(M2XResource *resource, M2XResponse *response) {
-        completionHandler((M2XJob *)resource, response);
-    }];
-}
-
--(void)viewJob:(NSString*)identifier CompletionHandler:(M2XJobCallback)completionHandler{
-    
     M2XJob *job = [[M2XJob alloc] initWithClient:self attributes:@{@"id": identifier}];
     [job viewWithCompletionHandler:^(M2XResource *resource, M2XResponse *response) {
         completionHandler((M2XJob *)resource, response);
