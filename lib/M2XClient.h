@@ -16,6 +16,7 @@
 @class M2XDistribution;
 @class M2XCollection;
 @class M2XJob;
+@class M2XCommand;
 
 
 typedef void (^M2XBaseCallback)(M2XResponse *response);

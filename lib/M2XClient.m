@@ -15,6 +15,7 @@
 #include <sys/types.h>
 #include <sys/sysctl.h>
 #import "M2XJob.h"
+#import "M2XCommand.h"
 
 static NSString * const kDefaultApiBase = @"https://api-m2x.att.com";
 static NSString * const kDefaultApiVersion = @"v2";

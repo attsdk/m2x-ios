@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		637DD66B1DC3D182009CD735 /* M2XJob.m in Sources */ = {isa = PBXBuildFile; fileRef = 637DD66A1DC3D182009CD735 /* M2XJob.m */; };
+		63B5F2181DD806E600F612C9 /* M2XCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 63B5F2171DD806E600F612C9 /* M2XCommand.m */; };
 		8328466019B8EFDD00D21E90 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8328465F19B8EFDD00D21E90 /* HomeViewController.m */; };
 		8328494819ABBACD005CA81E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8328494719ABBACD005CA81E /* main.m */; };
 		8328494B19ABBACD005CA81E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8328494A19ABBACD005CA81E /* AppDelegate.m */; };
@@ -48,6 +49,8 @@
 /* Begin PBXFileReference section */
 		637DD6691DC3D182009CD735 /* M2XJob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M2XJob.h; sourceTree = "<group>"; };
 		637DD66A1DC3D182009CD735 /* M2XJob.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M2XJob.m; sourceTree = "<group>"; };
+		63B5F2161DD806E600F612C9 /* M2XCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M2XCommand.h; sourceTree = "<group>"; };
+		63B5F2171DD806E600F612C9 /* M2XCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M2XCommand.m; sourceTree = "<group>"; };
 		8328465E19B8EFDD00D21E90 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		8328465F19B8EFDD00D21E90 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		8328494219ABBACD005CA81E /* HomeKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HomeKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -200,6 +203,8 @@
 		8328499519ABBB5B005CA81E /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				63B5F2161DD806E600F612C9 /* M2XCommand.h */,
+				63B5F2171DD806E600F612C9 /* M2XCommand.m */,
 				E2DDFB621C330C5900A6CAC5 /* M2XCollection.h */,
 				E2DDFB631C330C5900A6CAC5 /* M2XCollection.m */,
 				E2FA60DF1A2E0135000FA837 /* M2X.h */,
@@ -357,6 +362,7 @@
 				8328494B19ABBACD005CA81E /* AppDelegate.m in Sources */,
 				E2FA60DD1A2E00ED000FA837 /* M2XStream.m in Sources */,
 				8328494819ABBACD005CA81E /* main.m in Sources */,
+				63B5F2181DD806E600F612C9 /* M2XCommand.m in Sources */,
 				E2FA60D61A2E00ED000FA837 /* M2XClient.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

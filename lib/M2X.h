@@ -16,3 +16,4 @@
 #import "NSDate+M2X.h"
 #import "M2XCollection.h"
 #import "M2XJob.h"
+#import "M2XCommand.h"

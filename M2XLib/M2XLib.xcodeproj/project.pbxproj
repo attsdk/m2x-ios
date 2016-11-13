@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		63B5F2001DD799A000F612C9 /* M2XCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 63B5F1FF1DD7995B00F612C9 /* M2XCommand.m */; };
 		63B63B2D1DC7C42500746136 /* M2XJob.m in Sources */ = {isa = PBXBuildFile; fileRef = 63B63B2C1DC7C42500746136 /* M2XJob.m */; };
 		E25935B11A095F0000BE1B2D /* libM2XLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E25935A51A095F0000BE1B2D /* libM2XLib.a */; };
 		E25A4C9A1A67EB5100917B82 /* NSDate+M2X.m in Sources */ = {isa = PBXBuildFile; fileRef = E25A4C991A67EB5100917B82 /* NSDate+M2X.m */; };
@@ -82,6 +83,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		63B5F1FE1DD7995B00F612C9 /* M2XCommand.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = M2XCommand.h; path = ../../lib/M2XCommand.h; sourceTree = "<group>"; };
+		63B5F1FF1DD7995B00F612C9 /* M2XCommand.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = M2XCommand.m; path = ../../lib/M2XCommand.m; sourceTree = "<group>"; };
 		63B63B2B1DC7C42500746136 /* M2XJob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = M2XJob.h; path = ../../lib/M2XJob.h; sourceTree = "<group>"; };
 		63B63B2C1DC7C42500746136 /* M2XJob.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = M2XJob.m; path = ../../lib/M2XJob.m; sourceTree = "<group>"; };
 		E25935A51A095F0000BE1B2D /* libM2XLib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libM2XLib.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -192,6 +195,8 @@
 			children = (
 				E2DDFB5C1C330C3E00A6CAC5 /* M2XCollection.h */,
 				E2DDFB5D1C330C3E00A6CAC5 /* M2XCollection.m */,
+				63B5F1FE1DD7995B00F612C9 /* M2XCommand.h */,
+				63B5F1FF1DD7995B00F612C9 /* M2XCommand.m */,
 				E25A4C981A67EB5100917B82 /* NSDate+M2X.h */,
 				E25A4C991A67EB5100917B82 /* NSDate+M2X.m */,
 				E2B575151A2C930C00E837FC /* M2XDistribution.h */,
@@ -343,6 +348,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63B5F2001DD799A000F612C9 /* M2XCommand.m in Sources */,
 				E2C45B851A289C7300DDFA29 /* M2XResponse.m in Sources */,
 				E2C45B8B1A28A0EA00DDFA29 /* M2XResource.m in Sources */,
 				E2C45B881A289F6600DDFA29 /* M2XDevice.m in Sources */,

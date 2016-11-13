@@ -8,6 +8,7 @@
 
 #import "M2XDevice.h"
 #import "M2XStream.h"
+#import "M2XCommand.h"
 
 static NSString * const kPath = @"/devices";
 
@@ -164,6 +165,59 @@ static NSString * const kPath = @"/devices";
     [self.client deleteWithPath:[NSString stringWithFormat:@"%@/location/waypoints", [self path]] parameters:parameters completionHandler:^(M2XResponse *response) {
         completionHandler(response);
     }];
+}
+
+- (void)listCommands:(NSString *)deviceID completionHandler:(M2XArrayCallback)completionHandler{
+    
+    [self.client getWithPath:[NSString stringWithFormat:@"%@/%@/commands",kPath,deviceID ] parameters:nil completionHandler:^(M2XResponse *response) {
+        NSMutableArray *array = [NSMutableArray array];
+        
+        for (NSDictionary *dict in response.json[@"commands"]) {
+            M2XCommand *command = [[M2XCommand alloc] initWithClient:self.client attributes:dict];
+            [array addObject:command];
+        }
+        
+        completionHandler(array, response);
+    }];
+}
+
+
+
+- (void)viewCommand:(NSString *)deviceID commandid:(NSString *)commandid completionHandler:(M2XArrayCallback)completionHandler{
+    
+    [self.client getWithPath:[NSString stringWithFormat:@"%@/%@/commands/%@",kPath,deviceID,commandid ] parameters:nil completionHandler:^(M2XResponse *response) {
+        NSMutableArray *array = [NSMutableArray array];
+        
+        for (NSDictionary *dict in response.json[@"commands"]) {
+            M2XCommand *command = [[M2XCommand alloc] initWithClient:self.client attributes:dict];
+            [array addObject:command];
+        }
+        
+        completionHandler(array, response);
+    }];
+    
+}
+
+-(void)processCommand:(NSDictionary*)optionalParameters deviceId:(NSString *)deviceID  commandid:(NSString *)commandid completionHandler:(M2XBaseCallback)completionHandler{
+    
+    [self.client postWithPath:[NSString stringWithFormat:@"%@/%@/commands/%@/process",kPath,deviceID,commandid ] parameters:optionalParameters completionHandler:^(M2XResponse *response) {
+        {
+            completionHandler(response);
+        }
+    }];
+    
+}
+
+- (void)rejectCommand:(NSDictionary*)optionalParameters deviceId:(NSString *)deviceID commandid:(NSString *)commandid completionHandler:(M2XBaseCallback)completionHandler{
+    
+    [self.client postWithPath:[NSString stringWithFormat:@"%@/%@/commands/%@/reject",kPath,deviceID,commandid ] parameters:optionalParameters completionHandler:^(M2XResponse *response) {
+        {
+            completionHandler(response);
+            
+        }
+        
+    }];
+    
 }
 
 @end

@@ -28,6 +28,7 @@
 		0B810E48185F919B00D22F49 /* green.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B810E46185F919B00D22F49 /* green.png */; };
 		0B810E49185F919B00D22F49 /* red.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B810E47185F919B00D22F49 /* red.png */; };
 		637DD6681DC3C9C1009CD735 /* M2XJob.m in Sources */ = {isa = PBXBuildFile; fileRef = 637DD6671DC3C9C1009CD735 /* M2XJob.m */; };
+		63B5F2151DD8068E00F612C9 /* M2XCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 63B5F2141DD8068E00F612C9 /* M2XCommand.m */; };
 		E25E6A371A2CDDDE00E1941F /* NSDate+M2X.m in Sources */ = {isa = PBXBuildFile; fileRef = E25E6A361A2CDDDE00E1941F /* NSDate+M2X.m */; };
 		E2931E011A30B24200038311 /* AddDeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2931DF01A30B24200038311 /* AddDeviceViewController.m */; };
 		E2931E021A30B24200038311 /* AddStreamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2931DF21A30B24200038311 /* AddStreamViewController.m */; };
@@ -91,6 +92,8 @@
 		0B810E47185F919B00D22F49 /* red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red.png; sourceTree = "<group>"; };
 		637DD6661DC3C9C1009CD735 /* M2XJob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M2XJob.h; sourceTree = "<group>"; };
 		637DD6671DC3C9C1009CD735 /* M2XJob.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M2XJob.m; sourceTree = "<group>"; };
+		63B5F2131DD8068E00F612C9 /* M2XCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M2XCommand.h; sourceTree = "<group>"; };
+		63B5F2141DD8068E00F612C9 /* M2XCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M2XCommand.m; sourceTree = "<group>"; };
 		E25E6A351A2CDDDE00E1941F /* NSDate+M2X.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+M2X.h"; sourceTree = "<group>"; };
 		E25E6A361A2CDDDE00E1941F /* NSDate+M2X.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+M2X.m"; sourceTree = "<group>"; };
 		E2931DEF1A30B24200038311 /* AddDeviceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddDeviceViewController.h; sourceTree = "<group>"; };
@@ -291,6 +294,8 @@
 				E2DDFB591C330B9000A6CAC5 /* M2XCollection.m */,
 				637DD6661DC3C9C1009CD735 /* M2XJob.h */,
 				637DD6671DC3C9C1009CD735 /* M2XJob.m */,
+				63B5F2131DD8068E00F612C9 /* M2XCommand.h */,
+				63B5F2141DD8068E00F612C9 /* M2XCommand.m */,
 			);
 			name = lib;
 			path = ../lib;
@@ -437,6 +442,7 @@
 				E2C45B9D1A28AC4000DDFA29 /* M2XResponse.m in Sources */,
 				E2931E071A30B24200038311 /* DistributionDetailsViewController.m in Sources */,
 				E2931E041A30B24200038311 /* DeviceDescriptionViewController.m in Sources */,
+				63B5F2151DD8068E00F612C9 /* M2XCommand.m in Sources */,
 				0B7471FA1860BA01006F48B4 /* KeyListViewController.m in Sources */,
 				637DD6681DC3C9C1009CD735 /* M2XJob.m in Sources */,
 				E2931E061A30B24200038311 /* DevicesListViewController.m in Sources */,
