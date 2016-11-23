@@ -141,21 +141,19 @@
 // Device's List of Received Commands: Retrieve the list of recent commands sent
 //
 // https://m2x.att.com/developer/documentation/v2/commands#Device-s-List-of-Received-Commands
-- (void)listCommands:(NSString *)deviceID completionHandler:(M2XArrayCallback)completionHandler;
+- (void)listCommandsWitCompletionHandler:(M2XArrayCallback)completionHandler;
 
 // Device's View of Command Details: Get details of a received command
 //
 // https://m2x.att.com/developer/documentation/v2/commands#Device-s-View-of-Command-Details
-- (void)viewCommand:(NSString *)deviceID commandid:(NSString *)commandid completionHandler:(M2XArrayCallback)completionHandler;
-
+- (void)viewCommandWithCommandId:(NSString *)commandId completionHandler:(M2XBaseCallback)completionHandler;
 // Device Marks a Command as Processed
 //
 // https://m2x.att.com/developer/documentation/v2/commands#Device-Marks-a-Command-as-Processed
--(void)processCommand:(NSDictionary*)optionalParameters deviceId:(NSString *)deviceID  commandid:(NSString *)commandid completionHandler:(M2XBaseCallback)completionHandler;
+-(void)processCommand:(NSDictionary*)optionalParameters commandId:(NSString *)commandId completionHandler:(M2XBaseCallback)completionHandler;
 
 // Device Marks a Command as Rejected
 //
 // https://m2x.att.com/developer/documentation/v2/commands#Device-Marks-a-Command-as-Rejected
-- (void)rejectCommand:(NSDictionary*)optionalParameters deviceId:(NSString *)deviceID commandid:(NSString *)commandid completionHandler:(M2XBaseCallback)completionHandler;
-
+- (void)rejectCommand:(NSDictionary*)optionalParameters commandId:(NSString *)commandId completionHandler:(M2XBaseCallback)completionHandler;
 @end
